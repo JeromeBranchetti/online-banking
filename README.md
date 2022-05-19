@@ -40,7 +40,7 @@ JavaIsland
 	-FOOTBAR:[
 				-HOME(ROOT TO userdashboard)
 				-conti(root to homepageguest)
-				-pagamenti
+				-pagamenti.
 				
 				
 			 ]

@@ -1,0 +1,17 @@
+.app-bar-body {
+    position: fixed;
+}
+
+.bar-row-1 {
+    height: 15vh;
+    width: 100%;
+    background-color: rgba(169, 169, 169, 0.518);
+    display: flex;
+}
+
+.bar-row-2 {
+    height: 7.5vh;
+    width: 100%;
+    background-color: rgb(245, 0, 0);
+    color: rgb(247, 247, 247);
+}

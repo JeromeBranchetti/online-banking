@@ -1,0 +1,47 @@
+button{
+    background-color: transparent;
+    margin-top:15px;
+    border-radius: 50px;
+    border-color:blue;
+      
+}
+.column {
+    
+    width: 20%;
+    padding: 10px,10px,10px,10px;
+   
+  }
+  input {
+      width: 100%;
+  }
+ 
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .center{
+      text-align:center;
+  }
+
+ 
+  .destra{
+     float:right;
+     
+     
+  } 
+  .fake{
+      visibility: hidden;
+  }
+  .cancel{
+      margin-top:20%;
+  }
+ .signUp{
+float:right;
+margin-top:20%;
+  
+
+ }
+ .password{
+     margin-top:33%;
+ }

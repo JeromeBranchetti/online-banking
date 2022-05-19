@@ -1,5 +1,6 @@
 <html>
 <body>
+<form [formGroup]="signUp_form">
 <div class="row">
     <div class="column">
         <button >back</button>
@@ -14,11 +15,11 @@
       
       <label class="center">Name:</label>
       <br>
-      <input class ="destra" id="name" type="text" #name>
+      <input class ="destra" id="name" type="text" #name formControlName="name">
       <br>
       <label>last Name:</label>
       <br>
-      <input  class ="destra" id="last_name" type="text" #lastName>
+      <input  class ="destra" id="last_name" type="text" #lastName formControlName="last_name">
       <br>
       <button   class ="signUp" >SignUp</button>
       
@@ -29,7 +30,7 @@
            <div class="password">
            <label>Password:</label>
            <br>
-           <input id="password" type="password" #password>
+           <input id="password" type="password" #password formControlName="password">
            </div>
 
       
@@ -41,16 +42,18 @@
         <br>
         <label>Date of Birth:</label>
            <br>
-           <input id="date" type="text" #date>
+           <input id="date" type="text" #date formControlName="date">
            <br>
            <label>email:</label>
            <br>
-           <input id="email" type="text" #email>
+           <input id="email" type="text" #email formControlName="email">
            <br>
            <button class="cancel">cancel</button>
       
     </div>
     <div class="column"></div>
   </div>
+  
+  </form>
   </body>
   </html>

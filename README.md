@@ -28,26 +28,26 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 JavaIsland
--HomeComponent:[
-	-LoginPageComponent:[] vale sia per admin/guest
-	-RegisterComponent:[]
+-HomeComponent:[									**Jerome
+	-LoginComponent:[] vale sia per admin/guest 	**Giuseppe
+	-SignUpComponent:[] 							**Giuseppe
 	
-	-Appbar:[
+	-Appbar:[										**Jerome
 				-LOGOUT
 				-PRIVACYBUTTON
 				
 				]
-	-FOOTBAR:[
+	-FOOTBAR:[										**Jerome
 				-HOME(ROOT TO userdashboard)
 				-conti(root to homepageguest)
 				-pagamenti
 				
 				
 			 ]
-	-HomePageGuest[
+	-HomePageGuest[									****NO
 				-conti corrente
 			  ]
-	-UserDashBoard:[
+	-UserDashBoard:[ ****NO
 				-iban
 				-n.conto
 				-saldo
@@ -56,10 +56,10 @@ JavaIsland
 				
 				
 				] 
-	-GraficieDatiComponent:[
+	-AccountDetailComponent:[ ****NO
 					-lavorazione grafica dei dati 
 				    ]
-	-AdmindashBoardComponent:[
+	-AdmindashBoardComponent:[								**Christian
 				       -lista richieste 
 					 -storico richieste 
 					 -focus richieste 
@@ -68,7 +68,7 @@ JavaIsland
 								]
 
 					]
-	-PagamentiComponent:[
+	-PaymentComponent:[ 									**Kareem
 						 -buttonRicarica(carica form)	
 						 -buttonBonifico(carica form)
 							

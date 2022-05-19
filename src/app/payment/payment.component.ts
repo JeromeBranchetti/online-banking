@@ -8,12 +8,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
   bankTransferChoice: boolean = false;
-  phoneTopUp: boolean = false;
+  phoneTopUpChoice: boolean = false;
 
   bankTransferForm = new FormGroup({
     name: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     iban: new FormControl(null, Validators.required),
+    amount: new FormControl(null, Validators.required),
+  });
+
+  phoneTopUpForm = new FormGroup({
+    telephoneNumber: new FormControl(null, Validators.required),
     amount: new FormControl(null, Validators.required),
   });
 
@@ -23,11 +28,20 @@ export class PaymentComponent implements OnInit {
 
   onBankTransfer() {
     this.bankTransferChoice = true;
-    this.phoneTopUp = false;
+    this.phoneTopUpChoice = false;
   }
 
   onPhoneTopUp() {
     this.bankTransferChoice = false;
-    this.phoneTopUp = true;
+    this.phoneTopUpChoice = true;
+  }
+
+  onBankTransferSubmit() {}
+
+  onPhoneTopUpSubmit() {}
+
+  onCancel() {
+    this.bankTransferForm.reset();
+    this.phoneTopUpForm.reset();
   }
 }

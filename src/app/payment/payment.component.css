@@ -1,7 +1,23 @@
 #choice {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
 }
 
-.form-group {
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  margin: 10px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
 }

@@ -13,6 +13,7 @@ import { UserDashBoardComponent } from './user-dash-board/user-dash-board.compon
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PaymentComponent } from './payment/payment.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

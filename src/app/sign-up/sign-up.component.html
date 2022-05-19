@@ -21,7 +21,7 @@
       <br>
       <input  class ="destra" id="last_name" type="text" #lastName formControlName="last_name">
       <br>
-      <button   class ="signUp" >SignUp</button>
+      <button   class ="signUp" [disabled]="signUp_form.invalid" >SignUp</button>
       
     </div>
     <div class="column" >
@@ -42,13 +42,13 @@
         <br>
         <label>Date of Birth:</label>
            <br>
-           <input id="date" type="text" #date formControlName="date">
+           <input id="date" type="date"  value="1900-1-1" min="1900-1-1" max="2030-12-31" #date formControlName="date">
            <br>
            <label>email:</label>
            <br>
            <input id="email" type="text" #email formControlName="email">
            <br>
-           <button class="cancel">cancel</button>
+           <button class="cancel" (click)="delete()">cancel</button>
       
     </div>
     <div class="column"></div>

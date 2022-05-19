@@ -1,1 +1,33 @@
-<p>login works!</p>
+<html>
+<body>
+  <form [formGroup]="login_form">
+<div class="row">
+    <div class="column" >
+      <button class="back">back</button>
+    </div>
+    <div class="column" >
+       <div class="center">
+      <h2>User Login</h2>
+      <label>Email:</label>
+      <br>
+      <input id="email" type="text" #email>
+      <br>
+      <label>Password:</label>
+      <br>
+      <input id="password"  type="password" #password>
+      <br>
+      
+      <button class="login" (click)="login(email.value,password.value)">login</button>
+      <button class="cancel" (click)="delete()">cancel </button>
+      
+      <br>
+      <button class="switch">Switch to sign up </button>
+      </div>
+    </div>
+    <div class="column" >
+      
+    </div>
+  </div>
+</form>
+  </body>
+  </html>

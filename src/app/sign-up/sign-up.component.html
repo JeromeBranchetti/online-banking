@@ -1,1 +1,68 @@
-<p>sign-up works!</p>
+<app-bar></app-bar>
+<hr />
+<br />
+
+<html>
+<body>
+<form [formGroup]="signUp_form">
+<div class="row">
+    <div class="column">
+        <button >back</button>
+    </div>
+    <div class="column" >
+        <button class="fake" disabled>"fake"</button>
+      
+        <br>
+          
+      
+      
+      
+      <label class="center">Name:</label>
+      <br>
+      <input class ="destra" id="name" type="text" #name formControlName="name">
+      <br>
+      <label>last Name:</label>
+      <br>
+      <input  class ="destra" id="last_name" type="text" #lastName formControlName="last_name">
+      <br>
+      <button   class ="signUp" [disabled]="signUp_form.invalid" >SignUp</button>
+      
+    </div>
+    <div class="column" >
+       <div class="center">
+           <h2>User SignUp</h2>
+           <div class="password">
+           <label>Password:</label>
+           <br>
+           <input id="password" type="password" #password formControlName="password">
+           </div>
+
+      
+      </div>
+    </div>
+    <div class="column" >
+        <button class="fake" disabled>"fake"</button>
+      
+        <br>
+        <label>Date of Birth:</label>
+           <br>
+           <input id="date" type="date"  value="1900-1-1" min="1900-1-1" max="2030-12-31" #date formControlName="date">
+           <br>
+           <label>email:</label>
+           <br>
+           <input id="email" type="text" #email formControlName="email">
+           <br>
+           <button class="cancel" (click)="delete()">cancel</button>
+      
+    </div>
+    <div class="column"></div>
+  </div>
+  
+  </form>
+  </body>
+  <hr />
+<br />
+  <app-foot-bar></app-foot-bar>
+
+
+  </html>

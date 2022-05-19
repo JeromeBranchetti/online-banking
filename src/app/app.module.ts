@@ -13,6 +13,7 @@ import { UserDashBoardComponent } from './user-dash-board/user-dash-board.compon
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,10 @@ import { PaymentComponent } from './payment/payment.component';
     UserDashBoardComponent,
     AccountDetailComponent,
     AdminDashBoardComponent,
-    PaymentComponent
+    PaymentComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

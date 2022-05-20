@@ -1,0 +1,32 @@
+.containerRequestList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.requestsList {
+  height: 600px;
+  border: 1px solid black;
+  width: 20%;
+}
+
+.requestList {
+  width: 20%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.request {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+.led-green {
+  width: 24px;
+  height: 24px;
+  background-color: #abff00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #89ff00 0 2px 12px;
+}

@@ -1,12 +1,7 @@
-.containerRequestList {
-  display: flex;
-  justify-content: space-between;
-}
-
 .requestsList {
   height: 600px;
   border: 1px solid black;
-  width: 20%;
+  width: 100%;
 }
 
 .requestList {
@@ -16,17 +11,49 @@
 }
 
 .request {
+  cursor: pointer;
+  color: black;
   border-bottom: 1px solid black;
   display: flex;
   justify-content: center;
+  height: 7%;
   margin-top: 2%;
 }
 
+.singleRequest {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  align-self: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .led-green {
-  width: 24px;
-  height: 24px;
+  width: 8%;
+  height: 80%;
   background-color: #abff00;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
     #89ff00 0 2px 12px;
+}
+
+.led-yellow {
+  width: 8%;
+  height: 80%;
+  background-color: #ff0;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px;
+}
+
+.led-red {
+  width: 8%;
+  height: 80%;
+  background-color: #f00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+    rgba(255, 0, 0, 0.5) 0 2px 12px;
 }

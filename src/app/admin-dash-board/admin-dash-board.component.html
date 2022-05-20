@@ -2,41 +2,73 @@ AdminBar
 <hr />
 <br />
 
-<div class="containerRequestList">
+<div class="row">
   <!-- Prima lista (sinistra) -->
-  <div class="requestsList">
+  <div class="col-2">
+    <h4>New Requests List</h4>
     <div
-      class="nav flex-column nav-pills"
+      class="nav flex-column nav-pills requestsList"
       aria-orientation="vertical"
-      *ngFor="let request of requests"
     >
       <div
+        *ngFor="let request of newRequests; let i = index"
         class="nav-link request"
         data-toggle="pill"
         aria-controls="v-pills-home"
         aria-selected="true"
+        (click)="onSelectRequest(i)"
       >
-        Request
-        <div class="led-green"></div>
+        {{ newRequests[i].name }}
+        {{ newRequests[i].lastName }}
+        <div
+          [ngClass]="{
+            'led-green': requestsLight[i] === 'green',
+            'led-yellow': requestsLight[i] === 'yellow',
+            'led-red': requestsLight[i] === 'red'
+          }"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spazio per le richieste -->
+  <div class="col-8 singleRequest">
+    <div *ngIf="requestVisibility">
+      <app-request
+        [name]="newRequests[requestIndex].name"
+        [lastName]="newRequests[requestIndex].lastName"
+        [dateOfBirth]="newRequests[requestIndex].dateOfBirth"
+        [email]="newRequests[requestIndex].email"
+        [light]="requestsLight[requestIndex]"
+      ></app-request>
+      <div class="buttons">
+        <button class="btn btn-success" (click)="onAcceptRequest()">
+          Accept
+        </button>
+        <button class="btn btn-danger" (click)="onDeclineRequest()">
+          Decline
+        </button>
       </div>
     </div>
   </div>
 
   <!-- Seconda lista (destra) -->
-  <div class="requestsList">
+  <div class="col-2">
+    <h3>Older Request List</h3>
     <div
-      class="nav flex-column nav-pills"
+      class="nav flex-column nav-pills requestsList"
       aria-orientation="vertical"
-      *ngFor="let request of requests"
     >
       <div
+        *ngFor="let request of oldRequests; let i = index"
         class="nav-link request"
         data-toggle="pill"
         aria-controls="v-pills-home"
         aria-selected="true"
       >
-        Request
-        <div class="led-green"></div>
+        {{ oldRequests[i].name }}
+        {{ oldRequests[i].lastName }}
+        <div [ngClass]="{}"></div>
       </div>
     </div>
   </div>

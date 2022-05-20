@@ -1,3 +1,4 @@
+import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HomeComponent } from './home/home.component';
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'adminDashboard',
     component: AdminDashBoardComponent,
+  },
+  {
+    path: 'account-detail',
+    component: AccountDetailComponent,
   },
 ];
 

@@ -1,1 +1,18 @@
-<p>account-detail works!</p>
+<ul class="list-group">
+  <li *ngFor="let bankTransaction of bankTransactions" class="list-group-item">
+    <div class="row">
+      <div class="col-2">
+        {{ bankTransaction.type }}
+      </div>
+      <div class="col-2">
+        {{ bankTransaction.date }}
+      </div>
+      <div class="col-2">
+        {{ bankTransaction.amount }}
+      </div>
+      <div class="col-2">
+        {{ bankTransaction.description }}
+      </div>
+    </div>
+  </li>
+</ul>

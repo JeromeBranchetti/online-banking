@@ -2,27 +2,42 @@ AdminBar
 <hr />
 <br />
 
-<div class="requestsList">
-  <div
-    class="nav flex-column nav-pills"
-    id="v-pills-tab"
-    role="tablist"
-    aria-orientation="vertical"
-    *ngFor="let request of requests"
-  >
-    <a
-      class="nav-link active"
-      id="v-pills-home-tab"
-      data-toggle="pill"
-      role="tab"
-      aria-controls="v-pills-home"
-      aria-selected="true"
-      >Request</a
+<div class="containerRequestList">
+  <!-- Prima lista (sinistra) -->
+  <div class="requestsList">
+    <div
+      class="nav flex-column nav-pills"
+      aria-orientation="vertical"
+      *ngFor="let request of requests"
     >
+      <div
+        class="nav-link request"
+        data-toggle="pill"
+        aria-controls="v-pills-home"
+        aria-selected="true"
+      >
+        Request
+        <div class="led-green"></div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">Panel Heading</div>
-  <div class="panel-body">Panel Content</div>
+  <!-- Seconda lista (destra) -->
+  <div class="requestsList">
+    <div
+      class="nav flex-column nav-pills"
+      aria-orientation="vertical"
+      *ngFor="let request of requests"
+    >
+      <div
+        class="nav-link request"
+        data-toggle="pill"
+        aria-controls="v-pills-home"
+        aria-selected="true"
+      >
+        Request
+        <div class="led-green"></div>
+      </div>
+    </div>
+  </div>
 </div>

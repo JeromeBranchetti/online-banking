@@ -15,6 +15,34 @@ export class AdminDashBoardComponent implements OnInit {
       dateOfBirth: '111',
       email: 'andrea@rossi.it',
     },
+    {
+      name: 'Andrea',
+      lastName: 'Rossi',
+      iban: '1234',
+      dateOfBirth: '111',
+      email: 'andrea@rossi.it',
+    },
+    {
+      name: 'Andrea',
+      lastName: 'Rossi',
+      iban: '1234',
+      dateOfBirth: '111',
+      email: 'andrea@rossi.it',
+    },
+    {
+      name: 'Andrea',
+      lastName: 'Rossi',
+      iban: '1234',
+      dateOfBirth: '111',
+      email: 'andrea@rossi.it',
+    },
+    {
+      name: 'Andrea',
+      lastName: 'Rossi',
+      iban: '1234',
+      dateOfBirth: '111',
+      email: 'andrea@rossi.it',
+    },
   ];
 
   constructor() {}

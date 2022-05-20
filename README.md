@@ -21,7 +21,7 @@ JavaIsland
 	-HomePageGuest[									****NO
 				-conti corrente
 			  ]
-	-UserDashBoard:[ **Giuseppe in attesa del back con il get 20/05/22
+	-UserDashBoard:[  **Giuseppe in attesa del back con il get 20/05/22
 				-iban
 				-n.conto
 				-saldo

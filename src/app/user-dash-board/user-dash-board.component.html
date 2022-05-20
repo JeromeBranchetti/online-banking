@@ -1,1 +1,112 @@
-<p>user-dash-board works!</p>
+<div *ngIf="modeSpione">
+<div  class="row">
+    <div class="column">
+        <button class="back">back</button>
+    </div>
+    
+    <div  class="column_destra">
+
+   </div>
+
+   <div class="column">
+       <h2>{{cliente}}</h2>
+
+   </div>
+   
+   <div class="column">
+
+   </div>
+</div>
+<div  class="row">
+    <div class="column"></div>
+    <div  class="column_destra">
+        <h2>n.conto:</h2>
+
+    </div>
+
+   <div class="column">
+       <h2>{{n_conto}}</h2>
+
+
+    </div>
+   
+   <div class="column"></div>
+
+</div>
+<div  class="row">
+    <div class="column"></div>
+    <div  class="column_destra">
+        <h2>iban:</h2>
+        
+
+   </div>
+
+   <div class="column">
+       <h2 >{{iban}}</h2>
+       <h2 >Saldo:</h2>
+        <h2>{{saldo}}€</h2>
+
+   </div>
+   
+   <div class="column">
+       <button id="copia" (click)="copia()">copia</button>
+
+   </div>
+</div>
+</div>
+<div *ngIf="!modeSpione">
+    <div  class="row">
+        <div class="column">
+            <button class="back">back</button>
+        </div>
+        
+        <div  class="column_destra">
+    
+       </div>
+    
+       <div class="column">
+           <h2>{{cliente}}</h2>
+    
+       </div>
+       
+       <div class="column">
+    
+       </div>
+    </div>
+    <div  class="row">
+        <div class="column"></div>
+        <div  class="column_destra">
+            <h2>n.conto:</h2>
+    
+        </div>
+    
+       <div class="column">
+           <h2>{{n_conto}}</h2>
+    
+    
+        </div>
+       
+       <div class="column"></div>
+    
+    </div>
+    <div  class="row">
+        <div class="column"></div>
+        <div  class="column_destra">
+            <h2>iban:</h2>
+            
+    
+       </div>
+    
+       <div class="column">
+           <h2>{{iban}}</h2>
+           <h2 style="text-align:center">Saldo:</h2>
+            <h2>{{saldo}}eur</h2>
+    
+       </div>
+       
+       <div class="column">
+           <button>copia</button>
+    
+       </div>
+    </div>
+    </div>

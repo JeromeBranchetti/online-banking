@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
   constructor() { }
-  regex = new RegExp('[A-Z][a-z]{4,}[0-9][^W]')
+  regex = new RegExp('^[A-Z][a-z]{4,}[0-9]*[^W]$')
   ngOnInit(): void {
   }
   signUp_form=new FormGroup(

@@ -21,3 +21,13 @@
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+/* Prova */
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}

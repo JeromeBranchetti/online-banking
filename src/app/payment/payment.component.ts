@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-payment',
@@ -22,10 +27,6 @@ export class PaymentComponent implements OnInit {
     amount: new FormControl(null, Validators.required),
   });
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   onBankTransfer() {
     this.bankTransferChoice = true;
     this.phoneTopUpChoice = false;
@@ -43,5 +44,22 @@ export class PaymentComponent implements OnInit {
   onCancel() {
     this.bankTransferForm.reset();
     this.phoneTopUpForm.reset();
+  }
+
+  // Prova
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
   }
 }

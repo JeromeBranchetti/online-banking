@@ -1,0 +1,16 @@
+<div class="card" style="margin: 30px">
+  <div
+    class="card-header"
+    [ngClass]="{
+      'card-header-green': light === 'green',
+      'card-header-yellow': light === 'yellow',
+      'card-header-red': light === 'red'
+    }"
+  >
+    <h3>{{ name }} {{ lastName }}</h3>
+  </div>
+  <div class="card-body">
+    <h3>Date of birth: {{ dateOfBirth }}</h3>
+    <h3>email: {{ email }}</h3>
+  </div>
+</div>

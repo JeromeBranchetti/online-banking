@@ -1,3 +1,6 @@
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,6 +17,7 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RequestComponent } from './admin-dash-board/request/request.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     AccountDetailComponent,
     AdminDashBoardComponent,
     PaymentComponent,
+    RequestComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,27 +1,24 @@
 .app-bar-body {
     position: fixed;
+    top: 0;
 }
 
 .bar-row-1 {
-    height: 15vh;
+    height: 10vh;
     width: 100%;
     background-color: rgba(169, 169, 169, 0.518);
     display: flex;
+    padding: 0;
+    margin: 0;
 }
 
-.bar-row-2 {
-    height: 7.5vh;
-    width: 100%;
-    background-color: rgb(245, 0, 0);
-    color: rgb(247, 247, 247);
-}
 
 .eye-button {
     padding: 0;
     border: none;
     background: none;
-    color: cornflowerblue;
-    margin-top: 12px;
+    color: rgb(80,197,145);
+    margin-top: 5px;
 }
 
 .man-button {
@@ -30,6 +27,12 @@
     background: none;
 }
 
+.img-speed-man {
+    position: relative;
+    transform: translateY(-4px);
+    
+}
+
 img {
-    height: 10vh;
+    height: 8vh;
 }

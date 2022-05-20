@@ -17,4 +17,6 @@ export class AppBarComponent implements OnInit {
     this.eyeOpen = !this.eyeOpen;
   }
 
+  logOut() {}
+
 }

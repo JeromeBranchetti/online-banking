@@ -12,4 +12,8 @@ export class FootBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDashBoard() {}
+  onPayment() {}
+  onMovementDetail() {}
+
 }

@@ -9,23 +9,23 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserDashBoardComponent } from './user-dash-board/user-dash-board.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'userDashboard',
+    component: UserDashBoardComponent,
+  },
+  {
+    path: 'signUp',
+    component: SignUpComponent,
+  },
 
-{
-  path:'',component:HomeComponent
-},
-   {
-     path:'login', component:LoginComponent
-     
-   },
-  {  
-    path:'userDashboard',component:UserDashBoardComponent
-   },
- {
-  path:'signUp',component:SignUpComponent
-   },
- 
-
- 
   {
     path: 'payment',
     component: PaymentComponent,
@@ -35,7 +35,6 @@ const routes: Routes = [
     component: AdminDashBoardComponent,
   },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

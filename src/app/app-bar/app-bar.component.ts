@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-bar.component.css']
 })
 export class AppBarComponent implements OnInit {
+  eyeOpen:boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openCloseToggle() {
+    this.eyeOpen = !this.eyeOpen;
   }
 
 }

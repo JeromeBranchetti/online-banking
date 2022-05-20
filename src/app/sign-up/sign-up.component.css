@@ -1,47 +1,45 @@
-button{
-    background-color: transparent;
-    margin-top:15px;
-    border-radius: 50px;
-    border-color:blue;
-      
+button {
+  background-color: rgb(255,193,7);
+  margin-top: 15px;
+  border-radius: 50px;
+  border-color: blue;
+  padding: 9px;
 }
 .column {
-    
-    width: 20%;
-    padding: 10px,10px,10px,10px;
-   
-  }
-  input {
-      width: 100%;
-  }
- 
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .center{
-      text-align:center;
-  }
+  width: 20%;
+  padding: 10px, 10px, 10px, 10px;
+}
+input {
+  width: 100%;
+}
 
- 
-  .destra{
-     float:right;
-     
-     
-  } 
-  .fake{
-      visibility: hidden;
-  }
-  .cancel{
-      margin-top:20%;
-  }
- .signUp{
-float:right;
-margin-top:20%;
-  
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.center {
+  text-align: center;
+}
 
- }
- .password{
-     margin-top:33%;
- }
+.destra {
+  float: right;
+}
+.fake {
+  visibility: hidden;
+}
+.cancel {
+  margin-top: 20%;
+}
+.signUp {
+  float: right;
+  margin-top: 20%;
+}
+.password {
+  margin-top: 33%;
+}
+
+.sign-up-box {
+  position: relative;
+  top: 10vh;
+}

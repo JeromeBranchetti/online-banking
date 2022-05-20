@@ -1,6 +1,6 @@
 .home-box {
   border-radius: 20px;
-  background: rgb(56,24,65);
+  background: rgb(56, 24, 65);
   background: radial-gradient(
     circle,
     rgba(119, 53, 66, 1) 0%,
@@ -11,15 +11,60 @@
   top: 10vh;
 }
 
-.grid-layout-home:nth-child(1) {
+.login-section {
+  grid-area: one;
+}
 
-};
+.big-text {
+  grid-area: two;
+}
 
-.grid-layout-home {
+.card-images-overlayed {
+  grid-area: three;
+}
+
+@media (min-width: 20em) {
+  .grid-layout-home {
     display: grid;
+    height: 80vh;
     grid-template-areas:
-    'one'
-    'two'
-    'three'
-    ;
+      "one one"
+      "three three"
+      "two two ";
+  }
+}
+
+@media (min-width: 35em) {
+  .grid-layout-home {
+    display: grid;
+    height: 80vh;
+    grid-template-areas:
+      "blank-1 one one blank-2"
+      "two three three three"
+      "two three three three";
+  }
+}
+
+@media (min-width: 50em) {
+  .grid-layout-home {
+    display: grid;
+    height: 80vh;
+    grid-template-areas:
+      "blank-1 blank-2 one one"
+      "two two three three"
+      "two two three three";
+  }
+  
+}
+
+
+
+.card-images-overlayed {
+  background-color: rgba(240, 248, 255, 0.621);
+  height: 100%;
+  width: 100%;
+}
+
+.big-paragraph {
+  font-size: 5vw;
 }

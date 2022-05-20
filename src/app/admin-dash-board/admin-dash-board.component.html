@@ -1,74 +1,78 @@
-AdminBar
-<hr />
-<br />
+<div class="container admin-dash-box">
+  AdminBar
+  <hr />
+  <br />
 
-<div class="row">
-  <!-- Prima lista (sinistra) -->
-  <div class="col-2">
-    <h4>New Requests List</h4>
-    <div
-      class="nav flex-column nav-pills requestsList"
-      aria-orientation="vertical"
-    >
-      <div
-        *ngFor="let request of newRequests; let i = index"
-        class="nav-link request"
-        data-toggle="pill"
-        aria-controls="v-pills-home"
-        aria-selected="true"
-        (click)="onSelectRequest(i)"
-      >
-        {{ newRequests[i].name }}
-        {{ newRequests[i].lastName }}
+  <div class="row">
+    <!-- Prima lista (sinistra) -->
+    <div class="col-3">
+      <h4>New Requests List</h4>
+      <div class="row flex-column requestsList" aria-orientation="vertical">
         <div
-          [ngClass]="{
-            'led-green': requestsLight[i] === 'green',
-            'led-yellow': requestsLight[i] === 'yellow',
-            'led-red': requestsLight[i] === 'red'
-          }"
-        ></div>
+          *ngFor="let request of newRequests; let i = index"
+          class="col request"
+          data-toggle="pill"
+          aria-controls="v-pills-home"
+          aria-selected="true"
+          (click)="onSelectRequest(i)"
+        >
+          <div class="row">
+            <div class="col-10">
+              {{ newRequests[i].name }}
+              {{ newRequests[i].lastName }}
+            </div>
+            <div
+              class="col-2"
+              [ngClass]="{
+                'led-green': requestsLight[i] === 'green',
+                'led-yellow': requestsLight[i] === 'yellow',
+                'led-red': requestsLight[i] === 'red'
+              }"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Spazio per le richieste -->
-  <div class="col-8 singleRequest">
-    <div *ngIf="requestVisibility">
-      <app-request
-        [name]="newRequests[requestIndex].name"
-        [lastName]="newRequests[requestIndex].lastName"
-        [dateOfBirth]="newRequests[requestIndex].dateOfBirth"
-        [email]="newRequests[requestIndex].email"
-        [light]="requestsLight[requestIndex]"
-      ></app-request>
-      <div class="buttons">
-        <button class="btn btn-success" (click)="onAcceptRequest()">
-          Accept
-        </button>
-        <button class="btn btn-danger" (click)="onDeclineRequest()">
-          Decline
-        </button>
+    <!-- Spazio per le richieste -->
+    <div class="col-6 singleRequest">
+      <div *ngIf="requestVisibility">
+        <app-request
+          [name]="newRequests[requestIndex].name"
+          [lastName]="newRequests[requestIndex].lastName"
+          [dateOfBirth]="newRequests[requestIndex].dateOfBirth"
+          [email]="newRequests[requestIndex].email"
+          [light]="requestsLight[requestIndex]"
+        ></app-request>
+        <div class="buttons">
+          <button class="btn btn-success" (click)="onAcceptRequest()">
+            Accept
+          </button>
+          <button class="btn btn-danger" (click)="onDeclineRequest()">
+            Decline
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Seconda lista (destra) -->
-  <div class="col-2">
-    <h3>Older Request List</h3>
-    <div
-      class="nav flex-column nav-pills requestsList"
-      aria-orientation="vertical"
-    >
+    <!-- Seconda lista (destra) -->
+    <div class="col-3">
+      <h3>Older Request List</h3>
       <div
-        *ngFor="let request of oldRequests; let i = index"
-        class="nav-link request"
-        data-toggle="pill"
-        aria-controls="v-pills-home"
-        aria-selected="true"
+        class="nav flex-column requestsList"
+        aria-orientation="vertical"
       >
-        {{ oldRequests[i].name }}
-        {{ oldRequests[i].lastName }}
-        <div [ngClass]="{}"></div>
+        <div
+          *ngFor="let request of oldRequests; let i = index"
+          class="nav-link request"
+          data-toggle="pill"
+          aria-controls="v-pills-home"
+          aria-selected="true"
+        >
+          {{ oldRequests[i].name }}
+          {{ oldRequests[i].lastName }}
+          <div [ngClass]="{}"></div>
+        </div>
       </div>
     </div>
   </div>

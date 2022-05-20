@@ -1,43 +1,38 @@
-button{
-    background-color: transparent;
-}
 .column {
-    float: left;
-    width: 33.33%;
-   
-  }
-  
- 
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .center{
-      text-align:center;
-  }
-  input{
-      
-      width:100%;
-      
-  }
-  .login{
-      float:left;
-      
+  float: left;
+  width: 33.33%;
+}
 
-  }
-  .cancel{
-      float:right;
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.center {
+  text-align: center;
+}
+input {
+  width: 100%;
+}
+.login {
+  float: left;
+}
+.cancel {
+  float: right;
+}
+button {
+  margin-top: 10px;
+  border-radius: 50px;
+  background-color: rgb(255,193,7);
+  padding: 9px;
+}
+.back {
+  margin-left: 10px;
 
-  }
-  button{
-      margin-top:10px;
-      border-radius: 50px;
-  }
-  .back{
-      margin-left:10px;
-      
-      border-color:blue;
-      
-      
-  }
+  border-color: blue;
+}
+
+.login-box {
+  position: relative;
+  top: 10vh;
+}

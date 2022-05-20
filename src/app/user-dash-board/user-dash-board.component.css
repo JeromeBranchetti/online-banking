@@ -1,47 +1,45 @@
 .column {
-    
-    width: 20%;
-    padding: 10px,10px,10px,10px;
-    margin:10px,10px,10px,10px;
-   
-  }
-  h2{
-    width: 100%;
-  }
+  width: 20%;
+  padding: 10px, 10px, 10px, 10px;
+  margin: 10px, 10px, 10px, 10px;
+}
+h2 {
+  width: 100%;
+}
 
-  .column_center {
-    
-    width: 40%;
-    padding: 10px,10px,10px,10px;
-    text-align: center;
-    
-   
-  }
-  input {
-      width: 100%;
-  }
- 
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
- 
+.column_center {
+  width: 40%;
+  padding: 10px, 10px, 10px, 10px;
+  text-align: center;
+}
+input {
+  width: 100%;
+}
 
- 
-  .column_destra{
-    width: 20%;
-    padding: 10px,10px,10px,10px;
-    text-align: right;
-  }
-  button{
-    background-color: transparent;
-    
-    border-radius: 50px;
-    border-color:blue;
-  }  
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  .back{
-    margin-left:10px;
-    margin-top:15px;
+.column_destra {
+  width: 20%;
+  padding: 10px, 10px, 10px, 10px;
+  text-align: right;
+}
+/* button {
+  background-color: orange;
+  padding: 9px;
+  border-radius: 50px;
+  border-color: blue;
+} */
+
+.back {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.user-dash-box {
+  position: relative;
+  top: 10vh;
 }

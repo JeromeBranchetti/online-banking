@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-foot-bar',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FootBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onDashBoard() {}
-  onPayment() {}
-  onMovementDetail() {}
+  onDashBoard() {
+    this.router.navigate(['/userDashboard']);
+  }
+  onPayment() {
+    this.router.navigate(['/payment']);
+  }
+  onMovementDetail() {
+    this.router.navigate(['/account-detail']);
+  }
 
 }

@@ -12,7 +12,8 @@
 
 .request {
   cursor: pointer;
-  color: black;
+  background-color: #f04a27;
+  color: white;
   border-bottom: 1px solid black;
   display: flex;
   justify-content: center;

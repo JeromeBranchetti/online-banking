@@ -31,3 +31,8 @@ input.ng-invalid.ng-touched {
 .mat-form-field {
   margin-top: 16px;
 }
+
+.payment-box {
+  position: relative;
+  top: 10vh;
+}

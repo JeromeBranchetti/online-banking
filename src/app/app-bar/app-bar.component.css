@@ -1,12 +1,13 @@
 .app-bar-body {
     position: fixed;
     top: 0;
+    z-index: 100;
 }
 
 .bar-row-1 {
     height: 10vh;
     width: 100%;
-    background-color: rgba(169, 169, 169, 0.518);
+    background-color: rgb(226, 226, 226);
     display: flex;
     padding: 0;
     margin: 0;

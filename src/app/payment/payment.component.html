@@ -1,147 +1,151 @@
-<hr />
-<br />
+<div class="container payment-box">
+  <hr />
+  <br />
 
-<div id="choice">
-  <button class="btn btn-primary" (click)="onBankTransfer()">
-    Bank Trasfer
-  </button>
-  <button class="btn btn-primary" (click)="onPhoneTopUp()">Phone top-up</button>
-</div>
+  <div id="choice">
+    <button class="btn btn-primary" (click)="onBankTransfer()">
+      Bank Trasfer <i class="fas fa-exchange-alt"></i>
+    </button>
+    <button class="btn btn-primary" (click)="onPhoneTopUp()">
+      Phone top-up <i class="fas fa-mobile-alt fs-4"></i>
+    </button>
+  </div>
 
-<div class="row">
-  <div class="col-6">
-    <div id="form">
-      <form
-        [formGroup]="bankTransferForm"
-        *ngIf="bankTransferChoice"
-        (ngSubmit)="onBankTransferSubmit()"
-      >
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            class="form-control"
-            formControlName="name"
-          />
-          <label for="lastName">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            class="form-control"
-            formControlName="lastName"
-          />
-          <label for="iban">IBAN</label>
-          <input
-            type="number"
-            id="iban"
-            class="form-control"
-            formControlName="iban"
-          />
-          <label for="name">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            class="form-control"
-            formControlName="amount"
-          />
-        </div>
-        <div class="button">
-          <button
-            type="submit"
-            class="btn btn-primary submit"
-            [disabled]="!bankTransferForm.valid"
-          >
-            Send
-          </button>
-          <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
-        </div>
-      </form>
+  <div class="row">
+    <div class="col-6">
+      <div id="form">
+        <form
+          [formGroup]="bankTransferForm"
+          *ngIf="bankTransferChoice"
+          (ngSubmit)="onBankTransferSubmit()"
+        >
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
+              formControlName="lastName"
+            />
+            <label for="iban">IBAN</label>
+            <input
+              type="number"
+              id="iban"
+              class="form-control"
+              formControlName="iban"
+            />
+            <label for="name">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              class="form-control"
+              formControlName="amount"
+            />
+          </div>
+          <div class="button">
+            <button
+              type="submit"
+              class="btn btn-primary submit"
+              [disabled]="!bankTransferForm.valid"
+            >
+              Send
+            </button>
+            <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          </div>
+        </form>
 
-      <form
-        [formGroup]="phoneTopUpForm"
-        (ngSubmit)="onPhoneTopUpSubmit()"
-        *ngIf="phoneTopUpChoice"
-      >
-        <div class="form-group">
-          <label for="telephoneNumber">Telephone Number</label>
-          <input
-            type="number"
-            id="telephoneNumber"
-            class="form-control"
-            formControlName="telephoneNumber"
-          />
-          <label for="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            class="form-control"
-            formControlName="amount"
-          />
-        </div>
-        <div class="button">
-          <button
-            type="submit"
-            class="btn btn-primary submit"
-            [disabled]="!phoneTopUpForm.valid"
-          >
-            Charge
-          </button>
-          <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
-        </div>
-      </form>
+        <form
+          [formGroup]="phoneTopUpForm"
+          (ngSubmit)="onPhoneTopUpSubmit()"
+          *ngIf="phoneTopUpChoice"
+        >
+          <div class="form-group">
+            <label for="telephoneNumber">Telephone Number</label>
+            <input
+              type="number"
+              id="telephoneNumber"
+              class="form-control"
+              formControlName="telephoneNumber"
+            />
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              class="form-control"
+              formControlName="amount"
+            />
+          </div>
+          <div class="button">
+            <button
+              type="submit"
+              class="btn btn-primary submit"
+              [disabled]="!phoneTopUpForm.valid"
+            >
+              Charge
+            </button>
+            <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<br />
-<hr />
+  <br />
+  <hr />
 
-<!-- Prova -->
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
-</button>
-<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          placeholder="Last name, First name"
-          formControlName="firstCtrl"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
-      </mat-form-field>
+  <!-- Prova -->
+  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+  </button>
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Last name, First name"
+            formControlName="firstCtrl"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="secondCtrl"
+            placeholder="Ex. 1 Main St, New York, NY"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppBarComponent implements OnInit {
   eyeOpen:boolean = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +18,12 @@ export class AppBarComponent implements OnInit {
     this.eyeOpen = !this.eyeOpen;
   }
 
-  logOut() {}
+  logOut() {
+    this.router.navigate(['/']);
+  }
+  
+  toHome() {
+    this.router.navigate(['/']);
+  }
 
 }

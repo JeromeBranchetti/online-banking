@@ -24,7 +24,12 @@ input.ng-invalid.ng-touched {
 
 /* Prova */
 
-.mat-stepper-vertical {
+.formStepper {
+  background-color: white;
+  color: black;
+}
+
+.mat-stepper-horizontal {
   margin-top: 8px;
 }
 
@@ -32,7 +37,6 @@ input.ng-invalid.ng-touched {
   margin-top: 16px;
 }
 
-.payment-box {
-  position: relative;
-  top: 10vh;
+.dataForm {
+  display: flex;
 }

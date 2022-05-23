@@ -2,6 +2,7 @@
   <hr />
   <br />
 
+  <!-- Bottoni di scelta -->
   <div id="choice">
     <button class="btn btn-primary" (click)="onBankTransfer()">
       Bank Trasfer <i class="fas fa-exchange-alt"></i>
@@ -11,141 +12,149 @@
     </button>
   </div>
 
-  <div class="row">
-    <div class="col-6">
-      <div id="form">
-        <form
-          [formGroup]="bankTransferForm"
-          *ngIf="bankTransferChoice"
-          (ngSubmit)="onBankTransferSubmit()"
-        >
-          <div class="form-group">
-            <label for="name">Name</label>
+  <!-- Form per il bonifico  -->
+  <form
+    [formGroup]="bankTransferForm"
+    (ngSubmit)="onBankTransferSubmit()"
+    *ngIf="bankTransferChoice"
+  >
+    <mat-horizontal-stepper [linear]="isLinear" class="formStepper">
+      <mat-step label="Recipient Data">
+        <div class="dataForm">
+          <label for="First Name">First Name</label>
+          <mat-form-field>
             <input
-              type="text"
               id="name"
-              class="form-control"
-              formControlName="name"
-            />
-            <label for="lastName">Last Name</label>
-            <input
               type="text"
-              id="lastName"
+              placeholder="First Name"
+              matInput
+              required
               class="form-control"
+              formControlName="firstName"
+            />
+          </mat-form-field>
+          <label for="Last Name">Last Name</label>
+          <mat-form-field>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Last Name"
+              matInput
+              required
               formControlName="lastName"
             />
-            <label for="iban">IBAN</label>
+          </mat-form-field>
+        </div>
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </mat-step>
+
+      <mat-step label="Transfer Data">
+        <div class="dataForm">
+          <label for="Iban">Iban</label>
+          <mat-form-field>
             <input
-              type="number"
               id="iban"
-              class="form-control"
+              type="number"
+              placeholder="Iban"
+              matInput
+              required
               formControlName="iban"
             />
-            <label for="name">Amount</label>
+          </mat-form-field>
+          <label for="Amount">Amount</label>
+          <mat-form-field>
             <input
-              type="number"
               id="amount"
-              class="form-control"
+              type="number"
+              placeholder="Amount"
+              matInput
+              required
               formControlName="amount"
             />
-          </div>
-          <div class="button">
-            <button
-              type="submit"
-              class="btn btn-primary submit"
-              [disabled]="!bankTransferForm.valid"
-            >
-              Send
-            </button>
-            <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
-          </div>
-        </form>
+          </mat-form-field>
+        </div>
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </mat-step>
+      <mat-step label="Confirm" completed="false">
+        <p>First Name: {{ bankTransferForm.get("firstName").value }}</p>
+        <p>Last Name: {{ bankTransferForm.get("lastName").value }}</p>
+        <p>Iban: {{ bankTransferForm.get("iban").value }}</p>
+        <p>Amount: {{ bankTransferForm.get("amount").value }}</p>
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" type="submit">Confirm</button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
 
-        <form
-          [formGroup]="phoneTopUpForm"
-          (ngSubmit)="onPhoneTopUpSubmit()"
-          *ngIf="phoneTopUpChoice"
-        >
-          <div class="form-group">
-            <label for="telephoneNumber">Telephone Number</label>
+  <!-- Form per la ricarica -->
+  <form
+    [formGroup]="phoneTopUpForm"
+    (ngSubmit)="onPhoneTopUpSubmit()"
+    *ngIf="phoneTopUpChoice"
+  >
+    <mat-horizontal-stepper [linear]="isLinear" class="formStepper">
+      <mat-step label="Phone Data">
+        <div class="dataForm">
+          <label for="Phone Number">Phone Number</label>
+          <mat-form-field>
             <input
-              type="number"
-              id="telephoneNumber"
+              id="phoneNumber"
+              type="text"
+              placeholder="Phone Number"
+              matInput
+              required
               class="form-control"
-              formControlName="telephoneNumber"
+              formControlName="phoneNumber"
             />
-            <label for="amount">Amount</label>
+          </mat-form-field>
+          <label for="Phone Company">Phone Company</label>
+          <mat-form-field>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Phone Company</option>
+              <option value="1">Tim</option>
+              <option value="2">Vodafone</option>
+              <option value="3">Wind</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </mat-step>
+
+      <mat-step label="Transfer Data">
+        <div class="dataForm">
+          <label for="Iban">Iban</label>
+          <mat-form-field>
             <input
               type="number"
-              id="amount"
-              class="form-control"
+              placeholder="Iban"
+              matInput
+              required
+              formControlName="iban"
+            />
+          </mat-form-field>
+          <label for="Amount">Amount</label>
+          <mat-form-field>
+            <input
+              type="number"
+              placeholder="Amount"
+              matInput
+              required
               formControlName="amount"
             />
-          </div>
-          <div class="button">
-            <button
-              type="submit"
-              class="btn btn-primary submit"
-              [disabled]="!phoneTopUpForm.valid"
-            >
-              Charge
-            </button>
-            <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <br />
-  <hr />
-
-  <!-- Prova -->
-  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
-  </button>
-  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            placeholder="Last name, First name"
-            formControlName="firstCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+          </mat-form-field>
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input
-            matInput
-            formControlName="secondCtrl"
-            placeholder="Ex. 1 Main St, New York, NY"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </mat-step>
+      <mat-step label="Confirm" completed="false">
+        <p>First Name: {{ bankTransferForm.get("firstName").value }}</p>
+        <p>Last Name: {{ bankTransferForm.get("lastName").value }}</p>
+        <p>Iban: {{ bankTransferForm.get("iban").value }}</p>
+        <p>Amount: {{ bankTransferForm.get("amount").value }}</p>
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" type="submit">Confirm</button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
 </div>

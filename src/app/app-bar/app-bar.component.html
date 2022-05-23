@@ -4,18 +4,17 @@
       <span class="brand-logo"><i class="fas fa-dollar-sign fs-1"></i></span>
       <span class="brand-name fs-4 mx-2"> JavaIsland</span>
     </div>
-    <div class="col my-2 man-run-box text-end p-0" >
-        <button class="man-button"(click)="logOut()">
-            <img class="img-speed-man" src="../assets/img/speed-man-green.png" alt="man run">
-        </button>
+    <div class="col my-2 man-run-box text-end p-0">
+      <button class="man-button" (click)="logOut()">
+        <i class="fas fa-sign-out-alt fa-2xl"></i>
+      </button>
     </div>
-        
+
     <div class="col my-2 text-center p-0">
-        <button (click)="openCloseToggle()" class="eye-button">
-            <i *ngIf="eyeOpen" class="fas fa-eye fs-2"></i>
-            <i *ngIf="!eyeOpen" class="fas fa-eye-slash fs-2"></i>
-        </button>
+      <button (click)="openCloseToggle()" class="eye-button">
+        <i *ngIf="eyeOpen" class="fas fa-eye fs-2"></i>
+        <i *ngIf="!eyeOpen" class="fas fa-eye-slash fs-2"></i>
+      </button>
     </div>
   </div>
-  
 </div>

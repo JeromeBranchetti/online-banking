@@ -1,7 +1,19 @@
 <div class="container-fluid p-0">
-    <div class="row footer-body text-center g-1">
-        <div class="col"><button class="foot-button" (click)="onDashBoard()"><img src="../assets/img/dashborad-green.png" alt="dashboard-green"></button></div>
-        <div class="col"><button class="foot-button" (click)="onPayment()"><img src="../assets/img/payment-green.png" alt="payment-green"></button></div>
-        <div class="col"><button class="foot-button" (click)="onMovementDetail()"><img src="../assets/img/dettaglio-movimento-green.png" alt="dettaglio-movimento"></button></div>
+  <div class="row footer-body text-center g-1">
+    <div class="col">
+      <button class="foot-button" (click)="onDashBoard()">
+        <i class="fa-solid fa-house fa-2xl icon"></i> />
+      </button>
     </div>
+    <div class="col">
+      <button class="foot-button" (click)="onPayment()">
+        <i class="fas fa-euro-sign fa-2xl icon"></i>
+      </button>
+    </div>
+    <div class="col">
+      <button class="foot-button" (click)="onMovementDetail()">
+        <i class="fa-solid fa-money-bill-transfer fa-2xl icon"></i>
+      </button>
+    </div>
+  </div>
 </div>

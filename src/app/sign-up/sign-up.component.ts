@@ -27,5 +27,7 @@ export class SignUpComponent implements OnInit {
     delete(){
       
       this.signUp_form.reset()
+      
     }
+    
 }

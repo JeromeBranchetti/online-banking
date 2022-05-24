@@ -15,17 +15,20 @@ import {
 export class PaymentComponent implements OnInit {
   bankTransferChoice: boolean = false;
   phoneTopUpChoice: boolean = false;
-  isLinear: boolean = true;
 
-  bankTransferForm = new FormGroup({
+  firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
+  });
+
+  secondBankTransferForm = new FormGroup({
     iban: new FormControl(null, Validators.required),
     amount: new FormControl(null, Validators.required),
   });
 
   phoneTopUpForm = new FormGroup({
     phoneNumber: new FormControl(null, Validators.required),
+    provider: new FormControl(null, Validators.required),
     amount: new FormControl(null, Validators.required),
   });
 
@@ -43,16 +46,7 @@ export class PaymentComponent implements OnInit {
     this.phoneTopUpChoice = true;
   }
 
-  onNextForm() {
-    this.isLinear = true;
-  }
-
   onBankTransferSubmit() {}
 
   onPhoneTopUpSubmit() {}
-
-  onCancel() {
-    this.bankTransferForm.reset();
-    this.phoneTopUpForm.reset();
-  }
 }

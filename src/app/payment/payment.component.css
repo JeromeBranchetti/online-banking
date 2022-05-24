@@ -1,3 +1,20 @@
+/* Sfondo pagina  */
+
+.payment-box {
+  border-radius: 20px;
+  background: rgb(56, 24, 65);
+  background: radial-gradient(
+    circle,
+    rgba(119, 53, 66, 1) 0%,
+    rgba(56, 37, 84, 0.5) 95%
+  );
+  height: 80vh;
+  position: relative;
+  top: 10vh;
+}
+
+/* Scelta */
+
 #choice {
   display: flex;
   justify-content: space-around;
@@ -18,11 +35,11 @@
   margin: 10px;
 }
 
+/* Form */
+
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
-
-/* Prova */
 
 .formStepper {
   background-color: white;

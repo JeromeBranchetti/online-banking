@@ -1,6 +1,8 @@
+import { SpioneService } from './../service/SpioneService';
 import { SignUpService } from './../service/SignUpService';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 
 @Component({
@@ -14,17 +16,13 @@ n_conto:string="*****************"
 iban:string="it***************************"
 saldo:string="***************"
 guest!:utente;
-modeSpione=false;
-  constructor(public SUService:SignUpService) { }
+modeSpione!:boolean;
+  constructor(public SUService:SignUpService,public SpioneService:SpioneService ) { }
 
   ngOnInit(): void {
+    this.SUService.bs.subscribe(ut=> {this.guest=ut;})
+    this.SpioneService.bs.subscribe(bool =>{this.modeSpione=bool})
     
-    
-    this.SUService.bs.subscribe(ut=> {
-      this.guest=ut;
-      
-
-    })
   }
 
    copia() {

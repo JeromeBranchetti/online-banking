@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { SignUpService } from './../service/SignUpService';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor( public SUService:SignUpService,private router:Router) { }
   regex = new RegExp('^[A-Z][a-z]{4,}[0-9]*[^W]$')
   ngOnInit(): void {
   }
@@ -28,6 +30,13 @@ export class SignUpComponent implements OnInit {
       
       this.signUp_form.reset()
       
+    }
+    signUp(){
+     this.SUService.newUtente(this.signUp_form);
+     this.router.navigate(['userDashboard']);
+
+
+
     }
     
 }

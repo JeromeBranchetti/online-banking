@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -46,6 +47,7 @@ import { RequestComponent } from './admin-dash-board/request/request.component';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

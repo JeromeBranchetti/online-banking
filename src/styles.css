@@ -26,3 +26,11 @@ body {
   position: relative;
   top: 10vh;
 }
+
+input {
+ 
+  border-radius: 50px;
+}
+button{
+  border-radius: 50px;
+}

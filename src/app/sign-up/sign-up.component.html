@@ -1,8 +1,8 @@
-<div class="container sign-up-box">
+
   <form [formGroup]="signUp_form">
     <div class="row">
       <div class="column">
-        <button class="btn btn-warning">back <i class="fas fa-undo"></i></button>
+        <button class="back" >back </button>
       </div>
       <div class="column">
         <button class="fake " disabled>"fake"</button>
@@ -27,7 +27,7 @@
           formControlName="last_name"
         />
         <br />
-        <button class="signUp btn btn-warning" [disabled]="signUp_form.invalid">SignUp <i class="fas fa-check"></i></button>
+        <button  [disabled]="signUp_form.invalid" (click)="signUp()">SignUp </button>
       </div>
       <div class="column">
         <div class="center">
@@ -37,7 +37,8 @@
             <br />
             <input
               id="password"
-              type="password"
+              
+              type="text"
               #password
               formControlName="password"
             />
@@ -63,10 +64,10 @@
         <br />
         <input id="email" type="text" #email formControlName="email" />
         <br />
-        <button class="cancel btn btn-warning" (click)="delete()">cancel <i class="far fa-times-circle"></i></button>
+        <button  (click)="delete()">cancel </button>
       </div>
       <div class="column"></div>
     </div>
   </form>
-  <hr />
-</div>
+  
+

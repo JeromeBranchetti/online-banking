@@ -1,16 +1,34 @@
-button {
-  background-color: rgb(255,193,7);
-  margin-top: 15px;
+
+button{
+  
+  background-color: transparent;
+  color:limegreen;
   border-radius: 50px;
-  border-color: blue;
-  padding: 9px;
+  border-color:limegreen;
+  width:100%;
+  height: 20%;
+  font-size: 100%;
+  margin-top:15px;
 }
+.back{
+
+  background-color: transparent;
+  color:limegreen;
+  border-radius: 50px;
+  border-color:limegreen;
+  width:100%;
+  height: 20%;
+  font-size: 100%;
+  margin-top:15px;
+}
+
 .column {
   width: 20%;
   padding: 10px, 10px, 10px, 10px;
 }
 input {
   width: 100%;
+  border-radius: 50px;
 }
 
 .row:after {

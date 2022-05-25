@@ -1,40 +1,42 @@
-<div class="container user-dash-box">
+
   <div *ngIf="modeSpione">
     <div class="row">
       <div class="column">
-        <button class="btn btn-warning">
-          <i class="fas fa-undo"></i> back
+        <button class="back">
+          back
         </button>
       </div>
       <div class="column_destra"></div>
       <div class="column">
-        <h2>{{ cliente }}</h2>
+        
+        
+<h1>{{ cliente }}</h1>
       </div>
       <div class="column"></div>
     </div>
     <div class="row">
       <div class="column"></div>
       <div class="column_destra">
-        <h2>N.conto:</h2>
+        <h1>N.conto:</h1>
       </div>
       <div class="column">
-        <h2>{{ n_conto }}</h2>
+        <h1>{{ n_conto }}</h1>
       </div>
       <div class="column"></div>
     </div>
     <div class="row">
       <div class="column"></div>
       <div class="column_destra">
-        <h2>Iban:</h2>
+        <h1>Iban:</h1>
+      </div>
+      <div class="column_center">
+        <h1 class="iban">{{ iban }}</h1>
+        <h1>Saldo:</h1>
+        <h1>{{ saldo }}&euro;</h1>
       </div>
       <div class="column">
-        <h2>{{ iban }}</h2>
-        <h2>Saldo:</h2>
-        <h2>{{ saldo }}&euro;</h2>
-      </div>
-      <div class="column">
-        <button class="btn btn-warning" id="copia" (click)="copia()">
-          copia <i class="far fa-copy"></i>
+        <button id="copia" (click)="copia()">
+          copia 
         </button>
       </div>
     </div>
@@ -42,37 +44,37 @@
   <div *ngIf="!modeSpione">
     <div class="row">
       <div class="column">
-        <button class="btn btn-warning">Back</button>
+        <button class="back">Back</button>
       </div>
       <div class="column_destra"></div>
       <div class="column">
-        <h2>{{ cliente }}</h2>
+        <h1>{{ guest.name }} {{guest.last_name}}</h1>
       </div>
       <div class="column"></div>
     </div>
     <div class="row">
       <div class="column"></div>
       <div class="column_destra">
-        <h2>N.conto:</h2>
+        <h1>N.conto:</h1>
       </div>
       <div class="column">
-        <h2>{{ n_conto }}</h2>
+        <h1>{{ guest.n_conto.numero_conto }}</h1>
       </div>
       <div class="column"></div>
     </div>
     <div class="row">
       <div class="column"></div>
       <div class="column_destra">
-        <h2>Iban:</h2>
+        <h1>Iban:</h1>
       </div>
       <div class="column">
-        <h2>{{ iban }}</h2>
-        <h2 style="text-align: center">Saldo:</h2>
-        <h2>{{ saldo }}&euro;</h2>
+        <h1>{{ guest.n_conto.iban }}</h1>
+        <h1 style="text-align: center">Saldo:</h1>
+        <h1>{{ guest.n_conto.saldo }}&euro;</h1>
       </div>
       <div class="column">
         <button>copia</button>
       </div>
     </div>
   </div>
-</div>
+

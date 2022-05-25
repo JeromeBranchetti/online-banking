@@ -28,6 +28,7 @@
   background: none;
   color: rgb(80, 197, 145);
   margin-top: 5px;
+  transform: translateY(7px);
 }
 
 .img-speed-man {
@@ -37,4 +38,8 @@
 
 img {
   height: 8vh;
+}
+
+.brand-name {
+  cursor: default;
 }

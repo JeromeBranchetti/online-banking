@@ -1,6 +1,9 @@
+import { SpioneService } from './../service/SpioneService';
 import { SignUpService } from './../service/SignUpService';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
+
 
 @Component({
   selector: 'app-user-dash-board',
@@ -12,19 +15,14 @@ cliente:string="******** "
 n_conto:string="*****************"
 iban:string="it***************************"
 saldo:string="***************"
-guest=new utente("a","a","a","a","a")
-modeSpione=false;
-  constructor(public SUService:SignUpService) { }
+guest!:utente;
+modeSpione!:boolean;
+  constructor(public SUService:SignUpService,public SpioneService:SpioneService ) { }
 
   ngOnInit(): void {
+    this.SUService.bs.subscribe(ut=> {this.guest=ut;})
+    this.SpioneService.bs.subscribe(bool =>{this.modeSpione=bool})
     
-    this.SUService.newUt.subscribe((utente) =>{
-      
-      this.guest=this.SUService.newGuest;
-      console.log(this.guest)
-     
-    }
-    )
   }
 
    copia() {

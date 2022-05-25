@@ -1,5 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpioneService } from '../service/SpioneService';
+
 
 @Component({
   selector: 'app-bar',
@@ -9,13 +12,17 @@ import { Router } from '@angular/router';
 export class AppBarComponent implements OnInit {
   eyeOpen:boolean = true;
 
-  constructor(private router: Router) { }
+
+  constructor(private S:SpioneService,private router: Router) { }
 
   ngOnInit(): void {
+    this.S.SpioneMode(this.eyeOpen)
   }
 
   openCloseToggle() {
     this.eyeOpen = !this.eyeOpen;
+    this.S.SpioneMode(this.eyeOpen)
+    
   }
 
   logOut() {

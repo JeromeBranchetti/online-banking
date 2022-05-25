@@ -1,15 +1,40 @@
-<div class="container home-box">
-  <div class="grid-layout-home">
-    <div class="big-text">
-      <p class="big-paragraph">The Next Level</p>
-      <p class="big-paragraph">Banking</p>
-      <button class="btn btn-success" (click)="onSignUpNow()">Sign up now!</button>
+<div class="grid-layout-home">
+  <div class="big-text">
+    <p class="big-paragraph">The Next Level</p>
+    <p class="big-paragraph">Banking</p>
+    <button class="btn btn-success" (click)="onSignUpNow()">
+      Sign up now!
+    </button>
+  </div>
+  <div class="card-images-overlayed">
+    <div class="credit-card">
+      <div class="credit-card-content">
+        <div class="credit-card-front">
+          <div class="bank-name fs-2">{{bankName}}</div>
+          <div class="bank-chip"><i class="fas fa-microchip fs-3"></i></div>
+          <div class="card-number fs-5">{{cardNumber}}</div>
+          <div class="expiration-date">
+            <span>exp date</span> <span> {{ expirationDateExtractor() }}</span>
+          </div>
+          <div class="card-holder-name fs-5">{{cardHolderName}}</div>
+        </div>
+        <div class="credit-card-back">
+          <div class="magnetic-strip"></div>
+          <div class="signature-box">
+            <div class="row">
+              <div class="col-7 signature"><i class="fas fa-signature"></i><i class="fas fa-signature"></i></div>
+              <div class="col-5 last-nums">{{lastfourDigitsExtractor()}}</div>
+            </div>
+          </div>
+          <div class="cvc-code">{{secretCvc}}</div>
+          <div class="hologram"><i class="fas fa-photo-video"></i></div>
+        </div>
+      </div>
     </div>
-    <div class="card-images-overlayed">
-        
-    </div>
-    <div class="login-section">
-        <button class="btn btn-warning" (click)="onUserLogin()">User Login <i class="fas fa-user-circle"></i></button>
-    </div>
+  </div>
+  <div class="login-section mt-3">
+    <button class="btn btn-warning" (click)="onUserLogin()">
+      User Login <i class="fas fa-user-circle"></i>
+    </button>
   </div>
 </div>

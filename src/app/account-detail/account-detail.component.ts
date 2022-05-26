@@ -21,8 +21,8 @@ export class AccountDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onCliccaQui() {
-    this.httpRequest.onSearchUser();
+  onGetUser() {
+    this.httpRequest.onGetUser();
   }
 
   onLogin() {

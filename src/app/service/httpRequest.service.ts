@@ -11,13 +11,12 @@ export class HttpRequestService {
 
   constructor(private http: HttpClient) {}
 
-  onSearchUser() {
+  onGetUser() {
+    console.log(this.token);
     this.http
       .get<utente[]>('http://localhost:8080/authentication/utenti', {
         headers: new HttpHeaders({
-          Authorization:
-            'Bearer ' +
-            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKdWFuQzIyIiwiZXhwIjoxNjUzNTA2NzkxLCJpYXQiOjE2NTM0ODg3OTF9.i322AjoFUpGwkTjAdPemWb0LCK5hKVrGy6pPJw5JHTNVNr2oBAr9SJJFV7UT-N87mTBQzGFJ5MKhc986ZN54Tg',
+          Authorization: 'Bearer ' + this.token,
         }),
       })
       .subscribe((res) => {
@@ -26,6 +25,7 @@ export class HttpRequestService {
   }
 
   onLogin() {
+    console.log(this.token);
     this.http
       .post<string>('http://localhost:8080/authentication/authenticate', {
         username: 'JuanC22',
@@ -42,9 +42,7 @@ export class HttpRequestService {
     this.http
       .post('http://localhost:8080/authentication/utenti', this.utente, {
         headers: new HttpHeaders({
-          Authorization:
-            'Bearer ' +
-            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKdWFuQzIyIiwiZXhwIjoxNjUzNTA2NzkxLCJpYXQiOjE2NTM0ODg3OTF9.i322AjoFUpGwkTjAdPemWb0LCK5hKVrGy6pPJw5JHTNVNr2oBAr9SJJFV7UT-N87mTBQzGFJ5MKhc986ZN54Tg',
+          Authorization: 'Bearer ' + this.token,
         }),
       })
       .subscribe((res) => {

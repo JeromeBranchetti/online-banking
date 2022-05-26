@@ -56,12 +56,12 @@ input.ng-invalid.ng-touched {
 
 .dataForm {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .transferForm {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .confirmForm {

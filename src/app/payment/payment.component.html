@@ -15,7 +15,6 @@
     <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
       <form [formGroup]="firstBankTransferForm">
         <div class="dataForm">
-          <label for="First Name">First Name</label>
           <mat-form-field>
             <input
               id="name"
@@ -27,7 +26,6 @@
               formControlName="firstName"
             />
           </mat-form-field>
-          <label for="Last Name">Last Name</label>
           <mat-form-field>
             <input
               id="lastName"
@@ -48,11 +46,10 @@
     <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
       <form [formGroup]="secondBankTransferForm">
         <div class="transferForm">
-          <label for="Iban">Iban</label>
           <mat-form-field>
             <input
               id="iban"
-              type="number"
+              type="text"
               placeholder="Iban"
               matInput
               required
@@ -60,11 +57,10 @@
               autocapitalize="off"
             />
           </mat-form-field>
-          <label for="Amount">Amount</label>
           <mat-form-field>
             <input
               id="amount"
-              type="number"
+              type="text"
               placeholder="Amount"
               matInput
               required
@@ -76,7 +72,13 @@
       </form>
       <div class="button">
         <button class="btn btn-danger" matStepperPrevious>Back</button>
-        <button class="btn btn-success" matStepperNext>Next</button>
+        <button
+          class="btn btn-success"
+          matStepperNext
+          (click)="onDecomposeIban()"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
     <!-- Terzo step -->
@@ -85,7 +87,7 @@
         <div class="dataSummary">
           <p>First Name: {{ firstBankTransferForm.get("firstName").value }}</p>
           <p>Last Name: {{ firstBankTransferForm.get("lastName").value }}</p>
-          <p>Iban: {{ secondBankTransferForm.get("iban").value }}</p>
+          <p>Iban: {{ iban }}</p>
           <p>Amount: {{ secondBankTransferForm.get("amount").value }}€</p>
         </div>
       </div>
@@ -98,71 +100,69 @@
 </div>
 
 <!-- Form per la ricarica -->
-<form
-  [formGroup]="phoneTopUpForm"
-  (ngSubmit)="onPhoneTopUpSubmit()"
-  *ngIf="phoneTopUpChoice"
->
+<div class="topUpForm" *ngIf="phoneTopUpChoice">
   <mat-horizontal-stepper [linear]="true" class="formStepper">
-    <mat-step label="Phone Data">
-      <div class="dataForm">
-        <label for="Phone Number">Phone Number</label>
-        <mat-form-field appearance="fill">
-          <input
-            id="phoneNumber"
-            type="text"
-            placeholder="Phone Number"
-            matInput
-            required
-            class="form-control"
-            formControlName="phoneNumber"
-            pattern="^[0-9]*$"
-          />
-        </mat-form-field>
-        <label for="Phone Provider">Phone Provider</label>
-        <mat-form-field appearance="fill">
-          <mat-select
-            class="form-select"
-            aria-label="Default select example"
-            id="provider"
-            required
-            formControlName="provider"
-          >
-            <mat-option value="Tim">Tim</mat-option>
-            <mat-option value="Vodafone">Vodafone</mat-option>
-            <mat-option value="Wind">Wind</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="button">
-        <button class="btn btn-success" matStepperNext>Next</button>
-      </div>
+    <mat-step label="Phone Data" [stepControl]="firstPhoneTopUpForm">
+      <form [formGroup]="firstPhoneTopUpForm">
+        <div class="dataForm">
+          <mat-form-field>
+            <input
+              id="PhoneNumber"
+              type="text"
+              placeholder="Phone Number"
+              matInput
+              required
+              class="form-control"
+              formControlName="phoneNumber"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Provider</mat-label>
+            <mat-select
+              aria-label="Default select example"
+              id="provider"
+              required
+              formControlName="provider"
+            >
+              <mat-option value="Tim">Tim</mat-option>
+              <mat-option value="Vodafone">Vodafone</mat-option>
+              <mat-option value="Wind">Wind</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="button">
+          <button class="btn btn-success" matStepperNext>Next</button>
+        </div>
+      </form>
     </mat-step>
 
-    <mat-step label="Transfer Data">
-      <div class="dataForm">
-        <label for="Amount">Amount</label>
-        <mat-form-field>
-          <input
-            type="number"
-            placeholder="Amount"
-            matInput
-            required
-            formControlName="amount"
-          />
-        </mat-form-field>
-      </div>
-      <div class="button">
-        <button class="btn btn-danger" matStepperPrevious>Back</button>
-        <button class="btn btn-success" matStepperNext>Next</button>
-      </div>
+    <mat-step label="Transfer Data" [stepControl]="secondPhoneTopUpForm">
+      <form [formGroup]="secondPhoneTopUpForm">
+        <div class="dataForm">
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Amount"
+              matInput
+              required
+              formControlName="amount"
+            />
+          </mat-form-field>
+        </div>
+        <div class="button">
+          <button class="btn btn-danger" matStepperPrevious>Back</button>
+          <button class="btn btn-success" matStepperNext>Next</button>
+        </div>
+      </form>
     </mat-step>
     <mat-step label="Confirm" completed="false">
       <div class="confirmForm">
         <div class="dataSummary">
-          <p>Phone number: {{ phoneTopUpForm.get("phoneNumber").value }}</p>
-          <p>Provider: {{ phoneTopUpForm.get("provider").value }}</p>
-          <p>Amount: {{ phoneTopUpForm.get("amount").value }}€</p>
+          <p>
+            Phone number: {{ firstPhoneTopUpForm.get("phoneNumber").value }}
+          </p>
+          <p>Provider: {{ firstPhoneTopUpForm.get("provider").value }}</p>
+          <p>Amount: {{ secondPhoneTopUpForm.get("amount").value }}€</p>
         </div>
       </div>
       <div class="button">
@@ -171,4 +171,4 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-</form>
+</div>

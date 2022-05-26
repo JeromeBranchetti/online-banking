@@ -1,3 +1,4 @@
+import { HttpRequestService } from './service/httpRequest.service';
 import { RouterModule } from '@angular/router';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +23,7 @@ import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.com
 import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './admin-dash-board/request/request.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,10 @@ import { RequestComponent } from './admin-dash-board/request/request.component';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [HttpRequestService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

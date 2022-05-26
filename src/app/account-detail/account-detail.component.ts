@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { BankTransaction } from './bankTransaction.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +17,19 @@ export class AccountDetailComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private httpRequest: HttpRequestService) {}
 
   ngOnInit(): void {}
+
+  onGetUser() {
+    this.httpRequest.onGetUser();
+  }
+
+  onLogin() {
+    this.httpRequest.onLogin();
+  }
+
+  onAddUser() {
+    this.httpRequest.onAddUser();
+  }
 }

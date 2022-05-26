@@ -56,4 +56,24 @@ input.ng-invalid.ng-touched {
 
 .dataForm {
   display: flex;
+  justify-content: center;
+}
+
+.transferForm {
+  display: flex;
+  justify-content: center;
+}
+
+.confirmForm {
+  display: flex;
+  justify-content: center;
+}
+
+.dataSummary {
+  display: block;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
 }

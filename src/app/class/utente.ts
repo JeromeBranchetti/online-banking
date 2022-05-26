@@ -2,6 +2,7 @@
 
 import { conto } from './conto';
 export class utente{
+    id?:number;
     name!:string;
     date!:string;
     last_name!:string;
@@ -12,7 +13,8 @@ export class utente{
     dipendente!:boolean;
     
     
-    constructor(name:string, last_name:string,date:string,email:string,password:string ){
+    constructor( name:string, last_name:string,date:string,email:string,password:string ){
+        
         this.name=name;
         this.date=date;
         this.last_name=last_name;
@@ -22,6 +24,9 @@ export class utente{
         this.n_conto=new conto(0);
         this.dipendente=this.controlloDipendente();
         
+    }
+    getId(){
+
     }
     static factory(){
         let u=new utente("","","","","");

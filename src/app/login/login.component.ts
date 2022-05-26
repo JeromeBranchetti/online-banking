@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     {
       
       email:new FormControl(null,[Validators.required,Validators.email]),
-       //password:new FormControl(null,[Validators.required,Validators.pattern()])
+      
       password:new FormControl(null,[Validators.required])
 
 
@@ -28,8 +29,9 @@ export class LoginComponent implements OnInit {
   }
   delete(){
     this.login_form.reset()
-
-    
+  }
+  switch(){
+    this.router.navigate(['signUp'])
 
   }
 }

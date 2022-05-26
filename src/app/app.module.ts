@@ -1,3 +1,4 @@
+import { HttpRequestService } from './service/httpRequest.service';
 import { RouterModule } from '@angular/router';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +24,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './admin-dash-board/request/request.component';
 import { CreditCardComponent } from './home/credit-card/credit-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,9 +51,10 @@ import { CreditCardComponent } from './home/credit-card/credit-card.component';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [HttpRequestService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,153 +1,174 @@
-<div class="container payment-box">
-  <!-- Bottoni di scelta -->
-  <div id="choice">
-    <button class="btn btn-primary" (click)="onBankTransfer()">
-      Bank Trasfer <i class="fas fa-exchange-alt"></i>
-    </button>
-    <button class="btn btn-primary" (click)="onPhoneTopUp()">
-      Phone top-up <i class="fas fa-mobile-alt fs-4"></i>
-    </button>
-  </div>
+<!-- Bottoni di scelta -->
+<div id="choice">
+  <button class="btn btn-primary" (click)="onBankTransfer()">
+    Bank Trasfer <i class="fas fa-exchange-alt"></i>
+  </button>
+  <button class="btn btn-primary" (click)="onPhoneTopUp()">
+    Phone top-up <i class="fas fa-mobile-alt fs-4"></i>
+  </button>
+</div>
 
-  <!-- Form per il bonifico  -->
-  <div id="bankTransferForm" *ngIf="bankTransferChoice">
-    <mat-horizontal-stepper [linear]="true" class="formStepper">
-      <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
-        <form [formGroup]="firstBankTransferForm">
-          <div class="dataForm">
-            <label for="First Name">First Name</label>
-            <mat-form-field>
-              <input
-                id="name"
-                type="text"
-                placeholder="First Name"
-                matInput
-                required
-                class="form-control"
-                formControlName="firstName"
-              />
-            </mat-form-field>
-            <label for="Last Name">Last Name</label>
-            <mat-form-field>
-              <input
-                id="lastName"
-                type="text"
-                placeholder="Last Name"
-                matInput
-                required
-                formControlName="lastName"
-              />
-            </mat-form-field>
-          </div>
-        </form>
-        <button class="btn btn-success" matStepperNext>Next</button>
-      </mat-step>
-
-      <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
-        <form [formGroup]="secondBankTransferForm">
-          <div class="TransferForm">
-            <label for="Iban">Iban</label>
-            <mat-form-field>
-              <input
-                id="iban"
-                type="number"
-                placeholder="Iban"
-                matInput
-                required
-                formControlName="iban"
-                autocapitalize="off"
-              />
-            </mat-form-field>
-            <label for="Amount">Amount</label>
-            <mat-form-field>
-              <input
-                id="amount"
-                type="number"
-                placeholder="Amount"
-                matInput
-                required
-                formControlName="amount"
-                autocapitalize="off"
-              />
-            </mat-form-field>
-          </div>
-        </form>
-        <button class="btn btn-danger" matStepperPrevious>Back</button>
-        <button class="btn btn-success" matStepperNext>Next</button>
-      </mat-step>
-      <mat-step label="Confirm" completed="false">
-        <p>First Name: {{ firstBankTransferForm.get("firstName").value }}</p>
-        <p>Last Name: {{ firstBankTransferForm.get("lastName").value }}</p>
-        <p>Iban: {{ secondBankTransferForm.get("iban").value }}</p>
-        <p>Amount: {{ secondBankTransferForm.get("amount").value }}€</p>
-        <button class="btn btn-danger" matStepperPrevious>Back</button>
-        <button class="btn btn-success" type="submit">Confirm</button>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </div>
-
-  <!-- Form per la ricarica -->
-  <form
-    [formGroup]="phoneTopUpForm"
-    (ngSubmit)="onPhoneTopUpSubmit()"
-    *ngIf="phoneTopUpChoice"
-  >
-    <mat-horizontal-stepper [linear]="true" class="formStepper">
-      <mat-step label="Phone Data">
+<!-- Form per il bonifico  -->
+<div id="bankTransferForm" *ngIf="bankTransferChoice">
+  <mat-horizontal-stepper [linear]="true" class="formStepper">
+    <!-- Primo step -->
+    <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
+      <form [formGroup]="firstBankTransferForm">
         <div class="dataForm">
-          <label for="Phone Number">Phone Number</label>
-          <mat-form-field appearance="fill">
+          <label for="First Name">First Name</label>
+          <mat-form-field>
             <input
-              id="phoneNumber"
-              type="number"
-              placeholder="Phone Number"
+              id="name"
+              type="text"
+              placeholder="First Name"
               matInput
               required
               class="form-control"
-              formControlName="phoneNumber"
+              formControlName="firstName"
             />
           </mat-form-field>
-          <label for="Phone Provider">Phone Provider</label>
-          <mat-form-field appearance="fill">
-            <mat-select
-              class="form-select"
-              aria-label="Default select example"
-              id="provider"
+          <label for="Last Name">Last Name</label>
+          <mat-form-field>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Last Name"
+              matInput
               required
-              formControlName="provider"
-            >
-              <mat-option value="tim">Tim</mat-option>
-              <mat-option value="vodafone">Vodafone</mat-option>
-              <mat-option value="wind">Wind</mat-option>
-            </mat-select>
+              formControlName="lastName"
+            />
           </mat-form-field>
         </div>
-        <button class="btn btn-success" matStepperNext>Next</button>
-      </mat-step>
-
-      <mat-step label="Transfer Data">
-        <div class="dataForm">
+        <div class="button">
+          <button class="btn btn-success" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Secondo step -->
+    <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
+      <form [formGroup]="secondBankTransferForm">
+        <div class="transferForm">
+          <label for="Iban">Iban</label>
+          <mat-form-field>
+            <input
+              id="iban"
+              type="number"
+              placeholder="Iban"
+              matInput
+              required
+              formControlName="iban"
+              autocapitalize="off"
+            />
+          </mat-form-field>
           <label for="Amount">Amount</label>
           <mat-form-field>
             <input
+              id="amount"
               type="number"
               placeholder="Amount"
               matInput
               required
               formControlName="amount"
+              autocapitalize="off"
             />
           </mat-form-field>
         </div>
+      </form>
+      <div class="button">
         <button class="btn btn-danger" matStepperPrevious>Back</button>
         <button class="btn btn-success" matStepperNext>Next</button>
-      </mat-step>
-      <mat-step label="Confirm" completed="false">
-        <p>Phone number: {{ phoneTopUpForm.get("phoneNumber").value }}</p>
-        <p>Provider: {{ phoneTopUpForm.get("provider").value }}</p>
-        <p>Amount: {{ phoneTopUpForm.get("amount").value }}</p>
+      </div>
+    </mat-step>
+    <!-- Terzo step -->
+    <mat-step label="Confirm">
+      <div class="confirmForm">
+        <div class="dataSummary">
+          <p>First Name: {{ firstBankTransferForm.get("firstName").value }}</p>
+          <p>Last Name: {{ firstBankTransferForm.get("lastName").value }}</p>
+          <p>Iban: {{ secondBankTransferForm.get("iban").value }}</p>
+          <p>Amount: {{ secondBankTransferForm.get("amount").value }}€</p>
+        </div>
+      </div>
+      <div class="button">
         <button class="btn btn-danger" matStepperPrevious>Back</button>
         <button class="btn btn-success" type="submit">Confirm</button>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </form>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
+
+<!-- Form per la ricarica -->
+<form
+  [formGroup]="phoneTopUpForm"
+  (ngSubmit)="onPhoneTopUpSubmit()"
+  *ngIf="phoneTopUpChoice"
+>
+  <mat-horizontal-stepper [linear]="true" class="formStepper">
+    <mat-step label="Phone Data">
+      <div class="dataForm">
+        <label for="Phone Number">Phone Number</label>
+        <mat-form-field appearance="fill">
+          <input
+            id="phoneNumber"
+            type="text"
+            placeholder="Phone Number"
+            matInput
+            required
+            class="form-control"
+            formControlName="phoneNumber"
+            pattern="^[0-9]*$"
+          />
+        </mat-form-field>
+        <label for="Phone Provider">Phone Provider</label>
+        <mat-form-field appearance="fill">
+          <mat-select
+            class="form-select"
+            aria-label="Default select example"
+            id="provider"
+            required
+            formControlName="provider"
+          >
+            <mat-option value="Tim">Tim</mat-option>
+            <mat-option value="Vodafone">Vodafone</mat-option>
+            <mat-option value="Wind">Wind</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Transfer Data">
+      <div class="dataForm">
+        <label for="Amount">Amount</label>
+        <mat-form-field>
+          <input
+            type="number"
+            placeholder="Amount"
+            matInput
+            required
+            formControlName="amount"
+          />
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Confirm" completed="false">
+      <div class="confirmForm">
+        <div class="dataSummary">
+          <p>Phone number: {{ phoneTopUpForm.get("phoneNumber").value }}</p>
+          <p>Provider: {{ phoneTopUpForm.get("provider").value }}</p>
+          <p>Amount: {{ phoneTopUpForm.get("amount").value }}€</p>
+        </div>
+      </div>
+      <div class="button">
+        <button class="btn btn-danger" matStepperPrevious>Back</button>
+        <button class="btn btn-success" type="submit">Confirm</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>

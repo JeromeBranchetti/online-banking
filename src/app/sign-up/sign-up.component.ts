@@ -12,6 +12,7 @@ export class SignUpComponent implements OnInit {
 
   constructor( public SUService:SignUpService,private router:Router) { }
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$')
+
   ngOnInit(): void {
   }
   signUp_form=new FormGroup(
@@ -26,10 +27,9 @@ export class SignUpComponent implements OnInit {
 
     }
   );
-  dataValidator(c: AbstractControl): { [key: string]: boolean } | null {
-    console.log("test")
+  
    
-    
+    controlDate(c:AbstractControl){
     let birth=new Date(c.value)
     let today=new Date()
     
@@ -38,32 +38,32 @@ export class SignUpComponent implements OnInit {
        return {maggiorenne:true};
     }
     else if((today.getFullYear()-birth.getFullYear())<18){
-      return {'maggiorenne':false};
+      return false;
     }
      else if((today.getFullYear()-birth.getFullYear())===18){
          if((today.getMonth()-birth.getMonth())>0){
          
-           return {'maggiorenne':true};
+           return true;
          }
          else if((today.getMonth()-birth.getMonth())<0){
-           return {'maggiorenne':false};
+           return false;
          }
          else if((today.getMonth()-birth.getMonth())===0){
         if(today.getDay()-birth.getDay()>0){
-             return {'maggiorenne':false};
+             return false;
            }
            else if((today.getDay()-birth.getDay())<0){
-            return {'maggiorenne':false};
+            return false;
            }
             else if(today.getDay()===birth.getDay()){
             
-        return {'maggiorenne':true};
+        return true;
             }
          }
      }
     
      return null;
-}
+    }
   
 
     delete(){
@@ -72,10 +72,16 @@ export class SignUpComponent implements OnInit {
       
     }
     signUp(){
+    if(this.controlDate(this.signUp_form.get("date"))){
+
+    
      this.SUService.newUtente(this.signUp_form);
      this.router.navigate(['userDashboard']);
 
-
+    }
+    else{
+      alert("non sei maggiorenne")
+    }
 
     }
     

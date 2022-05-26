@@ -9,7 +9,6 @@ export class utente{
     email!:string;
     password!:string;
     n_conto!:conto;
-    attivo!:boolean;
     dipendente!:boolean;
     
     
@@ -20,7 +19,7 @@ export class utente{
         this.last_name=last_name;
         this.email=email;
         this.password=password;
-        this.attivo=false;
+        
         this.n_conto=new conto(0);
         this.dipendente=this.controlloDipendente();
         

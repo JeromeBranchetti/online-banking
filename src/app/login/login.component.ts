@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router , private hrservice:HttpRequestService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   )
 
   login(email:string,password:string){
+    this.hrservice.onLogin();
     console.log(email,password)
   }
   delete(){

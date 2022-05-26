@@ -22,6 +22,7 @@ import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.com
 import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './admin-dash-board/request/request.component';
+import { CreditCardComponent } from './home/credit-card/credit-card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RequestComponent } from './admin-dash-board/request/request.component';
     AdminDashBoardComponent,
     PaymentComponent,
     RequestComponent,
+    CreditCardComponent,
   ],
   imports: [
     BrowserModule,

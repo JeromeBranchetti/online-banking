@@ -12,7 +12,9 @@ export class HttpRequestService {
   constructor(private http: HttpClient) {}
 
   onGetUser() {
-    console.log(this.token);
+    this.token = JSON.stringify(this.token);
+    this.token = this.token.substring(this.token.indexOf(':') + 2);
+    this.token = this.token.substring(0, this.token.indexOf('"'));
     this.http
       .get<utente[]>('http://localhost:8080/authentication/utenti', {
         headers: new HttpHeaders({
@@ -25,7 +27,6 @@ export class HttpRequestService {
   }
 
   onLogin() {
-    console.log(this.token);
     this.http
       .post<string>('http://localhost:8080/authentication/authenticate', {
         username: 'JuanC22',
@@ -33,6 +34,7 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.token = res;
+        console.log(typeof this.token);
         console.log(this.token);
       });
   }

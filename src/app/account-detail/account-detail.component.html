@@ -1,46 +1,19 @@
-<!-- Titolo -->
+
 <br />
 <div class="header">
   <h1>Account Detail</h1>
 </div>
 
-<!-- Grafico -->
-<h1>Grafico</h1>
-<br />
+<app-graphic></app-graphic>
 
-<!-- Lista transazioni -->
-<div id="transactionHeader">
-  <h4>Transaction List:</h4>
-  <button (click)="onPrintTransaction()">Print All Transaction</button>
-</div>
-<div class="list">
-  <ul class="list-group">
-    <li
-      *ngFor="let bankTransaction of bankTransactions"
-      class="list-group-item"
-    >
-      <div class="row">
-        <div class="col-sm-2">
-          {{ bankTransaction.type }}
-        </div>
-        <div class="col-sm-2">
-          {{ bankTransaction.date }}
-        </div>
-        <div class="col-sm-2">{{ bankTransaction.amount }}€</div>
-        <div class="col-2">
-          {{ bankTransaction.recipient }}
-        </div>
-        <div class="col-sm-4">
-          {{ bankTransaction.description }}
-        </div>
+<ul class="list-group">
+  <li *ngFor="let bankTransaction of bankTransactions" class="list-group-item">
+    <div class="row">
+      <div class="col-2">
+        {{ bankTransaction.type }}
+      </div>
       </div>
     </li>
   </ul>
-</div>
 
-<!-- Prova collegamento -->
 
-<!-- <button (click)="onGetUser()">Get User</button>
-<button (click)="onLogin()">Login</button>
-<button (click)="onAddUser()">Aggiungi User</button>
-<button (click)="onGetAccount()">Get conto di</button> -->

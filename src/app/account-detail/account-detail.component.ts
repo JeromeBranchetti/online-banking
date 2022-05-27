@@ -2,6 +2,7 @@ import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { BankTransaction } from './bankTransaction.model';
 import { Component, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-account-detail',
@@ -10,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountDetailComponent implements OnInit {
   // Variables
+
+  fileName = 'TransactionList.xlsx';
 
   bankTransactions: BankTransaction[] = [
     {
@@ -132,21 +135,16 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
-  onPrintTransaction() {}
+  onPrintTransaction() {
+    /* pass here the table id */
+    let element = document.getElementById('transactionList');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-  // onGetUser() {
-  //   this.httpRequest.onGetUser();
-  // }
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-  // onLogin() {
-  //   this.httpRequest.onLogin();
-  // }
-
-  // onAddUser() {
-  //   this.httpRequest.onAddUser();
-  // }
-
-  // onGetAccount() {
-  //   this.httpRequest.onGetAccount();
-  // }
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
+  }
 }

@@ -14,6 +14,7 @@ export class HttpRequestService {
   // Chiamate Get
 
   onGetUser() {
+    console.log('Get: ' + this.token);
     this.token = JSON.stringify(this.token);
     this.token = this.token.substring(this.token.indexOf(':') + 2);
     this.token = this.token.substring(0, this.token.indexOf('"'));
@@ -42,6 +43,8 @@ export class HttpRequestService {
         console.log(res);
       });
   }
+
+  onGetTransaction() {}
 
   // Login
 

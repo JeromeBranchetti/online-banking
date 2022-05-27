@@ -1,6 +1,7 @@
 export class BankTransaction {
   type: string;
   date: string;
-  amount: number;
+  amount: string;
+  recipient: string;
   description: string;
 }

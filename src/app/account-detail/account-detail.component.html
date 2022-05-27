@@ -5,38 +5,42 @@
 </div>
 
 <!-- Grafico -->
-<!-- <fusioncharts
-  [width]="width"
-  [height]="height"
-  [type]="type"
-  [dataFormat]="dataFormat"
-  [dataSource]="dataSource"
->
-</fusioncharts> -->
+<h1>Grafico</h1>
+<br />
 
 <!-- Lista transazioni -->
-<ul class="list-group">
-  <li *ngFor="let bankTransaction of bankTransactions" class="list-group-item">
-    <div class="row">
-      <div class="col-2">
-        {{ bankTransaction.type }}
+<div id="transactionHeader">
+  <h4>Transaction List:</h4>
+  <button (click)="onPrintTransaction()">Print All Transaction</button>
+</div>
+<div class="list">
+  <ul class="list-group">
+    <li
+      *ngFor="let bankTransaction of bankTransactions"
+      class="list-group-item"
+    >
+      <div class="row">
+        <div class="col-sm-2">
+          {{ bankTransaction.type }}
+        </div>
+        <div class="col-sm-2">
+          {{ bankTransaction.date }}
+        </div>
+        <div class="col-sm-2">{{ bankTransaction.amount }}€</div>
+        <div class="col-2">
+          {{ bankTransaction.recipient }}
+        </div>
+        <div class="col-sm-4">
+          {{ bankTransaction.description }}
+        </div>
       </div>
-      <div class="col-2">
-        {{ bankTransaction.date }}
-      </div>
-      <div class="col-2">
-        {{ bankTransaction.amount }}
-      </div>
-      <div class="col-2">
-        {{ bankTransaction.description }}
-      </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
 
 <!-- Prova collegamento -->
 
-<button (click)="onGetUser()">Get User</button>
+<!-- <button (click)="onGetUser()">Get User</button>
 <button (click)="onLogin()">Login</button>
 <button (click)="onAddUser()">Aggiungi User</button>
-<button (click)="onGetAccount()">Get conto di</button>
+<button (click)="onGetAccount()">Get conto di</button> -->

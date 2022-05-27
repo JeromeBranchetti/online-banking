@@ -1,19 +1,31 @@
-
 <br />
 <div class="header">
   <h1>Account Detail</h1>
 </div>
 
-<app-graphic></app-graphic>
+<!-- <app-graphic></app-graphic> -->
 
-<ul class="list-group">
-  <li *ngFor="let bankTransaction of bankTransactions" class="list-group-item">
-    <div class="row">
-      <div class="col-2">
-        {{ bankTransaction.type }}
-      </div>
-      </div>
-    </li>
-  </ul>
-
-
+<div id="transactionHeader">
+  <h4>Transactions:</h4>
+  <button (click)="onPrintTransaction()">Download Transaction</button>
+</div>
+<table class="table" id="transactionList">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Date</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Recipient</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bankTransaction of bankTransactions">
+      <td>{{ bankTransaction.type }}</td>
+      <td>{{ bankTransaction.date }}</td>
+      <td>{{ bankTransaction.amount }}€</td>
+      <td>{{ bankTransaction.recipient }}</td>
+      <td>{{ bankTransaction.description }}</td>
+    </tr>
+  </tbody>
+</table>

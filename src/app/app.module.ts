@@ -28,8 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphicComponent } from './graphic/graphic.component';
 import { NgChartsModule } from 'ng2-charts';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +57,6 @@ import { NgChartsModule } from 'ng2-charts';
     HttpClientModule,
     BrowserAnimationsModule,
     NgChartsModule,
-    
-   
-    
   ],
   providers: [HttpRequestService],
   bootstrap: [AppComponent],

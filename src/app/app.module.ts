@@ -25,6 +25,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './admin-dash-board/request/request.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { GraphicComponent } from './graphic/graphic.component';
+import { NgChartsModule } from 'ng2-charts';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdminDashBoardComponent,
     PaymentComponent,
     RequestComponent,
+    GraphicComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    NgChartsModule,
+    
+   
+    
   ],
   providers: [HttpRequestService],
   bootstrap: [AppComponent],

@@ -1,3 +1,4 @@
+import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { BankTransaction } from './bankTransaction.model';
 import { Component, OnInit } from '@angular/core';
@@ -8,32 +9,144 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-detail.component.css'],
 })
 export class AccountDetailComponent implements OnInit {
+  // Variables
+
   bankTransactions: BankTransaction[] = [
     {
-      type: 'Pos',
+      type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: 100,
-      description: 'Paypal',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '20/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '22222S/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
+    },
+    {
+      type: 'Pagamento tramite Pos',
+      date: '1111/05/2020',
+      amount: '10',
+      recipient: 'Mcdonald',
+      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
   ];
 
-  constructor(private httpRequest: HttpRequestService) {}
+  // Methods
 
-  ngOnInit(): void {}
+  constructor(
+    private httpRequest: HttpRequestService,
+    private spyMode: SpioneService
+  ) {}
 
-  onGetUser() {
-    this.httpRequest.onGetUser();
+  ngOnInit(): void {
+    // Modalità spione
+    let isNotFirst = false;
+    let i = 0;
+    let amountArray = [];
+    this.spyMode.bs.subscribe((spyModeBoolean) => {
+      for (let bankTransaction of this.bankTransactions) {
+        i++;
+        amountArray.push(bankTransaction.amount);
+        if (spyModeBoolean === false) {
+          bankTransaction.amount = '**';
+          isNotFirst = true;
+        } else if (isNotFirst) {
+          bankTransaction.amount = amountArray[i];
+        }
+      }
+      i = 0;
+    });
   }
 
-  onLogin() {
-    this.httpRequest.onLogin();
-  }
+  onPrintTransaction() {}
 
-  onAddUser() {
-    this.httpRequest.onAddUser();
-  }
+  // onGetUser() {
+  //   this.httpRequest.onGetUser();
+  // }
 
-  onGetAccount() {
-    this.httpRequest.onGetAccount();
-  }
+  // onLogin() {
+  //   this.httpRequest.onLogin();
+  // }
+
+  // onAddUser() {
+  //   this.httpRequest.onAddUser();
+  // }
+
+  // onGetAccount() {
+  //   this.httpRequest.onGetAccount();
+  // }
 }

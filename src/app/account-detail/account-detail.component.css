@@ -1,3 +1,5 @@
+/* Titolo */
+
 .header {
   display: flex;
   justify-content: center;
@@ -5,4 +7,19 @@
 
 h1 {
   font-size: 300%;
+}
+
+/* Lista transazioni */
+
+#transactionHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin-bottom: 5px;
+}
+
+.list {
+  margin-bottom: 10vh;
 }

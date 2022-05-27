@@ -1,3 +1,20 @@
+<!-- Titolo -->
+<br />
+<div class="header">
+  <h1>Account Detail</h1>
+</div>
+
+<!-- Grafico -->
+<!-- <fusioncharts
+  [width]="width"
+  [height]="height"
+  [type]="type"
+  [dataFormat]="dataFormat"
+  [dataSource]="dataSource"
+>
+</fusioncharts> -->
+
+<!-- Lista transazioni -->
 <ul class="list-group">
   <li *ngFor="let bankTransaction of bankTransactions" class="list-group-item">
     <div class="row">
@@ -17,6 +34,9 @@
   </li>
 </ul>
 
+<!-- Prova collegamento -->
+
 <button (click)="onGetUser()">Get User</button>
 <button (click)="onLogin()">Login</button>
 <button (click)="onAddUser()">Aggiungi User</button>
+<button (click)="onGetAccount()">Get conto di</button>

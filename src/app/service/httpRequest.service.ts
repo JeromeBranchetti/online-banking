@@ -11,6 +11,8 @@ export class HttpRequestService {
 
   constructor(private http: HttpClient) {}
 
+  // Chiamate Get
+
   onGetUser() {
     this.token = JSON.stringify(this.token);
     this.token = this.token.substring(this.token.indexOf(':') + 2);
@@ -26,6 +28,23 @@ export class HttpRequestService {
       });
   }
 
+  onGetAccount() {
+    this.token = JSON.stringify(this.token);
+    this.token = this.token.substring(this.token.indexOf(':') + 2);
+    this.token = this.token.substring(0, this.token.indexOf('"'));
+    this.http
+      .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.token,
+        }),
+      })
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+
+  // Login
+
   onLogin() {
     this.http
       .post<string>('http://localhost:8080/authentication/authenticate', {
@@ -38,6 +57,8 @@ export class HttpRequestService {
         console.log(this.token);
       });
   }
+
+  // Chiamate Post
 
   onAddUser() {
     this.utente = utente.factory();

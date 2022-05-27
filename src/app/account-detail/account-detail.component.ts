@@ -32,4 +32,8 @@ export class AccountDetailComponent implements OnInit {
   onAddUser() {
     this.httpRequest.onAddUser();
   }
+
+  onGetAccount() {
+    this.httpRequest.onGetAccount();
+  }
 }

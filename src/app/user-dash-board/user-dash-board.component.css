@@ -1,66 +1,68 @@
 .column {
-  width: 20%;
+  /* width: 20%;
   padding: 10px, 10px, 10px, 10px;
-  margin: 10px, 10px, 10px, 10px;
+  margin: 10px, 10px, 10px, 10px; */
 }
 .iban {
-  width: 100%;
-  font-size:150%;
+  /* width: 100%;
+  font-size: 150%; */
 }
 
 .column_center {
-  width: 40%;
+  /* width: 40%;
   padding: 10px, 10px, 10px, 10px;
-  text-align: left;
+  text-align: left; */
 }
 input {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .row:after {
-  content: "";
+  /* content: "";
   display: table;
-  clear: both;
+  clear: both; */
 }
 
 .column_destra {
-  width: 20%;
+  /* width: 20%;
   padding: 10px, 10px, 10px, 10px;
-  text-align: right;
+  text-align: right; */
 }
-
 
 .back {
-  margin-left: 10px;
+  /* margin-left: 10px;
   margin-top: 15px;
-  
 
-    background-color: transparent;
-    color:limegreen;
-    border-radius: 50px;
-    border-color:limegreen;
-    width:100%;
-    height: 100%;
-    font-size: 100%;
-    margin-top:15px;
-  
-}
-button {
- 
-  
-
-    background-color: transparent;
-    color:limegreen;
-    border-radius: 50px;
-    border-color:limegreen;
-    width:50%;
-    height: 40%;
-    font-size: 100%;
-  
-  
+  background-color: transparent;
+  color: limegreen;
+  border-radius: 50px;
+  border-color: limegreen;
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+  margin-top: 15px; */
 }
 
 .user-dash-box {
   position: relative;
   top: 10vh;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 5vh;
+  font-size: xx-large;
+  line-height: 1.5em;
+}
+
+button {
+  font-size: large;
+  padding: 0.5rem;
 }

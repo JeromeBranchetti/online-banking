@@ -2,35 +2,32 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   min-height: 100vh;
-  background-color: rgb(56, 24, 65);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 html,
-body {
-  height: 100%;
-}
+ 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(34, 34, 68);
+  color: white;
 }
+
 .home-box {
   border-radius: 20px;
-  background: rgb(56, 24, 65);
-  background: radial-gradient(
-    circle,
-    rgba(119, 53, 66, 1) 0%,
-    rgba(56, 37, 84, 0.5) 95%
-  );
   height: 80vh;
   position: relative;
   top: 10vh;
 }
 
 input {
- 
-  border-radius: 50px;
 }
-button{
-  border-radius: 50px;
+
+button {
+  background-color: rgb(36, 49, 177);
+  color: white;
+  
+  
 }

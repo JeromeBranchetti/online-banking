@@ -8,7 +8,7 @@
   height: 10vh;
   width: 100%;
 
-  background-color: transparent;
+  background-color: rgb(20, 22, 47);
   display: flex;
   padding: 0;
   margin: 0;
@@ -18,7 +18,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: rgb(80, 197, 145);
+  color: rgb(255, 255, 255);
   margin-top: 5px;
 }
 
@@ -26,7 +26,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: rgb(80, 197, 145);
+  color: rgb(255, 255, 255);
   margin-top: 5px;
   transform: translateY(7px);
 }

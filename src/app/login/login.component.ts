@@ -1,5 +1,5 @@
 import { AuthService } from './../service/auth.service';
-import { HttpRequestService } from './../service/httpRequest.service';
+
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(email, password);
     console.log('email: ' + email + ' password: ' + password);
     console.log('' + this.auth.loggedIn);
+    
   }
   delete() {
     this.login_form.reset();

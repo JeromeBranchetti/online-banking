@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -7,17 +8,21 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.css']
 })
-export class GraphicComponent  {
+export class GraphicComponent   implements OnInit{
+data:number[]=[100,100,100,100,100,100,100,100,100,100,100,100]
 
   constructor() { }
+  ngOnInit(): void {
+    
+  }
 
  
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 65, 59, 80, 81, 56, 55, 40 ],
+        data: this.data,
         label: 'Andamento annuo',
-        backgroundColor: 'tra',
+        backgroundColor: 'transparent',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointBorderColor: '#fff',

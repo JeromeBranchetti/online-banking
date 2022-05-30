@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export class AuthResponse {
-  access_token: string;
+  token: string;
   refreshToken: string;
   refreshTokenExpireIn: number;
   tokenExpireIn: number;
@@ -36,6 +36,8 @@ export class AuthService {
     return promise;
   }
 
+  // Chiamata per il login
+
   login(email: string, password: string) {
     this.http
       .post<AuthResponse>('http://localhost:8082/api/authenticate', {
@@ -44,8 +46,8 @@ export class AuthService {
       })
       .subscribe({
         next: (response) => {
-          console.log('partita');
-          this.accessToken = response.access_token;
+          this.accessToken = response.token;
+          console.log(this.accessToken);
           this.loggedIn = true;
           this.router.navigate(['/userDashboard']);
           localStorage.setItem('token', JSON.stringify(response));

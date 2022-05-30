@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
@@ -23,30 +24,36 @@ const routes: Routes = [
   {
     path: 'userDashboard',
     component: UserDashBoardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'signUp',
     component: SignUpComponent,
+    canActivate: [AuthGuard],
   },
 
   {
     path: 'payment',
     component: PaymentComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'adminDashboard',
     component: AdminDashBoardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'account-detail',
     component: AccountDetailComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'home-page-guest',
     component: HomePageGuestComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: 'error',
+    path: '**',
     component: ErrorComponent,
   },
 ];

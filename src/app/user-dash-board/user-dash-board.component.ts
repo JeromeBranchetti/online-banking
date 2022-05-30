@@ -1,5 +1,5 @@
 import { SpioneService } from '../service/spione.service';
-import { SignUpService } from '../service/SignUp.service';
+import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 @Component({

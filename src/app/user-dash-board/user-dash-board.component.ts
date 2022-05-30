@@ -14,7 +14,7 @@ export class UserDashBoardComponent implements OnInit {
   n_conto: string = '*****************';
   iban: string = 'IT***************************';
   saldo: string = '***************';
-  guest!: utente;
+  guest=new utente("mario","rossi", "25-12-0000","io@bello.com","password");
   modeSpione!: boolean;
   constructor(
     public SUService: SignUpService,
@@ -22,9 +22,9 @@ export class UserDashBoardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.SUService.bs.subscribe((ut) => {
-      this.guest = ut;
-    });
+     this.SUService.bs.subscribe((ut) => {
+       this.guest = ut;
+     });
     this.SpioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });

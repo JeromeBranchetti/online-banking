@@ -2,8 +2,6 @@ import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/SignUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
-
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',

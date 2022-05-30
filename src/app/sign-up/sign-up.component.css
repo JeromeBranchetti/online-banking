@@ -1,4 +1,4 @@
-
+/* 
 button{
   
   background-color: transparent;
@@ -9,8 +9,8 @@ button{
   height: 20%;
   font-size: 100%;
   margin-top:15px;
-}
-.back{
+} */
+/* .back{
 
   background-color: transparent;
   color:limegreen;
@@ -20,7 +20,7 @@ button{
   height: 20%;
   font-size: 100%;
   margin-top:15px;
-}
+} */
 
 .column {
   width: 20%;
@@ -57,7 +57,21 @@ input {
   margin-top: 33%;
 }
 
+h1 {
+  font-size: 300%;
+}
+
 .sign-up-box {
   position: relative;
   top: 10vh;
+}
+
+.spread-inputs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.centered-input {
+  display: flex;
+  justify-content: center;
 }

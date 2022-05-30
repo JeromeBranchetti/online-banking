@@ -5,17 +5,15 @@ import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-graphic',
   templateUrl: './graphic.component.html',
-  styleUrls: ['./graphic.component.css']
+  styleUrls: ['./graphic.component.css'],
 })
-export class GraphicComponent  {
+export class GraphicComponent {
+  constructor() {}
 
-  constructor() { }
-
- 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 65, 59, 80, 81, 56, 55, 40 ],
+        data: [65, 59, 80, 81, 56, 55, 40],
         label: 'Andamento annuo',
         backgroundColor: 'tra',
         borderColor: 'rgba(148,159,177,1)',
@@ -25,37 +23,45 @@ export class GraphicComponent  {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
         fill: 'origin',
       },
-     
-     
     ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December' ]
+    labels: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
       line: {
-        tension: 0.5
-      }
+        tension: 0.5,
+      },
     },
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       x: {},
-      'y-axis-0':
-        {
-          position: 'left',
-        },
+      'y-axis-0': {
+        position: 'left',
+      },
       'y-axis-1': {
         position: 'right',
         grid: {
           color: 'rgba(255,0,0,0.3)',
         },
         ticks: {
-          color: 'red'
-        }
-      }
+          color: 'red',
+        },
+      },
     },
-
-    
   };
 
   public lineChartType: ChartType = 'line';
@@ -63,24 +69,37 @@ export class GraphicComponent  {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   private static generateNumber(i: number): number {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+    return Math.floor(Math.random() * (i < 2 ? 100 : 1000) + 1);
   }
 
   public randomize(): void {
     for (let i = 0; i < this.lineChartData.datasets.length; i++) {
       for (let j = 0; j < this.lineChartData.datasets[i].data.length; j++) {
-        this.lineChartData.datasets[i].data[j] = GraphicComponent.generateNumber(i);
+        this.lineChartData.datasets[i].data[j] =
+          GraphicComponent.generateNumber(i);
       }
     }
     this.chart?.update();
   }
 
   // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+  public chartClicked({
+    event,
+    active,
+  }: {
+    event?: ChartEvent;
+    active?: {}[];
+  }): void {
     console.log(event, active);
   }
 
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+  public chartHovered({
+    event,
+    active,
+  }: {
+    event?: ChartEvent;
+    active?: {}[];
+  }): void {
     console.log(event, active);
   }
 
@@ -94,7 +113,9 @@ export class GraphicComponent  {
       const num = GraphicComponent.generateNumber(i);
       x.data.push(num);
     });
-    this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
+    this.lineChartData?.labels?.push(
+      `Label ${this.lineChartData.labels.length}`
+    );
 
     this.chart?.update();
   }
@@ -108,10 +129,9 @@ export class GraphicComponent  {
 
   public changeLabel(): void {
     if (this.lineChartData.labels) {
-      this.lineChartData.labels[2] = [ '1st Line', '2nd Line' ];
+      this.lineChartData.labels[2] = ['1st Line', '2nd Line'];
     }
 
     this.chart?.update();
   }
-
 }

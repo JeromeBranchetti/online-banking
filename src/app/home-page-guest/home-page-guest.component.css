@@ -1,0 +1,50 @@
+.top-section-home {
+  position: relative;
+  height: 60vh;
+  background-image: url(https://images.unsplash.com/photo-1462206092226-f46025ffe607?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dark-layer {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.674);
+  position: absolute;
+  top: 0;
+}
+
+.big-text {
+  font-family: "Alfa Slab One", cursive;
+  font-size: 5vw;
+}
+
+.dark-layer p {
+    height: 60px;
+}
+
+.text-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+
+.second-section {
+    height: 70vh;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.third-section {
+    height: 70vh;
+    width: 100%;
+    background-color: rgb(30, 133, 223);
+}
+
+.fourth-section {
+    height: 70vh;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}

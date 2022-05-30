@@ -12,7 +12,7 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 export class UserDashBoardComponent implements OnInit {
   cliente: string = '******** ';
   n_conto: string = '*****************';
-  iban: string = 'it***************************';
+  iban: string = 'IT***************************';
   saldo: string = '***************';
   guest!: utente;
   modeSpione!: boolean;

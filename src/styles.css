@@ -7,7 +7,6 @@ body {
 }
 
 html,
- 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -17,17 +16,18 @@ body {
 
 .home-box {
   border-radius: 20px;
-  height: 80vh;
+  min-height: 80vh;
   position: relative;
   top: 10vh;
-}
-
-input {
 }
 
 button {
   background-color: rgb(36, 49, 177);
   color: white;
-  
-  
+  padding: 7px;
+  border-radius: 7px;
+}
+
+button:hover {
+  background-color: rgb(61, 73, 180);
 }

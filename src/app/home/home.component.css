@@ -1,14 +1,13 @@
-.home-box {
-  border-radius: 20px;
-  background: rgb(56, 24, 65);
-  background: radial-gradient(
-    circle,
-    rgba(119, 53, 66, 1) 0%,
-    rgba(56, 37, 84, 0.5) 95%
-  );
-  height: 80vh;
+.top-section {
   position: relative;
-  top: 10vh;
+  height: 50vh;
+  background-image: url(https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+}
+
+.layer-blue {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 100%;
 }
 
 .login-section {
@@ -18,6 +17,19 @@
 .big-text {
   grid-area: two;
   max-width: 100%;
+
+  color: black;
+
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.big-paragraph {
+  font-size: 3vw;
+  max-width: 20vw;
+  margin-right: 0;
+  margin-bottom: 1.5rem;
 }
 
 .card-images-overlayed {
@@ -63,11 +75,3 @@
   display: grid;
   place-content: center;
 }
-
-.big-paragraph {
-  font-size: 3vw;
-  margin-bottom: 6vh;
-  max-width: 20vw;
-  margin-right: 0;
-}
-

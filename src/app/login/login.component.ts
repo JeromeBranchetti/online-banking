@@ -6,34 +6,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  constructor(private router: Router, private hrservice: HttpRequestService) {}
 
-  constructor(private router:Router , private hrservice:HttpRequestService) { }
+  ngOnInit(): void {}
+  login_form = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.email]),
 
-  ngOnInit(): void {
-  }
-  login_form=new FormGroup(
-    {
-      
-      email:new FormControl(null,[Validators.required,Validators.email]),
-      
-      password:new FormControl(null,[Validators.required])
+    password: new FormControl(null, [Validators.required]),
+  });
 
-
-    }
-  )
-
-  login(email:string,password:string){
+  login(email: string, password: string) {
     this.hrservice.onLogin();
-    console.log(email,password)
+    console.log(email, password);
   }
-  delete(){
-    this.login_form.reset()
-  }
-  switch(){
-    this.router.navigate(['signUp'])
 
+  delete() {
+    this.login_form.reset();
+  }
+
+  switch() {
+    this.router.navigate(['signUp']);
   }
 }

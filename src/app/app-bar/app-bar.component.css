@@ -8,7 +8,7 @@
   height: 10vh;
   width: 100%;
 
-  background-color: rgb(20, 22, 47);
+  background-color: rgba(20, 22, 47, 0.795);
   display: flex;
   padding: 0;
   margin: 0;
@@ -42,4 +42,24 @@ img {
 
 .brand-name {
   cursor: default;
+}
+
+.logo-central {
+  position: relative;
+  display: inline;
+}
+
+.fa-mobile-alt {
+  position: relative;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+}
+
+.fa-university {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

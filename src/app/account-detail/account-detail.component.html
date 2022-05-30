@@ -1,31 +1,30 @@
-<br />
-<div class="header">
-  <h1>Account Detail</h1>
-</div>
+<h1 class="text-center my-3">Account Detail</h1>
 
 <!-- <app-graphic></app-graphic> -->
 
-<div id="transactionHeader">
-  <h4>Transactions:</h4>
-  <button (click)="onPrintTransaction()">Download Transaction</button>
+<div class="container-fluid account-container">
+  <div id="transactionHeader">
+    <h4>Transactions:</h4>
+    <button (click)="onPrintTransaction()">Download Transaction <i class="fas fa-download"></i></button>
+  </div>
+  <table class="table" id="transactionList">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Recipient</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bankTransaction of bankTransactions">
+        <td>{{ bankTransaction.type }}</td>
+        <td>{{ bankTransaction.date }}</td>
+        <td>{{ bankTransaction.amount }}€</td>
+        <td>{{ bankTransaction.recipient }}</td>
+        <td>{{ bankTransaction.description }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<table class="table" id="transactionList">
-  <thead>
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Date</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Recipient</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let bankTransaction of bankTransactions">
-      <td>{{ bankTransaction.type }}</td>
-      <td>{{ bankTransaction.date }}</td>
-      <td>{{ bankTransaction.amount }}€</td>
-      <td>{{ bankTransaction.recipient }}</td>
-      <td>{{ bankTransaction.description }}</td>
-    </tr>
-  </tbody>
-</table>

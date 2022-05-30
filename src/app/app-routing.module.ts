@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserDashBoardComponent } from './user-dash-board/user-dash-board.component';
+import { HomePageGuestComponent } from './home-page-guest/home-page-guest.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'account-detail',
     component: AccountDetailComponent,
+  },
+  {
+    path: 'home-page-guest',
+    component: HomePageGuestComponent,
   },
 ];
 

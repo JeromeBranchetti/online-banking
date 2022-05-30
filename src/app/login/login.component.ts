@@ -1,4 +1,8 @@
 import { AuthService } from './../service/auth.service';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cd2b600382d8044c3b5605ee9717349f616a52f
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

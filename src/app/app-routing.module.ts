@@ -1,3 +1,4 @@
+import { ErrorComponent } from './error/error.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'home-page-guest',
     component: HomePageGuestComponent,
+  },
+  {
+    path: 'error',
+    component: ErrorComponent,
   },
 ];
 

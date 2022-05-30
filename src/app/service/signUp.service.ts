@@ -39,11 +39,7 @@ export class SignUpService {
 
   sendServer(ut: utente) {
     this.http
-      .post('http://localhost:8080/authentication/utenti', ut, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
+      .post('http://localhost:8082/api/register', ut)
       .subscribe((res) => {
         console.log(res);
       });

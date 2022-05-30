@@ -36,17 +36,18 @@ export class AuthService {
     return promise;
   }
 
-  login(user: string, password: string) {
+  login(email: string, password: string) {
     this.http
-      .post<AuthResponse>('http://localhost:8080/authentication/authenticate', {
-        user: 'JuanC22',
-        password: '1234',
+      .post<AuthResponse>('http://localhost:8082/api/authenticate', {
+        email: email,
+        password: password,
       })
       .subscribe({
         next: (response) => {
+          console.log('partita');
           this.accessToken = response.access_token;
           this.loggedIn = true;
-          this.router.navigate(['/admin-search']);
+          this.router.navigate(['/userDashboard']);
           localStorage.setItem('token', JSON.stringify(response));
           //   this.autoLogout(response.tokenExpireIn);
         },

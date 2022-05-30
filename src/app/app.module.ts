@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GraphicComponent } from './graphic/graphic.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgChartsModule } from 'ng2-charts';
     PaymentComponent,
     RequestComponent,
     GraphicComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

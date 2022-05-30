@@ -46,21 +46,6 @@ export class HttpRequestService {
 
   onGetTransaction() {}
 
-  // Login
-
-  onLogin() {
-    this.http
-      .post<string>('http://localhost:8080/authentication/authenticate', {
-        username: 'JuanC22',
-        password: '1234',
-      })
-      .subscribe((res) => {
-        this.token = res;
-        console.log(typeof this.token);
-        console.log(this.token);
-      });
-  }
-
   // Chiamate Post
 
   onAddUser() {

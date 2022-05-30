@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth-guard.service';
 import { HttpRequestService } from './service/httpRequest.service';
 import { RouterModule } from '@angular/router';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -60,7 +61,7 @@ import { ErrorComponent } from './error/error.component';
     BrowserAnimationsModule,
     NgChartsModule,
   ],
-  providers: [HttpRequestService],
+  providers: [HttpRequestService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

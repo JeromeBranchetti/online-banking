@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { SignUpService } from '../service/SignUp.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,11 @@ import {
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(public SUService: SignUpService, private router: Router) {}
+  constructor(
+    public SUService: SignUpService,
+    private router: Router,
+    private httpRequest: HttpRequestService
+  ) {}
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
   ngOnInit(): void {}
@@ -59,6 +64,7 @@ export class SignUpComponent implements OnInit {
   delete() {
     this.signUp_form.reset();
   }
+
   signUp() {
     if (this.controlDate(this.signUp_form.get('date'))) {
       this.SUService.newUtente(this.signUp_form);

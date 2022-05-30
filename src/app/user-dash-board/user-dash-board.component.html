@@ -1,80 +1,110 @@
+<!-- <div *ngIf="modeSpione">
+  <div class="row">
+    <div class="column">
+      <button class="back">back</button>
+    </div>
+    <div class="column_destra"></div>
+    <div class="column">
+      <h1>{{ cliente }}</h1>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column_destra">
+      <h1>N.conto:</h1>
+    </div>
+    <div class="column">
+      <h1>{{ n_conto }}</h1>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column_destra">
+      <h1>Iban:</h1>
+    </div>
+    <div class="column_center">
+      <h1 class="iban">{{ iban }}</h1>
+      <h1>Saldo:</h1>
+      <h1>{{ saldo }}&euro;</h1>
+    </div>
+    <div class="column">
+      <button id="copia" disabled>copia</button>
 
-  <div *ngIf="modeSpione">
-    <div class="row">
-      <div class="column">
-        <button class="back">
-          back
-        </button>
-      </div>
-      <div class="column_destra"></div>
-      <div class="column">
-        
-        
-<h1>{{ cliente }}</h1>
-      </div>
-      <div class="column"></div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column_destra">
-        <h1>N.conto:</h1>
-      </div>
-      <div class="column">
-        <h1>{{ n_conto }}</h1>
-      </div>
-      <div class="column"></div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column_destra">
-        <h1>Iban:</h1>
-      </div>
-      <div class="column_center">
-        <h1 class="iban">{{ iban }}</h1>
-        <h1>Saldo:</h1>
-        <h1>{{ saldo }}&euro;</h1>
-      </div>
-      <div class="column">
-        <button id="copia" disabled>
-          copia 
-        </button>
-      </div>
     </div>
   </div>
-  <div *ngIf="!modeSpione">
-    <div class="row">
-      <div class="column">
-        <button class="back">Back</button>
-      </div>
-      <div class="column_destra"></div>
-      <div class="column">
-        <h1>{{ guest.name }} {{guest.last_name}}</h1>
-      </div>
-      <div class="column"></div>
+</div> -->
+
+<!-- mode non spione -->
+<!-- <div *ngIf="!modeSpione">
+  <div class="row">
+    <div class="column">
+      <button class="back">Back</button>
     </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column_destra">
-        <h1>N.conto:</h1>
-      </div>
-      <div class="column">
-        <h1>{{ guest.n_conto.numero_conto }}</h1>
-      </div>
-      <div class="column"></div>
+    <div class="column_destra"></div>
+    <div class="column">
+      <h1>{{ guest.name }} {{ guest.last_name }}</h1>
     </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column_destra">
-        <h1>Iban:</h1>
-      </div>
-      <div class="column">
-        <h1>{{ guest.n_conto.iban }}</h1>
-        <h1 style="text-align: center">Saldo:</h1>
-        <h1>{{ guest.n_conto.saldo }}&euro;</h1>
-      </div>
-      <div class="column">
-        <button>copia</button>
-      </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column_destra">
+      <h1>N.conto:</h1>
+    </div>
+    <div class="column">
+      <h1>{{ guest.n_conto.numero_conto }}</h1>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column_destra">
+      <h1>Iban:</h1>
+    </div>
+    <div class="column">
+      <h1>{{ guest.n_conto.iban }}</h1>
+      <h1 style="text-align: center">Saldo:</h1>
+      <h1>{{ guest.n_conto.saldo }}&euro;</h1>
+    </div>
+    <div class="column">
+      <button>copia</button>
     </div>
   </div>
+</div> -->
 
+<!-- userDashboard -->
+<div class="container dash-container">
+  <h1 class="text-center my-3">User DashBoard</h1>
+  <button class="mb-3 mt-2"><i class="fas fa-undo"></i> back</button>
+  <div class="row dash-row">
+    <div class="col text-center my-3">
+      <p>{{ modeSpione ? cliente : guest.name + " " + guest.last_name }}</p>
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <span class="num-conto">N. Conto: </span>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <span>{{ modeSpione ? n_conto : guest.n_conto.numero_conto }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <span class="val-iban">Iban: </span>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <span>{{ modeSpione ? iban : guest.n_conto.saldo }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col text-center mb-3"><span>Saldo</span></div>
+    <div class="col text-center mb-3">
+      {{ modeSpione ? saldo : guest.n_conto.saldo }}&euro;
+    </div>
+  </div>
+</div>

@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-foot-bar',
   templateUrl: './foot-bar.component.html',
-  styleUrls: ['./foot-bar.component.css']
+  styleUrls: ['./foot-bar.component.css'],
 })
 export class FootBarComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onDashBoard() {
     this.router.navigate(['/userDashboard']);
@@ -22,5 +20,4 @@ export class FootBarComponent implements OnInit {
   onMovementDetail() {
     this.router.navigate(['/account-detail']);
   }
-
 }

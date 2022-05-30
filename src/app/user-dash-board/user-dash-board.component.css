@@ -1,11 +1,11 @@
-.column {
+/* .column {
   width: 20%;
   padding: 10px, 10px, 10px, 10px;
   margin: 10px, 10px, 10px, 10px;
 }
 .iban {
   width: 100%;
-  font-size:150%;
+  font-size: 150%;
 }
 
 .column_center {
@@ -29,38 +29,76 @@ input {
   text-align: right;
 }
 
-
 .back {
   margin-left: 10px;
   margin-top: 15px;
-  
 
-    background-color: transparent;
-    color:limegreen;
-    border-radius: 50px;
-    border-color:limegreen;
-    width:100%;
-    height: 100%;
-    font-size: 100%;
-    margin-top:15px;
-  
+  background-color: transparent;
+  color: limegreen;
+  border-radius: 50px;
+  border-color: limegreen;
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+  margin-top: 15px;
 }
 button {
- 
-  
+  background-color: transparent;
+  color: limegreen;
+  border-radius: 50px;
+  border-color: limegreen;
+  width: 50%;
+  height: 40%;
+  font-size: 100%;
+} */
 
-    background-color: transparent;
-    color:limegreen;
-    border-radius: 50px;
-    border-color:limegreen;
-    width:50%;
-    height: 40%;
-    font-size: 100%;
-  
-  
+h1 {
+  font-size: 300%;
 }
 
 .user-dash-box {
   position: relative;
   top: 10vh;
+}
+
+.dash-container {
+  place-content: center;
+}
+
+.dash-row {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.37);
+  border-radius: 8px;
+  width: 80%;
+}
+
+@media (min-width: 20em) {
+  .dash-row {
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 30em) {
+  .dash-row {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 40em) {
+  .dash-row {
+    font-size: 25px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 50em) {
+  .dash-row {
+    font-size: 30px;
+  }
 }

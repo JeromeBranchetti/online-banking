@@ -2,8 +2,6 @@ import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/SignUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
-
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -12,9 +10,9 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 export class UserDashBoardComponent implements OnInit {
   cliente: string = '******** ';
   n_conto: string = '*****************';
-  iban: string = 'it***************************';
+  iban: string = 'IT***************************';
   saldo: string = '***************';
-  guest!: utente;
+  guest=new utente("mario","rossi", "25-12-0000","io@bello.com","password");
   modeSpione!: boolean;
   constructor(
     public SUService: SignUpService,
@@ -22,9 +20,9 @@ export class UserDashBoardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.SUService.bs.subscribe((ut) => {
-      this.guest = ut;
-    });
+     this.SUService.bs.subscribe((ut) => {
+       this.guest = ut;
+     });
     this.SpioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });

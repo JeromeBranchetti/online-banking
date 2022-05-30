@@ -8,7 +8,7 @@
   height: 10vh;
   width: 100%;
 
-  background-color: transparent;
+  background-color: rgba(20, 22, 47, 0.795);
   display: flex;
   padding: 0;
   margin: 0;
@@ -18,7 +18,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: rgb(80, 197, 145);
+  color: rgb(255, 255, 255);
   margin-top: 5px;
 }
 
@@ -26,7 +26,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: rgb(80, 197, 145);
+  color: rgb(255, 255, 255);
   margin-top: 5px;
   transform: translateY(7px);
 }
@@ -42,4 +42,24 @@ img {
 
 .brand-name {
   cursor: default;
+}
+
+.logo-central {
+  position: relative;
+  display: inline;
+}
+
+.fa-mobile-alt {
+  position: relative;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+}
+
+.fa-university {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

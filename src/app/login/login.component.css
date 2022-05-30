@@ -1,4 +1,4 @@
-.column {
+/* .column {
   float: left;
   width: 60%;
 }
@@ -47,9 +47,69 @@ button{
   height: 20%;
   font-size: 100%;
   margin-top:15px;
+} */
+
+h1 {
+  font-size: 300%;
 }
 
 .login-box {
   position: relative;
   top: 10vh;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.safety-container {
+  background: rgb(255, 255, 255);
+  margin-top: 20px;
+  height: 50vh;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  position: relative;
+}
+
+li {
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+.side-image {
+  position: relative;
+  transform: translate();
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.back-img-lock {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  transform: translateY(-7%);
+  background-color: aliceblue;
+  
+}
+
+.blue-gradient {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  transform: translateY(-7%);
+  margin-right: 12px;
+  background: rgb(66, 31, 203);
+  background: linear-gradient(270deg, rgba(19, 43, 201, 0.666) 39%, rgba(0,0,0,0) 100%);
+  
 }

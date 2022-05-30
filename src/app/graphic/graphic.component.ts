@@ -22,7 +22,6 @@ data:number[]=[100,100,100,100,100,100,100,100,100,100,100,100]
     datasets: [
       {
         data: this.data,
->>>>>>> 94a4e521e999b794f495e239558b352b18eaaf83
         label: 'Andamento annuo',
         backgroundColor: 'transparent',
         borderColor: 'rgba(148,159,177,1)',

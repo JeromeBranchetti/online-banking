@@ -1,4 +1,3 @@
-import { SignUpService } from '../service/SignUp.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -7,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { SignUpService } from '../service/signUp.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -59,10 +59,17 @@ export class SignUpComponent implements OnInit {
   delete() {
     this.signUp_form.reset();
   }
+
   signUp() {
     if (this.controlDate(this.signUp_form.get('date'))) {
       this.SUService.newUtente(this.signUp_form);
-      this.router.navigate(['home-page-guest']);
+      this.router.navigate(['home-page-guest'], {
+        queryParams: {
+          user:
+            this.signUp_form.get('name').value +
+            this.signUp_form.get('last_name'),
+        },
+      });
     } else {
       alert('non sei maggiorenne');
     }

@@ -1,6 +1,15 @@
+import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+// export class User {
+//   firstName: string = 'Mario';
+//   lastName: string = 'Rossi';
+//   email: string = 'mario.rossi@test.com';
+//   birthDate: string = '01/01/0000';
+//   password: string = 'Abcd1234!';
+// }
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +18,7 @@ export class HttpRequestService {
   token: string;
   utente: utente;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   // Chiamate Get
 
@@ -46,31 +55,12 @@ export class HttpRequestService {
 
   onGetTransaction() {}
 
-  // Login
-
-  onLogin() {
-    this.http
-      .post<string>('http://localhost:8080/authentication/authenticate', {
-        username: 'JuanC22',
-        password: '1234',
-      })
-      .subscribe((res) => {
-        this.token = res;
-        console.log(typeof this.token);
-        console.log(this.token);
-      });
-  }
-
   // Chiamate Post
 
-  onAddUser() {
-    this.utente = utente.factory();
+  onAddUser(ut: utente) {
+    // let user: User;
     this.http
-      .post('http://localhost:8080/authentication/utenti', this.utente, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
+      .post('http://localhost:8082/api/register', ut)
       .subscribe((res) => {
         console.log(res);
       });

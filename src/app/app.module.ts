@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth-guard.service';
 import { HttpRequestService } from './service/httpRequest.service';
 import { RouterModule } from '@angular/router';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GraphicComponent } from './graphic/graphic.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { NgChartsModule } from 'ng2-charts';
     PaymentComponent,
     RequestComponent,
     GraphicComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import { NgChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     NgChartsModule,
   ],
-  providers: [HttpRequestService],
+  providers: [HttpRequestService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

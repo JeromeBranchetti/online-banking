@@ -4,6 +4,7 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 
+
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
@@ -13,96 +14,98 @@ export class AccountDetailComponent implements OnInit {
   // Variables
 
   fileName = 'TransactionList.xlsx';
+  debitAmount: number = 0;
+  creditAmount: number = 0;
 
   bankTransactions: BankTransaction[] = [
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '+100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '+100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
-      amount: '100',
+      amount: '-100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
-      date: '22222S/05/2020',
-      amount: '100',
+      date: '22/05/2020',
+      amount: '+100',
       recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
-      date: '1111/05/2020',
-      amount: '100',
+      date: '11/05/2020',
+      amount: '+100',
       recipient: 'Mcdonald',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
@@ -110,13 +113,14 @@ export class AccountDetailComponent implements OnInit {
 
   // Methods
 
-  constructor(
-    private httpRequest: HttpRequestService,
-    private spyMode: SpioneService
-  ) {}
+  constructor(private spyMode: SpioneService) {}
 
   ngOnInit(): void {
-    // Modalità spione
+    this.onPrivacyMode();
+    this.onCalculateAmount();
+  }
+
+  onPrivacyMode() {
     let isNotFirst = false;
     let i = 0;
     let amountArray = [];
@@ -134,6 +138,18 @@ export class AccountDetailComponent implements OnInit {
       i = 0;
     });
   }
+
+  onCalculateAmount() {
+    for (let bankTransaction of this.bankTransactions) {
+      if (+bankTransaction.amount < 0) {
+        this.debitAmount = this.debitAmount - +bankTransaction.amount;
+      } else if (+bankTransaction.amount > 0) {
+        this.creditAmount = this.creditAmount + +bankTransaction.amount;
+      }
+    }
+  }
+
+  onFilter(filter: number) {}
 
   onPrintTransaction() {
     /* pass here the table id */

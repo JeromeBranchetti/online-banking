@@ -40,18 +40,17 @@ export class AuthService {
 
   login(email: string, password: string) {
     this.http
-      .post<AuthResponse>('http://localhost:8082/api/authenticate', {
+      .post<AuthResponse>('http://localhost:8080/authentication/authenticate', {
         email: email,
         password: password,
       })
       .subscribe({
         next: (response) => {
           this.accessToken = response.token;
-          console.log(this.accessToken);
           this.loggedIn = true;
           this.router.navigate(['/userDashboard']);
           localStorage.setItem('token', JSON.stringify(response));
-          //   this.autoLogout(response.tokenExpireIn);
+          // this.autoLogout(response.tokenExpireIn);
         },
         error: (errorRes) => {
           this.router.navigate(['/error']);

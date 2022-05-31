@@ -1,6 +1,6 @@
 /* Titolo */
-.graphic{
-  display:flex;
+.graphic {
+  display: flex;
 }
 .header {
   display: flex;
@@ -16,11 +16,26 @@ h1 {
 #transactionHeader {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10vh;
+  margin-top: 2.5%;
+}
+
+#amount {
+  display: flex;
+  justify-content: center;
+}
+
+#debitAmount {
+  color: red;
+  margin-right: 5px;
+}
+
+#creditAmount {
+  color: green;
 }
 
 button {
-  margin-bottom: 5px;
+  margin-left: 2px;
+  margin-bottom: 10px;
 }
 
 .table {
@@ -28,7 +43,10 @@ button {
   background-color: white;
 }
 
+.description {
+  display: flex;
+  justify-content: center;
+}
 .graph-container {
   background-color: aliceblue;
-  
 }

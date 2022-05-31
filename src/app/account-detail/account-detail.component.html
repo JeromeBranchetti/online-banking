@@ -1,15 +1,30 @@
-
 <h1 class="text-center my-3">Account Detail</h1>
 
 <div class="container graph-container my-5">
   <app-graphic></app-graphic>
 </div>
 
-
 <div class="container-fluid account-container">
   <div id="transactionHeader">
     <h4>Transactions:</h4>
-    <button (click)="onPrintTransaction()">Download Transaction <i class="fas fa-download"></i></button>
+    <div id="amount">
+      <p id="debitAmount">
+        <i class="fa-solid fa-arrow-down"></i>
+        -{{ debitAmount }}€
+      </p>
+      <p id="creditAmount">
+        <i class="fa-solid fa-arrow-up"></i>
+        +{{ creditAmount }}€
+      </p>
+    </div>
+    <div id="buttonInput">
+      <button>10</button>
+      <button>20</button>
+      <button>50</button>
+      <button (click)="onPrintTransaction()">
+        Download Transaction <i class="fas fa-download"></i>
+      </button>
+    </div>
   </div>
   <table class="table" id="transactionList">
     <thead>
@@ -17,8 +32,7 @@
         <th scope="col">Type</th>
         <th scope="col">Date</th>
         <th scope="col">Amount</th>
-        <th scope="col">Recipient</th>
-        <th scope="col">Description</th>
+        <th scope="col" class="description">Description</th>
       </tr>
     </thead>
     <tbody>
@@ -26,8 +40,7 @@
         <td>{{ bankTransaction.type }}</td>
         <td>{{ bankTransaction.date }}</td>
         <td>{{ bankTransaction.amount }}€</td>
-        <td>{{ bankTransaction.recipient }}</td>
-        <td>{{ bankTransaction.description }}</td>
+        <td class="description">{{ bankTransaction.description }}</td>
       </tr>
     </tbody>
   </table>

@@ -3,14 +3,6 @@ import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-// export class User {
-//   firstName: string = 'Mario';
-//   lastName: string = 'Rossi';
-//   email: string = 'mario.rossi@test.com';
-//   birthDate: string = '01/01/0000';
-//   password: string = 'Abcd1234!';
-// }
-
 @Injectable({
   providedIn: 'root',
 })
@@ -23,10 +15,8 @@ export class HttpRequestService {
   // Chiamate Get
 
   onGetUser() {
+    this.token = this.auth.token.token;
     console.log('Get: ' + this.token);
-    this.token = JSON.stringify(this.token);
-    this.token = this.token.substring(this.token.indexOf(':') + 2);
-    this.token = this.token.substring(0, this.token.indexOf('"'));
     this.http
       .get<utente[]>('http://localhost:8080/authentication/utenti', {
         headers: new HttpHeaders({
@@ -39,9 +29,7 @@ export class HttpRequestService {
   }
 
   onGetAccount() {
-    this.token = JSON.stringify(this.token);
-    this.token = this.token.substring(this.token.indexOf(':') + 2);
-    this.token = this.token.substring(0, this.token.indexOf('"'));
+    this.token = this.auth.token.token;
     this.http
       .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
         headers: new HttpHeaders({
@@ -55,12 +43,20 @@ export class HttpRequestService {
 
   onGetTransaction() {}
 
-  // Chiamate Post
+  // Chiamate post
 
   onAddUser(ut: utente) {
-    // let user: User;
+    let user = {
+      firstName: 'Christian',
+      lastName: 'Kareem',
+      email: 'Christian.Kareem02@test.it',
+      birthDate: '15/02/1995',
+      password: 'Abcd1234!',
+    };
+    console.log(user);
+    console.log(ut);
     this.http
-      .post('http://localhost:8082/api/register', ut)
+      .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
         console.log(res);
       });

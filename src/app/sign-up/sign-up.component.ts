@@ -1,3 +1,4 @@
+import { SignUpService } from '../service/signUp.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -6,7 +7,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { SignUpService } from '../service/signUp.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,9 +19,9 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {}
   signUp_form = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    date: new FormControl(null, [Validators.required]),
-    last_name: new FormControl(null, Validators.required),
+    firstName: new FormControl(null, Validators.required),
+    birthDate: new FormControl(null, [Validators.required]),
+    lastName: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
       Validators.required,
@@ -61,13 +61,13 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    if (this.controlDate(this.signUp_form.get('date'))) {
+    if (this.controlDate(this.signUp_form.get('birthDate'))) {
       this.SUService.newUtente(this.signUp_form);
       this.router.navigate(['home-page-guest'], {
         queryParams: {
           user:
-            this.signUp_form.get('name').value +
-            this.signUp_form.get('last_name'),
+            this.signUp_form.get('firstName').value +
+            this.signUp_form.get('lastName'),
         },
       });
     } else {

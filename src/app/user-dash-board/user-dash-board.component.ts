@@ -20,10 +20,10 @@ export class UserDashBoardComponent implements OnInit {
     '25-12-0000',
     'io@bello.com',
     'password',
-    false
+    // false
   );
   modeSpione!: boolean;
-  conto!:conto;
+  conto!: conto;
   constructor(
     public SUService: SignUpService,
     public SpioneService: SpioneService
@@ -31,15 +31,13 @@ export class UserDashBoardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.conto=new conto(0)
-     this.SUService.bs.subscribe((ut) => {
-       this.guest = ut;
-       
-     });
+    this.conto = new conto(0);
+    this.SUService.bs.subscribe((ut) => {
+      //  this.guest = ut;
+    });
     this.SpioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
-
   }
 
   // copia() {

@@ -21,7 +21,7 @@ export class FootBarComponent implements OnInit {
   onDashBoard() {
     this.router.navigate(['/userDashboard'], {
       queryParams: {
-        user: this.guest.name + this.guest.last_name,
+        user: this.guest.firstName + this.guest.lastName,
         id: this.guest.id,
       },
     });
@@ -32,7 +32,7 @@ export class FootBarComponent implements OnInit {
 
       {
         queryParams: {
-          user: this.guest.name + this.guest.last_name,
+          user: this.guest.firstName + this.guest.lastName,
           id: this.guest.id,
         },
       }

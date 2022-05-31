@@ -17,10 +17,12 @@ export class SignUpService {
   newUtente(x: FormGroup) {
     let ut = utente.factory();
     ut = Object.assign(ut, x.value);
+    console.log(ut,"signUp")
 
     this.bs.next(ut);
 
     this.httpReq.onAddUser(ut);
+    
   }
 
  

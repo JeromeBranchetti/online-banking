@@ -20,10 +20,8 @@ export class SignUpService {
 
     this.bs.next(ut);
 
-    this.sendServer(ut);
-  }
-
-  sendServer(ut: utente) {
     this.httpReq.onAddUser(ut);
   }
+
+ 
 }

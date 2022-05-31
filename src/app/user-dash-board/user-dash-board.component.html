@@ -37,7 +37,7 @@
 </div> -->
 
 <!-- mode non spione -->
-<!-- <div *ngIf="!modeSpione">
+ <!-- <div *ngIf="!modeSpione">
   <div class="row">
     <div class="column">
       <button class="back">Back</button>
@@ -80,31 +80,35 @@
   <button class="mb-3 mt-2"><i class="fas fa-undo"></i> back</button>
   <div class="row dash-row">
     <div class="col text-center my-3">
-      <p>{{ modeSpione ? cliente : guest.name + " " + guest.last_name }}</p>
+      <!-- <p>{{ modeSpione ? cliente : guest.name + " " + guest.last_name }}</p> -->
     </div>
     <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
-      <div class="row">
+      <div class="row conto-row">
         <div class="col-lg-6 col-sm-12 mb-3">
           <span class="num-conto">N. Conto: </span>
         </div>
         <div class="col-lg-6 col-sm-12">
-          <span>{{ modeSpione ? n_conto : guest.n_conto.numero_conto }}</span>
+          <span>{{ modeSpione ? n_conto : conto.numero_conto }}</span>
         </div>
       </div>
     </div>
     <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 mb-3">
+      <div class="row copy-row d-flex justify-content-center">
+        <div class="col-lg-4 col-sm-10 mb-3">
           <span class="val-iban">Iban: </span>
         </div>
-        <div class="col-lg-6 col-sm-12">
-          <span>{{ modeSpione ? iban : guest.n_conto.saldo }}</span>
+        <div class="col-lg-4 col-sm-10">
+          <span>{{ modeSpione ? iban : conto.saldo }}</span>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <button type="button" class="fs-6" *ngIf="!modeSpione" (click)="copyMode()">Copia <i class="fas fa-copy"></i></button>
+
         </div>
       </div>
     </div>
     <div class="col text-center mb-3"><span>Saldo</span></div>
     <div class="col text-center mb-3">
-      {{ modeSpione ? saldo : guest.n_conto.saldo }}&euro;
+      {{ modeSpione ? saldo : conto.saldo }}&euro;
     </div>
   </div>
 </div>

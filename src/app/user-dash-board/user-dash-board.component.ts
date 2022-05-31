@@ -14,13 +14,14 @@ export class UserDashBoardComponent implements OnInit {
   iban: string = 'IT***************************';
   trueIban: string;
   saldo: string = '***************';
-  // guest = new utente(
-  //   'mario',
-  //   'rossi',
-  //   '25-12-0000',
-  //   'io@bello.com',
-  //   'password'
-  // );
+  guest = new utente(
+    'mario',
+    'rossi',
+    '25-12-0000',
+    'io@bello.com',
+    'password',
+    false
+  );
   modeSpione!: boolean;
   conto!:conto;
   constructor(
@@ -32,7 +33,7 @@ export class UserDashBoardComponent implements OnInit {
 
     this.conto=new conto(0)
      this.SUService.bs.subscribe((ut) => {
-      //  this.guest = ut;
+       this.guest = ut;
        
      });
     this.SpioneService.bs.subscribe((bool) => {
@@ -53,7 +54,7 @@ export class UserDashBoardComponent implements OnInit {
   // }
 
   copyMode() {
-    // const copiedIban = this.guest.n_conto.iban;
-    // navigator.clipboard.writeText(copiedIban);
+    const copiedIban = this.conto.iban;
+    navigator.clipboard.writeText(copiedIban);
   }
 }

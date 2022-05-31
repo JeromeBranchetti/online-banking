@@ -1,6 +1,6 @@
+import { BankTransaction } from './../class/bankTransaction.model';
 import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
-import { BankTransaction } from './bankTransaction.model';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 

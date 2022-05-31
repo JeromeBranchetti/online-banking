@@ -51,10 +51,12 @@ export class HttpRequestService {
     let user = {
       firstName: 'Christian',
       lastName: 'Kareem',
-      email: 'Christian.Kareem@test.it',
+      email: 'Christian.Kareem02@test.it',
       birthDate: '15/02/1995',
       password: 'Abcd1234!',
     };
+    console.log(user);
+    console.log(ut);
     this.http
       .post('http://localhost:8080/authentication/register', user)
       .subscribe((res) => {

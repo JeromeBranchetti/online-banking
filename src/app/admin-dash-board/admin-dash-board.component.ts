@@ -111,6 +111,7 @@ export class AdminDashBoardComponent implements OnInit {
   ];
   requestVisibility: boolean = false;
   requestIndex: number;
+  selectedRequest: RequestModel;
 
   constructor() {}
 
@@ -119,7 +120,6 @@ export class AdminDashBoardComponent implements OnInit {
   onSelectRequest(index: number) {
     this.requestVisibility = true;
     this.requestIndex = index;
-    console.log(this.requestsLight[index]);
   }
 
   onAcceptRequest() {

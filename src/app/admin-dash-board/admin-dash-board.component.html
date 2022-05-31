@@ -61,6 +61,7 @@
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
+          (click)="onSelectRequest(i)"
         >
           {{ oldRequests[i].name }}
           {{ oldRequests[i].lastName }}

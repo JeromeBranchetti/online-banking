@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
   signUp() {
     if (this.controlDate(this.signUp_form.get('date'))) {
       this.SUService.newUtente(this.signUp_form);
-      this.router.navigate(['userDashboard']);
+      this.router.navigate(['home-page-guest']);
     } else {
       alert('non sei maggiorenne');
     }

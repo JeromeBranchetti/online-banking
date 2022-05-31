@@ -52,6 +52,9 @@ button {
   font-size: 100%;
 } */
 
+
+
+
 h1 {
   font-size: 300%;
 }
@@ -71,7 +74,9 @@ h1 {
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.37);
   border-radius: 8px;
-  width: 80%;
+  width: 90%;
+  padding: 5px;
+  margin: 0;
 }
 
 @media (min-width: 20em) {
@@ -101,4 +106,27 @@ h1 {
   .dash-row {
     font-size: 30px;
   }
+}
+
+@media (min-width: 80em ) {
+  
+.copy-row {
+  width: 50vw;
+}
+
+
+.conto-row {
+  width: 50vw;
+
+}
+}
+
+.copy-row {
+  width: 80vw;
+}
+
+
+.conto-row {
+  width: 80vw;
+
 }

@@ -17,7 +17,7 @@ export class conto {
     return null;
   }
   genIban(): string {
-    return '';
+    return 'IT60 X054 2811 1010 0000 0123 456';
   }
   getTransaction(): BankTransaction[] {
     return null;

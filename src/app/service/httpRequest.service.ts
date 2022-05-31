@@ -15,10 +15,8 @@ export class HttpRequestService {
   // Chiamate Get
 
   onGetUser() {
+    this.token = this.auth.token.token;
     console.log('Get: ' + this.token);
-    this.token = JSON.stringify(this.token);
-    this.token = this.token.substring(this.token.indexOf(':') + 2);
-    this.token = this.token.substring(0, this.token.indexOf('"'));
     this.http
       .get<utente[]>('http://localhost:8080/authentication/utenti', {
         headers: new HttpHeaders({

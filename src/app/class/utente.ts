@@ -1,12 +1,11 @@
-import { conto } from './conto';
+
 export class utente {
   id?: number;
-  name!: string;
-  date!: string;
-  last_name!: string;
+  firstName!: string;
+  lastName!: string;
+  birthDate!: string;
   email!: string;
   password!: string;
-  n_conto!: conto;
   dipendente!: boolean;
 
   constructor(
@@ -14,26 +13,23 @@ export class utente {
     last_name: string,
     date: string,
     email: string,
-    password: string
+    password: string,
+    dipendente:boolean
   ) {
-    this.name = name;
-    this.date = date;
-    this.last_name = last_name;
+    this.firstName = name;
+    this.birthDate = date;
+    this.lastName = last_name;
     this.email = email;
     this.password = password;
-
-    this.n_conto = new conto(0);
-    this.dipendente = this.controlloDipendente();
+    this.dipendente = dipendente
   }
   getId() {}
   static factory() {
-    let u = new utente('', '', '', '', '');
+    let u = new utente('', '', '', '', '',false);
     return u;
   }
   controlloDipendente(): boolean {
     return false;
   }
-  remove(x: number) {
-    this.n_conto.saldo = this.n_conto.saldo - x;
-  }
+
 }

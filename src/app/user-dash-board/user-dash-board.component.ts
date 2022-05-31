@@ -2,6 +2,7 @@ import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
+import { conto } from '../class/conto';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -14,18 +15,22 @@ export class UserDashBoardComponent implements OnInit {
   saldo: string = '***************';
   guest=new utente("mario","rossi", "25-12-0000","io@bello.com","password");
   modeSpione!: boolean;
+  conto!:conto;
   constructor(
     public SUService: SignUpService,
     public SpioneService: SpioneService
   ) {}
 
   ngOnInit(): void {
+    this.conto=new conto(0)
      this.SUService.bs.subscribe((ut) => {
        this.guest = ut;
+       
      });
     this.SpioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
+
   }
 
   copia() {

@@ -88,7 +88,7 @@
           <span class="num-conto">N. Conto: </span>
         </div>
         <div class="col-lg-6 col-sm-12">
-          <span>{{ modeSpione ? n_conto : guest.n_conto.numero_conto }}</span>
+          <span>{{ modeSpione ? n_conto : conto.numero_conto }}</span>
         </div>
       </div>
     </div>
@@ -98,13 +98,13 @@
           <span class="val-iban">Iban: </span>
         </div>
         <div class="col-lg-6 col-sm-12">
-          <span>{{ modeSpione ? iban : guest.n_conto.saldo }}</span>
+          <span>{{ modeSpione ? iban : conto.saldo }}</span>
         </div>
       </div>
     </div>
     <div class="col text-center mb-3"><span>Saldo</span></div>
     <div class="col text-center mb-3">
-      {{ modeSpione ? saldo : guest.n_conto.saldo }}&euro;
+      {{ modeSpione ? saldo : conto.saldo }}&euro;
     </div>
   </div>
 </div>

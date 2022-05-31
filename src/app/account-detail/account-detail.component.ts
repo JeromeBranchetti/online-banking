@@ -3,6 +3,7 @@ import { SpioneService } from './../service/spione.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 
+
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',

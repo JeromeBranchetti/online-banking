@@ -9,9 +9,8 @@ import { utente } from '../class/utente';
   styleUrls: ['./foot-bar.component.css'],
 })
 export class FootBarComponent implements OnInit {
-  constructor(private router: Router , private Sus:SignUpService)  {}
-  guest!:utente;
-
+  constructor(private router: Router, private Sus: SignUpService) {}
+  guest!: utente;
 
   ngOnInit(): void {
     this.Sus.bs.subscribe((ut) => {
@@ -20,34 +19,31 @@ export class FootBarComponent implements OnInit {
   }
 
   onDashBoard() {
-    this.router.navigate(['/userDashboard'],
-    {
-      queryParams:{
-        user:(this.guest.name + this.guest.last_name),
-        id:this.guest.id
-      }
-    }
-    );
+    this.router.navigate(['/userDashboard'], {
+      queryParams: {
+        user: this.guest.name + this.guest.last_name,
+        id: this.guest.id,
+      },
+    });
   }
   onPayment() {
-    this.router.navigate(['/payment'],
-    
-    {
-      queryParams:{
-        user:(this.guest.name + this.guest.last_name),
-        id:this.guest.id
+    this.router.navigate(
+      ['/payment'],
+
+      {
+        queryParams: {
+          user: this.guest.name + this.guest.last_name,
+          id: this.guest.id,
+        },
       }
-    }
     );
   }
   onMovementDetail() {
-    this.router.navigate(['/account-detail'],
-    {
-      queryParams:{
-        user:(this.guest.name + this.guest.last_name),
-        id:this.guest.id
-      }
-    }
-    );
+    this.router.navigate(['/account-detail'], {
+      // queryParams:{
+      //   user:(this.guest.name + this.guest.last_name),
+      //   id:this.guest.id
+      // }
+    });
   }
 }

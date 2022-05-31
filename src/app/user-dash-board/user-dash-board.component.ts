@@ -1,5 +1,5 @@
 import { SpioneService } from '../service/spione.service';
-import { SignUpService } from '../service/SignUp.service';
+import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 @Component({
@@ -12,7 +12,13 @@ export class UserDashBoardComponent implements OnInit {
   n_conto: string = '*****************';
   iban: string = 'IT***************************';
   saldo: string = '***************';
-  guest=new utente("mario","rossi", "25-12-0000","io@bello.com","password");
+  guest = new utente(
+    'mario',
+    'rossi',
+    '25-12-0000',
+    'io@bello.com',
+    'password'
+  );
   modeSpione!: boolean;
   constructor(
     public SUService: SignUpService,
@@ -20,9 +26,9 @@ export class UserDashBoardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-     this.SUService.bs.subscribe((ut) => {
-       this.guest = ut;
-     });
+    this.SUService.bs.subscribe((ut) => {
+      this.guest = ut;
+    });
     this.SpioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });

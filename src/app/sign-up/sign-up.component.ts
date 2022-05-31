@@ -1,5 +1,5 @@
 import { HttpRequestService } from './../service/httpRequest.service';
-import { SignUpService } from '../service/SignUp.service';
+import { SignUpService } from '../service/signUp.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -68,15 +68,13 @@ export class SignUpComponent implements OnInit {
   signUp() {
     if (this.controlDate(this.signUp_form.get('date'))) {
       this.SUService.newUtente(this.signUp_form);
-      this.router.navigate(['userDashboard']
-      ,
-    {
-      queryParams:{
-        user:(this.signUp_form.get('name').value + this.signUp_form.get('last_name')),
-        
-      }
-    }
-    );
+      this.router.navigate(['userDashboard'], {
+        queryParams: {
+          user:
+            this.signUp_form.get('name').value +
+            this.signUp_form.get('last_name'),
+        },
+      });
     } else {
       alert('non sei maggiorenne');
     }

@@ -3,14 +3,6 @@ import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-// export class User {
-//   firstName: string = 'Mario';
-//   lastName: string = 'Rossi';
-//   email: string = 'mario.rossi@test.com';
-//   birthDate: string = '01/01/0000';
-//   password: string = 'Abcd1234!';
-// }
-
 @Injectable({
   providedIn: 'root',
 })
@@ -55,12 +47,18 @@ export class HttpRequestService {
 
   onGetTransaction() {}
 
-  // Chiamate Post
+  // Chiamate post
 
   onAddUser(ut: utente) {
-    // let user: User;
+    let user = {
+      firstName: 'Christian',
+      lastName: 'Kareem',
+      email: 'Christian.Kareem@test.it',
+      birthDate: '15/02/1995',
+      password: 'Abcd1234!',
+    };
     this.http
-      .post('http://localhost:8082/api/register', ut)
+      .post('http://localhost:8080/authentication/register', user)
       .subscribe((res) => {
         console.log(res);
       });

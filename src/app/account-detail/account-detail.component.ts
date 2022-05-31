@@ -1,8 +1,8 @@
+import { BankTransaction } from './../class/bankTransaction.model';
 import { SpioneService } from './../service/spione.service';
-
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { BankTransaction } from '../class/bankTransaction.model';
+
 
 @Component({
   selector: 'app-account-detail',

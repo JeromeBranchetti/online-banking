@@ -50,15 +50,10 @@ export class HttpRequestService {
   // Chiamate post
 
   onAddUser(ut: utente) {
-    let user = {
-      firstName: 'Christian',
-      lastName: 'Kareem',
-      email: 'Christian.Kareem@test.it',
-      birthDate: '15/02/1995',
-      password: 'Abcd1234!',
-    };
+   
+    
     this.http
-      .post('http://localhost:8080/authentication/register', user)
+      .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
         console.log(res);
       });

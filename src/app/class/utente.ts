@@ -6,7 +6,7 @@ export class utente {
   birthDate!: string;
   email!: string;
   password!: string;
-  dipendente!: boolean;
+  // dipendente!: boolean;
 
   constructor(
     name: string,
@@ -14,18 +14,20 @@ export class utente {
     date: string,
     email: string,
     password: string,
-    dipendente:boolean
+    // dipendente:boolean
   ) {
     this.firstName = name;
-    this.birthDate = date;
+   
     this.lastName = last_name;
+    
     this.email = email;
+    this.birthDate = date;
     this.password = password;
-    this.dipendente = dipendente
+    // this.dipendente = dipendente
   }
   getId() {}
   static factory() {
-    let u = new utente('', '', '', '', '',false);
+    let u = new utente('', '', '', '', '');
     return u;
   }
   controlloDipendente(): boolean {

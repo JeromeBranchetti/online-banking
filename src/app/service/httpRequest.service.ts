@@ -29,9 +29,7 @@ export class HttpRequestService {
   }
 
   onGetAccount() {
-    this.token = JSON.stringify(this.token);
-    this.token = this.token.substring(this.token.indexOf(':') + 2);
-    this.token = this.token.substring(0, this.token.indexOf('"'));
+    this.token = this.auth.token.token;
     this.http
       .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
         headers: new HttpHeaders({
@@ -58,7 +56,7 @@ export class HttpRequestService {
     console.log(user);
     console.log(ut);
     this.http
-      .post('http://localhost:8080/authentication/register', user)
+      .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
         console.log(res);
       });

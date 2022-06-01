@@ -68,17 +68,16 @@ export class SignUpComponent implements OnInit {
   signUp() {
     if (this.controlDate(this.signUp_form.get('birthDate'))) {
       this.SUService.newUtente(this.signUp_form);
-      this.router.navigate(['home-page-guest'], {
-        queryParams: {
-          user:
-            this.signUp_form.get('firstName').value +
-            this.signUp_form.get('lastName').value,
+      this.router.navigate([
+        'home-page-guest',
+        {
+          queryParams: {
+            user:
+              this.signUp_form.get('firstName').value +
+              this.signUp_form.get('lastName').value,
+          },
         },
-      });
-      this.auth.login(
-        this.signUp_form.get('email').value,
-        this.signUp_form.get('password').value
-      );
+      ]);
     } else {
       alert('non sei maggiorenne');
     }

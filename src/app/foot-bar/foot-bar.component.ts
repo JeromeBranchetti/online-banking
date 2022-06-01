@@ -19,6 +19,7 @@ export class FootBarComponent implements OnInit {
   }
 
   onDashBoard() {
+
     this.router.navigate(['/userDashboard'], {
       queryParams: {
         user: this.guest.firstName + this.guest.lastName,
@@ -39,6 +40,7 @@ export class FootBarComponent implements OnInit {
     );
   }
   onMovementDetail() {
+
     this.router.navigate(['/account-detail'], {
       queryParams: {
         user: this.guest.firstName + this.guest.lastName,

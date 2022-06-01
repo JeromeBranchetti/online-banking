@@ -2,9 +2,10 @@
   <div
     class="card-header"
     [ngClass]="{
+      'card-header-red': light === 'red',
       'card-header-green': light === 'green',
-      'card-header-yellow': light === 'yellow',
-      'card-header-red': light === 'red'
+      'card-header-grey': light === 'grey',
+      'card-header-yellow': light === 'yellow'
     }"
   >
     <h3>{{ name }} {{ lastName }}</h3>
@@ -12,5 +13,13 @@
   <div class="card-body">
     <h3>Date of birth: {{ dateOfBirth }}</h3>
     <h3>Email: {{ email }}</h3>
+    <h3
+      [ngClass]="{
+        'header-red': header === 'red',
+        'header-green': header === 'green'
+      }"
+    >
+      {{ result }}
+    </h3>
   </div>
 </div>

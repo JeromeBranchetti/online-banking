@@ -46,6 +46,7 @@ export class AuthService {
       })
       .subscribe({
         next: (response) => {
+          console.log(response);
           this.accessToken = response.token;
           this.loggedIn = true;
           this.router.navigate(['/userDashboard']);

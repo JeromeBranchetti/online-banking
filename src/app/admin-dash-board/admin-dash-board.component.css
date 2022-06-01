@@ -1,6 +1,4 @@
-.requestsList {
-  /* height: 700px; */
-  /* border: 1px solid black; */
+/* .requestsList {
   width: 100%;
   margin-bottom: 12vh;
 }
@@ -8,8 +6,7 @@
 .requestList {
   width: 20%;
   height: 100%;
-  /* border: 1px solid black; */
-}
+} */
 
 .request {
   cursor: pointer;

@@ -1,3 +1,4 @@
+import { AuthService } from './../service/auth.service';
 import { SignUpService } from '../service/signUp.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,11 @@ import {
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(public SUService: SignUpService, private router: Router) {}
+  constructor(
+    public SUService: SignUpService,
+    private router: Router,
+    private auth: AuthService
+  ) {}
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
   ngOnInit(): void {}
@@ -67,9 +72,13 @@ export class SignUpComponent implements OnInit {
         queryParams: {
           user:
             this.signUp_form.get('firstName').value +
-            this.signUp_form.get('lastName'),
+            this.signUp_form.get('lastName').value,
         },
       });
+      this.auth.login(
+        this.signUp_form.get('email').value,
+        this.signUp_form.get('password').value
+      );
     } else {
       alert('non sei maggiorenne');
     }

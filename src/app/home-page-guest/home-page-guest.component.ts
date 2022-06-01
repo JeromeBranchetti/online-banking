@@ -1,5 +1,7 @@
+import { SignUpService } from './../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { conto } from '../class/conto';
 
 @Component({
   selector: 'app-home-page-guest',
@@ -7,10 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page-guest.component.css']
 })
 export class HomePageGuestComponent implements OnInit {
+  conti:conto[]=[]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router , private Sus:SignUpService) { }
 
   ngOnInit(): void {
+    this.Sus.bsconto.subscribe((res)=>{
+      this.conti=res;
+    })
+
   }
 
   toPayment() {

@@ -40,10 +40,10 @@ export class FootBarComponent implements OnInit {
   }
   onMovementDetail() {
     this.router.navigate(['/account-detail'], {
-      // queryParams:{
-      //   user:(this.guest.name + this.guest.last_name),
-      //   id:this.guest.id
-      // }
+      queryParams:{
+         user:(this.guest.firstName + this.guest.lastName),
+         id:this.guest.id
+      }
     });
   }
 }

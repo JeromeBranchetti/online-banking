@@ -1,17 +1,22 @@
-import { HttpRequestService } from './httpRequest.service';
+
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { BehaviorSubject } from 'rxjs';
+import { conto } from '../class/conto';
 import { utente } from '../class/utente';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class SignUpService {
-  constructor(private httpReq: HttpRequestService) {}
+
+  constructor(private http: HttpClient) {}
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
+  bsconto: BehaviorSubject<conto[]>=new BehaviorSubject<conto[]>(null);
   token!: string;
 
   newUtente(x: FormGroup) {
@@ -21,9 +26,19 @@ export class SignUpService {
 
     this.bs.next(ut);
 
-    this.httpReq.onAddUser(ut);
+    this.onAddUser(ut);
     
   }
+  onAddUser(ut: utente) {  // utente iscritto
+   
+    console.log(ut)
+    this.http
+      .post('http://localhost:8080/authentication/register', ut)
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+}
 
  
-}
+

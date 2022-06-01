@@ -1,7 +1,14 @@
+import { BankTransaction } from './../class/bankTransaction.model';
+import { SignUpService } from './signUp.service';
+
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { conto } from '../class/conto';
+
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +16,66 @@ import { Injectable } from '@angular/core';
 export class HttpRequestService {
   token: string;
   utente: utente;
+  conti!:conto[];
+  transaction:BankTransaction[];
+ 
+  
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+
+
+  constructor(private http: HttpClient, private auth: AuthService, private sign:SignUpService) {
+    this.token = this.auth.token.token;
+    
+  }
 
   // Chiamate Get
+  GetUserid(id:number){
+    this.http.get<utente>('',{
+      params:{
+        id:id
+      }
+    }).subscribe((res)=>{
+      this.utente=res;
+      this.sign.bs.next(this.utente)
+    })
+  }
+  GetUser(ema:string,pass:string){ //utente appena loggato
+    this.http.get<utente>('http://localhost:8082/api/userdetails',
+    {params:
+    {email:ema,
+    password:pass
+    }
+  }).subscribe((res)=> {
+    console.log(res);
+    this.utente=res;
+    this.sign.bs.next(this.utente)
+  })
+  }
+  GetConti(id:number){ //richiesta conti con id manca http e verifica params
+    this.http.get<conto[]>('',{
+      params:{
+        id:id
+      }})
+  .subscribe((res)=>{
+    console.log(res);
+    this.conti=res;
+    this.sign.bsconto.next(this.conti)
 
+  })}
+
+  GetTrans(id:number){ //richiesta transazioni con id manca http e verifica params
+    this.http.get<BankTransaction[]>('',{
+      params:{
+        id:id
+      }})
+  .subscribe((res)=>{
+    console.log(res);
+    this.transaction=res;
+
+
+  })}
   onGetUser() {
-    this.token = this.auth.token.token;
+    
     console.log('Get: ' + this.token);
     this.http
       .get<utente[]>('http://localhost:8080/authentication/utenti', {
@@ -28,7 +88,7 @@ export class HttpRequestService {
       });
   }
 
-  onGetAccount() {
+  onGetAccount() { 
    this.token=this.auth.token.token;
     this.http
       .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
@@ -45,7 +105,7 @@ export class HttpRequestService {
 
   // Chiamate post
 
-  onAddUser(ut: utente) {
+  onAddUser(ut: utente) {  // utente iscritto
    
     console.log(ut)
     this.http

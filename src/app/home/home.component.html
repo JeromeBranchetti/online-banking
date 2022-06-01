@@ -2,8 +2,8 @@
   <div class="layer-blue"></div>
 </div>
 <div class="container home-container">
-  <div class="grid-layout-home">
-    <div class="big-text">
+  <div class="row mt-3 mx-0 text-center ">
+    <div class="col-lg-4 col-md-7 col-sm-12">
       <div class="card">
         <img
           src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=815&q=80"
@@ -12,9 +12,9 @@
         />
         <div class="card-body">
           <h5 class="card-title">
-            <p class="big-paragraph">The Next</p>
-            <p class="big-paragraph">Level</p>
-            <p class="big-paragraph">Banking</p>
+            <p class="fs-1">The Next</p>
+            <p class="fs-1">Level</p>
+            <p class="fs-1">Banking</p>
           </h5>
           <p class="card-text">
             The best user experience, multi-platform and for all ages.
@@ -25,11 +25,55 @@
         </div>
       </div>
     </div>
-    <div class="card-images-overlayed"></div>
-    <div class="login-section mt-3">
-      <button class="mb-3" (click)="onUserLogin()">
-        User Login <i class="fas fa-user-circle"></i>
-      </button>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+      <div class="card">
+        <div class="row login-cards-row justify-content-center">
+          <div class="col-lg-6 col-md-10 col-sm-12">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-1">Already a User?</h5>
+              <p class="card-text text-center">get instant access</p>
+              <p class="text-center"><i class="fas fa-arrow-down fs-2"></i></p>
+              <div class="text-center">
+                <button class="mb-3" (click)="onUserLogin()">
+                  User Login <i class="fas fa-user-circle"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 credit-card-box">
+            <div class="credit-card">
+              <div class="credit-card-content">
+                <div class="credit-card-front">
+                  <div class="bank-name fs-2">JavaIsland</div>
+                  <div class="bank-chip"><i class="fas fa-microchip fs-3"></i></div>
+                  <div class="card-number fs-5">1234567890</div>
+                  <div class="expiration-date">
+                    <span>exp date</span> <span> 02/29</span>
+                  </div>
+                  <div class="card-holder-name fs-5">Giuseppe Bezos</div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="credit-card">
+              <div class="credit-card-content-two">
+                <div class="credit-card-front-two">
+                  <div class="bank-name fs-2">JavaIsland</div>
+                  <div class="bank-chip"><i class="fas fa-microchip fs-3"></i></div>
+                  <div class="card-number fs-5">1234567890</div>
+                  <div class="expiration-date">
+                    <span>exp date</span> <span> 02/29</span>
+                  </div>
+                  <div class="card-holder-name fs-5">Giuseppe Bezos</div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="lower-img-box"></div>
+      </div>
     </div>
   </div>
 </div>

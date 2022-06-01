@@ -11,6 +11,8 @@ export class RequestComponent implements OnInit {
   @Input() dateOfBirth: string;
   @Input() email: string;
   @Input() light: string;
+  @Input() result: string = '';
+  @Input() header: string = '';
 
   constructor() {}
 

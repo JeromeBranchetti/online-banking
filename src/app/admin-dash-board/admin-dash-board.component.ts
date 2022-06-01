@@ -17,72 +17,96 @@ export class AdminDashBoardComponent implements OnInit {
       lastName: 'Rossi',
       dateOfBirth: '06/10/1996',
       email: 'andrea.rossi@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Giovanni',
       lastName: 'Bianchi',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'giovanni.bianchi@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Raffaele',
       lastName: 'Verdi',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'raffaele.verdi@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Omar',
       lastName: 'Gialli',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'omar.gialli@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Beatrice',
       lastName: 'Viola',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'beatrice.viola@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Federico',
       lastName: 'Marroni',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'federico.marroni@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Luca',
       lastName: 'Luca',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'luca.luca@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Riccardo',
       lastName: 'Riccardi',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'riccardo.riccardi@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Cristiano',
       lastName: 'Ronaldo',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'cristiano.ronaldo@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Karim',
       lastName: 'Benzema',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'karim.benzema@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Vittorio',
       lastName: 'Sgarbi',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'vittorio.sgarbi@gmail.it',
+      result: '',
+      header: '',
     },
     {
       name: 'Fabio',
       lastName: 'Caressa',
       dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
+      email: 'fabio.caressa@gmail.it',
+      result: '',
+      header: '',
     },
   ];
 
@@ -92,6 +116,8 @@ export class AdminDashBoardComponent implements OnInit {
       lastName: 'Cianci',
       dateOfBirth: '02/01/1997',
       email: 'ckcianci@gmail.com',
+      result: 'Accepted',
+      header: 'green',
     },
   ];
 
@@ -110,25 +136,44 @@ export class AdminDashBoardComponent implements OnInit {
     'red',
   ];
   requestVisibility: boolean = false;
+  buttonVisibility: boolean = false;
   requestIndex: number;
+  selectedRequest: RequestModel;
+  selectedLight: string;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSelectRequest(index: number) {
+  onSelectNewRequest(index: number) {
     this.requestVisibility = true;
     this.requestIndex = index;
-    console.log(this.requestsLight[index]);
+    this.buttonVisibility = true;
+    this.selectedRequest = this.newRequests[index];
+    this.selectedLight = this.requestsLight[index];
+  }
+
+  onSelectOldRequest(index: number) {
+    this.requestVisibility = true;
+    this.buttonVisibility = false;
+    this.requestIndex = index;
+    this.selectedRequest = this.oldRequests[index];
+    this.selectedLight = 'grey';
   }
 
   onAcceptRequest() {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
+    this.selectedRequest.result = 'Accepted';
+    this.requestVisibility = false;
+    this.selectedRequest.header = 'green';
   }
 
   onDeclineRequest() {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
+    this.selectedRequest.result = 'Declined';
+    this.requestVisibility = false;
+    this.selectedRequest.header = 'red';
   }
 }

@@ -25,6 +25,7 @@ export class UserDashBoardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.conto = new conto(0);
     this.SUService.bs.subscribe((ut) => {
        this.guest = ut;
@@ -38,7 +39,7 @@ export class UserDashBoardComponent implements OnInit {
 
 
   copyMode() {
-     const copiedIban = this.conto.iban;
-     navigator.clipboard.writeText(copiedIban);
+    const copiedIban = this.conto.iban;
+    navigator.clipboard.writeText(copiedIban);
   }
 }

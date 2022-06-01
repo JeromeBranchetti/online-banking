@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <!-- Prima lista (sinistra) -->
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12">
       <h1>New Requests List</h1>
       <div class="row flex-column requestsList" aria-orientation="vertical">
         <div
@@ -10,7 +10,7 @@
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
-          (click)="onSelectRequest(i)"
+          (click)="onSelectNewRequest(i)"
         >
           <div class="row">
             <div class="col-10">
@@ -31,16 +31,18 @@
     </div>
 
     <!-- Spazio per le richieste -->
-    <div class="col-6 singleRequest">
+    <div class="col-lg-6 col-sm-12 singleRequest">
       <div *ngIf="requestVisibility">
         <app-request
-          [name]="newRequests[requestIndex].name"
-          [lastName]="newRequests[requestIndex].lastName"
-          [dateOfBirth]="newRequests[requestIndex].dateOfBirth"
-          [email]="newRequests[requestIndex].email"
-          [light]="requestsLight[requestIndex]"
+          [name]="selectedRequest.name"
+          [lastName]="selectedRequest.lastName"
+          [dateOfBirth]="selectedRequest.dateOfBirth"
+          [email]="selectedRequest.email"
+          [light]="selectedLight"
+          [result]="selectedRequest.result"
+          [header]="selectedRequest.header"
         ></app-request>
-        <div class="buttons">
+        <div class="buttons" *ngIf="buttonVisibility">
           <button class="btn btn-success" (click)="onAcceptRequest()">
             Accept
           </button>
@@ -52,7 +54,7 @@
     </div>
 
     <!-- Seconda lista (destra) -->
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12">
       <h3>Older Request List</h3>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
         <div
@@ -61,6 +63,7 @@
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
+          (click)="onSelectOldRequest(i)"
         >
           {{ oldRequests[i].name }}
           {{ oldRequests[i].lastName }}

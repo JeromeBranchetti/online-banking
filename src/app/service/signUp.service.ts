@@ -17,7 +17,7 @@ export class SignUpService {
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto[]>=new BehaviorSubject<conto[]>(null);
-  token!: string;
+
 
   newUtente(x: FormGroup) {
     let ut = utente.factory();

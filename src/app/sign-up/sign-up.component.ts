@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +19,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     public SUService: SignUpService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private location: Location
   ) {}
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
@@ -81,5 +83,9 @@ export class SignUpComponent implements OnInit {
     } else {
       alert('non sei maggiorenne');
     }
+  }
+
+  backButton() {
+    this.location.back();
   }
 }

@@ -77,7 +77,10 @@
 <!-- userDashboard -->
 <div class="container-fluid dash-container">
   <h1 class="text-center my-3">User DashBoard</h1>
-  <button class="mb-3 mt-2"><i class="fas fa-undo"></i> back</button>
+  <div class="row">
+    <div class="col"><button class="mb-3 mt-2" (click)="backButton()"><i class="fas fa-undo"></i> back</button></div>
+    <div class="col text-end"><button class="mb-3 mt-2" (click)="closeContoButton()">close Conto <i class="far fa-window-close fs-6" ></i></button></div>
+  </div>
   <div class="row dash-row">
     <div class="col text-center my-3">
       <p>{{ modeSpione ? cliente : guest.firstName + " " + guest.lastName }}</p>

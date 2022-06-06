@@ -3,6 +3,7 @@ import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 import { conto } from '../class/conto';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -21,7 +22,8 @@ export class UserDashBoardComponent implements OnInit {
   conto!: conto;
   constructor(
     public SUService: SignUpService,
-    public SpioneService: SpioneService
+    public SpioneService: SpioneService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -36,10 +38,16 @@ export class UserDashBoardComponent implements OnInit {
     });
   }
 
-
-
   copyMode() {
     const copiedIban = this.conto.iban;
     navigator.clipboard.writeText(copiedIban);
+  }
+
+  backButton() {
+    this.location.back();
+  }
+
+  closeContoButton() {
+    // chiudere il conto
   }
 }

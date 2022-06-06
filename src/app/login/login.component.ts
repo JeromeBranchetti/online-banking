@@ -2,6 +2,7 @@ import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -14,17 +15,25 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, 
+              private auth: AuthService, 
+              private location: Location) {}
 
   ngOnInit(): void {}
 
   login(email: string, password: string) {
     this.auth.login(email, password);
   }
+  
   delete() {
     this.login_form.reset();
   }
+
   switch() {
     this.router.navigate(['signUp']);
+  }
+
+  backButton() {
+    this.location.back();
   }
 }

@@ -28,4 +28,9 @@ export class HomePageGuestComponent implements OnInit {
   toPayment() {
     this.router.navigate(['/payment']);
   }
+
+  toConto() {
+    this.router.navigate(['/userDashboard'])
+  }
+
 }

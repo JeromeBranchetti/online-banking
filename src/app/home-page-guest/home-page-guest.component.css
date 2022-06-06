@@ -68,7 +68,7 @@
 }
 
 .third-section {
-    height: 70vh;
+    min-height: 70vh;
     width: 100%;
     background-color: rgb(30, 133, 223);
 }

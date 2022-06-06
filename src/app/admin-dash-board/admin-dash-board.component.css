@@ -1,12 +1,6 @@
-/* .requestsList {
-  width: 100%;
-  margin-bottom: 12vh;
+.oldRequestList {
+  margin-bottom: 10vh;
 }
-
-.requestList {
-  width: 20%;
-  height: 100%;
-} */
 
 .request {
   cursor: pointer;

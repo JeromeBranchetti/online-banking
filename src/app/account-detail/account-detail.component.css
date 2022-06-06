@@ -1,28 +1,51 @@
 /* Titolo */
-.graphic {
-  display: flex;
-}
-.header {
-  display: flex;
-  justify-content: center;
-}
 
 h1 {
   font-size: 300%;
 }
 
-/* Lista transazioni */
+/* Grafico  */
 
-#transactionHeader {
+.graphic {
   display: flex;
-  justify-content: space-between;
-  margin-top: 2.5%;
 }
 
-#amount {
+/* Header Transazioni */
+
+.row {
+  height: fit-content;
+}
+
+.amount {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
+
+#debitAmount {
+  margin-left: 10%;
+  display: inline;
+}
+
+#creditAmount {
+  display: inline;
+}
+
+.buttonHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+span {
+  height: fit-content;
+}
+
+button {
+  margin-left: 2px;
+  height: fit-content;
+}
+
+/* Lista transazioni */
 
 #debitAmount {
   color: red;
@@ -31,11 +54,6 @@ h1 {
 
 #creditAmount {
   color: green;
-}
-
-button {
-  margin-left: 2px;
-  margin-bottom: 10px;
 }
 
 .table {
@@ -47,6 +65,11 @@ button {
   display: flex;
   justify-content: center;
 }
+
 .graph-container {
   background-color: aliceblue;
+}
+
+span {
+  height: fit-content;
 }

@@ -1,28 +1,36 @@
 <h1 class="text-center my-3">Account Detail</h1>
 
+<!-- Grafico  -->
 <div class="container graph-container my-5">
   <app-graphic></app-graphic>
 </div>
 
-<div class="container-fluid account-container">
-  <div id="transactionHeader">
-    <h4>Transactions:</h4>
-    <div id="amount">
-      <p id="debitAmount">
+<!-- Contenitore Header transazioni e lista transazioni -->
+<div class="container-fluid">
+  <!-- Contenitore Header transazioni -->
+  <div id="transactionHeader" class="row">
+    <div class="col-lg-2 col-sm-2 header d-none d-sm-none d-lg-inline">
+      <h4>Transactions:</h4>
+    </div>
+    <div class="col-lg-6 col-6 col-sm-10 amount">
+      <span id="debitAmount">
         <i class="fa-solid fa-arrow-down"></i>
         -{{ debitAmount }}€
-      </p>
-      <p id="creditAmount">
+      </span>
+      <span id="creditAmount">
         <i class="fa-solid fa-arrow-up"></i>
         +{{ creditAmount }}€
-      </p>
+      </span>
     </div>
-    <div id="buttonInput">
-      <button>10</button>
-      <button>20</button>
-      <button>50</button>
+    <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
+      <button (click)="onFilter(10)">10</button>
+      <button (click)="onFilter(20)">20</button>
+      <button (click)="onFilter(50)">50</button>
       <button (click)="onPrintTransaction()">
-        Download Transaction <i class="fas fa-download"></i>
+        <span
+          ><span class="d-none d-sm-none d-lg-inline">Download </span>
+          <i class="fas fa-download"></i>
+        </span>
       </button>
     </div>
   </div>

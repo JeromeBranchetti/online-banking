@@ -3,11 +3,17 @@
 
 <!-- Bottoni di scelta -->
 <div id="choice">
-  <button class="" (click)="onBankTransfer()">
+  <button (click)="onBankTransfer()">
     Bank Trasfer <i class="fas fa-exchange-alt"></i>
   </button>
-  <button class="" (click)="onPhoneTopUp()">
-    Phone top-up <i class="fas fa-mobile-alt fs-4"></i>
+  <button (click)="onBankDeposit()">
+    Bank Deposit <i class="fa-solid fa-arrow-up"></i>
+  </button>
+  <button (click)="onBankWithdrawal()">
+    Bank Withdrawal <i class="fa-solid fa-arrow-down"></i>
+  </button>
+  <button (click)="onPhoneTopUp()">
+    Phone Top-up <i class="fas fa-mobile-alt fs-4"></i>
   </button>
 </div>
 
@@ -18,29 +24,32 @@
       <!-- Primo step -->
       <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
         <form [formGroup]="firstBankTransferForm">
-          <div class="dataForm">
-            <mat-form-field>
-              <input
-                id="name"
-                type="text"
-                placeholder="First Name"
-                matInput
-                required
-                class="form-control"
-                formControlName="firstName"
-              />
-            </mat-form-field>
-            <mat-form-field>
-              <input
-                id="lastName"
-                type="text"
-                placeholder="Last Name"
-                matInput
-                required
-                formControlName="lastName"
-              />
-            </mat-form-field>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="dataForm">
+                <mat-form-field>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="First Name"
+                    matInput
+                    class="form-control"
+                    formControlName="firstName"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <input
+                    id="lastName"
+                    type="text"
+                    placeholder="Last Name"
+                    matInput
+                    formControlName="lastName"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
           </div>
+
           <div class="button">
             <button class="btn btn-success" matStepperNext>Next</button>
           </div>
@@ -51,12 +60,12 @@
         <form [formGroup]="secondBankTransferForm">
           <div class="transferForm">
             <mat-form-field>
+              <mat-label>Iban</mat-label>
               <input
                 id="iban"
                 type="text"
-                placeholder="Iban"
+                placeholder="es. IT12A12345678912"
                 matInput
-                required
                 formControlName="iban"
                 autocapitalize="off"
               />
@@ -67,7 +76,6 @@
                 type="text"
                 placeholder="Amount"
                 matInput
-                required
                 formControlName="amount"
                 autocapitalize="off"
               />
@@ -105,6 +113,88 @@
     </mat-horizontal-stepper>
   </div>
 
+  <!-- Form per il deposito -->
+  <div class="" *ngIf="bankDepositChoice">
+    <form [formGroup]="bankDepositForm" (ngSubmit)="onBankDepositSubmit()">
+      <mat-horizontal-stepper [linear]="true" class="formStepper">
+        <mat-step label="Withdrawal Data" [stepControl]="bankDepositForm">
+          <div class="dataForm">
+            <mat-form-field>
+              <input
+                id="Amount"
+                type="text"
+                placeholder="Amount"
+                matInput
+                class="form-control"
+                formControlName="amount"
+              />
+            </mat-form-field>
+          </div>
+          <div class="button">
+            <button class="btn btn-success" type="button" matStepperNext>
+              Next
+            </button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Confirm" completed="false">
+          <div class="confirmForm">
+            <div class="dataSummary">
+              <p>Amount: {{ bankDepositForm.get("amount").value }}€</p>
+            </div>
+          </div>
+          <div class="button">
+            <button class="btn btn-danger" matStepperPrevious>Back</button>
+            <button class="btn btn-success" type="submit">Confirm</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+  </div>
+
+  <!-- Form per il versamento -->
+  <div class="" *ngIf="bankWithdrawalChoice">
+    <form
+      [formGroup]="bankWithdrawalForm"
+      (ngSubmit)="onBankWithdrawalSubmit()"
+    >
+      <mat-horizontal-stepper [linear]="true" class="formStepper">
+        <mat-step label="Withdrawal Data" [stepControl]="bankWithdrawalForm">
+          <div class="dataForm">
+            <mat-form-field>
+              <input
+                id="Amount"
+                type="text"
+                placeholder="Amount"
+                matInput
+                class="form-control"
+                formControlName="amount"
+              />
+            </mat-form-field>
+          </div>
+          <div class="button">
+            <button class="btn btn-success" type="button" matStepperNext>
+              Next
+            </button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Confirm" completed="false">
+          <div class="confirmForm">
+            <div class="dataSummary">
+              <p></p>
+              <p>Amount: {{ bankWithdrawalForm.get("amount").value }}€</p>
+            </div>
+          </div>
+          <div class="button">
+            <button class="btn btn-danger" matStepperPrevious>Back</button>
+            <button class="btn btn-success" type="submit">Confirm</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+  </div>
+
   <!-- Form per la ricarica -->
   <div class="topUpForm" *ngIf="phoneTopUpChoice">
     <mat-horizontal-stepper [linear]="true" class="formStepper">
@@ -117,7 +207,6 @@
                 type="text"
                 placeholder="Phone Number"
                 matInput
-                required
                 class="form-control"
                 formControlName="phoneNumber"
               />
@@ -150,7 +239,6 @@
                 type="text"
                 placeholder="Amount"
                 matInput
-                required
                 formControlName="amount"
               />
             </mat-form-field>

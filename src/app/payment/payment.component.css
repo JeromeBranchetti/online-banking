@@ -2,6 +2,8 @@
 
 h1 {
   font-size: 300%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Scelta */
@@ -57,11 +59,17 @@ input.ng-invalid.ng-touched {
 
 .dataSummary {
   display: block;
+  margin-top: 5px;
 }
 
-.button {
+.buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  border-radius: 7px;
 }
 
 .mat-stepper-horizontal {
@@ -71,6 +79,15 @@ input.ng-invalid.ng-touched {
 
 ::ng-deep .mat-horizontal-stepper-header-container {
   background-color: rgba(20, 22, 47, 255);
+}
+
+@media (max-width: 767px) {
+  ::ng-deep .mat-stepper-horizontal-line {
+    display: none;
+  }
+  ::ng-deep .mat-step-text-label {
+    display: none;
+  }
 }
 
 ::ng-deep .mat-stepper-horizontal-line {
@@ -87,4 +104,17 @@ input.ng-invalid.ng-touched {
 
 ::ng-deep .mat-step-header .mat-step-icon-selected {
   background-color: rgba(36, 49, 177, 255);
+}
+
+.confirmButton {
+  height: fit-content;
+}
+
+.redButton {
+  margin-right: 5px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
 }

@@ -1,19 +1,23 @@
 <!-- Titolo -->
-<h1 class="text-center my-3">Payment</h1>
+<h1 class="text-center">Payment</h1>
 
 <!-- Bottoni di scelta -->
 <div id="choice">
   <button (click)="onBankTransfer()">
-    Bank Trasfer <i class="fas fa-exchange-alt"></i>
+    <span class="d-none d-sm-none d-lg-inline"> Bank Transfer </span>
+    <i class="fas fa-exchange-alt"></i>
   </button>
   <button (click)="onBankDeposit()">
-    Bank Deposit <i class="fa-solid fa-arrow-up"></i>
+    <span class="d-none d-sm-none d-lg-inline"> Bank Deposit </span>
+    <i class="fa-solid fa-arrow-up"></i>
   </button>
   <button (click)="onBankWithdrawal()">
-    Bank Withdrawal <i class="fa-solid fa-arrow-down"></i>
+    <span class="d-none d-sm-none d-lg-inline"> Bank Withdrawal</span>
+    <i class="fa-solid fa-arrow-down"></i>
   </button>
   <button (click)="onPhoneTopUp()">
-    Phone Top-up <i class="fas fa-mobile-alt fs-4"></i>
+    <span class="d-none d-sm-none d-lg-inline"> Phone Top-up </span>
+    <i class="fas fa-mobile-alt fs-4"></i>
   </button>
 </div>
 
@@ -25,7 +29,7 @@
       <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
         <form [formGroup]="firstBankTransferForm">
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <input
                   id="name"
@@ -37,7 +41,7 @@
                 />
               </mat-form-field>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <input
                   id="lastName"
@@ -50,8 +54,8 @@
             </div>
           </div>
 
-          <div class="button">
-            <button class="button" matStepperNext>Next</button>
+          <div class="buttons">
+            <button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -59,7 +63,7 @@
       <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
         <form [formGroup]="secondBankTransferForm">
           <div class="row transferForm">
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <mat-label>Iban</mat-label>
                 <input
@@ -72,7 +76,7 @@
                 />
               </mat-form-field>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <input
                   id="amount"
@@ -86,9 +90,13 @@
             </div>
           </div>
         </form>
-        <div class="button">
-          <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button class="button" matStepperNext (click)="onDecomposeIban()">
+        <div class="buttons">
+          <button class="redButton" matStepperPrevious>Back</button>
+          <button
+            class="confirmButton"
+            matStepperNext
+            (click)="onDecomposeIban()"
+          >
             Next
           </button>
         </div>
@@ -105,9 +113,9 @@
             <p>Amount: {{ secondBankTransferForm.get("amount").value }}€</p>
           </div>
         </div>
-        <div class="button">
-          <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button class="button" type="submit">Confirm</button>
+        <div class="buttons">
+          <button class="redButton" matStepperPrevious>Back</button>
+          <button class="confirmButton" type="submit">Confirm</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>
@@ -130,8 +138,8 @@
               />
             </mat-form-field>
           </div>
-          <div class="button">
-            <button class="button" type="button" matStepperNext>Next</button>
+          <div class="buttons">
+            <button type="button" matStepperNext>Next</button>
           </div>
         </mat-step>
 
@@ -141,9 +149,9 @@
               <p>Amount: {{ bankDepositForm.get("amount").value }}€</p>
             </div>
           </div>
-          <div class="button">
-            <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="button" type="submit">Confirm</button>
+          <div class="buttons">
+            <button class="redButton" matStepperPrevious>Back</button>
+            <button class="confirmButton" type="submit">Confirm</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
@@ -170,8 +178,8 @@
               />
             </mat-form-field>
           </div>
-          <div class="button">
-            <button class="button" type="button" matStepperNext>Next</button>
+          <div class="buttons">
+            <button type="button" matStepperNext>Next</button>
           </div>
         </mat-step>
 
@@ -182,9 +190,9 @@
               <p>Amount: {{ bankWithdrawalForm.get("amount").value }}€</p>
             </div>
           </div>
-          <div class="button">
-            <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="button" type="submit">Confirm</button>
+          <div class="buttons">
+            <button class="redButton" matStepperPrevious>Back</button>
+            <button class="confirmButton" type="submit">Confirm</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
@@ -197,7 +205,7 @@
       <mat-step label="Phone Data" [stepControl]="firstPhoneTopUpForm">
         <form [formGroup]="firstPhoneTopUpForm">
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <input
                   id="PhoneNumber"
@@ -209,7 +217,7 @@
                 />
               </mat-form-field>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 input">
               <mat-form-field>
                 <mat-label>Provider</mat-label>
                 <mat-select
@@ -225,8 +233,8 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="button">
-            <button class="button" matStepperNext>Next</button>
+          <div class="buttons">
+            <button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -243,9 +251,9 @@
               />
             </mat-form-field>
           </div>
-          <div class="button">
-            <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="button" matStepperNext>Next</button>
+          <div class="buttons">
+            <button class="redButton" matStepperPrevious>Back</button>
+            <button class="confirmButton" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -259,9 +267,9 @@
             <p>Amount: {{ secondPhoneTopUpForm.get("amount").value }}€</p>
           </div>
         </div>
-        <div class="button">
-          <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button class="button" type="submit">Confirm</button>
+        <div class="buttons">
+          <button class="redButton" matStepperPrevious>Back</button>
+          <button class="confirmButton" type="submit">Confirm</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

@@ -15,25 +15,23 @@ export class UserDashBoardComponent implements OnInit {
   iban: string = 'IT***************************';
   trueIban: string;
   saldo: string = '***************';
-   guest!:utente;
-   
+  guest!: utente;
 
   modeSpione!: boolean;
   conto!: conto;
   constructor(
     public SUService: SignUpService,
-    public SpioneService: SpioneService,
+    public spioneService: SpioneService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-
     this.conto = new conto(0);
     this.SUService.bs.subscribe((ut) => {
-       this.guest = ut;
+      this.guest = ut;
     });
-    
-    this.SpioneService.bs.subscribe((bool) => {
+
+    this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
   }

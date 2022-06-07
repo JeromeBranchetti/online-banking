@@ -9,7 +9,14 @@
       ></span>
       <span class="brand-name fs-4 mx-2" (click)="toHome()"> JavaIsland</span>
     </div>
-    <div class="col my-2 man-run-box text-end p-0">
+    <div *ngIf="homeButtonVisible" class="col my-2 home-guest text-end p-0">
+      <button class="" (click)="toHomeGuestPage()">
+        <i class="fas fa-house-damage"></i>
+        <br>
+        <span>Account-List</span>
+      </button>
+    </div>
+    <div  *ngIf="homeButtonVisible" class="col my-2 man-run-box text-end p-0">
       <button class="man-button" (click)="logOut()">
         <i class="fas fa-sign-out-alt fa-2xl"></i>
         <br>
@@ -17,7 +24,7 @@
       </button>
     </div>
 
-    <div class="col my-2 text-center p-0">
+    <div  *ngIf="homeButtonVisible" class="col my-2 text-center p-0">
       <button (click)="openCloseToggle()" class="eye-button">
         <i *ngIf="eyeOpen" class="fas fa-eye fs-2"></i>
         <i *ngIf="!eyeOpen" class="fas fa-eye-slash fs-2"></i>

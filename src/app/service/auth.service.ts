@@ -1,14 +1,14 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { AuthResponse } from '../model/authResponse.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loggedIn = false;
+  loggedIn = new Subject<boolean>();
   administrator = false;
   error = {
     message:
@@ -47,7 +47,7 @@ export class AuthService {
 
           // Se non è amministratore
           this.accessToken = response.token;
-          this.loggedIn = true;
+          this.loggedIn.next(true);
           this.router.navigate(['/userDashboard']);
           localStorage.setItem('token', JSON.stringify(response));
           // Se è amministratore

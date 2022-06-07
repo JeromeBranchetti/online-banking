@@ -9,13 +9,7 @@ import { conto } from '../class/conto';
   styleUrls: ['./home-page-guest.component.css'],
 })
 export class HomePageGuestComponent implements OnInit {
-
-  conti: conto[] = [
-    new conto(50000),
-    new conto(1000000),
-    new conto(999999)
-    
-  ];
+  conti: conto[] = [];
 
   constructor(private router: Router, private Sus: SignUpService) {}
 
@@ -30,7 +24,6 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   toConto() {
-    this.router.navigate(['/userDashboard'])
+    this.router.navigate(['/userDashboard']);
   }
-
 }

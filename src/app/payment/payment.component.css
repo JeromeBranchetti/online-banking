@@ -66,6 +66,7 @@ input.ng-invalid.ng-touched {
 
 .mat-stepper-horizontal {
   background-color: white;
+  border-radius: 7px;
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid pt-3">
   <div class="row">
     <!-- Prima lista (sinistra) -->
     <div class="col-lg-3 col-sm-12">
@@ -6,7 +6,7 @@
       <div class="row flex-column requestsList" aria-orientation="vertical">
         <div
           *ngFor="let request of newRequests; let i = index"
-          class="col request"
+          class="nav-link request"
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
@@ -54,8 +54,8 @@
     </div>
 
     <!-- Seconda lista (destra) -->
-    <div class="col-lg-3 col-sm-12">
-      <h3>Older Request List</h3>
+    <div class="col-lg-3 col-sm-12 oldRequestList">
+      <h1>Older Request List</h1>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
         <div
           *ngFor="let request of oldRequests; let i = index"

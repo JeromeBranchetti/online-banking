@@ -2,18 +2,14 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { AuthResponse } from '../model/authResponse.model';
 
-export class AuthResponse {
-  token: string;
-  refreshToken: string;
-  refreshTokenExpireIn: number;
-  tokenExpireIn: number;
-}
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   loggedIn = false;
+  administrator = false;
   error = {
     message:
       'An unknown error has occured, looks like you are not on the right page.' +
@@ -47,11 +43,16 @@ export class AuthService {
       .subscribe({
         next: (response) => {
           console.log(response);
+          // Chiamata Get, tramite id accedo al ruolo dell'utente
+
+          // Se non è amministratore
           this.accessToken = response.token;
           this.loggedIn = true;
           this.router.navigate(['/userDashboard']);
           localStorage.setItem('token', JSON.stringify(response));
-          // this.autoLogout(response.tokenExpireIn);
+          // Se è amministratore
+          // this.administrator = true;
+          // this.router.navigate(['/adminDashboard])
         },
         error: (errorRes) => {
           this.router.navigate(['/error']);

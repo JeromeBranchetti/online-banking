@@ -4,7 +4,6 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 
-
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
@@ -14,125 +13,125 @@ export class AccountDetailComponent implements OnInit {
   // Variables
 
   fileName = 'TransactionList.xlsx';
-  debitAmount: number = 0;
-  creditAmount: number = 0;
+  debitAmount: string = '0';
+  creditAmount: string = '0';
+  idAccount: number = 12345678912;
 
   bankTransactions: BankTransaction[] = [
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '+100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '+100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '20/05/2020',
       amount: '-100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '22/05/2020',
       amount: '+100',
-      recipient: 'SecretCase',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
     {
       type: 'Pagamento tramite Pos',
       date: '11/05/2020',
       amount: '+100',
-      recipient: 'Mcdonald',
       description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
     },
   ];
 
   // Methods
 
-  constructor(private spyMode: SpioneService) {}
+  constructor(
+    private spyMode: SpioneService,
+    private httpReq: HttpRequestService
+  ) {}
 
   ngOnInit(): void {
-    this.onPrivacyMode();
     this.onCalculateAmount();
+    this.onPrivacyMode();
   }
 
   onPrivacyMode() {
     let isNotFirst = false;
     let i = 0;
-    let amountArray = [];
+    let amountTempArray = [];
+    let creditTempAmount = this.creditAmount;
+    let debitTempAmount = this.debitAmount;
     this.spyMode.bs.subscribe((spyModeBoolean) => {
+      if (spyModeBoolean) {
+        this.creditAmount = creditTempAmount;
+        this.debitAmount = debitTempAmount;
+      } else {
+        this.creditAmount = '**';
+        this.debitAmount = '**';
+      }
       for (let bankTransaction of this.bankTransactions) {
         i++;
-        amountArray.push(bankTransaction.amount);
-        if (spyModeBoolean === false) {
+        amountTempArray.push(bankTransaction.amount);
+        if (!spyModeBoolean) {
           bankTransaction.amount = '**';
           isNotFirst = true;
         } else if (isNotFirst) {
-          bankTransaction.amount = amountArray[i];
+          bankTransaction.amount = amountTempArray[i];
         }
       }
       i = 0;
@@ -142,14 +141,20 @@ export class AccountDetailComponent implements OnInit {
   onCalculateAmount() {
     for (let bankTransaction of this.bankTransactions) {
       if (+bankTransaction.amount < 0) {
-        this.debitAmount = this.debitAmount - +bankTransaction.amount;
+        this.debitAmount = (
+          +this.debitAmount - +bankTransaction.amount
+        ).toString();
       } else if (+bankTransaction.amount > 0) {
-        this.creditAmount = this.creditAmount + +bankTransaction.amount;
+        this.creditAmount = (
+          +this.creditAmount + +bankTransaction.amount
+        ).toString();
       }
     }
   }
 
-  onFilter(filter: number) {}
+  onFilter(filter: number) {
+    this.httpReq.onGetTransaction(this.idAccount, filter);
+  }
 
   onPrintTransaction() {
     /* pass here the table id */

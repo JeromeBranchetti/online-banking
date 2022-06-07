@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 import { SpioneService } from '../service/spione.service';
 
 @Component({
@@ -9,16 +10,24 @@ import { SpioneService } from '../service/spione.service';
 })
 export class AppBarComponent implements OnInit {
   eyeOpen: boolean = true;
+  homeButtonVisible!: boolean;
 
-  constructor(private S: SpioneService, private router: Router) {}
+  constructor(
+    private spioneService: SpioneService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.S.SpioneMode(this.eyeOpen);
+    this.spioneService.SpioneMode(this.eyeOpen);
+    this.authService.loggedIn.subscribe((response)=>  {
+      this.homeButtonVisible = response;
+    })
   }
 
   openCloseToggle() {
     this.eyeOpen = !this.eyeOpen;
-    this.S.SpioneMode(this.eyeOpen);
+    this.spioneService.SpioneMode(this.eyeOpen);
   }
 
   logOut() {
@@ -27,5 +36,9 @@ export class AppBarComponent implements OnInit {
 
   toHome() {
     this.router.navigate(['/']);
+  }
+
+  toHomeGuestPage() {
+    this.router.navigate(['/home-page-guest'])
   }
 }

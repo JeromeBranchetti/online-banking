@@ -1,7 +1,11 @@
-<div class="pageContainerv center">
+<div class="pageContainer">
   <div class="errorMessageContainer">
-    <h1 id="opsMessage">OPS...</h1>
-    <h1>Error: {{ errorMessage }}</h1>
+    <div class="opsContainer">
+      <p id="opsMessage" class="text-center">OOPS...</p>
+    </div>
+    <div class="errorDetailContainer">
+      <h1 class="text-center">Error: {{ errorMessage }}</h1>
+    </div>
   </div>
   <div class="buttonContainer">
     <button (click)="navigateToHomePage()">GO TO HOMEPAGE</button>

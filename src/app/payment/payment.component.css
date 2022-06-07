@@ -50,11 +50,6 @@ input.ng-invalid.ng-touched {
   justify-content: space-evenly;
 }
 
-.transferForm {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .confirmForm {
   display: flex;
   justify-content: center;
@@ -67,4 +62,28 @@ input.ng-invalid.ng-touched {
 .button {
   display: flex;
   justify-content: center;
+}
+
+.mat-stepper-horizontal {
+  background-color: white;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  background-color: rgba(20, 22, 47, 255);
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  background-color: white;
+}
+
+::ng-deep .mat-step-text-label {
+  color: white;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: #666fc8;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: rgba(36, 49, 177, 255);
 }

@@ -152,9 +152,11 @@ export class AccountDetailComponent implements OnInit {
     }
   }
 
-  onFilter(filter: number) {
+  onFilterNumberTransaction(filter: number) {
     this.httpReq.onGetTransaction(this.idAccount, filter);
   }
+
+  onFilterWord() {}
 
   onPrintTransaction() {
     /* pass here the table id */

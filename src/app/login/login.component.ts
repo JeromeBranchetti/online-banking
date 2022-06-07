@@ -15,16 +15,18 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private router: Router, 
-              private auth: AuthService, 
-              private location: Location) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {}
 
   login(email: string, password: string) {
     this.auth.login(email, password);
   }
-  
+
   delete() {
     this.login_form.reset();
   }

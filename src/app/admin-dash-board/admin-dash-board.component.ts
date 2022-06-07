@@ -176,4 +176,6 @@ export class AdminDashBoardComponent implements OnInit {
     this.requestVisibility = false;
     this.selectedRequest.header = 'red';
   }
+
+  onDownloadUserList() {}
 }

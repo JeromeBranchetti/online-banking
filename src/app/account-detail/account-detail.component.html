@@ -12,7 +12,11 @@
     <div class="col-lg-2 col-sm-2 header d-none d-sm-none d-lg-inline">
       <h4>Transactions:</h4>
     </div>
-    <div class="col-lg-6 col-6 col-sm-10 amount">
+    <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
+      <input type="text" />
+      <button (click)="onFilterWord()">Search</button>
+    </div>
+    <div class="col-lg-2 col-6 col-sm-10 amount">
       <span id="debitAmount">
         <i class="fa-solid fa-arrow-down"></i>
         -{{ debitAmount }}€
@@ -22,10 +26,10 @@
         +{{ creditAmount }}€
       </span>
     </div>
-    <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
-      <button (click)="onFilter(10)">10</button>
-      <button (click)="onFilter(20)">20</button>
-      <button (click)="onFilter(50)">50</button>
+    <div class="col-lg-3 col-6 col-sm-2 buttonHeader">
+      <button (click)="onFilterNumberTransaction(10)">10</button>
+      <button (click)="onFilterNumberTransaction(20)">20</button>
+      <button (click)="onFilterNumberTransaction(50)">50</button>
       <button (click)="onPrintTransaction()">
         <span
           ><span class="d-none d-sm-none d-lg-inline">Download </span>
@@ -52,4 +56,10 @@
       </tr>
     </tbody>
   </table>
+  <div class="row">
+    <div class="col-lg-12 filter d-inline d-sm-inline d-lg-none">
+      <input type="text" />
+      <button (click)="onFilterWord()">Search</button>
+    </div>
+  </div>
 </div>

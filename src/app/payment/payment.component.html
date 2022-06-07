@@ -25,70 +25,70 @@
       <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
         <form [formGroup]="firstBankTransferForm">
           <div class="row">
-            <div class="col-sm-3">
-              <div class="dataForm">
-                <mat-form-field>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="First Name"
-                    matInput
-                    class="form-control"
-                    formControlName="firstName"
-                  />
-                </mat-form-field>
-                <mat-form-field>
-                  <input
-                    id="lastName"
-                    type="text"
-                    placeholder="Last Name"
-                    matInput
-                    formControlName="lastName"
-                  />
-                </mat-form-field>
-              </div>
+            <div class="col-lg-3">
+              <mat-form-field>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="First Name"
+                  matInput
+                  class="form-control"
+                  formControlName="firstName"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3">
+              <mat-form-field>
+                <input
+                  id="lastName"
+                  type="text"
+                  placeholder="Last Name"
+                  matInput
+                  formControlName="lastName"
+                />
+              </mat-form-field>
             </div>
           </div>
 
           <div class="button">
-            <button class="btn btn-success" matStepperNext>Next</button>
+            <button class="button" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
       <!-- Secondo step -->
       <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
         <form [formGroup]="secondBankTransferForm">
-          <div class="transferForm">
-            <mat-form-field>
-              <mat-label>Iban</mat-label>
-              <input
-                id="iban"
-                type="text"
-                placeholder="es. IT12A12345678912"
-                matInput
-                formControlName="iban"
-                autocapitalize="off"
-              />
-            </mat-form-field>
-            <mat-form-field>
-              <input
-                id="amount"
-                type="text"
-                placeholder="Amount"
-                matInput
-                formControlName="amount"
-                autocapitalize="off"
-              />
-            </mat-form-field>
+          <div class="row transferForm">
+            <div class="col-lg-3">
+              <mat-form-field>
+                <mat-label>Iban</mat-label>
+                <input
+                  id="iban"
+                  type="text"
+                  placeholder="es. IT12A12345678912"
+                  matInput
+                  formControlName="iban"
+                  autocapitalize="off"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3">
+              <mat-form-field>
+                <input
+                  id="amount"
+                  type="text"
+                  placeholder="Amount"
+                  matInput
+                  formControlName="amount"
+                  autocapitalize="off"
+                />
+              </mat-form-field>
+            </div>
           </div>
         </form>
         <div class="button">
           <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button
-            class="btn btn-success"
-            matStepperNext
-            (click)="onDecomposeIban()"
-          >
+          <button class="button" matStepperNext (click)="onDecomposeIban()">
             Next
           </button>
         </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="button">
           <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button class="btn btn-success" type="submit">Confirm</button>
+          <button class="button" type="submit">Confirm</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>
@@ -131,9 +131,7 @@
             </mat-form-field>
           </div>
           <div class="button">
-            <button class="btn btn-success" type="button" matStepperNext>
-              Next
-            </button>
+            <button class="button" type="button" matStepperNext>Next</button>
           </div>
         </mat-step>
 
@@ -145,7 +143,7 @@
           </div>
           <div class="button">
             <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="btn btn-success" type="submit">Confirm</button>
+            <button class="button" type="submit">Confirm</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
@@ -173,9 +171,7 @@
             </mat-form-field>
           </div>
           <div class="button">
-            <button class="btn btn-success" type="button" matStepperNext>
-              Next
-            </button>
+            <button class="button" type="button" matStepperNext>Next</button>
           </div>
         </mat-step>
 
@@ -188,7 +184,7 @@
           </div>
           <div class="button">
             <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="btn btn-success" type="submit">Confirm</button>
+            <button class="button" type="submit">Confirm</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
@@ -200,33 +196,37 @@
     <mat-horizontal-stepper [linear]="true" class="formStepper">
       <mat-step label="Phone Data" [stepControl]="firstPhoneTopUpForm">
         <form [formGroup]="firstPhoneTopUpForm">
-          <div class="dataForm">
-            <mat-form-field>
-              <input
-                id="PhoneNumber"
-                type="text"
-                placeholder="Phone Number"
-                matInput
-                class="form-control"
-                formControlName="phoneNumber"
-              />
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Provider</mat-label>
-              <mat-select
-                aria-label="Default select example"
-                id="provider"
-                required
-                formControlName="provider"
-              >
-                <mat-option value="Tim">Tim</mat-option>
-                <mat-option value="Vodafone">Vodafone</mat-option>
-                <mat-option value="Wind">Wind</mat-option>
-              </mat-select>
-            </mat-form-field>
+          <div class="row">
+            <div class="col-lg-3">
+              <mat-form-field>
+                <input
+                  id="PhoneNumber"
+                  type="text"
+                  placeholder="Phone Number"
+                  matInput
+                  class="form-control"
+                  formControlName="phoneNumber"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-lg-3">
+              <mat-form-field>
+                <mat-label>Provider</mat-label>
+                <mat-select
+                  aria-label="Default select example"
+                  id="provider"
+                  required
+                  formControlName="provider"
+                >
+                  <mat-option value="Tim">Tim</mat-option>
+                  <mat-option value="Vodafone">Vodafone</mat-option>
+                  <mat-option value="Wind">Wind</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
           <div class="button">
-            <button class="btn btn-success" matStepperNext>Next</button>
+            <button class="button" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -245,7 +245,7 @@
           </div>
           <div class="button">
             <button class="btn btn-danger" matStepperPrevious>Back</button>
-            <button class="btn btn-success" matStepperNext>Next</button>
+            <button class="button" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -261,7 +261,7 @@
         </div>
         <div class="button">
           <button class="btn btn-danger" matStepperPrevious>Back</button>
-          <button class="btn btn-success" type="submit">Confirm</button>
+          <button class="button" type="submit">Confirm</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

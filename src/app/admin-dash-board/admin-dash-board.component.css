@@ -58,3 +58,8 @@
   position: relative;
   top: 10vh;
 }
+
+.downloadButton {
+  display: flex;
+  justify-content: center;
+}

@@ -1,12 +1,16 @@
+.pageContainer {
+  margin-top: 100px;
+}
+
 #opsMessage {
-  font-size: 1000%;
-  display: flex;
-  justify-content: center;
+  font-size: 100px;
+}
+
+.opsContainer {
+  margin-bottom: 100px;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: center;
-  align-content: center;
-  align-items: center;
 }

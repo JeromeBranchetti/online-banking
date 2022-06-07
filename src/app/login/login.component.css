@@ -73,7 +73,7 @@ h1 {
 .safety-container {
   background: rgb(255, 255, 255);
   margin-top: 20px;
-  height: 50vh;
+  min-height: 50vh;
   color: rgb(0, 0, 0);
   border-radius: 8px;
   position: relative;
@@ -90,6 +90,7 @@ li {
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 
 .back-img-lock {

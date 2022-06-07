@@ -117,7 +117,7 @@
   <div class="" *ngIf="bankDepositChoice">
     <form [formGroup]="bankDepositForm" (ngSubmit)="onBankDepositSubmit()">
       <mat-horizontal-stepper [linear]="true" class="formStepper">
-        <mat-step label="Withdrawal Data" [stepControl]="bankDepositForm">
+        <mat-step label="Deposit Data" [stepControl]="bankDepositForm">
           <div class="dataForm">
             <mat-form-field>
               <input

@@ -63,3 +63,8 @@
   display: flex;
   justify-content: center;
 }
+
+#newRequestHeader {
+  display: flex;
+  justify-content: space-evenly;
+}

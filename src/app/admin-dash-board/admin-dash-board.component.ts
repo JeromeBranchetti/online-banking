@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { RequestModel } from './request.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminDashBoardComponent implements OnInit {
   /* To-do: 
   - Fetch di 12 richieste e le salverò dentro l'array requests
-  - Aggiungere simbolo di una V verde e di una X rossa nella lista delle richieste già verificate (in base alla decisione del dipendente)*/
+*/
 
   newRequests: RequestModel[] = [
     {
@@ -141,7 +142,7 @@ export class AdminDashBoardComponent implements OnInit {
   selectedRequest: RequestModel;
   selectedLight: string;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 

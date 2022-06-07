@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -10,7 +11,7 @@ import { utente } from '../class/utente';
   providedIn: 'root',
 })
 export class SignUpService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto[]> = new BehaviorSubject<conto[]>(null);
@@ -31,6 +32,7 @@ export class SignUpService {
       .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
         console.log(res);
+        this.auth.loggedIn.next(true);
       });
   }
 }

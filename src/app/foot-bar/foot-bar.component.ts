@@ -60,30 +60,31 @@ export class FootBarComponent implements OnInit {
 
   onDashBoard() {
     this.router.navigate(['/userDashboard'], {
-      queryParams: {
-        user: this.guest.firstName + this.guest.lastName,
-        id: this.guest.id,
-      },
+      // queryParams: {
+      //   user: this.guest.firstName + this.guest.lastName,
+      //   id: this.guest.id,
+      // },
     });
   }
+
   onPayment() {
     this.router.navigate(
-      ['/payment'],
+      ['/payment']
 
-      {
-        queryParams: {
-          user: this.guest.firstName + this.guest.lastName,
-          id: this.guest.id,
-        },
-      }
+      // {
+      //   queryParams: {
+      //     user: this.guest.firstName + this.guest.lastName,
+      //     id: this.guest.id,
+      //   },
+      // }
     );
   }
   onMovementDetail() {
     this.router.navigate(['/account-detail'], {
-      queryParams: {
-        user: this.guest.firstName + this.guest.lastName,
-        id: this.guest.id,
-      },
+      // queryParams: {
+      //   user: this.guest.firstName + this.guest.lastName,
+      //   id: this.guest.id,
+      // },
     });
   }
 }

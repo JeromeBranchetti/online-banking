@@ -37,9 +37,17 @@ h1 {
   align-items: center;
 }
 
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 .buttonHeader {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 span {
@@ -78,4 +86,9 @@ button {
 
 span {
   height: fit-content;
+}
+
+.mat-form-field {
+  background-color: white;
+  color: black;
 }

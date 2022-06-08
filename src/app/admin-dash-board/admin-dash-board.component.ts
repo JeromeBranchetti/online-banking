@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { utente } from './../class/utente';
+import { HttpRequestService } from './../service/httpRequest.service';
 import { RequestModel } from './request.model';
 import { Component, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-admin-dash-board',
@@ -142,9 +145,15 @@ export class AdminDashBoardComponent implements OnInit {
   selectedRequest: RequestModel;
   selectedLight: string;
 
-  constructor(private http: HttpClient) {}
+  userList: utente[] = [];
 
-  ngOnInit(): void {}
+  constructor(private httpReq: HttpRequestService) {}
+
+  ngOnInit(): void {
+    console.log(this.httpReq.token);
+  }
+
+  // Metodi per le richieste
 
   onSelectNewRequest(index: number) {
     this.requestVisibility = true;
@@ -178,5 +187,24 @@ export class AdminDashBoardComponent implements OnInit {
     this.selectedRequest.header = 'red';
   }
 
-  onDownloadUserList() {}
+  // Metodi per il download
+
+  exportAsExcelFile(json: utente[], excelFileName: string): void {
+    console.log('Json: ' + json);
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    console.log(worksheet);
+    console.log(workbook);
+    XLSX.utils.book_append_sheet(workbook, worksheet, excelFileName);
+
+    XLSX.writeFile(workbook, excelFileName);
+  }
+
+  onDownloadUserList() {
+    this.httpReq.onGetUser().subscribe((res) => {
+      this.userList = JSON.parse(JSON.stringify(res));
+      console.log(this.userList);
+      this.exportAsExcelFile(this.userList, 'UserList.xlsx');
+    });
+  }
 }

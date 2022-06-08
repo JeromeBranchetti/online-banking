@@ -1,3 +1,4 @@
+import { TransactionService } from './../service/transaction.service';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
@@ -8,16 +9,20 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.css'],
 })
+export class GraphicComponent implements OnInit {
+  data: number[] = [];
 
-export class GraphicComponent   implements OnInit{
-data:number[]=[100,100,100,100,100,100,100,100,100,100,100,100]
+  constructor(private transactionService: TransactionService) {}
 
-  constructor() { }
   ngOnInit(): void {
-    
+    let currentBalance = 0;
+    for (let transaction of this.transactionService.bankTransactions) {
+      this.lineChartData.labels.push(transaction.date);
+      currentBalance = currentBalance + +transaction.amount;
+      this.data.push(currentBalance);
+    }
   }
 
- 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -32,20 +37,7 @@ data:number[]=[100,100,100,100,100,100,100,100,100,100,100,100]
         fill: 'origin',
       },
     ],
-    labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ],
+    labels: [],
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {

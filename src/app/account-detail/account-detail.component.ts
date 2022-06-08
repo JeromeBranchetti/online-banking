@@ -1,3 +1,5 @@
+import { TransactionService } from './../service/transaction.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -17,124 +19,28 @@ export class AccountDetailComponent implements OnInit {
   creditAmount: string = '0';
   idAccount: number = 12345678912;
 
-  bankTransactions: BankTransaction[] = [
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '+100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '+100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '20/05/2020',
-      amount: '-100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '22/05/2020',
-      amount: '+100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-    {
-      type: 'Pagamento tramite Pos',
-      date: '11/05/2020',
-      amount: '+100',
-      description: "Pos Carta n.****10 C/O Mcdonald's Segrate",
-    },
-  ];
+  bankTransactions: BankTransaction[] = [];
+
+  spyModeBoolean: boolean = false;
+
+  range = new FormGroup({
+    start: new FormControl(null),
+    end: new FormControl(null),
+  });
 
   // Methods
 
   constructor(
     private spyMode: SpioneService,
-    private httpReq: HttpRequestService
+    private httpReq: HttpRequestService,
+    private transactionService: TransactionService
   ) {}
 
   ngOnInit(): void {
+    this.bankTransactions = this.transactionService.bankTransactions;
     this.onCalculateAmount();
-    this.onPrivacyMode();
-  }
-
-  onPrivacyMode() {
-    let isNotFirst = false;
-    let i = 0;
-    let amountTempArray = [];
-    let creditTempAmount = this.creditAmount;
-    let debitTempAmount = this.debitAmount;
-    this.spyMode.bs.subscribe((spyModeBoolean) => {
-      if (spyModeBoolean) {
-        this.creditAmount = creditTempAmount;
-        this.debitAmount = debitTempAmount;
-      } else {
-        this.creditAmount = '**';
-        this.debitAmount = '**';
-      }
-      for (let bankTransaction of this.bankTransactions) {
-        i++;
-        amountTempArray.push(bankTransaction.amount);
-        if (!spyModeBoolean) {
-          bankTransaction.amount = '**';
-          isNotFirst = true;
-        } else if (isNotFirst) {
-          bankTransaction.amount = amountTempArray[i];
-        }
-      }
-      i = 0;
+    this.spyMode.bs.subscribe((res) => {
+      this.spyModeBoolean = res;
     });
   }
 

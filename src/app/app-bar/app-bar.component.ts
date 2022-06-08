@@ -9,7 +9,7 @@ import { SpioneService } from '../service/spione.service';
   styleUrls: ['./app-bar.component.css'],
 })
 export class AppBarComponent implements OnInit {
-  eyeOpen: boolean = true;
+  eyeOpen: boolean = false;
   homeButtonVisible!: boolean;
 
   constructor(
@@ -20,9 +20,9 @@ export class AppBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.spioneService.SpioneMode(this.eyeOpen);
-    this.authService.loggedIn.subscribe((response)=>  {
+    this.authService.loggedIn.subscribe((response) => {
       this.homeButtonVisible = response;
-    })
+    });
   }
 
   openCloseToggle() {
@@ -39,6 +39,6 @@ export class AppBarComponent implements OnInit {
   }
 
   toHomeGuestPage() {
-    this.router.navigate(['/home-page-guest'])
+    this.router.navigate(['/home-page-guest']);
   }
 }

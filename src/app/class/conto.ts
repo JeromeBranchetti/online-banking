@@ -1,4 +1,4 @@
-import { BankTransaction } from "./bankTransaction.model";
+import { BankTransaction } from './bankTransaction.model';
 
 export class conto {
   numero_conto!: string;
@@ -14,12 +14,15 @@ export class conto {
 
     this.attivo = false;
   }
+
   assegnaNumero(): string {
-    return null;
+    return '12345678910';
   }
+
   genIban(): string {
     return 'IT60 X054 2811 1010 0000 0123 456';
   }
+
   getTransaction(): BankTransaction[] {
     return null;
   }

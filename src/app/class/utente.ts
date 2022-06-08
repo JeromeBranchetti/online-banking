@@ -1,4 +1,3 @@
-
 export class utente {
   id?: number;
   firstName!: string;
@@ -13,18 +12,19 @@ export class utente {
     last_name: string,
     date: string,
     email: string,
-    password: string,
+    password: string
     // dipendente:boolean
   ) {
     this.firstName = name;
-   
+
     this.lastName = last_name;
-    
+
     this.email = email;
     this.birthDate = date;
     this.password = password;
     // this.dipendente = dipendente
   }
+
   getId() {}
   static factory() {
     let u = new utente('', '', '', '', '');
@@ -33,5 +33,4 @@ export class utente {
   controlloDipendente(): boolean {
     return false;
   }
-
 }

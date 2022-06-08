@@ -9,6 +9,7 @@ import { AuthResponse } from '../model/authResponse.model';
 })
 export class AuthService {
   loggedIn = new Subject<boolean>();
+  authenticated: boolean = false;
   administrator = false;
   error = {
     message:
@@ -19,7 +20,6 @@ export class AuthService {
 
   token: AuthResponse = null;
   autoExit = new Subject<void>();
-
   tokenExpirationTimer: any;
   accessToken: string = null;
 
@@ -27,12 +27,10 @@ export class AuthService {
 
   isAuthenticated() {
     const promise = new Promise((resolve, rejects) => {
-      resolve(this.loggedIn);
+      resolve(this.authenticated);
     });
     return promise;
   }
-
-  // Chiamata per il login
 
   login(email: string, password: string) {
     this.http
@@ -44,12 +42,11 @@ export class AuthService {
         next: (response) => {
           console.log(response);
           // Chiamata Get, tramite id accedo al ruolo dell'utente
-
           // Se non è amministratore
           this.accessToken = response.token;
           this.loggedIn.next(true);
-          this.router.navigate(['/userDashboard']);
-          localStorage.setItem('token', JSON.stringify(response));
+          this.authenticated = true;
+          this.router.navigate(['/home-page-guest']);
           // Se è amministratore
           // this.administrator = true;
           // this.router.navigate(['/adminDashboard])

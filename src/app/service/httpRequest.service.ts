@@ -80,17 +80,18 @@ export class HttpRequestService {
     //     this.transaction = res;
     //   });
   }
+
   onGetUser() {
+    this.token = this.auth.accessToken;
     console.log('Get: ' + this.token);
-    this.http
-      .get<utente[]>('http://localhost:8080/authentication/utenti', {
+    return this.http.get<utente[]>(
+      'http://localhost:8080/authentication/utenti',
+      {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,
         }),
-      })
-      .subscribe((res) => {
-        console.log(res);
-      });
+      }
+    );
   }
 
   onGetAccount() {

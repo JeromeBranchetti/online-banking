@@ -3,7 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { utente } from '../class/utente';
 import { AuthService } from '../service/auth.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-foot-bar',
@@ -11,18 +17,24 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./foot-bar.component.css'],
   animations: [
     trigger('containerState', [
-      state('notLogged', style({
-        dispay: 'none',
-        transform: 'translateY(10vh)'
-      })),
-      state('loggedVisible', style({
-        display: 'visible',
-        trasform: 'translateY(0)'
-      })),
+      state(
+        'notLogged',
+        style({
+          dispay: 'none',
+          transform: 'translateY(10vh)',
+        })
+      ),
+      state(
+        'loggedVisible',
+        style({
+          display: 'visible',
+          trasform: 'translateY(0)',
+        })
+      ),
       transition('notLogged => loggedVisible', animate(300)),
-      transition('loggedVisible => notLogged', animate(300))
-    ])
-  ]
+      transition('loggedVisible => notLogged', animate(300)),
+    ]),
+  ],
 })
 export class FootBarComponent implements OnInit {
   homeButtonVisible!: boolean;
@@ -38,10 +50,12 @@ export class FootBarComponent implements OnInit {
     this.Sus.bs.subscribe((ut) => {
       this.guest = ut;
     });
-    this.authService.loggedIn.subscribe((response)=>  {
+    this.authService.loggedIn.subscribe((response) => {
       this.homeButtonVisible = response;
-      this.homeButtonVisible ? this.state==='loggedVisible' : this.state==='notLogged'
-    })
+      this.homeButtonVisible
+        ? (this.state = 'loggedVisible')
+        : (this.state = 'notLogged');
+    });
   }
 
   onDashBoard() {

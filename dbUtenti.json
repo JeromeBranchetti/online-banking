@@ -7,25 +7,8 @@
       "birthDate": "1000-10-10",
       "password": "Root123!",
       "id": 1
-    },
-    {
-<<<<<<< HEAD
-      "firstName": "Christian",
-      "lastName": "Cianci",
-      "email": "test@test.com",
-      "birthDate": "0001-01-01",
-      "password": "Abcd1234!",
-      "id": 2,
-      "saldo": "undefined1,5"
-=======
-      "firstName": "Apple",
-      "lastName": "jojojo",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe1234",
-      "id": 2
->>>>>>> bcb21c1d067738989aa4f6344056998711aa20a0
     }
+    
   ],
   "conti": [
     {
@@ -34,14 +17,8 @@
       "attivo": false,
       "idUt": 1,
       "id": 1
-    },
-    {
-      "numero_conto": 51,
-      "saldo": -11.3,
-      "attivo": false,
-      "idUt": 2,
-      "id": 2
     }
+    
   ],
   "richieste": [
     {
@@ -120,6 +97,13 @@
       "description": "Deposit",
       "idConto": 2,
       "id": 4
+    }
+  ],
+  "dipendenti":[
+    {
+    "email": "homersimpson@dipendente.it",
+    "password": "ciambelle",
+    "id":0
     }
   ]
 }

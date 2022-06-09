@@ -30,6 +30,7 @@ export class AdminDashBoardComponent implements OnInit {
   }
 
   // Metodo per il colore
+
   onColorRequestList() {
     let i = 0;
     for (let request of this.newRequests) {
@@ -38,7 +39,8 @@ export class AdminDashBoardComponent implements OnInit {
         this.requestsLight[i] = 'yellow';
       } else if (request.type === 'account registration') {
         this.requestsLight[i] = 'green';
-      } else if (request.type === 'account clos') {
+      } else if (request.type === 'account closure') {
+        this.requestsLight[i] === 'red';
       }
     }
   }
@@ -46,11 +48,14 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodi per le richieste
 
   onSelectNewRequest(index: number) {
+    console.log(index);
     this.requestVisibility = true;
     this.requestIndex = index;
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
+    console.log(this.selectedLight);
+    console.log(this.requestsLight);
   }
 
   onSelectOldRequest(index: number) {

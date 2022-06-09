@@ -45,6 +45,13 @@
   padding: 20px;
 }
 
+.other-account {
+  color: aliceblue;
+  background-color: rgb(34, 34, 68);
+  border-radius: 15px;
+  padding: 20px;
+}
+
 .make-playment {
   background-color: cornflowerblue;
   border-radius: 8px;

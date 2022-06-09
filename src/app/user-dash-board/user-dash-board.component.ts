@@ -1,6 +1,6 @@
 import { HttpRequestService } from './../service/httpRequest.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,17 +19,17 @@ export class UserDashBoardComponent implements OnInit {
   trueIban: string;
   saldo: string = '***************';
   guest=utente.factory();
- 
-
   modeSpione!: boolean;
   conto=new conto(0)
+ 
   constructor(
     public SUService: SignUpService,
     public spioneService: SpioneService,
     private location: Location,
     private route:ActivatedRoute,
     private httpReq:HttpRequestService,
-    private sign:SignUpService
+    private sign:SignUpService,
+    private router: Router
 
 
 
@@ -71,5 +71,9 @@ export class UserDashBoardComponent implements OnInit {
 
   closeContoButton() {
     // chiudere il conto
+  }
+
+  toChangeEmailPass() {
+    this.router.navigate(['/change-email-pass']);
   }
 }

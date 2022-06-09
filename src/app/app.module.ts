@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphicComponent } from './graphic/graphic.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ErrorComponent } from './error/error.component';
+import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ErrorComponent } from './error/error.component';
     RequestComponent,
     GraphicComponent,
     ErrorComponent,
+    ChangeEmailPassComponent,
   ],
   imports: [
     BrowserModule,

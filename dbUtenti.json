@@ -7,6 +7,14 @@
       "birthDate": "1000-10-10",
       "password": "Root123!",
       "id": 1
+    },
+    {
+      "firstName": "Apple",
+      "lastName": "jojojo",
+      "email": "calcbtia@ewsdf.it",
+      "birthDate": "1111-01-01",
+      "password": "Giuseppe1234",
+      "id": 2
     }
   ],
   "conti": [
@@ -16,17 +24,17 @@
       "attivo": false,
       "idUt": 1,
       "id": 1
+    },
+    {
+      "numero_conto": 61,
+      "saldo": 0,
+      "attivo": false,
+      "idUt": 2,
+      "id": 2
     }
   ],
   "richieste": [
-    {
-      "firstName": "guest",
-      "lastName": "guest",
-      "email": "root@root.it",
-      "birthDate": "1000-10-10",
-      "password": "Root123!",
-      "id": 1
-    }
+   
   ],
   "transazioni": []
 }

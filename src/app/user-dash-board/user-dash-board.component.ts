@@ -1,3 +1,4 @@
+import { AuthService } from './../service/auth.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,10 +30,12 @@ export class UserDashBoardComponent implements OnInit {
     private route:ActivatedRoute,
     private httpReq:HttpRequestService,
     private sign:SignUpService,
-    private router: Router
+    private router: Router,
+    private auth:AuthService
   ) {}
 
   ngOnInit(): void {
+    this.auth.loggedIn.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });

@@ -1,3 +1,4 @@
+import { UtenteService } from './../service/utente.service';
 import { SignUpService } from './../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -43,7 +44,8 @@ export class FootBarComponent implements OnInit {
   constructor(
     private router: Router,
     private Sus: SignUpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private US:UtenteService
   ) {}
 
   ngOnInit(): void {
@@ -60,10 +62,9 @@ export class FootBarComponent implements OnInit {
 
   onDashBoard() {
     this.router.navigate(['/userDashboard'], {
-      // queryParams: {
-      //   user: this.guest.firstName + this.guest.lastName,
-      //   id: this.guest.id,
-      // },
+       queryParams: {
+        queryParams:{idUt:this.US.idUt , idCont:this.US.idCont}
+       },
     });
   }
 

@@ -6,6 +6,8 @@ import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
+import { UtenteService } from './utente.service';
+import { isJSDocThisTag } from 'typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +22,15 @@ export class HttpRequestService {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private sign: SignUpService
+    private sign: SignUpService,
+    private US:UtenteService
+
   ) {}
 
   // Chiamate Get
  
   GetConto(id:string){
+    this.US.idCont=id;
     
     this.http
     .get<conto>('http://localhost:3000/conti', {
@@ -36,12 +41,14 @@ export class HttpRequestService {
     .subscribe((res) => {
       this.conto = res;
       console.log(res)
+      
 
       this.sign.bsconto.next(this.conto);
     });
 }
   
   GetUserid(id: string) {
+    this.US.idUt=id;
     this.http
       .get<utente>('http://localhost:3000/utenti', {
         params: {
@@ -50,6 +57,7 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.utente = res;
+        
 
         this.sign.bs.next(this.utente);
       });

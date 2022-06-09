@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { conto } from '../class/conto';
 import { utente } from '../class/utente';
+import { UtenteService } from './utente.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class SignUpService {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private US:UtenteService
+
+
   ) {}
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);

@@ -1,7 +1,6 @@
+import { TransactionService } from './../service/transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
-import { TransactionService } from './../service/transaction.service';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -15,19 +14,26 @@ export class GraphicComponent implements OnInit {
   data: number[] = [];
   bankTransactions: BankTransaction[] = [];
 
-  constructor(private httpReq: HttpRequestService) {}
+  constructor(
+    private transactionService: TransactionService,
+    private httpReq: HttpRequestService
+  ) {}
 
   ngOnInit(): void {
-    let currentBalance = 0;
-    this.httpReq.onGetTransaction().subscribe((res) => {
-      this.bankTransactions = res;
-      for (let transaction of this.bankTransactions) {
-        this.lineChartData.labels.push(transaction.date);
-        currentBalance = currentBalance + +transaction.amount;
-        console.log(currentBalance);
-        this.data.push(currentBalance);
-      }
-    });
+    setTimeout(() => {
+      let currentBalance = 0;
+      this.httpReq.onGetTransaction();
+      console.log('graphic');
+
+      this.transactionService.bankTransactionFlag.subscribe((res) => {
+        this.bankTransactions = res;
+        for (let transaction of this.bankTransactions) {
+          this.lineChartData.labels.push(transaction.date);
+          currentBalance = currentBalance + +transaction.amount;
+          this.lineChartData.datasets[0].data.push(currentBalance);
+        }
+      });
+    }, 100);
   }
 
   public lineChartData: ChartConfiguration['data'] = {

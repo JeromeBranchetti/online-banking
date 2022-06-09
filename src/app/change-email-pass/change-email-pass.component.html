@@ -1,0 +1,49 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <button class="switch-email-pass" (click)="switchEmailPass()">{{ isEmail ? 'Modifica Pass' : 'Modifica Email '}}</button>
+            <div class="change-password my-3" *ngIf="isEmail">
+                <form>
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com" style="color: white;">
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="inputPassword">
+                        </div>
+                      </div>
+                      <div class="row text-end">
+                          <div class="col 3">
+                            <button type="button" class="text-end" (click)="onChangePass()">send <i class="fas fa-paper-plane"></i></button>
+                          </div>
+                      </div>
+                </form>
+            </div>
+            <div class="change-email my-3" *ngIf="!isEmail">
+                <form>
+                    <div class="mb-3 row">
+                        <label for="Email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="Email" placeholder="email@example.com">
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="staticPassword" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" readonly class="form-control-plaintext fs-4" id="staticPassword" value="*************" style="color: white;">
+                        </div>
+                      </div>
+                      <div class="row text-end">
+                        <div class="col 3">
+                          <button type="button" class="text-end" (click)="onChangeEmail()">send <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

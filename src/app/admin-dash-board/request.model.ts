@@ -1,6 +1,6 @@
 export class RequestModel {
   type?: string;
-  name: string;
+  firstName: string;
   lastName: string;
   dateOfBirth: string;
   email: string;

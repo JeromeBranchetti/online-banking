@@ -74,6 +74,7 @@ export class HttpRequestService {
 
   GetUser(ema: string, pass: string) {
     //utente appena loggato
+    if(!ema.includes("@dipendente.it")){
     this.http
       .get<utente>('http://localhost:3000/utenti', {
         params: { email: ema, password: pass },
@@ -89,12 +90,29 @@ export class HttpRequestService {
               idCont: this.US.idCont,
             },
           });
-        },
-        error: (errorRes) => {
-          console.log(errorRes);
-        },
+        }
       });
   }
+  else{
+    this.http
+      .get<utente>('http://localhost:3000/dipendenti', {
+        params: { email: ema, password: pass },
+      })
+      .subscribe(
+         (response) => {
+          response;
+          console.log(response);
+          
+           this.root.navigate(['/adminDashboard'], {
+          //   queryParams: {
+          //     idUt: this.US.idUt,
+          //     idCont: this.US.idCont,
+          //   },
+          // });
+        }) });
+
+  }
+}
 
   // GetUser(ema: string, pass: string) {
   //   //utente appena loggato
@@ -163,7 +181,41 @@ export class HttpRequestService {
         res;
       });
   }
+  changepass(pass:string){
+    this.http
+    .get<utente>('http://localhost:3000/utenti', {
+      params: {
+        id: this.US.idUt,
+      },
+    })
+    .subscribe((res) => {
+      this.utente = res[0];})
+      console.log(this.utente[0])
+      this.utente[0].password=pass;
+    this.http
+              .put<utente>('http://localhost:3000/utenti/' + this.utente[0].id, this.utente[0])
+              .subscribe((res) => 'caricato');
 
+
+  }
+
+  changemail(email:string){
+    this.http
+    .get<utente>('http://localhost:3000/utenti', {
+      params: {
+        id: this.US.idUt,
+      },
+    })
+    .subscribe((res) => {
+      this.utente = res[0];})
+      console.log(this.utente[0])
+      this.utente[0].email=email;
+    this.http
+              .put<utente>('http://localhost:3000/utenti/' + this.utente[0].id, this.utente[0])
+              .subscribe((res) => 'caricato');
+
+
+  }
   onAddTransaction(transaction: BankTransaction) {
     this.http
       .post<BankTransaction>('http://localhost:3000/transazioni', transaction)

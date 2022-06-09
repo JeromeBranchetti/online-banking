@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    this.auth.loggedIn.next(true);
+    
     this.auth.authenticated = true;
     if(this.auth.authenticated){
       this.http.GetUser(email ,password);
+      
 
       
     }

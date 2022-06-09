@@ -71,6 +71,7 @@ export class HttpRequestService {
       .subscribe((res) => {
         console.log(res);
         this.US.idUt=res[0].id;
+        this.auth.loggedIn.next(true);
         this.root.navigate(['/home-page-guest'], {
           queryParams: {
           idUt:this.US.idUt , idCont:this.US.idCont}

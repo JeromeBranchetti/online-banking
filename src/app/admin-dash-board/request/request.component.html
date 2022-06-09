@@ -19,7 +19,7 @@
         'header-green': header === 'green'
       }"
     >
-      <span *ngIf="result !== ''" style="color: white">Result: </span>
+      <span *ngIf="result !== undefined" style="color: white">Result: </span>
       {{ result }}
     </h3>
   </div>

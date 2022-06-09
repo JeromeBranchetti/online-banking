@@ -26,21 +26,20 @@ export class AdminDashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.httpReq.onGetRequest().subscribe((res) => {
       this.newRequests = res;
+      this.onColorRequestList();
     });
   }
 
   // Metodo per il colore
 
   onColorRequestList() {
-    let i = 0;
     for (let request of this.newRequests) {
-      i++;
       if (request.type === 'account opening') {
-        this.requestsLight[i] = 'yellow';
+        this.requestsLight.push('yellow');
       } else if (request.type === 'account registration') {
-        this.requestsLight[i] = 'green';
+        this.requestsLight.push('green');
       } else if (request.type === 'account closure') {
-        this.requestsLight[i] === 'red';
+        this.requestsLight.push('red');
       }
     }
   }
@@ -48,14 +47,11 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodi per le richieste
 
   onSelectNewRequest(index: number) {
-    console.log(index);
     this.requestVisibility = true;
     this.requestIndex = index;
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
-    console.log(this.selectedLight);
-    console.log(this.requestsLight);
   }
 
   onSelectOldRequest(index: number) {

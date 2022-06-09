@@ -3,7 +3,6 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { RequestModel } from './request.model';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-admin-dash-board',

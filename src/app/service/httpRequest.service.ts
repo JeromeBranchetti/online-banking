@@ -15,6 +15,7 @@ export class HttpRequestService {
   utente: utente;
   conti!: conto[];
   transaction: BankTransaction[];
+  conto!:conto;
 
   constructor(
     private http: HttpClient,
@@ -23,16 +24,33 @@ export class HttpRequestService {
   ) {}
 
   // Chiamate Get
-
-  GetUserid(id: number) {
+ 
+  GetConto(id:string){
+    
     this.http
-      .get<utente>('', {
+    .get<conto>('http://localhost:3000/conti', {
+      params: {
+        id: id,
+      },
+    })
+    .subscribe((res) => {
+      this.conto = res;
+      console.log(res)
+
+      this.sign.bsconto.next(this.conto);
+    });
+}
+  
+  GetUserid(id: string) {
+    this.http
+      .get<utente>('http://localhost:3000/utenti', {
         params: {
           id: id,
         },
       })
       .subscribe((res) => {
         this.utente = res;
+
         this.sign.bs.next(this.utente);
       });
   }
@@ -50,20 +68,7 @@ export class HttpRequestService {
       });
   }
 
-  GetConti(id: number) {
-    //richiesta conti con id manca http e verifica params
-    this.http
-      .get<conto[]>('', {
-        params: {
-          id: id,
-        },
-      })
-      .subscribe((res) => {
-        console.log(res);
-        this.conti = res;
-        this.sign.bsconto.next(this.conti);
-      });
-  }
+
 
   onGetTransaction(idAccount: number, transactionNumber: number) {
     //richiesta transazioni con id manca http e verifica params

@@ -1,26 +1,35 @@
+
 import { BankTransaction } from './bankTransaction.model';
 
 export class conto {
-  numero_conto!: string;
+  numero_conto!: number;
   iban!: string;
   saldo!: number;
-  id?: number;
+  idUt?: number;
   attivo!: boolean;
+  id?:number;
 
-  constructor(saldo: number) {
+  constructor(saldo: number ) {
     this.numero_conto = this.assegnaNumero();
 
     this.saldo = saldo;
-
+  this.iban=this.genIban();
     this.attivo = false;
+    
   }
 
-  assegnaNumero(): string {
-    return '12345678910';
+  assegnaNumero(): number {
+    let v=Math.random()*100;
+    v=Math.round(v)
+    return v;
+    
+
+    
   }
 
   genIban(): string {
-    return 'IT60 X054 2811 1010 0000 0123 456';
+     let s='IT60 X054 2811 1010 0000 012' //+this.id.toString() +  this.idUt.toString();
+    return s;
   }
 
   getTransaction(): BankTransaction[] {

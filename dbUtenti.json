@@ -1,0 +1,64 @@
+{
+  "utenti": [
+    {
+      "firstName": "Giuseppe",
+      "lastName": "Bruniani",
+      "email": "root@root.it",
+      "birthDate": "1111-11-11",
+      "password": "Root123!",
+      "id": 1
+    }
+  ],
+  "conti": [
+    {
+      "numero_conto": 9,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 1,
+      "id": 1
+    },
+    {
+      "numero_conto": 9,
+      "saldo": 1,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 1,
+      "id": 1
+    },
+    {
+      "numero_conto": 9,
+      "saldo": 2,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 1,
+      "id": 1
+    },
+    {
+      "numero_conto": 9,
+      "saldo": 3,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 1,
+      "id": 1
+    }
+  ],
+  "richieste": [
+    {
+      "firstName": "Giuseppe",
+      "lastName": "Bruniani",
+      "email": "root@root.it",
+      "birthDate": "1111-11-11",
+      "password": "Root123!",
+      "id": 1
+    },
+    {
+      "numero_conto": 81,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 1,
+      "id": 2
+    }
+  ]
+}

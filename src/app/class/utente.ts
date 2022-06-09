@@ -27,7 +27,7 @@ export class utente {
 
   getId() {}
   static factory() {
-    let u = new utente('', '', '', '', '');
+    let u = new utente('name', 'last_name', 'email', 'date', 'password');
     return u;
   }
   controlloDipendente(): boolean {

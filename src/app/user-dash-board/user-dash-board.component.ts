@@ -1,3 +1,6 @@
+import { HttpRequestService } from './../service/httpRequest.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,25 +18,46 @@ export class UserDashBoardComponent implements OnInit {
   iban: string = 'IT***************************';
   trueIban: string;
   saldo: string = '***************';
-  guest!: utente;
+  guest=utente.factory();
+ 
 
   modeSpione!: boolean;
-  conto!: conto;
+  conto=new conto(0)
   constructor(
     public SUService: SignUpService,
     public spioneService: SpioneService,
-    private location: Location
+    private location: Location,
+    private route:ActivatedRoute,
+    private httpReq:HttpRequestService,
+    private sign:SignUpService
+
+
+
   ) {}
 
   ngOnInit(): void {
-    this.conto = new conto(0);
-    this.SUService.bs.subscribe((ut) => {
-      this.guest = ut;
-    });
-
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
+
+    this.route.queryParamMap.subscribe((params)=>{
+      this.httpReq.GetUserid(params.get("idUt"))
+      this.sign.bs.subscribe((res)=>{
+        console.log(res[0]); //chiedere perchè c è bisogno di [0]
+        this.guest=res[0];
+      
+      })
+      }
+      )
+      this.route.queryParamMap.subscribe((params)=>{
+        this.httpReq.GetConto(params.get("idCont"))
+        this.sign.bsconto.subscribe((res)=>{ console.log(res[0]); //chiedere perchè c è bisogno di [0]
+        
+        this.conto=res[0];
+        
+        
+        })
+      })
   }
 
   copyMode() {

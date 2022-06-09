@@ -19,7 +19,7 @@ export class SignUpService {
   ) {}
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
-  bsconto: BehaviorSubject<conto[]> = new BehaviorSubject<conto[]>(null);
+  bsconto: BehaviorSubject<conto> = new BehaviorSubject<conto>(null);
   token!: string;
 
   newUtente(x: FormGroup) {
@@ -31,23 +31,58 @@ export class SignUpService {
 
     this.onAddUser(ut);
   }
-
+  
   onAddUser(ut: utente) {
     // utente iscritto
+    // this.http
+    //   .post('http://localhost:8080/authentication/register', ut)
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //     this.auth.loggedIn.next(true);
+    //     this.auth.authenticated = true;
+    //     this.router.navigate([
+    //       '/home-page-guest',
+    //       {
+    //         queryParams: {
+    //           user: ut.firstName + ut.lastName,
+    //         },
+    //       },
+    //     ]);
+    //   });
     this.http
-      .post('http://localhost:8080/authentication/register', ut)
-      .subscribe((res) => {
-        console.log(res);
-        this.auth.loggedIn.next(true);
-        this.auth.authenticated = true;
-        this.router.navigate([
-          '/home-page-guest',
-          {
-            queryParams: {
-              user: ut.firstName + ut.lastName,
-            },
-          },
-        ]);
+  .post('http://localhost:3000/richieste',ut)
+  .subscribe(()=> {
+    console.log("richiestas inviata")
+})
+    this.http
+    .post('http://localhost:3000/utenti', ut)
+    .subscribe(() => 
+    {
+      this.http.get<utente[]>('http://localhost:3000/utenti').subscribe((utenti)=>{
+      console.log(utenti[utenti.length-1])
+      let id=utenti[utenti.length-1].id
+      let cont=new conto(0)
+      cont.idUt=id
+      this.http
+
+      this.http
+      .post('http://localhost:3000/conti',cont)
+      .subscribe(()=> {
+        
+        this.router.navigate(['/home-page-guest'], {
+                  queryParams: {
+                     user: ut.firstName + ut.lastName,
+                     idUt:id
+                   },
+                 },)
+      })
       });
-  }
+      
+
+    }
+  
+  
+    );
 }
+  }
+

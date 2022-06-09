@@ -7,6 +7,38 @@
       "birthDate": "1111-11-11",
       "password": "Root123!",
       "id": 1
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 2
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 3
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com1",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 4
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 5
     }
   ],
   "conti": [
@@ -41,6 +73,38 @@
       "attivo": false,
       "idUt": 1,
       "id": 1
+    },
+    {
+      "numero_conto": 61,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 2,
+      "id": 2
+    },
+    {
+      "numero_conto": 65,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 3,
+      "id": 3
+    },
+    {
+      "numero_conto": 100,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 4,
+      "id": 4
+    },
+    {
+      "numero_conto": 56,
+      "saldo": 0,
+      "iban": "IT60 X054 2811 1010 0000 012",
+      "attivo": false,
+      "idUt": 5,
+      "id": 5
     }
   ],
   "richieste": [
@@ -59,6 +123,39 @@
       "attivo": false,
       "idUt": 1,
       "id": 2
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 3
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 4
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com1",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 5
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Cianci",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 6
     }
-  ]
+  ],
+  "transazioni": []
 }

@@ -31,7 +31,7 @@ export class SignUpService {
 
     this.onAddUser(ut);
   }
-  
+
   onAddUser(ut: utente) {
     // utente iscritto
     // this.http
@@ -49,40 +49,30 @@ export class SignUpService {
     //       },
     //     ]);
     //   });
-    this.http
-  .post('http://localhost:3000/richieste',ut)
-  .subscribe(()=> {
-    console.log("richiestas inviata")
-})
-    this.http
-    .post('http://localhost:3000/utenti', ut)
-    .subscribe(() => 
-    {
-      this.http.get<utente[]>('http://localhost:3000/utenti').subscribe((utenti)=>{
-      console.log(utenti[utenti.length-1])
-      let id=utenti[utenti.length-1].id
-      let cont=new conto(0)
-      cont.idUt=id
+    this.http.post('http://localhost:3000/richieste', ut).subscribe(() => {
+      console.log('richiestas inviata');
+    });
+    this.http.post('http://localhost:3000/utenti', ut).subscribe(() => {
       this.http
+        .get<utente[]>('http://localhost:3000/utenti')
+        .subscribe((utenti) => {
+          console.log(utenti[utenti.length - 1]);
+          let id = utenti[utenti.length - 1].id;
+          let cont = new conto(0);
+          cont.idUt = id;
+          this.http;
 
-      this.http
-      .post('http://localhost:3000/conti',cont)
-      .subscribe(()=> {
-        
-        this.router.navigate(['/home-page-guest'], {
-                  queryParams: {
-                     user: ut.firstName + ut.lastName,
-                     idUt:id
-                   },
-                 },)
-      })
-      });
-      
-
-    }
-  
-  
-    );
-}
+          this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
+            this.auth.loggedIn.next(true);
+            this.auth.authenticated = true;
+            this.router.navigate(['/home-page-guest'], {
+              queryParams: {
+                user: ut.firstName + ut.lastName,
+                idUt: id,
+              },
+            });
+          });
+        });
+    });
   }
-
+}

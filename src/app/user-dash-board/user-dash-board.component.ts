@@ -30,9 +30,6 @@ export class UserDashBoardComponent implements OnInit {
     private httpReq:HttpRequestService,
     private sign:SignUpService,
     private router: Router
-
-
-
   ) {}
 
   ngOnInit(): void {
@@ -40,24 +37,19 @@ export class UserDashBoardComponent implements OnInit {
       this.modeSpione = bool;
     });
 
-    this.route.queryParamMap.subscribe((params)=>{
-      this.httpReq.GetUserid(params.get("idUt"))
-      this.sign.bs.subscribe((res)=>{
+    this.route.queryParamMap.subscribe((params) => {
+      this.httpReq.GetUserid(params.get('idUt'));
+      this.sign.bs.subscribe((res) => {
         console.log(res[0]); //chiedere perchè c è bisogno di [0]
-        this.guest=res[0];
-      
-      })
-      }
-      )
-      this.route.queryParamMap.subscribe((params)=>{
-        this.httpReq.GetConto(params.get("idCont"))
-        this.sign.bsconto.subscribe((res)=>{ console.log(res[0]); //chiedere perchè c è bisogno di [0]
-        
-        this.conto=res[0];
-        
-        
-        })
-      })
+        this.guest = res[0];
+      });
+    });
+    this.route.queryParamMap.subscribe((params) => {
+      this.httpReq.GetConto(params.get('idCont'));
+      this.sign.bsconto.subscribe((res) => {
+        this.conto = res;
+      });
+    });
   }
 
   copyMode() {

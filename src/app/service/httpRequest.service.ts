@@ -1,3 +1,4 @@
+import { RequestModel } from './../admin-dash-board/request.model';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
 
@@ -6,6 +7,8 @@ import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
+import { UtenteService } from './utente.service';
+import { isJSDocThisTag } from 'typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -15,33 +18,34 @@ export class HttpRequestService {
   utente: utente;
   conti!: conto[];
   transaction: BankTransaction[];
-  conto!:conto;
+  conto!: conto;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private sign: SignUpService
+    private sign: SignUpService,
+    private US: UtenteService
   ) {}
 
   // Chiamate Get
- 
-  GetConto(id:string){
-    
-    this.http
-    .get<conto>('http://localhost:3000/conti', {
-      params: {
-        id: id,
-      },
-    })
-    .subscribe((res) => {
-      this.conto = res;
-      console.log(res)
 
-      this.sign.bsconto.next(this.conto);
-    });
-}
-  
+  GetConto(id: string) {
+    this.http
+      .get<conto>('http://localhost:3000/conti', {
+        params: {
+          id: id,
+        },
+      })
+      .subscribe((res) => {
+        this.conto = res[0];
+        this.conto.iban = this.conto.id.toString() + this.conto.idUt.toString();
+        console.log('Iban' + this.conto.iban);
+        this.sign.bsconto.next(this.conto);
+      });
+  }
+
   GetUserid(id: string) {
+    this.US.idUt = id;
     this.http
       .get<utente>('http://localhost:3000/utenti', {
         params: {
@@ -68,22 +72,10 @@ export class HttpRequestService {
       });
   }
 
-
-
-  onGetTransaction(idAccount: number, transactionNumber: number) {
-    //richiesta transazioni con id manca http e verifica params
-    console.log(idAccount);
-    console.log(transactionNumber);
-    // this.http
-    //   .get<BankTransaction[]>('', {
-    //     params: {
-    //       idAccount: idAccount,
-    //     },
-    //   })
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //     this.transaction = res;
-    //   });
+  onGetTransaction() {
+    return this.http.get<BankTransaction[]>(
+      'http://localhost:3000/transazioni'
+    );
   }
 
   onGetUser() {
@@ -100,7 +92,7 @@ export class HttpRequestService {
   }
 
   onGetAccount() {
-    this.token = this.auth.token.token;
+    this.token = this.auth.accessToken;
     this.http
       .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
         headers: new HttpHeaders({

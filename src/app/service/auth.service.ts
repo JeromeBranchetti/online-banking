@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { AuthResponse } from '../model/authResponse.model';
 
 @Injectable({
@@ -10,7 +10,8 @@ import { AuthResponse } from '../model/authResponse.model';
 export class AuthService {
   loggedIn = new Subject<boolean>();
   authenticated: boolean = false;
-  administrator = false;
+  administrator: boolean = false;
+
   error = {
     message:
       'An unknown error has occured, looks like you are not on the right page.' +
@@ -43,7 +44,7 @@ export class AuthService {
           console.log(response);
           // Chiamata Get, tramite id accedo al ruolo dell'utente
           // Se non è amministratore
-          this.accessToken = response.token;
+          this.accessToken = response.access_token;
           this.loggedIn.next(true);
           this.authenticated = true;
           this.router.navigate(['/home-page-guest']);

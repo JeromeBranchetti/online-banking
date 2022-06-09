@@ -3,6 +3,6 @@ export class RequestModel {
   lastName: string;
   dateOfBirth: string;
   email: string;
-  result: string;
-  header: string;
+  result?: string;
+  header?: string;
 }

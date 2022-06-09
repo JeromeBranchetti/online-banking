@@ -60,7 +60,7 @@ export class SignUpService {
       this.http
         .get<utente[]>('http://localhost:3000/utenti')
         .subscribe((utenti) => {
-          console.log(utenti[utenti.length - 1]);
+          
           let id = utenti[utenti.length - 1].id;
           let cont = new conto(0);
           cont.idUt = id;

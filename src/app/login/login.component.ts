@@ -1,8 +1,11 @@
+import { HttpRequestService } from './../service/httpRequest.service';
+import { SignUpService } from './../service/signUp.service';
 import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { UtenteService } from '../service/utente.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +21,21 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private location: Location
+    private location: Location,
+    private US:UtenteService,
+    private http:HttpRequestService,
   ) {}
 
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    this.auth.login(email, password);
+    this.auth.loggedIn.next(true);
+    this.auth.authenticated = true;
+    if(this.auth.authenticated){
+      this.http.GetUser(email ,password);
+
+      
+    }
   }
 
   delete() {

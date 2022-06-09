@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { SpioneService } from '../service/spione.service';
+import { UtenteService } from '../service/utente.service';
 
 @Component({
   selector: 'app-bar',
@@ -15,7 +16,8 @@ export class AppBarComponent implements OnInit {
   constructor(
     private spioneService: SpioneService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private US:UtenteService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,9 @@ export class AppBarComponent implements OnInit {
   }
 
   toHomeGuestPage() {
-    this.router.navigate(['/home-page-guest']);
+    this.router.navigate(['/home-page-guest'], {
+      queryParams: {
+      idUt:this.US.idUt , idCont:this.US.idCont}
+      },);
   }
 }

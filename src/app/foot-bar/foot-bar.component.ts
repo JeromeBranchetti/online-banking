@@ -61,31 +61,31 @@ export class FootBarComponent implements OnInit {
   }
 
   onDashBoard() {
+    console.log(this.US.idUt)
+    console.log(this.US.idCont)
     this.router.navigate(['/userDashboard'], {
        queryParams: {
-        queryParams:{idUt:this.US.idUt , idCont:this.US.idCont}
+       idUt:this.US.idUt , idCont:this.US.idCont}
        },
-    });
+    );
   }
 
   onPayment() {
     this.router.navigate(
       ['/payment']
-
-      // {
-      //   queryParams: {
-      //     user: this.guest.firstName + this.guest.lastName,
-      //     id: this.guest.id,
-      //   },
-      // }
+      , {
+        queryParams: {
+        idUt:this.US.idUt , idCont:this.US.idCont}
+        },
+     
     );
   }
   onMovementDetail() {
     this.router.navigate(['/account-detail'], {
-      // queryParams: {
-      //   user: this.guest.firstName + this.guest.lastName,
-      //   id: this.guest.id,
-      // },
-    });
+     
+        queryParams: {
+        idUt:this.US.idUt , idCont:this.US.idCont}
+        },
+    );
   }
 }

@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 import { isJSDocThisTag } from 'typescript';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ export class HttpRequestService {
     private http: HttpClient,
     private auth: AuthService,
     private sign: SignUpService,
-    private US: UtenteService
+    private US: UtenteService,
+    private root:Router,
   ) {}
 
   // Chiamate Get
@@ -38,8 +40,8 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.conto = res[0];
-        this.conto.iban = this.conto.id.toString() + this.conto.idUt.toString();
-        console.log('Iban' + this.conto.iban);
+        this.conto.iban ="it000000000000" + this.conto.numero_conto.toString()+this.conto.id.toString() + this.conto.idUt.toString();
+        
         this.sign.bsconto.next(this.conto);
       });
   }
@@ -56,21 +58,27 @@ export class HttpRequestService {
         this.utente = res;
 
         this.sign.bs.next(this.utente);
+
       });
   }
 
   GetUser(ema: string, pass: string) {
     //utente appena loggato
     this.http
-      .get<utente>('http://localhost:8082/api/userdetails', {
+      .get<utente>('http://localhost:3000/utenti', {
         params: { email: ema, password: pass },
       })
       .subscribe((res) => {
         console.log(res);
-        this.utente = res;
-        this.sign.bs.next(this.utente);
-      });
-  }
+        this.US.idUt=res[0].id;
+        this.root.navigate(['/home-page-guest'], {
+          queryParams: {
+          idUt:this.US.idUt , idCont:this.US.idCont}
+          },);
+      })
+
+      };
+  
 
   onGetTransaction() {
     return this.http.get<BankTransaction[]>(

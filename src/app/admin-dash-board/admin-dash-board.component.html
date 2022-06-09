@@ -17,7 +17,7 @@
         >
           <div class="row">
             <div class="col-10">
-              {{ newRequests[i].name }}
+              {{ newRequests[i].firstName }}
               {{ newRequests[i].lastName }}
             </div>
             <div
@@ -37,7 +37,7 @@
     <div class="col-lg-6 col-sm-12 singleRequest">
       <div *ngIf="requestVisibility">
         <app-request
-          [firstName]="selectedRequest.name"
+          [firstName]="selectedRequest.firstName"
           [lastName]="selectedRequest.lastName"
           [dateOfBirth]="selectedRequest.dateOfBirth"
           [email]="selectedRequest.email"
@@ -66,13 +66,15 @@
           aria-selected="true"
           (click)="onSelectOldRequest(i)"
         >
-          {{ oldRequests[i].name }}
+          {{ oldRequests[i].firstName }}
           {{ oldRequests[i].lastName }}
           <div [ngClass]="{}"></div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Bottone di download -->
+  <br />
   <div class="row">
     <div class="col-lg-12 downloadButton">
       <button (click)="onDownloadUserList()">Download User List</button>

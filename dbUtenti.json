@@ -7,15 +7,6 @@
       "birthDate": "1000-10-10",
       "password": "Root123!",
       "id": 1
-    },
-    {
-      "firstName": "Christian",
-      "lastName": "Cianci",
-      "email": "test@test.com",
-      "birthDate": "0001-01-01",
-      "password": "Abcd1234!",
-      "id": 2,
-      "saldo": "undefined1,5"
     }
   ],
   "conti": [
@@ -25,13 +16,6 @@
       "attivo": false,
       "idUt": 1,
       "id": 1
-    },
-    {
-      "numero_conto": 51,
-      "saldo": -11.3,
-      "attivo": false,
-      "idUt": 2,
-      "id": 2
     }
   ],
   "richieste": [
@@ -111,6 +95,13 @@
       "description": "Deposit",
       "idConto": 2,
       "id": 4
+    }
+  ],
+  "dipendenti": [
+    {
+      "email": "homersimpson@dipendente.it",
+      "password": "ciambelle",
+      "id": 0
     }
   ]
 }

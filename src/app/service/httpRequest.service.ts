@@ -7,6 +7,8 @@ import { utente } from './../class/utente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
+import { UtenteService } from './utente.service';
+import { isJSDocThisTag } from 'typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,8 @@ export class HttpRequestService {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private sign: SignUpService
+    private sign: SignUpService,
+    private US: UtenteService
   ) {}
 
   // Chiamate Get
@@ -42,6 +45,7 @@ export class HttpRequestService {
   }
 
   GetUserid(id: string) {
+    this.US.idUt = id;
     this.http
       .get<utente>('http://localhost:3000/utenti', {
         params: {

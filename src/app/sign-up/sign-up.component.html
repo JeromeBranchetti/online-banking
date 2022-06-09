@@ -4,7 +4,7 @@
   <button class="back" (click)="backButton()"><i class="fas fa-undo"></i> back</button>
   <form [formGroup]="signUp_form">
     <div class="row spread-inputs">
-      <div class="col-lg-4 col-sm-12 ">
+      <div class="col-lg-4 col-md-6 col-sm-12 ">
         <div class="mb-3">
           <label for="name" class="form-label">Name:</label>
           <input
@@ -17,7 +17,7 @@
           />
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
           <label for="date-picker" class="form-label">Date of Birth:</label>
           <input
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="row spread-inputs">
-      <div class="col-lg-4 col-sm-12">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
           <label for="last-name" class="form-label">Last Name:</label>
           <input
@@ -48,7 +48,7 @@
           />
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
           <label for="email" class="form-label">Email: </label>
           <input
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="row centered-input">
-      <div class="col-4">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
           <label for="password" class="col-sm-2 col-form-label">Password</label>
           <input
@@ -81,7 +81,7 @@
       </div>
     </div>
     <div class="row button-row text-center justify-content-around">
-      <div class="col-lg-3 col-sm-4">
+      <div class="col-lg-3 col-sm-4 mb-2">
         <button [disabled]="signUp_form.invalid" (click)="signUp()">
           SignUp <i class="far fa-check-circle"></i>
         </button>

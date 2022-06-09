@@ -34,6 +34,10 @@ export class AppBarComponent implements OnInit {
 
   logOut() {
     this.router.navigate(['/']);
+    this.authService.loggedIn.next(false);
+    this.authService.authenticated=false;
+    this.US.idCont=null;
+    this.US.idUt=null;
   }
 
   toHome() {

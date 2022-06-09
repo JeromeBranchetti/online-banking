@@ -61,8 +61,6 @@ export class FootBarComponent implements OnInit {
   }
 
   onDashBoard() {
-    console.log(this.US.idUt)
-    console.log(this.US.idCont)
     this.router.navigate(['/userDashboard'], {
        queryParams: {
        idUt:this.US.idUt , idCont:this.US.idCont}

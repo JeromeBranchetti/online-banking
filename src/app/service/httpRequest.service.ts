@@ -137,6 +137,21 @@ export class HttpRequestService {
     this.http
       .post<BankTransaction>('http://localhost:3000/transazioni', transaction)
       .subscribe(() => {
+
+        this.http
+        .get<utente>('http://localhost:3000/utenti', {
+          params: {
+            id: transaction.idUt,
+          },
+        })
+        .subscribe((res) => {
+          console.log(res);
+         res[0].saldo=res[0].saldo+transaction.amount;
+         this.http.put<utente>('http://localhost:3000/utenti', res[0]).subscribe((res)=>console.log("caricato"))
+
+        });
+
+
         alert('Caricato');
       });
   }

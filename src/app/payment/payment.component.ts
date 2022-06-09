@@ -1,3 +1,5 @@
+import { BankTransaction } from './../class/bankTransaction.model';
+import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -63,7 +65,7 @@ export class PaymentComponent implements OnInit {
     ]),
   });
 
-  constructor() {}
+  constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {}
 
@@ -123,7 +125,9 @@ export class PaymentComponent implements OnInit {
     this.iban = this.iban.slice(0, 22) + ' ' + this.iban.slice(22);
   }
 
-  onBankTransferSubmit() {}
+  onBankTransferSubmit(transaction: BankTransaction) {
+    this.httpReq.onAddTransaction(transaction);
+  }
 
   onPhoneTopUpSubmit() {}
 

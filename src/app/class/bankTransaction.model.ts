@@ -3,4 +3,5 @@ export class BankTransaction {
   date: string;
   amount: string;
   description: string;
+  idUt: string; // Da togliere quando arriva il back
 }

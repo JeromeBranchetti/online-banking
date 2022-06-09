@@ -26,7 +26,7 @@ export class HttpRequestService {
     private auth: AuthService,
     private sign: SignUpService,
     private US: UtenteService,
-    private root:Router,
+    private root: Router,
     private transactionService: TransactionService
   ) {}
 
@@ -41,8 +41,12 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.conto = res[0];
-        this.conto.iban ="it000000000000" + this.conto.numero_conto.toString()+this.conto.id.toString() + this.conto.idUt.toString();
-        
+        this.conto.iban =
+          'it000000000000' +
+          this.conto.numero_conto.toString() +
+          this.conto.id.toString() +
+          this.conto.idUt.toString();
+
         this.sign.bsconto.next(this.conto);
       });
   }
@@ -59,7 +63,6 @@ export class HttpRequestService {
         this.utente = res;
 
         this.sign.bs.next(this.utente);
-
       });
   }
 
@@ -71,16 +74,16 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         console.log(res);
-        this.US.idUt=res[0].id;
+        this.US.idUt = res[0].id;
         this.auth.loggedIn.next(true);
         this.root.navigate(['/home-page-guest'], {
           queryParams: {
-          idUt:this.US.idUt , idCont:this.US.idCont}
-          },);
-      })
-
-      };
-  
+            idUt: this.US.idUt,
+            idCont: this.US.idCont,
+          },
+        });
+      });
+  }
 
   onGetTransaction() {
     this.http
@@ -127,6 +130,14 @@ export class HttpRequestService {
       .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
         console.log(res);
+      });
+  }
+
+  onAddTransaction(transaction: BankTransaction) {
+    this.http
+      .post<BankTransaction>('http://localhost:3000/transazioni', transaction)
+      .subscribe(() => {
+        alert('Caricato');
       });
   }
 }

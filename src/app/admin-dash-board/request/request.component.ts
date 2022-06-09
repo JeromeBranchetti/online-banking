@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./request.component.css'],
 })
 export class RequestComponent implements OnInit {
-  @Input() name: string;
+  @Input() firstName: string;
   @Input() lastName: string;
   @Input() dateOfBirth: string;
   @Input() email: string;

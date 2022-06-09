@@ -1,3 +1,5 @@
+import { BankTransaction } from './../class/bankTransaction.model';
+import { HttpRequestService } from './../service/httpRequest.service';
 import { TransactionService } from './../service/transaction.service';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -11,16 +13,21 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class GraphicComponent implements OnInit {
   data: number[] = [];
+  bankTransactions: BankTransaction[] = [];
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
     let currentBalance = 0;
-    for (let transaction of this.transactionService.bankTransactions) {
-      this.lineChartData.labels.push(transaction.date);
-      currentBalance = currentBalance + +transaction.amount;
-      this.data.push(currentBalance);
-    }
+    this.httpReq.onGetTransaction().subscribe((res) => {
+      this.bankTransactions = res;
+      for (let transaction of this.bankTransactions) {
+        this.lineChartData.labels.push(transaction.date);
+        currentBalance = currentBalance + +transaction.amount;
+        console.log(currentBalance);
+        this.data.push(currentBalance);
+      }
+    });
   }
 
   public lineChartData: ChartConfiguration['data'] = {

@@ -37,9 +37,9 @@ export class HttpRequestService {
         },
       })
       .subscribe((res) => {
-        this.conto = res;
-        console.log(res);
-
+        this.conto = res[0];
+        this.conto.iban = this.conto.id.toString() + this.conto.idUt.toString();
+        console.log('Iban' + this.conto.iban);
         this.sign.bsconto.next(this.conto);
       });
   }
@@ -72,10 +72,10 @@ export class HttpRequestService {
       });
   }
 
-  onGetTransaction(idAccount: number, transactionNumber: number) {
-    console.log(idAccount);
-    console.log(transactionNumber);
-    this.http.get<RequestModel>('http://localhost:3000/');
+  onGetTransaction() {
+    return this.http.get<BankTransaction[]>(
+      'http://localhost:3000/transazioni'
+    );
   }
 
   onGetUser() {

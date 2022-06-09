@@ -37,7 +37,11 @@ export class AccountDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bankTransactions = this.transactionService.bankTransactions;
+    this.httpReq.onGetTransaction().subscribe((res) => {
+      console.log(res);
+      this.bankTransactions = res;
+    });
+
     this.onCalculateAmount();
     this.spyMode.bs.subscribe((res) => {
       this.spyModeBoolean = res;
@@ -59,7 +63,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onFilterNumberTransaction(filter: number) {
-    this.httpReq.onGetTransaction(this.idAccount, filter);
+    // this.httpReq.onGetTransaction(this.idAccount, filter);
   }
 
   onFilterWord() {}

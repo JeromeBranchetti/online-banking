@@ -10,146 +10,37 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./admin-dash-board.component.css'],
 })
 export class AdminDashBoardComponent implements OnInit {
-  /* To-do: 
-  - Fetch di 12 richieste e le salverò dentro l'array requests
-*/
+  newRequests: RequestModel[] = [];
+  oldRequests: RequestModel[] = [];
+  requestsLight: string[] = [];
+  userList: utente[] = [];
 
-  newRequests: RequestModel[] = [
-    {
-      name: 'Andrea',
-      lastName: 'Rossi',
-      dateOfBirth: '06/10/1996',
-      email: 'andrea.rossi@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Giovanni',
-      lastName: 'Bianchi',
-      dateOfBirth: '06/10/1996',
-      email: 'giovanni.bianchi@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Raffaele',
-      lastName: 'Verdi',
-      dateOfBirth: '06/10/1996',
-      email: 'raffaele.verdi@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Omar',
-      lastName: 'Gialli',
-      dateOfBirth: '06/10/1996',
-      email: 'omar.gialli@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Beatrice',
-      lastName: 'Viola',
-      dateOfBirth: '06/10/1996',
-      email: 'beatrice.viola@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Federico',
-      lastName: 'Marroni',
-      dateOfBirth: '06/10/1996',
-      email: 'federico.marroni@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Luca',
-      lastName: 'Luca',
-      dateOfBirth: '06/10/1996',
-      email: 'luca.luca@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Riccardo',
-      lastName: 'Riccardi',
-      dateOfBirth: '06/10/1996',
-      email: 'riccardo.riccardi@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Cristiano',
-      lastName: 'Ronaldo',
-      dateOfBirth: '06/10/1996',
-      email: 'cristiano.ronaldo@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Karim',
-      lastName: 'Benzema',
-      dateOfBirth: '06/10/1996',
-      email: 'karim.benzema@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Vittorio',
-      lastName: 'Sgarbi',
-      dateOfBirth: '06/10/1996',
-      email: 'vittorio.sgarbi@gmail.it',
-      result: '',
-      header: '',
-    },
-    {
-      name: 'Fabio',
-      lastName: 'Caressa',
-      dateOfBirth: '06/10/1996',
-      email: 'fabio.caressa@gmail.it',
-      result: '',
-      header: '',
-    },
-  ];
-
-  oldRequests: RequestModel[] = [
-    {
-      name: 'Christian Kareem',
-      lastName: 'Cianci',
-      dateOfBirth: '02/01/1997',
-      email: 'ckcianci@gmail.com',
-      result: 'Accepted',
-      header: 'green',
-    },
-  ];
-
-  requestsLight: string[] = [
-    'green',
-    'yellow',
-    'red',
-    'green',
-    'yellow',
-    'red',
-    'green',
-    'yellow',
-    'red',
-    'green',
-    'yellow',
-    'red',
-  ];
   requestVisibility: boolean = false;
   buttonVisibility: boolean = false;
   requestIndex: number;
   selectedRequest: RequestModel;
   selectedLight: string;
 
-  userList: utente[] = [];
-
   constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
-    console.log(this.httpReq.token);
+    this.httpReq.onGetRequest().subscribe((res) => {
+      this.newRequests = res;
+    });
+  }
+
+  // Metodo per il colore
+  onColorRequestList() {
+    let i = 0;
+    for (let request of this.newRequests) {
+      i++;
+      if (request.type === 'account opening') {
+        this.requestsLight[i] = 'yellow';
+      } else if (request.type === 'account registration') {
+        this.requestsLight[i] = 'green';
+      } else if (request.type === 'account clos') {
+      }
+    }
   }
 
   // Metodi per le richieste
@@ -189,11 +80,11 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodi per il download
 
   exportAsExcelFile(json: utente[], excelFileName: string): void {
-    console.log('Json: ' + json);
+    'Json: ' + json;
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-    console.log(worksheet);
-    console.log(workbook);
+    worksheet;
+    workbook;
     XLSX.utils.book_append_sheet(workbook, worksheet, excelFileName);
 
     XLSX.writeFile(workbook, excelFileName);
@@ -202,7 +93,7 @@ export class AdminDashBoardComponent implements OnInit {
   onDownloadUserList() {
     this.httpReq.onGetUser().subscribe((res) => {
       this.userList = JSON.parse(JSON.stringify(res));
-      console.log(this.userList);
+      this.userList;
       this.exportAsExcelFile(this.userList, 'UserList.xlsx');
     });
   }

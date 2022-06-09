@@ -37,7 +37,7 @@ export class AccountDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('account-detail');
+    ('account-detail');
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.onCalculateAmount();
@@ -48,7 +48,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onCalculateAmount() {
-    console.log(this.bankTransactions);
+    this.bankTransactions;
     for (let bankTransaction of this.bankTransactions) {
       if (+bankTransaction.amount < 0) {
         this.debitAmount = (

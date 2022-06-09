@@ -1,7 +1,7 @@
 export class BankTransaction {
   type: string;
   date: string;
-  amount: string;
+  amount: number;
   description: string;
-  idUt:string; 
+  idConto: string;
 }

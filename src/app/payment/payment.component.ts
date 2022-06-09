@@ -1,3 +1,4 @@
+import { UtenteService } from './../service/utente.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,8 +16,9 @@ export class PaymentComponent implements OnInit {
   phoneTopUpChoice: boolean = false;
   bankWithdrawalChoice: boolean = false;
   bankDepositChoice: boolean = false;
-
+  type: string;
   iban: string;
+  date = new Date();
 
   firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
@@ -65,7 +67,10 @@ export class PaymentComponent implements OnInit {
     ]),
   });
 
-  constructor(private httpReq: HttpRequestService) {}
+  constructor(
+    private httpReq: HttpRequestService,
+    private utenteService: UtenteService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -78,6 +83,7 @@ export class PaymentComponent implements OnInit {
     this.secondPhoneTopUpForm.reset();
     this.bankWithdrawalForm.reset();
     this.bankDepositForm.reset();
+    this.type = 'transfer';
   }
 
   onBankWithdrawal() {
@@ -90,6 +96,7 @@ export class PaymentComponent implements OnInit {
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
     this.bankDepositForm.reset();
+    this.type = 'withdrawal';
   }
 
   onBankDeposit() {
@@ -102,6 +109,7 @@ export class PaymentComponent implements OnInit {
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
     this.bankWithdrawalForm.reset();
+    this.type = 'deposit';
   }
 
   onPhoneTopUp() {
@@ -113,6 +121,7 @@ export class PaymentComponent implements OnInit {
     this.secondBankTransferForm.reset();
     this.bankWithdrawalForm.reset();
     this.bankDepositForm.reset();
+    this.type = 'phoneTopUp';
   }
 
   onDecomposeIban() {
@@ -125,17 +134,51 @@ export class PaymentComponent implements OnInit {
     this.iban = this.iban.slice(0, 22) + ' ' + this.iban.slice(22);
   }
 
-  onBankTransferSubmit(transaction: BankTransaction) {
+  onBankTransferSubmit() {
+    let transaction: BankTransaction;
+    transaction = {
+      type: this.type,
+      date: this.date.toDateString(),
+      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      description: 'Transfer',
+      idConto: this.utenteService.idCont,
+    };
     this.httpReq.onAddTransaction(transaction);
   }
 
-  onPhoneTopUpSubmit() {}
+  onPhoneTopUpSubmit() {
+    let transaction: BankTransaction;
+    transaction = {
+      type: this.type,
+      date: this.date.toDateString(),
+      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      description: 'Phone Top Up',
+      idConto: this.utenteService.idCont,
+    };
+    this.httpReq.onAddTransaction(transaction);
+  }
 
   onBankDepositSubmit() {
-    console.log(this.bankDepositForm.get('amount').value);
+    let transaction: BankTransaction;
+    transaction = {
+      type: this.type,
+      date: this.date.toDateString(),
+      amount: +this.secondBankTransferForm.get('amount').value * +1,
+      description: 'Deposit',
+      idConto: this.utenteService.idCont,
+    };
+    this.httpReq.onAddTransaction(transaction);
   }
 
   onBankWithdrawalSubmit() {
-    console.log(this.bankWithdrawalForm.get('amount').value);
+    let transaction: BankTransaction;
+    transaction = {
+      type: this.type,
+      date: this.date.toDateString(),
+      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      description: 'Withdrawal',
+      idConto: this.utenteService.idCont,
+    };
+    this.httpReq.onAddTransaction(transaction);
   }
 }

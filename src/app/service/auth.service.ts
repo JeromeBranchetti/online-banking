@@ -41,7 +41,7 @@ export class AuthService {
       })
       .subscribe({
         next: (response) => {
-          console.log(response);
+          response;
           // Chiamata Get, tramite id accedo al ruolo dell'utente
           // Se non è amministratore
           this.accessToken = response.access_token;

@@ -30,9 +30,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
     });
 
     this.countDownSubscription = customInterval.subscribe(
-      (data) => {
-        console.log(data);
-      },
+      (data) => {},
       (error) => {},
       () => {
         this.router.navigate(['']);

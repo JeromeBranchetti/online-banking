@@ -115,7 +115,13 @@
         </div>
         <div class="buttons">
           <button class="redButton" matStepperPrevious>Back</button>
-          <button class="confirmButton" type="submit">Confirm</button>
+          <button
+            class="confirmButton"
+            type="submit"
+            (click)="onBankTransferSubmit()"
+          >
+            Confirm
+          </button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

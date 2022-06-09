@@ -20,20 +20,16 @@ export class GraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      let currentBalance = 0;
-      this.httpReq.onGetTransaction();
-      console.log('graphic');
-
-      this.transactionService.bankTransactionFlag.subscribe((res) => {
-        this.bankTransactions = res;
-        for (let transaction of this.bankTransactions) {
-          this.lineChartData.labels.push(transaction.date);
-          currentBalance = currentBalance + +transaction.amount;
-          this.lineChartData.datasets[0].data.push(currentBalance);
-        }
-      });
-    }, 100);
+    let currentBalance = 0;
+    this.httpReq.onGetTransaction();
+    this.transactionService.bankTransactionFlag.subscribe((res) => {
+      this.bankTransactions = res;
+      for (let transaction of this.bankTransactions) {
+        this.lineChartData.labels.push(transaction.date);
+        currentBalance = currentBalance + +transaction.amount;
+        this.lineChartData.datasets[0].data.push(currentBalance);
+      }
+    });
   }
 
   public lineChartData: ChartConfiguration['data'] = {
@@ -102,9 +98,7 @@ export class GraphicComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: {}[];
-  }): void {
-    console.log(event, active);
-  }
+  }): void {}
 
   public chartHovered({
     event,
@@ -112,9 +106,7 @@ export class GraphicComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: {}[];
-  }): void {
-    console.log(event, active);
-  }
+  }): void {}
 
   public hideOne(): void {
     const isHidden = this.chart?.isDatasetHidden(1);

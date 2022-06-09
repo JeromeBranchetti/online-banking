@@ -1,10 +1,15 @@
+import { RequestModel } from './../admin-dash-board/request.model';
 import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
 
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
@@ -40,6 +45,7 @@ export class HttpRequestService {
         },
       })
       .subscribe((res) => {
+        this.US.idCont = res[0].id;
         this.conto = res[0];
         this.conto.iban =
           'it000000000000' +
@@ -72,18 +78,42 @@ export class HttpRequestService {
       .get<utente>('http://localhost:3000/utenti', {
         params: { email: ema, password: pass },
       })
-      .subscribe((res) => {
-        console.log(res);
-        this.US.idUt = res[0].id;
-        this.auth.loggedIn.next(true);
-        this.root.navigate(['/home-page-guest'], {
-          queryParams: {
-            idUt: this.US.idUt,
-            idCont: this.US.idCont,
-          },
-        });
+      .subscribe({
+        next: (response) => {
+          response;
+          console.log(response);
+          this.US.idUt = response[0].id;
+          this.root.navigate(['/home-page-guest'], {
+            queryParams: {
+              idUt: this.US.idUt,
+              idCont: this.US.idCont,
+            },
+          });
+        },
+        error: (errorRes) => {
+          console.log(errorRes);
+        },
       });
   }
+
+  // GetUser(ema: string, pass: string) {
+  //   //utente appena loggato
+  //   this.http
+  //     .get<utente>('http://localhost:3000/utenti', {
+  //       params: { email: ema, password: pass },
+  //     })
+  //     .subscribe((res) => {
+  //       res;
+  //       this.US.idUt = res[0].id;
+  //       this.auth.loggedIn.next(true);
+  //       this.root.navigate(['/adminDashboard'], {
+  //         queryParams: {
+  //           idUt: this.US.idUt,
+  //           idCont: this.US.idCont,
+  //         },
+  //       });
+  //     });
+  // }
 
   onGetTransaction() {
     this.http
@@ -96,15 +126,12 @@ export class HttpRequestService {
 
   onGetUser() {
     this.token = this.auth.accessToken;
-    console.log('Get: ' + this.token);
-    return this.http.get<utente[]>(
-      'http://localhost:8080/authentication/utenti',
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      }
-    );
+    'Get: ' + this.token;
+    return this.http.get<utente[]>('http://localhost:3000/utenti', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.token,
+      }),
+    });
   }
 
   onGetAccount() {
@@ -116,8 +143,12 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        console.log(res);
+        res;
       });
+  }
+
+  onGetRequest() {
+    return this.http.get<RequestModel[]>('http://localhost:3000/richieste');
   }
 
   // Chiamate post
@@ -125,11 +156,11 @@ export class HttpRequestService {
   onAddUser(ut: utente) {
     // utente iscritto
 
-    console.log(ut);
+    ut;
     this.http
       .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
-        console.log(res);
+        res;
       });
   }
 
@@ -137,22 +168,15 @@ export class HttpRequestService {
     this.http
       .post<BankTransaction>('http://localhost:3000/transazioni', transaction)
       .subscribe(() => {
-
         this.http
-        .get<utente>('http://localhost:3000/utenti', {
-          params: {
-            id: transaction.idUt,
-          },
-        })
-        .subscribe((res) => {
-          console.log(res);
-         res[0].saldo=res[0].saldo+transaction.amount;
-         this.http.put<utente>('http://localhost:3000/utenti', res[0]).subscribe((res)=>console.log("caricato"))
-
-        });
-
-
-        alert('Caricato');
+          .get<conto>('http://localhost:3000/conti/' + transaction.idConto, {})
+          .subscribe((res) => {
+            res;
+            res.saldo = res.saldo + transaction.amount;
+            this.http
+              .put<conto>('http://localhost:3000/conti/' + res.id, res)
+              .subscribe((res) => 'caricato');
+          });
       });
   }
 }

@@ -1,4 +1,5 @@
 export class RequestModel {
+  type?: string;
   name: string;
   lastName: string;
   dateOfBirth: string;

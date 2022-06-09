@@ -18,17 +18,17 @@ export class UserDashBoardComponent implements OnInit {
   iban: string = 'IT***************************';
   trueIban: string;
   saldo: string = '***************';
-  guest=utente.factory();
+  guest = utente.factory();
   modeSpione!: boolean;
-  conto=new conto(0)
- 
+  conto = new conto(0);
+
   constructor(
     public SUService: SignUpService,
     public spioneService: SpioneService,
     private location: Location,
-    private route:ActivatedRoute,
-    private httpReq:HttpRequestService,
-    private sign:SignUpService,
+    private route: ActivatedRoute,
+    private httpReq: HttpRequestService,
+    private sign: SignUpService,
     private router: Router
   ) {}
 
@@ -40,7 +40,7 @@ export class UserDashBoardComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
-        console.log(res[0]); //chiedere perchè c è bisogno di [0]
+        res[0]; //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
       });
     });

@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ChangeEmailPassComponent implements OnInit {
   isEmail: boolean = true;
 
-  constructor() {}
+  constructor(
+    private http:HttpRequestService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -16,11 +19,11 @@ export class ChangeEmailPassComponent implements OnInit {
     this.isEmail = !this.isEmail;
   }
 
-  onChangePass() {
-    //fare logica richiesta HTTP modifica password
+  onChangePass(pass:string) {
+    this.http.changepass(pass);
   }
 
-  onChangeEmail() {
-    //fare logica richiesta HTTP modifica email
+  onChangeEmail(email:string) {
+    this.http.changemail(email);
   }
 }

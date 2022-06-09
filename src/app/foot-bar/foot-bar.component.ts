@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { UtenteService } from './../service/utente.service';
 import { SignUpService } from './../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
@@ -45,7 +46,7 @@ export class FootBarComponent implements OnInit {
     private router: Router,
     private Sus: SignUpService,
     private authService: AuthService,
-    private US:UtenteService
+    private US: UtenteService
   ) {}
 
   ngOnInit(): void {
@@ -62,9 +63,9 @@ export class FootBarComponent implements OnInit {
 
   onDashBoard() {
     this.router.navigate(['/userDashboard'], {
-       queryParams: {
-        queryParams:{idUt:this.US.idUt , idCont:this.US.idCont}
-       },
+      queryParams: {
+        queryParams: { idUt: this.US.idUt, idCont: this.US.idCont },
+      },
     });
   }
 

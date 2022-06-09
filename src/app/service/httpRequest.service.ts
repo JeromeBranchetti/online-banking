@@ -1,4 +1,4 @@
-import { RequestModel } from './../admin-dash-board/request.model';
+import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
 
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
-import { isJSDocThisTag } from 'typescript';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,8 @@ export class HttpRequestService {
     private http: HttpClient,
     private auth: AuthService,
     private sign: SignUpService,
-    private US: UtenteService
+    private US: UtenteService,
+    private transactionService: TransactionService
   ) {}
 
   // Chiamate Get
@@ -73,9 +74,12 @@ export class HttpRequestService {
   }
 
   onGetTransaction() {
-    return this.http.get<BankTransaction[]>(
-      'http://localhost:3000/transazioni'
-    );
+    this.http
+      .get<BankTransaction[]>('http://localhost:3000/transazioni')
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
   }
 
   onGetUser() {

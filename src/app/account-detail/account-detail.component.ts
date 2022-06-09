@@ -32,23 +32,23 @@ export class AccountDetailComponent implements OnInit {
 
   constructor(
     private spyMode: SpioneService,
-    private httpReq: HttpRequestService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private httpReq: HttpRequestService
   ) {}
 
   ngOnInit(): void {
-    this.httpReq.onGetTransaction().subscribe((res) => {
-      console.log(res);
+    console.log('account-detail');
+    this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
+      this.onCalculateAmount();
     });
-
-    this.onCalculateAmount();
     this.spyMode.bs.subscribe((res) => {
       this.spyModeBoolean = res;
     });
   }
 
   onCalculateAmount() {
+    console.log(this.bankTransactions);
     for (let bankTransaction of this.bankTransactions) {
       if (+bankTransaction.amount < 0) {
         this.debitAmount = (

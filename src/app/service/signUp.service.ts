@@ -60,7 +60,7 @@ export class SignUpService {
           this.http;
 
           this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
-            this.auth.loggedIn.next(true);
+            
             this.auth.authenticated = true;
             this.router.navigate(['/home-page-guest'], {
               queryParams: {

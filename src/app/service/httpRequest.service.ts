@@ -110,30 +110,9 @@ export class HttpRequestService {
     }
   }
 
-  // GetUser(ema: string, pass: string) {
-  //   //utente appena loggato
-  //   this.http
-  //     .get<utente>('http://localhost:3000/utenti', {
-  //       params: { email: ema, password: pass },
-  //     })
-  //     .subscribe((res) => {
-  //       res;
-  //       this.US.idUt = res[0].id;
-  //       this.auth.loggedIn.next(true);
-  //       this.root.navigate(['/adminDashboard'], {
-  //         queryParams: {
-  //           idUt: this.US.idUt,
-  //           idCont: this.US.idCont,
-  //         },
-  //       });
-  //     });
-  // }
-
   onGetTransaction() {
     this.http
-      .get<BankTransaction[]>(
-        'http://localhost:3000/transazioni/_page=1&_limit=10'
-      )
+      .get<BankTransaction[]>('http://localhost:3000/transazioni/')
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);

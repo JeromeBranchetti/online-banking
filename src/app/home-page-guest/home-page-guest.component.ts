@@ -1,3 +1,5 @@
+import { utente } from './../class/utente';
+import { SignUpService } from './../service/signUp.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { RequestModel } from './../admin-dash-board/request.model';
 import { HttpClient } from '@angular/common/http';
@@ -15,12 +17,14 @@ export class HomePageGuestComponent implements OnInit {
   conti: conto[] = [];
   idUt: string = 'null';
   request: RequestModel;
+  utente: utente;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private httpReq: HttpRequestService
+    private httpReq: HttpRequestService,
+    private sign: SignUpService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +39,11 @@ export class HomePageGuestComponent implements OnInit {
         .subscribe((res) => {
           this.conti = res;
         });
+    });
+    this.sign.bs.subscribe((res) => {
+      console.log(res);
+      this.utente = res;
+      console.log(this.utente);
     });
   }
   toPayment() {
@@ -53,12 +62,13 @@ export class HomePageGuestComponent implements OnInit {
 
     this.request = {
       type: 'account opening',
-      firstName: this.httpReq.utente.firstName,
-      lastName: this.httpReq.utente.lastName,
-      dateOfBirth: this.httpReq.utente.birthDate,
-      email: this.httpReq.utente.email,
+      firstName: this.utente.firstName,
+      lastName: this.utente.lastName,
+      dateOfBirth: this.utente.birthDate,
+      email: this.utente.email,
       idCont: cont.id,
     };
+    console.log(this.request);
     this.httpReq.onAddRequest(this.request);
   }
 }

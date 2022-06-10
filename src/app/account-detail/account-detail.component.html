@@ -8,74 +8,57 @@
 <!-- Contenitore Header transazioni e lista transazioni -->
 <div class="container-fluid">
   <!-- Contenitore Header transazioni -->
-  <div class="row">
-    <div class="col-lg-12 col-12 d-lg-flex d-none d-sm-none filterContainer">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-          <input
-            matStartDate
-            formControlName="start"
-            placeholder="Start date"
-          />
-          <input matEndDate formControlName="end" placeholder="End date" />
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
+
+  <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
+    <input type="text" />
+    <button (click)="onFilterWord()">Search</button>
+  </div>
+</div>
+<div id="transactionHeader" class="row">
+  <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
+    <div class="filter">
       <input type="text" />
       <button (click)="onFilterWord()">Search</button>
     </div>
   </div>
-  <div id="transactionHeader" class="row">
-    <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
-      <div class="filter">
-        <input type="text" />
-        <button (click)="onFilterWord()">Search</button>
-      </div>
-    </div>
-    <div class="col-lg-5 col-6 col-sm-10 amount">
-      <span id="debitAmount">
-        <i class="fa-solid fa-arrow-down"></i>
-        -{{ spyModeBoolean ? "****" : debitAmount }}€
-      </span>
-      <span id="creditAmount">
-        <i class="fa-solid fa-arrow-up"></i>
-        +{{ spyModeBoolean ? "****" : creditAmount }}€
-      </span>
-    </div>
-
-    <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
-      <button (click)="onFilterNumberTransaction(10)">10</button>
-      <button (click)="onFilterNumberTransaction(20)">20</button>
-      <button (click)="onFilterNumberTransaction(50)">50</button>
-      <button (click)="onPrintTransaction()">
-        <span
-          ><span class="d-none d-sm-none d-lg-inline">Download </span>
-          <i class="fas fa-download"></i>
-        </span>
-      </button>
-    </div>
+  <div class="col-lg-5 col-6 col-sm-10 amount">
+    <span id="debitAmount">
+      <i class="fa-solid fa-arrow-down"></i>
+      -{{ spyModeBoolean ? "****" : debitAmount }}€
+    </span>
+    <span id="creditAmount">
+      <i class="fa-solid fa-arrow-up"></i>
+      +{{ spyModeBoolean ? "****" : creditAmount }}€
+    </span>
   </div>
-  <table class="table" id="transactionList">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Date</th>
-        <th scope="col">Amount</th>
-        <th scope="col" class="description">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bankTransaction of bankTransactions">
-        <td>{{ bankTransaction.type }}</td>
-        <td>{{ bankTransaction.date }}</td>
-        <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
-        <td class="description">{{ bankTransaction.description }}</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
+    <button (click)="onFilterNumberTransaction(10)">10</button>
+    <button (click)="onFilterNumberTransaction(20)">20</button>
+    <button (click)="onFilterNumberTransaction(50)">50</button>
+    <button (click)="onPrintTransaction()">
+      <span
+        ><span class="d-none d-sm-none d-lg-inline">Download </span>
+        <i class="fas fa-download"></i>
+      </span>
+    </button>
+  </div>
 </div>
+<table class="table" id="transactionList">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Date</th>
+      <th scope="col">Amount</th>
+      <th scope="col" class="description">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bankTransaction of bankTransactions">
+      <td>{{ bankTransaction.type }}</td>
+      <td>{{ bankTransaction.date }}</td>
+      <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
+      <td class="description">{{ bankTransaction.description }}</td>
+    </tr>
+  </tbody>
+</table>

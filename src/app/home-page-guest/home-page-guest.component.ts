@@ -14,20 +14,13 @@ import { conto } from '../class/conto';
 export class HomePageGuestComponent implements OnInit {
   conti: conto[] = [];
   idUt: string = 'null';
-<<<<<<< HEAD
   request: RequestModel;
-=======
->>>>>>> 2094c391395677cf6c74ca359807648654bc36a8
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-<<<<<<< HEAD
     private http: HttpClient,
     private httpReq: HttpRequestService
-=======
-    private http: HttpClient
->>>>>>> 2094c391395677cf6c74ca359807648654bc36a8
   ) {}
 
   ngOnInit(): void {

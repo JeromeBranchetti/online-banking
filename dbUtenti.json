@@ -172,6 +172,18 @@
     {
       "type": "account opening",
       "id": 7
+    },
+    {
+      "type": "account opening",
+      "id": 8
+    },
+    {
+      "type": "account opening",
+      "id": 9
+    },
+    {
+      "type": "account opening",
+      "id": 10
     }
   ],
   "transazioni": [

@@ -16,7 +16,6 @@ import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -113,11 +112,6 @@ export class HttpRequestService {
     }
   }
 
-<<<<<<< HEAD
-=======
- 
-
->>>>>>> 723a6120475ee6c2e09f76f1f0e6b5a11d79422b
   onGetTransaction() {
     this.http
       .get<BankTransaction[]>('http://localhost:3000/transazioni/')

@@ -33,8 +33,8 @@ import {
           trasform: 'translateY(0)',
         })
       ),
-      transition('notLogged => loggedVisible', animate(300)),
-      transition('loggedVisible => notLogged', animate(300)),
+      transition('notLogged => loggedVisible', animate(400)),
+      transition('loggedVisible => notLogged', animate(400)),
     ]),
   ],
 })

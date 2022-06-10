@@ -82,7 +82,7 @@ export class HttpRequestService {
         .subscribe({
           next: (response) => {
             response;
-            this.utente = response[0];
+            this.utente = response[0]; //ciao
             this.sign.bs.next(this.utente);
             this.US.idUt = response[0].id;
             this.root.navigate(['/home-page-guest'], {

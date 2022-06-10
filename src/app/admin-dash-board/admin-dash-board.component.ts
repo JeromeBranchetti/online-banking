@@ -63,19 +63,21 @@ export class AdminDashBoardComponent implements OnInit {
   }
 
   onAcceptRequest() {
+    this.requestVisibility = false;
+    this.selectedRequest.header = 'green';
+    this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accepted';
-    this.requestVisibility = false;
-    this.selectedRequest.header = 'green';
   }
 
   onDeclineRequest() {
+    this.requestVisibility = false;
+    this.selectedRequest.header = 'red';
+    this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Declined';
-    this.requestVisibility = false;
-    this.selectedRequest.header = 'red';
   }
 
   // Metodi per il download

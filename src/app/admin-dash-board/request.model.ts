@@ -6,4 +6,6 @@ export class RequestModel {
   email: string;
   result?: string;
   header?: string;
+  id?: number;
+  idCont?: number;
 }

@@ -251,6 +251,14 @@
       "description": "Deposit",
       "idConto": 2,
       "id": 4
+    },
+    {
+      "type": "transfer",
+      "date": "Thu Jun 09 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 1,
+      "id": 5
     }
   ],
   "dipendenti": [

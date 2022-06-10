@@ -7,6 +7,7 @@
         <button class="confirmButton" (click)="onFetchRequest()">Fetch</button>
       </div>
       <div class="row flex-column requestsList" aria-orientation="vertical">
+        <!-- ngFor nuove richieste -->
         <div
           *ngFor="let request of newRequests; let i = index"
           class="nav-link request"
@@ -58,6 +59,7 @@
     <div class="col-lg-3 col-sm-12 oldRequestList">
       <h1>Older Request List</h1>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
+        <!-- ngFor vecchie richieste -->
         <div
           *ngFor="let request of oldRequests; let i = index"
           class="nav-link request"

@@ -130,33 +130,7 @@
       "id": 9
     }
   ],
-  "richieste": [
-    {
-      "type": "account closure",
-      "firstName": "Test",
-      "lastName": "Test",
-      "dateOfBirth": "0001-01-01",
-      "email": "test@test.com",
-      "idCont": 9,
-      "id": 5
-    },
-    {
-      "type": "account opening",
-      "firstName": "Test",
-      "lastName": "Test",
-      "dateOfBirth": "0001-01-01",
-      "email": "test@test.com",
-      "id": 12
-    },
-    {
-      "type": "account opening",
-      "firstName": "Test",
-      "lastName": "Test",
-      "dateOfBirth": "0001-01-01",
-      "email": "test@test.com",
-      "id": 13
-    }
-  ],
+  "richieste": [],
   "transazioni": [
     {
       "type": "transfer",

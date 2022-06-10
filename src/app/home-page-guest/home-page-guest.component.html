@@ -125,3 +125,8 @@
     <!-- <button (click)="newConto()">apri nuovo conto</button> -->
   </div>
 </div>
+
+Transazioni
+<div *ngFor="let transaction of transactions">
+  {{ transaction.amount }}
+</div>

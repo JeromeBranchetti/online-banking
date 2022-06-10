@@ -113,15 +113,29 @@ export class HttpRequestService {
   }
 
   onGetTransaction() {
+    let idConto = this.US.idCont;
     this.http
-      .get<BankTransaction[]>('http://localhost:3000/transazioni/')
+      .get<BankTransaction[]>(
+        'http://localhost:3000/transazioni/?idConto=' + idConto + '&_limit=10'
+      )
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
       });
   }
 
-  onGetTransactionFiltered() {}
+  onGetTransactionFiltered(filter: number) {
+    console.log(filter);
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:3000/transazioni/?_limit=' + filter
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+        console.log(res);
+      });
+  }
 
   onGetUser() {
     this.token = this.auth.accessToken;
@@ -148,7 +162,7 @@ export class HttpRequestService {
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
-      'http://localhost:3000/richieste/_limit=10'
+      'http://localhost:3000/richieste/?_limit=' + 10
     );
   }
 
@@ -220,9 +234,7 @@ export class HttpRequestService {
   onAddRequest(request: RequestModel) {
     this.http
       .post<RequestModel>('http://localhost:3000/richieste', request)
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe((res) => {});
   }
 
   // Chiamate Delete

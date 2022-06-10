@@ -24,6 +24,8 @@ export class GraphicComponent implements OnInit {
     this.httpReq.onGetTransaction();
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
+      this.lineChartData.labels = [];
+      this.lineChartData.datasets[0].data = [];
       for (let transaction of this.bankTransactions) {
         this.lineChartData.labels.push(transaction.date);
         currentBalance = currentBalance + +transaction.amount;

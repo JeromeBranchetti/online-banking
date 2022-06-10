@@ -1,3 +1,5 @@
+import { TransactionService } from './../service/transaction.service';
+import { BankTransaction } from './../class/bankTransaction.model';
 import { utente } from './../class/utente';
 import { SignUpService } from './../service/signUp.service';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -18,13 +20,15 @@ export class HomePageGuestComponent implements OnInit {
   idUt: string = 'null';
   request: RequestModel;
   utente: utente;
+  transactions: BankTransaction[] = [];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
     private httpReq: HttpRequestService,
-    private sign: SignUpService
+    private sign: SignUpService,
+    private transactionService: TransactionService
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +45,15 @@ export class HomePageGuestComponent implements OnInit {
         });
     });
     this.sign.bs.subscribe((res) => {
-      console.log(res);
       this.utente = res;
-      console.log(this.utente);
     });
+    this.httpReq.onGetTransactionFiltered(3);
+    this.transactionService.bankTransactionFlag.subscribe((res) => {
+      this.transactions = res;
+    });
+    console.log(this.transactions);
   }
+
   toPayment() {
     this.router.navigate(['/payment']);
   }
@@ -68,7 +76,6 @@ export class HomePageGuestComponent implements OnInit {
       email: this.utente.email,
       idCont: cont.id,
     };
-    console.log(this.request);
     this.httpReq.onAddRequest(this.request);
   }
 }

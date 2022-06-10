@@ -33,6 +33,7 @@ export class UserDashBoardComponent implements OnInit {
     private sign: SignUpService,
     private router: Router,
     private auth: AuthService
+
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +47,14 @@ export class UserDashBoardComponent implements OnInit {
       this.sign.bs.subscribe((res) => {
         res[0]; //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
+    
       });
     });
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
+
       });
     });
   }

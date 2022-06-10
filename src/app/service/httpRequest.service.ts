@@ -16,6 +16,7 @@ import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -81,7 +82,8 @@ export class HttpRequestService {
         .subscribe({
           next: (response) => {
             response;
-            this.utente = response;
+            this.utente = response[0];
+            this.sign.bs.next(this.utente);
             this.US.idUt = response[0].id;
             this.root.navigate(['/home-page-guest'], {
               queryParams: {
@@ -103,6 +105,7 @@ export class HttpRequestService {
             //   queryParams: {
             //     idUt: this.US.idUt,
             //     idCont: this.US.idCont,
+            //zanzan
             //   },
             // });
           });
@@ -110,6 +113,11 @@ export class HttpRequestService {
     }
   }
 
+<<<<<<< HEAD
+=======
+ 
+
+>>>>>>> 723a6120475ee6c2e09f76f1f0e6b5a11d79422b
   onGetTransaction() {
     this.http
       .get<BankTransaction[]>('http://localhost:3000/transazioni/')

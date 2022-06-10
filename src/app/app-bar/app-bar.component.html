@@ -1,6 +1,6 @@
 <div class="container-fluid p-0 app-bar-body">
   <div class="row bar-row-1">
-    <div class="col-8 brand my-2 ms-2 p-0">
+    <div class="col brand my-lg-2 ms-lg-2 p-0">
       <span class="brand-logo"
         ><div class="logo-central">
           <i class="fas fa-mobile-alt"
@@ -9,14 +9,14 @@
       ></span>
       <span class="brand-name fs-4 mx-2"> JavaIsland</span>
     </div>
-    <div *ngIf="homeButtonVisible" class="col my-2 home-guest text-end p-0">
+    <div *ngIf="homeButtonVisible" class="col-2 my-2 home-guest text-end p-0">
       <button class="home-guest-button" (click)="toHomeGuestPage()">
         <i class="fas fa-house-damage fa-2xl"></i>
         <br />
-        <span>Account-List</span>
+        <span class=".d-sm-none">Accounts</span>
       </button>
     </div>
-    <div *ngIf="homeButtonVisible" class="col my-2 man-run-box text-end p-0">
+    <div *ngIf="homeButtonVisible" class="col-2 my-2 man-run-box text-end p-0">
       <button class="man-button" (click)="logOut()">
         <i class="fas fa-sign-out-alt fa-2xl"></i>
         <br />
@@ -24,7 +24,7 @@
       </button>
     </div>
 
-    <div *ngIf="homeButtonVisible" class="col my-2 text-center p-0">
+    <div *ngIf="homeButtonVisible" class="col-2 my-2 text-center p-0">
       <button (click)="openCloseToggle()" class="eye-button">
         <i *ngIf="eyeOpen" class="fas fa-eye fs-2"></i>
         <i *ngIf="!eyeOpen" class="fas fa-eye-slash fs-2"></i>

@@ -1,3 +1,5 @@
+import { RequestModel } from './../admin-dash-board/request.model';
+import { HttpRequestService } from './httpRequest.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -16,9 +18,10 @@ export class SignUpService {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private router: Router,
-    private US: UtenteService
+    private router: Router
   ) {}
+
+  request: RequestModel;
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto> = new BehaviorSubject<conto>(null);
@@ -49,18 +52,32 @@ export class SignUpService {
     //       },
     //     ]);
     //   });
-    this.http.post('http://localhost:3000/richieste', ut).subscribe(() => {});
+
     this.http.post('http://localhost:3000/utenti', ut).subscribe(() => {
       this.http
         .get<utente[]>('http://localhost:3000/utenti')
         .subscribe((utenti) => {
           let id = utenti[utenti.length - 1].id;
           let cont = new conto(0);
+
           cont.idUt = id;
-          this.http;
+
+          this.request = {
+            type: 'account registration',
+            firstName: ut.firstName,
+            lastName: ut.lastName,
+            dateOfBirth: ut.birthDate,
+            email: ut.email,
+            idCont: cont.id,
+          };
+
+          this.http
+            .post('http://localhost:3000/richieste', this.request)
+            .subscribe((res) => {
+              console.log(res);
+            });
 
           this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
-            
             this.auth.authenticated = true;
             this.router.navigate(['/home-page-guest'], {
               queryParams: {

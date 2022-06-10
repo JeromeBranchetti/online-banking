@@ -74,45 +74,41 @@ export class HttpRequestService {
 
   GetUser(ema: string, pass: string) {
     //utente appena loggato
-    if(!ema.includes("@dipendente.it")){
-    this.http
-      .get<utente>('http://localhost:3000/utenti', {
-        params: { email: ema, password: pass },
-      })
-      .subscribe({
-        next: (response) => {
+    if (!ema.includes('@dipendente.it')) {
+      this.http
+        .get<utente>('http://localhost:3000/utenti', {
+          params: { email: ema, password: pass },
+        })
+        .subscribe({
+          next: (response) => {
+            response;
+            this.US.idUt = response[0].id;
+            this.root.navigate(['/home-page-guest'], {
+              queryParams: {
+                idUt: this.US.idUt,
+                idCont: this.US.idCont,
+              },
+            });
+          },
+        });
+    } else {
+      this.http
+        .get<utente>('http://localhost:3000/dipendenti', {
+          params: { email: ema, password: pass },
+        })
+        .subscribe((response) => {
           response;
-          console.log(response);
-          this.US.idUt = response[0].id;
-          this.root.navigate(['/home-page-guest'], {
-            queryParams: {
-              idUt: this.US.idUt,
-              idCont: this.US.idCont,
-            },
-          });
-        }
-      });
-  }
-  else{
-    this.http
-      .get<utente>('http://localhost:3000/dipendenti', {
-        params: { email: ema, password: pass },
-      })
-      .subscribe(
-         (response) => {
-          response;
-          console.log(response);
-          
-           this.root.navigate(['/adminDashboard'], {
-          //   queryParams: {
-          //     idUt: this.US.idUt,
-          //     idCont: this.US.idCont,
-          //   },
-          // });
-        }) });
 
+          this.root.navigate(['/adminDashboard'], {
+            //   queryParams: {
+            //     idUt: this.US.idUt,
+            //     idCont: this.US.idCont,
+            //   },
+            // });
+          });
+        });
+    }
   }
-}
 
   // GetUser(ema: string, pass: string) {
   //   //utente appena loggato
@@ -196,5 +192,21 @@ export class HttpRequestService {
               .subscribe((res) => 'caricato');
           });
       });
+  }
+
+  onAddRequest(request: RequestModel) {
+    this.http
+      .post<RequestModel>('http://localhost:3000/richieste', request)
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+
+  // Chiamate Delete
+
+  onDeleteRequest(idRequest: number) {
+    this.http
+      .delete('http://localhost:3000/richieste/' + idRequest)
+      .subscribe((res) => {});
   }
 }

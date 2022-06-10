@@ -114,9 +114,19 @@ export class HttpRequestService {
 
   onGetTransaction() {
     let idConto = this.US.idCont;
+    return this.http.get<BankTransaction[]>(
+      'http://localhost:3000/transazioni/?idConto=' + idConto
+    );
+  }
+
+  onGetTransactionFiltered(filter: number) {
+    let idConto = this.US.idCont;
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:3000/transazioni/?idConto=' + idConto + '&_limit=10'
+        'http://localhost:3000/transazioni/?idConto=' +
+          idConto +
+          '&_limit=' +
+          filter
       )
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
@@ -124,16 +134,18 @@ export class HttpRequestService {
       });
   }
 
-  onGetTransactionFiltered(filter: number) {
-    console.log(filter);
+  onGetTransactionFilteredWord(transactionType: string) {
+    let idConto = this.US.idCont;
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:3000/transazioni/?_limit=' + filter
+        'http://localhost:3000/transazioni/?idConto=' +
+          idConto +
+          '&type=' +
+          transactionType
       )
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
-        console.log(res);
       });
   }
 
@@ -186,7 +198,6 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.utente = res[0];
       });
-    console.log(this.utente[0]);
     this.utente[0].password = pass;
     this.http
       .put<utente>(
@@ -206,7 +217,6 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.utente = res[0];
       });
-    console.log(this.utente[0]);
     this.utente[0].email = email;
     this.http
       .put<utente>(
@@ -222,11 +232,26 @@ export class HttpRequestService {
         this.http
           .get<conto>('http://localhost:3000/conti/' + transaction.idConto, {})
           .subscribe((res) => {
-            res;
-            res.saldo = res.saldo + transaction.amount;
-            this.http
-              .put<conto>('http://localhost:3000/conti/' + res.id, res)
-              .subscribe((res) => 'caricato');
+            if (
+              transaction.type !== 'deposit' &&
+              transaction.amount * -1 < res.saldo
+            ) {
+              res.saldo = res.saldo + transaction.amount;
+              this.http
+                .put<conto>('http://localhost:3000/conti/' + res.id, res)
+                .subscribe(() => {
+                  alert('payment was successful');
+                });
+            } else if (transaction.type === 'deposit') {
+              res.saldo = res.saldo + transaction.amount;
+              this.http
+                .put<conto>('http://localhost:3000/conti/' + res.id, res)
+                .subscribe(() => {
+                  alert('deposit was successful');
+                });
+            } else {
+              alert('Error');
+            }
           });
       });
   }

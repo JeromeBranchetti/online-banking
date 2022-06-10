@@ -144,6 +144,9 @@ export class PaymentComponent implements OnInit {
       idConto: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
+    this.bankTransferChoice = false;
+    this.firstBankTransferForm.reset();
+    this.secondBankTransferForm.reset();
   }
 
   onPhoneTopUpSubmit() {
@@ -151,23 +154,32 @@ export class PaymentComponent implements OnInit {
     transaction = {
       type: this.type,
       date: this.date.toDateString(),
-      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      amount: +this.secondPhoneTopUpForm.get('amount').value * -1,
       description: 'Phone Top Up',
       idConto: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
+    this.phoneTopUpChoice = false;
+    this.firstPhoneTopUpForm.reset();
+    this.secondPhoneTopUpForm.reset();
   }
 
   onBankDepositSubmit() {
-    let transaction: BankTransaction;
-    transaction = {
-      type: this.type,
-      date: this.date.toDateString(),
-      amount: +this.secondBankTransferForm.get('amount').value * +1,
-      description: 'Deposit',
-      idConto: this.utenteService.idCont,
-    };
-    this.httpReq.onAddTransaction(transaction);
+    if (+this.bankDepositForm.get('amount').value > 0) {
+      let transaction: BankTransaction;
+      transaction = {
+        type: this.type,
+        date: this.date.toDateString(),
+        amount: +this.bankDepositForm.get('amount').value * +1,
+        description: 'Deposit',
+        idConto: this.utenteService.idCont,
+      };
+      this.httpReq.onAddTransaction(transaction);
+    } else {
+      alert('The amount of the deposit is not valid');
+    }
+    this.bankDepositChoice = false;
+    this.bankDepositForm.reset();
   }
 
   onBankWithdrawalSubmit() {
@@ -175,10 +187,12 @@ export class PaymentComponent implements OnInit {
     transaction = {
       type: this.type,
       date: this.date.toDateString(),
-      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      amount: +this.bankWithdrawalForm.get('amount').value * -1,
       description: 'Withdrawal',
       idConto: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
+    this.bankWithdrawalChoice = false;
+    this.bankWithdrawalForm.reset();
   }
 }

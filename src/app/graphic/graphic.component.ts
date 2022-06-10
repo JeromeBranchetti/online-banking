@@ -21,7 +21,7 @@ export class GraphicComponent implements OnInit {
 
   ngOnInit(): void {
     let currentBalance = 0;
-    this.httpReq.onGetTransaction();
+    this.httpReq.onGetTransactionFiltered(10);
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.lineChartData.labels = [];

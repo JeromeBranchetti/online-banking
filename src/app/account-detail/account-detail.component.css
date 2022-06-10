@@ -59,6 +59,10 @@ button {
   height: fit-content;
 }
 
+.mat-form-field {
+  margin-bottom: 5px;
+}
+
 /* Lista transazioni */
 
 #debitAmount {

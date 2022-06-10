@@ -8,16 +8,36 @@
 <!-- Contenitore Header transazioni e lista transazioni -->
 <div class="container-fluid">
   <!-- Contenitore Header transazioni -->
-
   <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
-    <input type="text" />
+    <mat-form-field>
+      <mat-label>Transaction Type</mat-label>
+      <mat-select aria-label="Default select example" id="transaction">
+        <mat-option value="deposit">Deposit</mat-option>
+        <mat-option value="withdrawal">Withdrawal</mat-option>
+        <mat-option value="transfer">Transfer</mat-option>
+        <mat-option value="phone top up">Phone top up</mat-option>
+      </mat-select>
+    </mat-form-field>
     <button (click)="onFilterWord()">Search</button>
   </div>
 </div>
 <div id="transactionHeader" class="row">
   <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
     <div class="filter">
-      <input type="text" />
+      <mat-form-field>
+        <mat-label>Transaction Type</mat-label>
+        <mat-select
+          aria-label="Default select example"
+          id="transaction"
+          [(value)]="selected"
+        >
+          <mat-option
+            *ngFor="let transactionType of transactionsType"
+            [value]="transactionType"
+            >{{ transactionType }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
       <button (click)="onFilterWord()">Search</button>
     </div>
   </div>

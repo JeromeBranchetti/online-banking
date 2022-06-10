@@ -75,7 +75,7 @@
     },
     {
       "numero_conto": 61,
-      "saldo": 22055,
+      "saldo": 100,
       "attivo": false,
       "idUt": 2,
       "id": 2
@@ -165,22 +165,6 @@
       "description": "Transfer",
       "idConto": 2,
       "id": 2
-    },
-    {
-      "type": "deposit",
-      "date": "Thu Jun 09 2022",
-      "amount": 0,
-      "description": "Deposit",
-      "idConto": 2,
-      "id": 3
-    },
-    {
-      "type": "deposit",
-      "date": "Thu Jun 09 2022",
-      "amount": 0,
-      "description": "Deposit",
-      "idConto": 2,
-      "id": 4
     },
     {
       "type": "deposit",
@@ -325,6 +309,126 @@
       "description": "Transfer",
       "idConto": 2,
       "id": 21
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 15,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 24
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -100,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 25
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -100000,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 26
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 100000,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 27
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -1000000,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 28
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 1000000,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 29
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -10000000,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 30
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 1000000000,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 31
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -15,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 32
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 10,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 33
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -10,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 34
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -200,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 35
+    },
+    {
+      "type": "deposit",
+      "date": "Fri Jun 10 2022",
+      "amount": 15,
+      "description": "Deposit",
+      "idConto": 2,
+      "id": 36
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -15,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 37
+    },
+    {
+      "type": "withdrawal",
+      "date": "Fri Jun 10 2022",
+      "amount": -110,
+      "description": "Withdrawal",
+      "idConto": 2,
+      "id": 38
     }
   ],
   "dipendenti": [

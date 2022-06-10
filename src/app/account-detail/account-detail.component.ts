@@ -18,16 +18,18 @@ export class AccountDetailComponent implements OnInit {
   debitAmount: string = '0';
   creditAmount: string = '0';
   idAccount: number = 12345678912;
+  transactionsType: string[] = [
+    'deposit',
+    'withkdrawal',
+    'transfer',
+    'phone top up',
+  ];
+  selected: string;
 
   bankTransactions: BankTransaction[] = [];
 
   spyModeBoolean: boolean = false;
   finishSubscribe: boolean = false;
-
-  range = new FormGroup({
-    start: new FormControl(null),
-    end: new FormControl(null),
-  });
 
   // Methods
 
@@ -68,18 +70,25 @@ export class AccountDetailComponent implements OnInit {
     this.httpReq.onGetTransactionFiltered(filter);
   }
 
-  onFilterWord() {}
+  onFilterWord() {
+    this.httpReq.onGetTransactionFilteredWord(this.selected);
+  }
 
   onPrintTransaction() {
-    /* pass here the table id */
-    let element = document.getElementById('transactionList');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    this.httpReq.onGetTransaction().subscribe((res) => {
+      this.transactionService.bankTransactionFlag.next(res);
+      setTimeout(() => {
+        /* pass here the table id */
+        let element = document.getElementById('transactionList');
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        /* generate workbook and add the worksheet */
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
+        /* save to file */
+        XLSX.writeFile(wb, this.fileName);
+      }, 100);
+    });
   }
 }

@@ -47,7 +47,7 @@
   </div>
   <div class="third-section container-fluid">
     <!-- Carousel con altri conti -->
-    <div class="container py-3">
+    <div *ngIf="conti.length > 1" class="container py-3">
       <div *ngFor="let conto of conti | slice: 1; index as i">
         <div
           class="container other-account mb-3"
@@ -70,11 +70,58 @@
             <div class="col-3 to-details p-2 fs-6">Click to Details</div>
           </div>
         </div>
-        <!-- <button (click)="toConto(conto.id)">n.conto: {{conto.numero_conto}}</button> -->
       </div>
     </div>
   </div>
   <div class="fourth-section">
-    <button (click)="newConto()">apri nuovo conto</button>
+    <div class="container apri-conto">
+      <div class="row">
+        <div class="col-lg-6 side-image">
+        </div>
+        <div class="col-lg-6 ">
+          <div class="row d-flex flex-column trova-conto text-center">
+            <div class="col">
+              <h1>{{'trova il conto per te' | uppercase }}</h1>
+            </div>
+            <div class="col">
+              <div class="row first-trova-conto-row mb-3">
+                <div class="col-4 conto-font-bold">Che tipo di conto cerchi?</div>
+                <div class="col the-border">
+                  <i class="fas fa-user-check fs-4"></i> 
+                  <br>
+                  <span>Conto Standard</span>
+                </div>
+                <div class="col the-border">
+                  <i class="fas fa-briefcase fs-4"></i> 
+                  <br>
+                  <span>Conto Bussiness</span>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row first-trova-conto-row mb-3">
+                <div class="col-4 conto-font-bold">Quali servizi ti servono?</div>
+                <div class="col the-border">
+                  <i class="fab fa-creative-commons-nc-eu fs-4"></i>
+                  <br>
+                  <span>Zero spese</span>
+                </div>
+                <div class="col the-border">
+                  <i class="fab fa-internet-explorer fs-4"></i>
+                  <br>
+                  <span>Internet Banking</span>
+                </div>
+                <div class="col the-border">
+                  <i class="fas fa-credit-card fs-4"></i>
+                  <br>
+                  <span>Carta di credito</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <button (click)="newConto()">apri nuovo conto</button> -->
   </div>
 </div>

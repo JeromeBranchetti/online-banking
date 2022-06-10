@@ -10,18 +10,18 @@
   </div>
   <div class="second-section">
     <div class="row container-fluid">
-      <div class="col-lg-7 col-sm-12">
+      <div class="col-lg-7 col-sm-12 mb-3">
         <div class="container main-account" (click)="toConto(conti[0].id)">
           <div class="row d-flex justify-content-between mb-3">
             <div class="col-3 fs-5">Main Account</div>
             <div class="col-3"><span>Available funds</span></div>
           </div>
           <div class="row">
-            <div class="col-8">
+            <div class="col-lg-8 col-sm-6">
               <p class="fs-6">JavaIsland Savings Account</p>
               <p class="fs-6">n.conto: {{ conti[0].numero_conto }}</p>
             </div>
-            <div class="col-4 fs-2 text-end">
+            <div class="col-lg-4 col-sm-6 fs-2 text-end">
               <span>{{ conti[0].saldo }} &euro;</span>
             </div>
           </div>
@@ -33,11 +33,15 @@
       <div class="col-lg-5 col-sm-12">
         <div class="container latest-payments">
           <div class="row d-flex flex-column">
-            <div class="col fs-3 mb-3">Latest Payments</div>
+            <div class="col fs-3 mb-4">Latest Payments</div>
             <div class="col">
-              <div class="row d-flex">
-                <div class="col-7">Something bought</div>
-                <div class="col-5 text-end">123&euro;</div>
+              <div
+                class="row d-flex mb-2"
+                *ngFor="let transaction of transactions"
+              >
+                <div class="col-4">{{ transaction.description }}</div>
+                <div class="col-4">{{ transaction.date }}</div>
+                <div class="col-4 text-end">{{ transaction.amount }}&euro;</div>
               </div>
             </div>
           </div>
@@ -75,58 +79,58 @@
   </div>
   <div class="fourth-section">
     <div class="container apri-conto">
-      <div class="row">
-        <div class="col-lg-6 side-image">
-        </div>
-        <div class="col-lg-6 ">
+      <div class="row apri-conto-row-big">
+        <div class="col-lg-6 side-image"></div>
+        <div class="col-lg-6 col-sm-12 text-center">
           <div class="row d-flex flex-column trova-conto text-center">
             <div class="col">
-              <h1>{{'trova il conto per te' | uppercase }}</h1>
+              <h1>{{ "trova il conto per te" | uppercase }}</h1>
             </div>
             <div class="col">
               <div class="row first-trova-conto-row mb-3">
-                <div class="col-4 conto-font-bold">Che tipo di conto cerchi?</div>
+                <div class="col-4 conto-font-bold">
+                  Che tipo di conto cerchi?
+                </div>
                 <div class="col the-border">
-                  <i class="fas fa-user-check fs-4"></i> 
-                  <br>
+                  <i class="fas fa-user-check fs-4"></i>
+                  <br />
                   <span>Conto Standard</span>
                 </div>
                 <div class="col the-border">
-                  <i class="fas fa-briefcase fs-4"></i> 
-                  <br>
+                  <i class="fas fa-briefcase fs-4"></i>
+                  <br />
                   <span>Conto Bussiness</span>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row first-trova-conto-row mb-3">
-                <div class="col-4 conto-font-bold">Quali servizi ti servono?</div>
+                <div class="col-4 conto-font-bold">
+                  Quali servizi ti servono?
+                </div>
                 <div class="col the-border">
                   <i class="fab fa-creative-commons-nc-eu fs-4"></i>
-                  <br>
+                  <br />
                   <span>Zero spese</span>
                 </div>
                 <div class="col the-border">
                   <i class="fab fa-internet-explorer fs-4"></i>
-                  <br>
+                  <br />
                   <span>Internet Banking</span>
                 </div>
                 <div class="col the-border">
                   <i class="fas fa-credit-card fs-4"></i>
-                  <br>
+                  <br />
                   <span>Carta di credito</span>
                 </div>
               </div>
             </div>
           </div>
+          <button class="text-center" (click)="newConto()">
+            apri nuovo conto
+          </button>
         </div>
       </div>
     </div>
-    <!-- <button (click)="newConto()">apri nuovo conto</button> -->
   </div>
-</div>
-
-Transazioni
-<div *ngFor="let transaction of transactions">
-  {{ transaction.amount }}
 </div>

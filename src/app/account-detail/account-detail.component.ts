@@ -22,6 +22,7 @@ export class AccountDetailComponent implements OnInit {
   bankTransactions: BankTransaction[] = [];
 
   spyModeBoolean: boolean = false;
+  finishSubscribe: boolean = false;
 
   range = new FormGroup({
     start: new FormControl(null),
@@ -37,7 +38,6 @@ export class AccountDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    ('account-detail');
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.onCalculateAmount();
@@ -48,6 +48,8 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onCalculateAmount() {
+    this.debitAmount = '0';
+    this.creditAmount = '0';
     this.bankTransactions;
     for (let bankTransaction of this.bankTransactions) {
       if (+bankTransaction.amount < 0) {
@@ -63,7 +65,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onFilterNumberTransaction(filter: number) {
-    // this.httpReq.onGetTransaction()
+    this.httpReq.onGetTransactionFiltered(filter);
   }
 
   onFilterWord() {}

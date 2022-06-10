@@ -75,7 +75,7 @@
     },
     {
       "numero_conto": 61,
-      "saldo": 22220,
+      "saldo": 22055,
       "attivo": false,
       "idUt": 2,
       "id": 2
@@ -132,31 +132,6 @@
   ],
   "richieste": [
     {
-      "type": "account registration",
-      "firstName": "Christian",
-      "lastName": "Cianci",
-      "email": "test@test.com",
-      "birthDate": "0001-01-01",
-      "password": "Abcd1234!",
-      "id": 2
-    },
-    {
-      "firstName": "jerome",
-      "lastName": "branchetti",
-      "email": "jerome@gmail.com",
-      "birthDate": "1111-02-22",
-      "password": "Abcdefgh2.",
-      "id": 3
-    },
-    {
-      "type": "account registration",
-      "firstName": "Test",
-      "lastName": "Test",
-      "dateOfBirth": "0001-01-01",
-      "email": "test@test.com",
-      "id": 4
-    },
-    {
       "type": "account closure",
       "firstName": "Test",
       "lastName": "Test",
@@ -167,23 +142,19 @@
     },
     {
       "type": "account opening",
-      "id": 6
+      "firstName": "Test",
+      "lastName": "Test",
+      "dateOfBirth": "0001-01-01",
+      "email": "test@test.com",
+      "id": 12
     },
     {
       "type": "account opening",
-      "id": 7
-    },
-    {
-      "type": "account opening",
-      "id": 8
-    },
-    {
-      "type": "account opening",
-      "id": 9
-    },
-    {
-      "type": "account opening",
-      "id": 10
+      "firstName": "Test",
+      "lastName": "Test",
+      "dateOfBirth": "0001-01-01",
+      "email": "test@test.com",
+      "id": 13
     }
   ],
   "transazioni": [
@@ -212,14 +183,6 @@
       "id": 4
     },
     {
-      "type": "transfer",
-      "date": "Thu Jun 10 2022",
-      "amount": -22211.3,
-      "description": "Transfer",
-      "idConto": 2,
-      "id": 2
-    },
-    {
       "type": "deposit",
       "date": "Thu Jun 09 2022",
       "amount": 1000,
@@ -228,20 +191,140 @@
       "id": 3
     },
     {
-      "type": "deposit",
-      "date": "Thu Jun 09 2022",
-      "amount": 1203481,
-      "description": "Deposit",
-      "idConto": 2,
-      "id": 4
-    },
-    {
       "type": "transfer",
       "date": "Thu Jun 09 2022",
       "amount": -11,
       "description": "Transfer",
       "idConto": 1,
       "id": 5
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 6
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 7
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 8
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 9
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 10
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 11
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 12
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 13
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 14
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 15
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 16
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 17
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 18
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 19
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 20
+    },
+    {
+      "type": "transfer",
+      "date": "Fri Jun 10 2022",
+      "amount": -11,
+      "description": "Transfer",
+      "idConto": 2,
+      "id": 21
     }
   ],
   "dipendenti": [

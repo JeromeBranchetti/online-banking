@@ -22,12 +22,7 @@ export class UserDashBoardComponent implements OnInit {
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
-<<<<<<< HEAD
-  bool1=false;
-  bool2=false;
-=======
   request: RequestModel;
->>>>>>> cb6441ad56ddf7be0af6475a4f8d0fb378785652
 
   constructor(
     public SUService: SignUpService,
@@ -52,14 +47,14 @@ export class UserDashBoardComponent implements OnInit {
       this.sign.bs.subscribe((res) => {
         res[0]; //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
-        this.bool1=true;
+    
       });
     });
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-        this.bool2=true;
+
       });
     });
   }

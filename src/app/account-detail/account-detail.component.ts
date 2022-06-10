@@ -63,7 +63,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onFilterNumberTransaction(filter: number) {
-    // this.httpReq.onGetTransaction(this.idAccount, filter);
+    // this.httpReq.onGetTransaction()
   }
 
   onFilterWord() {}

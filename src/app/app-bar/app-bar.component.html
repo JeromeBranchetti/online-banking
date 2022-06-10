@@ -1,13 +1,13 @@
 <div class="container-fluid p-0 app-bar-body">
   <div class="row bar-row-1">
     <div class="col-8 brand my-2 ms-2 p-0">
-      <span class="brand-logo" (click)="toHome()"
+      <span class="brand-logo"
         ><div class="logo-central">
           <i class="fas fa-mobile-alt"
             ><i class="fas fa-university"></i
           ></i></div
       ></span>
-      <span class="brand-name fs-4 mx-2" (click)="toHome()"> JavaIsland</span>
+      <span class="brand-name fs-4 mx-2"> JavaIsland</span>
     </div>
     <div *ngIf="homeButtonVisible" class="col my-2 home-guest text-end p-0">
       <button class="home-guest-button" (click)="toHomeGuestPage()">

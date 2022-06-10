@@ -1,6 +1,6 @@
+import { RequestModel } from './../admin-dash-board/request.model';
 import { AuthService } from './../service/auth.service';
 import { HttpRequestService } from './../service/httpRequest.service';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
@@ -22,8 +22,12 @@ export class UserDashBoardComponent implements OnInit {
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
+<<<<<<< HEAD
   bool1=false;
   bool2=false;
+=======
+  request: RequestModel;
+>>>>>>> cb6441ad56ddf7be0af6475a4f8d0fb378785652
 
   constructor(
     public SUService: SignUpService,
@@ -70,7 +74,16 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   closeContoButton() {
-    // chiudere il conto
+    this.request = {
+      type: 'account closure',
+      firstName: this.guest.firstName,
+      lastName: this.guest.lastName,
+      dateOfBirth: this.guest.birthDate,
+      email: this.guest.email,
+      idCont: this.httpReq.conto.id,
+    };
+    console.log(this.request);
+    this.httpReq.onAddRequest(this.request);
   }
 
   toChangeEmailPass() {

@@ -45,16 +45,24 @@
   padding: 20px;
 }
 
-.make-playment {
-  background-color: cornflowerblue;
+.other-account {
+  color: aliceblue;
+  background-color: rgb(34, 34, 68);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.to-details {
+  background-color: rgb(17, 90, 227);
   border-radius: 8px;
   text-align: center;
+  color: white;
   padding: 5px;
 }
 
-.make-playment:hover {
+.to-details:hover {
   background-color: rgb(17, 90, 227);
-  color: white;
+ 
   cursor: pointer;
 }
 

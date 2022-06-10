@@ -1,4 +1,4 @@
-<!-- <div class="container-fluid p-0 m-0">
+<div class="container-fluid p-0 m-0">
   <div class="top-section-home text-center">
     <div class="dark-layer">
       <div class="text-box">
@@ -11,8 +11,7 @@
   <div class="second-section">
     <div class="row container-fluid">
       <div class="col-lg-7 col-sm-12">
-        <!-- da modificare prendere valore id conto  -->
-        <!-- <div class="container main-account" (click)="toConto(0)">   
+        <div class="container main-account" (click)="toConto(conti[0].id)">
           <div class="row d-flex justify-content-between mb-3">
             <div class="col-3 fs-5">Main Account</div>
             <div class="col-3"><span>Available funds</span></div>
@@ -20,14 +19,14 @@
           <div class="row">
             <div class="col-8">
               <p class="fs-6">JavaIsland Savings Account</p>
-              <p class="fs-6">1234****567890</p>
+              <p class="fs-6">n.conto: {{ conti[0].numero_conto }}</p>
             </div>
-            <div class="col-4 fs-2 text-end"><span>50000 &euro;</span></div>
+            <div class="col-4 fs-2 text-end">
+              <span>{{ conti[0].saldo }} &euro;</span>
+            </div>
           </div>
           <div class="row">
-            <div class="col-3 make-playment p-2 fs-6" (click)="toPayment()">
-              Make Payment
-            </div>
+            <div class="col-3 to-details p-2 fs-6">Click to Details</div>
           </div>
         </div>
       </div>
@@ -48,13 +47,34 @@
   </div>
   <div class="third-section container-fluid">
     <!-- Carousel con altri conti -->
-    
-  <!-- </div>
-
-  <div class="fourth-section"></div>
-</div> --> 
-
-<div *ngFor="let conto of conti">
-  <button (click)="toConto(conto.id)">n.conto: {{conto.numero_conto}}</button>
+    <div class="container py-3">
+      <div *ngFor="let conto of conti | slice: 1; index as i">
+        <div
+          class="container other-account mb-3"
+          (click)="toConto(conti[i + 1].id)"
+        >
+          <div class="row d-flex justify-content-between mb-3">
+            <div class="col-3 fs-5">Account n.{{ i + 2 }}</div>
+            <div class="col-3"><span>Available funds</span></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 col-sm-6">
+              <p class="fs-6">JavaIsland Savings Account</p>
+              <p class="fs-6">n.conto: {{ conti[i + 1].numero_conto }}</p>
+            </div>
+            <div class="col-lg-4 col-sm-6 fs-2 text-end">
+              <span>{{ conti[i + 1].saldo }} &euro;</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3 to-details p-2 fs-6">Click to Details</div>
+          </div>
+        </div>
+        <!-- <button (click)="toConto(conto.id)">n.conto: {{conto.numero_conto}}</button> -->
+      </div>
+    </div>
+  </div>
+  <div class="fourth-section">
+    <button (click)="newConto()">apri nuovo conto</button>
+  </div>
 </div>
-<button (click)="newConto()">apri nuovo conto</button>

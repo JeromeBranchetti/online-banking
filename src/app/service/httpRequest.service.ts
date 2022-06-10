@@ -15,6 +15,7 @@ import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
+import { isThisTypeNode } from 'typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -83,6 +84,7 @@ export class HttpRequestService {
         next: (response) => {
           response;
           console.log(response);
+          this.utente=response;
           this.US.idUt = response[0].id;
           this.root.navigate(['/home-page-guest'], {
             queryParams: {

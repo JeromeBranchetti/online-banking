@@ -67,7 +67,6 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.utente = res;
-
         this.sign.bs.next(this.utente);
       });
   }
@@ -82,6 +81,7 @@ export class HttpRequestService {
         .subscribe({
           next: (response) => {
             response;
+            this.utente = response;
             this.US.idUt = response[0].id;
             this.root.navigate(['/home-page-guest'], {
               queryParams: {
@@ -131,12 +131,16 @@ export class HttpRequestService {
 
   onGetTransaction() {
     this.http
-      .get<BankTransaction[]>('http://localhost:3000/transazioni')
+      .get<BankTransaction[]>(
+        'http://localhost:3000/transazioni/_page=1&_limit=10'
+      )
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
       });
   }
+
+  onGetTransactionFiltered() {}
 
   onGetUser() {
     this.token = this.auth.accessToken;
@@ -162,14 +166,14 @@ export class HttpRequestService {
   }
 
   onGetRequest() {
-    return this.http.get<RequestModel[]>('http://localhost:3000/richieste');
+    return this.http.get<RequestModel[]>(
+      'http://localhost:3000/richieste/_limit=10'
+    );
   }
 
   // Chiamate post
 
   onAddUser(ut: utente) {
-    // utente iscritto
-
     ut;
     this.http
       .post('http://localhost:8080/authentication/register', ut)
@@ -177,40 +181,44 @@ export class HttpRequestService {
         res;
       });
   }
-  changepass(pass:string){
+  changepass(pass: string) {
     this.http
-    .get<utente>('http://localhost:3000/utenti', {
-      params: {
-        id: this.US.idUt,
-      },
-    })
-    .subscribe((res) => {
-      this.utente = res[0];})
-      console.log(this.utente[0])
-      this.utente[0].password=pass;
+      .get<utente>('http://localhost:3000/utenti', {
+        params: {
+          id: this.US.idUt,
+        },
+      })
+      .subscribe((res) => {
+        this.utente = res[0];
+      });
+    console.log(this.utente[0]);
+    this.utente[0].password = pass;
     this.http
-              .put<utente>('http://localhost:3000/utenti/' + this.utente[0].id, this.utente[0])
-              .subscribe((res) => 'caricato');
-
-
+      .put<utente>(
+        'http://localhost:3000/utenti/' + this.utente[0].id,
+        this.utente[0]
+      )
+      .subscribe((res) => 'caricato');
   }
 
-  changemail(email:string){
+  changemail(email: string) {
     this.http
-    .get<utente>('http://localhost:3000/utenti', {
-      params: {
-        id: this.US.idUt,
-      },
-    })
-    .subscribe((res) => {
-      this.utente = res[0];})
-      console.log(this.utente[0])
-      this.utente[0].email=email;
+      .get<utente>('http://localhost:3000/utenti', {
+        params: {
+          id: this.US.idUt,
+        },
+      })
+      .subscribe((res) => {
+        this.utente = res[0];
+      });
+    console.log(this.utente[0]);
+    this.utente[0].email = email;
     this.http
-              .put<utente>('http://localhost:3000/utenti/' + this.utente[0].id, this.utente[0])
-              .subscribe((res) => 'caricato');
-
-
+      .put<utente>(
+        'http://localhost:3000/utenti/' + this.utente[0].id,
+        this.utente[0]
+      )
+      .subscribe((res) => 'caricato');
   }
   onAddTransaction(transaction: BankTransaction) {
     this.http

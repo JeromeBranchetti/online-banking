@@ -46,6 +46,13 @@ export class AdminDashBoardComponent implements OnInit {
 
   // Metodi per le richieste
 
+  onFetchRequest() {
+    this.httpReq.onGetRequest().subscribe((res) => {
+      this.newRequests = res;
+      this.onColorRequestList();
+    });
+  }
+
   onSelectNewRequest(index: number) {
     this.requestVisibility = true;
     this.requestIndex = index;

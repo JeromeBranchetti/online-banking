@@ -11,8 +11,8 @@
   <div class="second-section">
     <div class="row container-fluid">
       <div class="col-lg-7 col-sm-12">
-        <!-- da modificare prendere valore id conto  -->
-        <!-- <div class="container main-account" (click)="toConto(0)">   
+         da modificare prendere valore id conto  -->
+<!-- <div class="container main-account" (click)="toConto(0)">   
           <div class="row d-flex justify-content-between mb-3">
             <div class="col-3 fs-5">Main Account</div>
             <div class="col-3"><span>Available funds</span></div>
@@ -47,14 +47,14 @@
     </div>
   </div>
   <div class="third-section container-fluid">
-    <!-- Carousel con altri conti -->
-    
-  <!-- </div>
+     Carousel con altri conti -->
+
+<!-- </div>
 
   <div class="fourth-section"></div>
-</div> --> 
+</div> -->
 
 <div *ngFor="let conto of conti">
-  <button (click)="toConto(conto.id)">n.conto: {{conto.numero_conto}}</button>
+  <button (click)="toConto(conto.id)">n.conto: {{ conto.numero_conto }}</button>
 </div>
 <button (click)="newConto()">apri nuovo conto</button>

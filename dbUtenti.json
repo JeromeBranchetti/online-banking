@@ -63,6 +63,14 @@
       "birthDate": "1111-01-01",
       "password": "ciao",
       "id": 8
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Test",
+      "email": "test@test.com",
+      "birthDate": "0001-01-01",
+      "password": "Abcd1234!",
+      "id": 9
     }
   ],
   "conti": [
@@ -121,18 +129,16 @@
       "attivo": false,
       "idUt": 8,
       "id": 8
+    },
+    {
+      "numero_conto": 39,
+      "saldo": 0,
+      "attivo": false,
+      "idUt": 9,
+      "id": 9
     }
   ],
   "richieste": [
-    {
-      "type": "account opening",
-      "firstName": "guest",
-      "lastName": "guest",
-      "email": "root@root.it",
-      "birthDate": "1000-10-10",
-      "password": "Root123!",
-      "id": 1
-    },
     {
       "type": "account registration",
       "firstName": "Christian",
@@ -152,67 +158,29 @@
       "id": 3
     },
     {
-      "numero_conto": 58,
-      "saldo": 0,
-      "attivo": false,
-      "idUt": 1,
+      "type": "account registration",
+      "firstName": "Test",
+      "lastName": "Test",
+      "dateOfBirth": "0001-01-01",
+      "email": "test@test.com",
       "id": 4
     },
     {
-      "firstName": "cane",
-      "lastName": "jojojo",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
+      "type": "account closure",
+      "firstName": "Test",
+      "lastName": "Test",
+      "dateOfBirth": "0001-01-01",
+      "email": "test@test.com",
+      "idCont": 9,
       "id": 5
     },
     {
-      "firstName": "dedued",
-      "lastName": "jljlj",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
+      "type": "account opening",
       "id": 6
     },
     {
-      "firstName": "dedued",
-      "lastName": "jojojo",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Assddfgg12!",
+      "type": "account opening",
       "id": 7
-    },
-    {
-      "firstName": "Apple",
-      "lastName": "dfdfd",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
-      "id": 8
-    },
-    {
-      "firstName": "Apple",
-      "lastName": "jojojo",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
-      "id": 9
-    },
-    {
-      "firstName": "dedued",
-      "lastName": "jojojo",
-      "email": "f.cuscino@gmail.com",
-      "birthDate": "1111-01-01",
-      "password": "Giusepppe123!",
-      "id": 10
-    },
-    {
-      "firstName": "cane",
-      "lastName": "jojojo",
-      "email": "giuseppe.bruniani@gmail.com",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
-      "id": 11
     }
   ],
   "transazioni": [

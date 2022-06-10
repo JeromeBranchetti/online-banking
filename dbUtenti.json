@@ -41,14 +41,6 @@
       "id": 5
     },
     {
-      "firstName": "Apple",
-      "lastName": "jojojo",
-      "email": "calcbtia@ewsdf.it",
-      "birthDate": "1111-01-01",
-      "password": "Giuseppe123!",
-      "id": 6
-    },
-    {
       "firstName": "dedued",
       "lastName": "jojojo",
       "email": "f.cuscino@gmail.com",
@@ -76,51 +68,51 @@
   "conti": [
     {
       "numero_conto": 14,
-      "saldo": -11,
+      "saldo": 1110,
       "attivo": false,
       "idUt": 1,
       "id": 1
     },
     {
-      "numero_conto": 96,
-      "saldo": 0,
+      "numero_conto": 61,
+      "saldo": 22220,
       "attivo": false,
       "idUt": 2,
       "id": 2
     },
     {
-      "numero_conto": 19,
-      "saldo": 0,
+      "numero_conto": 85,
+      "saldo": 33330,
       "attivo": false,
       "idUt": 3,
       "id": 3
     },
     {
-      "numero_conto": 13,
-      "saldo": 0,
+      "numero_conto": 43,
+      "saldo": 444440,
       "attivo": false,
       "idUt": 4,
       "id": 4
     },
     {
-      "numero_conto": 93,
-      "saldo": 0,
+      "numero_conto": 15,
+      "saldo": 5555550,
       "attivo": false,
-      "idUt": 5,
+      "idUt": 1,
       "id": 5
     },
     {
-      "numero_conto": 53,
-      "saldo": 0,
+      "numero_conto": 16,
+      "saldo": 66666660,
       "attivo": false,
-      "idUt": 6,
+      "idUt": 1,
       "id": 6
     },
     {
-      "numero_conto": 38,
-      "saldo": 0,
+      "numero_conto": 17,
+      "saldo": 7777770,
       "attivo": false,
-      "idUt": 7,
+      "idUt": 1,
       "id": 7
     },
     {
@@ -149,12 +141,11 @@
       "id": 2
     },
     {
-      "type": "account closure",
-      "firstName": "Christian",
-      "lastName": "Cianci",
-      "email": "test@test.com",
-      "birthDate": "0001-01-01",
-      "password": "Abcd1234!",
+      "firstName": "jerome",
+      "lastName": "branchetti",
+      "email": "jerome@gmail.com",
+      "birthDate": "1111-02-22",
+      "password": "Abcdefgh2.",
       "id": 3
     },
     {

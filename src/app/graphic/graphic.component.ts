@@ -1,10 +1,10 @@
 import { UtenteService } from './../service/utente.service';
-import { TransactionService } from './../service/transaction.service';
+
 import { BankTransaction } from './../class/bankTransaction.model';
-import { HttpRequestService } from './../service/httpRequest.service';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,8 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  amount: number[] =[];
-  date:string[]=[];
+  
 
   Graphic!:Chart;
   
@@ -32,29 +31,30 @@ export class GraphicComponent implements OnInit {
    this.http.get<BankTransaction[]>(
       'http://localhost:3000/transazioni/?idConto=' + idConto
     ).subscribe((res)=> {
-      console.log(res);
-      this.amount=[];
-      this.date=[];
+      
+      let x=[];
+      let y=[];
       for(let v of res){
-        this.amount.push(v.amount);
-        this.date.push(v.date);
+        
+        y.push(v.amount);
+        x.push(v.date);
         
       }
-      this.Graphic=new Chart("myChart",this.myChartInit());
+      this.Graphic=new Chart("myChart",this.myChartInit(x,y));
       this.Graphic.update();
 
      });
 
     
     }
-myChartInit():ChartConfiguration{
+myChartInit(x:any[],y:any[]):ChartConfiguration{
   
 
 const data = {
-  labels: this.date,
+  labels: x,
   datasets: [{
     label: 'My First Dataset',
-    data: this.amount,
+    data: y,
     fill: false,
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1

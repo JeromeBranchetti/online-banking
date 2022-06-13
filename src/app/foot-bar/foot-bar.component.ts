@@ -70,6 +70,7 @@ export class FootBarComponent implements OnInit {
   }
 
   onPayment() {
+    if(this.US.Attivo){
     this.router.navigate(
       ['/payment']
       , {
@@ -78,8 +79,13 @@ export class FootBarComponent implements OnInit {
         },
      
     );
+      }
+      else{
+        alert("conto non attivo")
+      }
   }
   onMovementDetail() {
+    if(this.US.Attivo){
     this.router.navigate(['/account-detail'], {
      
         queryParams: {
@@ -87,4 +93,10 @@ export class FootBarComponent implements OnInit {
         },
     );
   }
+
+else{
+
+  alert("conto non attivo!")
+}
+}
 }

@@ -9,6 +9,7 @@ export class UtenteService  {
 
   idUt!:any;
   idCont!:any;
+  Attivo!:boolean;
 
 
 

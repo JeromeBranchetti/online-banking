@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
 import {
   HttpClient,
-  HttpErrorResponse,
+
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,6 +15,7 @@ import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,7 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.US.idCont = res[0].id;
+        this.US.Attivo=res[0].attivo;
         this.conto = res[0];
         this.conto.iban =
           'IT000000000000' +

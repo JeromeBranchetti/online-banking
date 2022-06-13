@@ -2,8 +2,8 @@ import { UtenteService } from './../service/utente.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { Component, OnInit, } from '@angular/core';
+import { Chart, ChartConfiguration } from 'chart.js';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -41,6 +41,7 @@ export class GraphicComponent implements OnInit {
         
       }
       this.Graphic=new Chart("myChart",this.myChartInit(x,y));
+      
       this.Graphic.update();
 
      });
@@ -57,6 +58,8 @@ const data = {
     data: y,
     fill: false,
     borderColor: 'rgb(75, 192, 192)',
+    
+
     tension: 0.1
   }]
 };
@@ -64,6 +67,7 @@ const config:ChartConfiguration = {
   type: 'line',
   data: data,
 };
+
 
 return config;
 

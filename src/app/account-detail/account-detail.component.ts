@@ -20,7 +20,7 @@ export class AccountDetailComponent implements OnInit {
   idAccount: number = 12345678912;
   transactionsType: string[] = [
     'deposit',
-    'withkdrawal',
+    'withdrawal',
     'transfer',
     'phone top up',
   ];

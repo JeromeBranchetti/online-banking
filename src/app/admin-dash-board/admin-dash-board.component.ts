@@ -24,10 +24,7 @@ export class AdminDashBoardComponent implements OnInit {
   constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
-    this.httpReq.onGetRequest().subscribe((res) => {
-      this.newRequests = res;
-      this.onColorRequestList();
-    });
+    this.onFetchRequest();
   }
 
   // Metodo per il colore
@@ -76,6 +73,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accepted';
+    this.httpReq.onCompleteRequest(true);
   }
 
   onDeclineRequest() {
@@ -85,6 +83,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Declined';
+    this.httpReq.onCompleteRequest(false);
   }
 
   // Metodi per il download

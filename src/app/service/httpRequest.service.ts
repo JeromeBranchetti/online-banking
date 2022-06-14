@@ -5,11 +5,7 @@ import { SignUpService } from './signUp.service';
 
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
@@ -25,6 +21,7 @@ export class HttpRequestService {
   conti!: conto[];
   transaction: BankTransaction[];
   conto!: conto;
+  modifyAccount: conto;
 
   constructor(
     private http: HttpClient,
@@ -54,6 +51,7 @@ export class HttpRequestService {
           this.conto.idUt.toString();
 
         this.sign.bsconto.next(this.conto);
+        this.modifyAccount = this.conto;
       });
   }
 
@@ -260,6 +258,19 @@ export class HttpRequestService {
     this.http
       .post<RequestModel>('http://localhost:3000/richieste', request)
       .subscribe((res) => {});
+  }
+
+  // Chiamate put
+
+  onCompleteRequest(result: boolean) {
+    console.log(result);
+    this.modifyAccount.attivo = result;
+    this.http
+      .put(
+        'http://localhost:3000/conti/' + this.modifyAccount.id,
+        this.modifyAccount
+      )
+      .subscribe((res) => console.log(res));
   }
 
   // Chiamate Delete

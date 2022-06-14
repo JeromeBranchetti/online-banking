@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { conto } from '../class/conto';
 import { utente } from '../class/utente';
-import { UtenteService } from './utente.service';
 
 @Injectable({
   providedIn: 'root',

@@ -68,6 +68,8 @@ export class HomePageGuestComponent implements OnInit {
     let cont = new conto(0);
     cont.idUt = Number(this.idUt);
 
+    console.log(this.utente);
+
     this.request = {
       type: 'account opening',
       firstName: this.utente.firstName,

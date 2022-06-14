@@ -1,11 +1,14 @@
 <div class="flex-item">
   <div style="display: block">
     <canvas
+    id="myChart"
       baseChart
       width="400"
       height="100"
-      [data]="lineChartData"
-      [type]="lineChartType"
+      [labels]="Graphic.data[0].data"
+      [data]="Graphic.data"
+      [type]="'line'"
+      
     ></canvas>
   </div>
 </div>

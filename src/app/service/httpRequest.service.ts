@@ -182,8 +182,43 @@ export class HttpRequestService {
 
   // Chiamate post
 
+  addConto(){
+   
+
+    this.http
+    .get<utente[]>('http://localhost:3000/utenti')
+    .subscribe((utenti) => {
+      let id = utenti[utenti.length - 1].id;
+      let cont = new conto(0);
+
+      cont.idUt = id;
+
+      this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
+        console.log("aperto nuovo conto")
+        
+       
+      });
+
+      let request = {
+        type: 'account registration',
+        firstName: this.utente.firstName,
+        lastName: this.utente.lastName,
+        dateOfBirth: this.utente.birthDate,
+        email: this.utente.email,
+        idCont: cont.id,
+      };
+
+      this.http
+        .post('http://localhost:3000/richieste', request)
+        .subscribe((res) => {
+          console.log(res);
+        });
+
+      
+    }
+  )}
   onAddUser(ut: utente) {
-    ut;
+    
     this.http
       .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {

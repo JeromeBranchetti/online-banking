@@ -65,17 +65,11 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   newConto() {
-    let cont = new conto(0);
-    cont.idUt = Number(this.idUt);
+   
+      this.httpReq.addConto();
+  
+  
 
-    this.request = {
-      type: 'account opening',
-      firstName: this.utente.firstName,
-      lastName: this.utente.lastName,
-      dateOfBirth: this.utente.birthDate,
-      email: this.utente.email,
-      idCont: cont.id,
-    };
-    this.httpReq.onAddRequest(this.request);
+
   }
 }

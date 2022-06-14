@@ -1,3 +1,5 @@
+import { HttpRequestService } from './../service/httpRequest.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private httpReq:HttpRequestService) {}
 
   ngOnInit(): void {}
 
@@ -18,4 +20,5 @@ export class HomeComponent implements OnInit {
   onUserLogin() {
     this.router.navigate(['/login']);
   }
+  
 }

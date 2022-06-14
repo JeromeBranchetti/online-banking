@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GraphicComponent implements OnInit {
   
-
+  caricato=false;
   Graphic!:Chart;
   
 
@@ -43,6 +43,8 @@ export class GraphicComponent implements OnInit {
       this.Graphic=new Chart("myChart",this.myChartInit(x,y));
       
       this.Graphic.update();
+      this.caricato=true;
+      
 
      });
 

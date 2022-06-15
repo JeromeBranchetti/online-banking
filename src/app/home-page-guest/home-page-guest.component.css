@@ -225,3 +225,46 @@
 .text-muted {
   color: rgb(180, 180, 180);
 }
+
+.main-card {
+  width: 80vw;
+  color: aliceblue;
+  background-image: url(https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  height: 40vh;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.text-h1-main {
+  background-color: rgba(255, 255, 255, 0.515);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: xx-large;
+}
+
+.text-main {
+  background-color: rgba(255, 255, 255, 0.515);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: xx-large;
+}
+
+.dark-background-layer {
+  width: 80vw;
+  height: 40vh;
+  background-color: rgba(0, 0, 0, 0.567);
+  transform: translateX(-12px);
+  z-index: 1;
+}
+
+.main-account-row {
+  z-index: 50;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}

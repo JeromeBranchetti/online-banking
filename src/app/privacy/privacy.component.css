@@ -1,0 +1,13 @@
+.switch-row {
+    display: flex;
+    align-items: center;
+}
+
+.green {
+    font-size: medium;
+    color: var(--clr-success);
+}
+
+h1 {
+    font-size: 300%;
+}

@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="second-section">
-    <div class="row container-fluid">
+    <!-- <div class="row container-fluid">
       <div class="col-lg-7 col-sm-12 mb-3">
         <div class="container main-account" (click)="toConto(conti[0].id)">
           <div class="row d-flex justify-content-between mb-3">
@@ -49,6 +49,27 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="container main-card" (click)="toConto(conti[0].id)">
+      <div class="dark-background-layer"></div>
+      <div class="row d-flex flex-column main-account-row">
+        <div class="col">
+          <h1 class="text-center text-h1-main">Account Principale</h1>
+        </div>
+        <div class="col">
+          <div class="row my-3">
+            <div class="col"><span>N.conto</span></div>
+            <div class="col fs-6">{{ conti[0]?.numero_conto ?? "" }}</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col"><span>Saldo</span></div>
+          <div class="col fs-4">{{ conti[0]?.saldo ?? "" }} &euro;</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="third-section container-fluid">
@@ -61,19 +82,19 @@
         <div class="card">
           <div class="card-content">
             <h1 class="card-title">
-              <span class="slide-text">Account n.{{ i + 2 }}</span>
+              <span class="slide-text">Conto n.{{ i + 2 }}</span>
             </h1>
             <div class="card-body">
               <div class="row d-flex flex-column">
                 <div class="col">
                   <p class="fs-6">JavaIsland Savings Account</p>
                   <p class="fs-6">
-                    n.conto: {{ conti[i + 1]?.numero_conto ?? "" }}
+                    N.conto: {{ conti[i + 1]?.numero_conto ?? "" }}
                   </p>
                 </div>
 
                 <div class="col text-center">
-                  <p>Available funds</p>
+                  <p>Saldo Disponibile</p>
                   <h1>{{ conti[i + 1]?.saldo ?? "" }}&euro;</h1>
                 </div>
               </div>
@@ -83,7 +104,7 @@
                 class="col-6 to-details p-2 fs-6"
                 (click)="toConto(conti[i + 1].id)"
               >
-                Click to Details
+                Dettagli
               </div>
             </div>
           </div>
@@ -141,7 +162,7 @@
             </div>
           </div>
           <button class="text-center" (click)="newConto()">
-            apri nuovo conto
+            Apri nuovo conto
           </button>
         </div>
       </div>

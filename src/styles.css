@@ -36,6 +36,10 @@ button:hover {
   background-color: rgb(61, 73, 180);
 }
 
+button:focus {
+  background-color: rgb(61, 73, 180);
+}
+
 .redButton:hover {
   background-color: darkred;
 }

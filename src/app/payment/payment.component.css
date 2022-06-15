@@ -3,20 +3,22 @@
 h1 {
   font-size: 300%;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
+}
+
+.generalContainer {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Scelta */
 
-#choice {
+#choiceContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
+  width: 20%;
+  margin-top: 7px;
 }
 
 .button {
@@ -30,8 +32,17 @@ h1 {
 
 /* Form */
 
+.paymentContainer {
+  width: 50%;
+}
+
 input.ng-invalid.ng-touched {
   border: 1px solid red;
+}
+
+.mat-stepper-horizontal {
+  background-color: white;
+  border-radius: 7px;
 }
 
 .formStepper {
@@ -45,6 +56,11 @@ input.ng-invalid.ng-touched {
 
 .mat-form-field {
   margin-top: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
 }
 
 .dataForm {
@@ -72,22 +88,8 @@ input.ng-invalid.ng-touched {
   border-radius: 7px;
 }
 
-.mat-stepper-horizontal {
-  background-color: white;
-  border-radius: 7px;
-}
-
 ::ng-deep .mat-horizontal-stepper-header-container {
   background-color: rgba(20, 22, 47, 255);
-}
-
-@media (max-width: 767px) {
-  ::ng-deep .mat-stepper-horizontal-line {
-    display: none;
-  }
-  ::ng-deep .mat-step-text-label {
-    display: none;
-  }
 }
 
 ::ng-deep .mat-stepper-horizontal-line {
@@ -117,4 +119,46 @@ input.ng-invalid.ng-touched {
 .input {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 992px) {
+  .generalContainer {
+    display: block;
+  }
+
+  #choiceContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .paymentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  ::ng-deep .mat-stepper-horizontal-line {
+    display: none;
+  }
+  ::ng-deep .mat-step-text-label {
+    display: none;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header .mat-step-icon {
+    position: absolute;
+    left: 40%;
+  }
+
+  ::ng-deep .mat-step-header {
+    position: relative;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    display: flex;
+    justify-content: center;
+  }
 }

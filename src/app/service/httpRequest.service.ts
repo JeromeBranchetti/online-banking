@@ -5,17 +5,12 @@ import { SignUpService } from './signUp.service';
 
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
-import {
-  HttpClient,
-
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +21,7 @@ export class HttpRequestService {
   conti!: conto[];
   transaction: BankTransaction[];
   conto!: conto;
-  modifyAccount: conto;
+  modifyAccount = new conto(0);
 
   constructor(
     private http: HttpClient,
@@ -48,7 +43,7 @@ export class HttpRequestService {
       })
       .subscribe((res) => {
         this.US.idCont = res[0].id;
-        this.US.Attivo=res[0].attivo;
+        this.US.Attivo = res[0].attivo;
         this.conto = res[0];
         this.conto.iban =
           'IT000000000000' +
@@ -142,7 +137,7 @@ export class HttpRequestService {
     let idConto = this.US.idCont;
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:3000/transazioni/?idConto=' +
+        'http://localhost:3000/transazioni/?idCont=' +
           idConto +
           '&type=' +
           transactionType
@@ -182,45 +177,48 @@ export class HttpRequestService {
     );
   }
 
+  onCheckRequest(idConto: number) {
+    console.log(idConto);
+    return this.http.get<RequestModel[]>(
+      'http://localhost:3000/richieste/?idCont=' + idConto
+    );
+  }
+
   // Chiamate post
 
-  addConto(){
-   
-
+  addConto() {
     this.http
-    .get<utente[]>('http://localhost:3000/utenti')
-    .subscribe((utenti) => {
-      let id = utenti[utenti.length - 1].id;
-      let cont = new conto(0);
+      .get<utente[]>('http://localhost:3000/utenti')
+      .subscribe((utenti) => {
+        let id = utenti[utenti.length - 1].id;
+        let cont = new conto(0);
+        let request;
 
-      cont.idUt = id;
+        cont.idUt = id;
 
-      this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
-        console.log("aperto nuovo conto")
-        
-       
+        this.http.post('http://localhost:3000/conti', cont).subscribe(() => {});
+
+        this.http
+          .get<conto>(
+            'http://localhost:3000/conti/?numero_conto=' + cont.numero_conto
+          )
+          .subscribe((res) => {
+            request = {
+              type: 'Apertura nuovo conto',
+              firstName: this.utente.firstName,
+              lastName: this.utente.lastName,
+              dateOfBirth: this.utente.birthDate,
+              email: this.utente.email,
+              idCont: res[0].id,
+            };
+
+            this.http
+              .post('http://localhost:3000/richieste', request)
+              .subscribe((res) => {});
+          });
       });
-
-      let request = {
-        type: 'account registration',
-        firstName: this.utente.firstName,
-        lastName: this.utente.lastName,
-        dateOfBirth: this.utente.birthDate,
-        email: this.utente.email,
-        idCont: cont.id,
-      };
-
-      this.http
-        .post('http://localhost:3000/richieste', request)
-        .subscribe((res) => {
-          console.log(res);
-        });
-
-      
-    }
-  )}
+  }
   onAddUser(ut: utente) {
-    
     this.http
       .post('http://localhost:8080/authentication/register', ut)
       .subscribe((res) => {
@@ -269,7 +267,10 @@ export class HttpRequestService {
       .post<BankTransaction>('http://localhost:3000/transazioni', transaction)
       .subscribe(() => {
         this.http
-          .get<conto>('http://localhost:3000/conti/' + transaction.idConto, {})
+          .get<conto>(
+            'http://localhost:3000/conti/?numero_conto=' + transaction.idCont,
+            {}
+          )
           .subscribe((res) => {
             if (
               transaction.type !== 'deposit' &&
@@ -303,15 +304,16 @@ export class HttpRequestService {
 
   // Chiamate put
 
-  onCompleteRequest(result: boolean) {
+  onCompleteRequest(result: boolean, idConto: number) {
     console.log(result);
+    console.log(idConto);
+    this.GetConto(idConto.toString());
     this.modifyAccount.attivo = result;
     this.http
-      .put(
-        'http://localhost:3000/conti/' + this.modifyAccount.id,
-        this.modifyAccount
-      )
-      .subscribe((res) => console.log(res));
+      .put('http://localhost:3000/conti/' + idConto, this.modifyAccount)
+      .subscribe((res) => {
+        alert('Richiesta completata');
+      });
   }
 
   // Chiamate Delete

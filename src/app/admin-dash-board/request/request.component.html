@@ -8,19 +8,27 @@
       'card-header-yellow': light === 'yellow'
     }"
   >
-    <h3>{{ firstName }} {{ lastName }}</h3>
+    <h3>Tipo di Richiesta: {{ type }}</h3>
   </div>
   <div class="card-body">
-    <h3>Date of birth: {{ dateOfBirth }}</h3>
-    <h3>Email: {{ email }}</h3>
-    <h3
-      [ngClass]="{
-        'header-red': header === 'red',
-        'header-green': header === 'green'
-      }"
-    >
-      <span *ngIf="result !== undefined" style="color: white">Result: </span>
-      {{ result }}
-    </h3>
+    <div class="personal-data">
+      <h3>Nome: {{ firstName }}</h3>
+      <h3>Cognome: {{ lastName }}</h3>
+    </div>
+    <div class="account-data">
+      <h3>Id Conto: {{ idConto }}</h3>
+      <h3>Email: {{ email }}</h3>
+    </div>
+    <div class="result-container">
+      <h3
+        [ngClass]="{
+          'header-red': header === 'red',
+          'header-green': header === 'green'
+        }"
+      >
+        <span *ngIf="result !== undefined" style="color: white">Result: </span>
+        {{ result }}
+      </h3>
+    </div>
   </div>
 </div>

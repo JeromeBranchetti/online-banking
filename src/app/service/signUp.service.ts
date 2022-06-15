@@ -62,7 +62,7 @@ export class SignUpService {
           cont.idUt = id;
 
           this.request = {
-            type: 'account registration',
+            type: 'Prima registrazione',
             firstName: ut.firstName,
             lastName: ut.lastName,
             dateOfBirth: ut.birthDate,

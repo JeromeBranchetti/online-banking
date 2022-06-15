@@ -74,8 +74,12 @@ button {
   color: green;
 }
 
-.table {
-  margin-bottom: 10vh;
+.my-table-container {
+  min-height: 35vh;
+  overflow-y: scroll;
+}
+
+.my-table {
   background-color: white;
 }
 
@@ -95,4 +99,32 @@ span {
 .mat-form-field {
   background-color: white;
   color: black;
+}
+
+::ng-deep .mat-select-arrow {
+  color: white;
+}
+
+::ng-deep mat-label {
+  color: white;
+}
+
+::ng-deep mat-form-field {
+  background-color: transparent !important;
+}
+
+::ng-deep .mat-select-value-text {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  color: white !important;
+}
+
+.mat-option {
+  color: black !important;
+}
+
+::ng-deep .mat-select-panel {
+  background: white !important;
 }

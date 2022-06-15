@@ -2,7 +2,7 @@ import { BankTransaction } from './bankTransaction.model';
 
 export class conto {
   numero_conto!: number;
-  iban!: string;
+  iban?: string;
   saldo!: number;
   idUt?: number;
   attivo!: boolean;

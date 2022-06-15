@@ -19,10 +19,10 @@ export class AccountDetailComponent implements OnInit {
   creditAmount: string = '0';
   idAccount: number = 12345678912;
   transactionsType: string[] = [
-    'deposit',
-    'withdrawal',
-    'transfer',
-    'phone top up',
+    'Deposito',
+    'Prelievo',
+    'Bonifico',
+    'Ricarica telefonica',
   ];
   selected: string;
 
@@ -40,6 +40,7 @@ export class AccountDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.onFilterNumberTransaction(10);
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.onCalculateAmount();

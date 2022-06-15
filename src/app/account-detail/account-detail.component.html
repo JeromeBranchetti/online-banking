@@ -1,4 +1,4 @@
-<h1 class="text-center my-3">Account Detail</h1>
+<h1 class="text-center my-3">Dettagli Conto</h1>
 
 <!-- Grafico  -->
 <div class="container graph-container my-5">
@@ -10,22 +10,22 @@
   <!-- Contenitore Header transazioni -->
   <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
     <mat-form-field>
-      <mat-label>Transaction Type</mat-label>
+      <mat-label>Tipo Transazione</mat-label>
       <mat-select aria-label="Default select example" id="transaction">
-        <mat-option value="deposit">Deposit</mat-option>
-        <mat-option value="withdrawal">Withdrawal</mat-option>
-        <mat-option value="transfer">Transfer</mat-option>
-        <mat-option value="phone top up">Phone top up</mat-option>
+        <mat-option value="deposit">Deposito</mat-option>
+        <mat-option value="withdrawal">Prelievo</mat-option>
+        <mat-option value="transfer">Bonifico</mat-option>
+        <mat-option value="phone top up">Ricarica</mat-option>
       </mat-select>
     </mat-form-field>
-    <button (click)="onFilterWord()">Search</button>
+    <button (click)="onFilterWord()">Cerca</button>
   </div>
 </div>
 <div id="transactionHeader" class="row">
   <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
     <div class="filter">
       <mat-form-field>
-        <mat-label>Transaction Type</mat-label>
+        <mat-label>Tipo Transazione</mat-label>
         <mat-select
           aria-label="Default select example"
           id="transaction"
@@ -38,7 +38,7 @@
           >
         </mat-select>
       </mat-form-field>
-      <button (click)="onFilterWord()">Search</button>
+      <button (click)="onFilterWord()">Cerca</button>
     </div>
   </div>
   <div class="col-lg-5 col-6 col-sm-10 amount">
@@ -64,21 +64,24 @@
     </button>
   </div>
 </div>
-<table class="table" id="transactionList">
-  <thead>
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Date</th>
-      <th scope="col">Amount</th>
-      <th scope="col" class="description">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let bankTransaction of bankTransactions">
-      <td>{{ bankTransaction.type }}</td>
-      <td>{{ bankTransaction.date }}</td>
-      <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
-      <td class="description">{{ bankTransaction.description }}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- Tabella -->
+<div class="my-table-container">
+  <table class="table my-table">
+    <thead>
+      <tr>
+        <th scope="col">Tipo Transazione</th>
+        <th scope="col">Data</th>
+        <th scope="col">Importo</th>
+        <th scope="col" class="description">Descrizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bankTransaction of bankTransactions">
+        <td>{{ bankTransaction.type }}</td>
+        <td>{{ bankTransaction.date }}</td>
+        <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
+        <td class="description">{{ bankTransaction.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

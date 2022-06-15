@@ -4,7 +4,7 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
@@ -33,10 +33,10 @@ export class UserDashBoardComponent implements OnInit {
     private sign: SignUpService,
     private router: Router,
     private auth: AuthService
-
   ) {}
 
   ngOnInit(): void {
+    console.log(this.httpReq.utente);
     this.auth.loggedIn.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
@@ -47,14 +47,12 @@ export class UserDashBoardComponent implements OnInit {
       this.sign.bs.subscribe((res) => {
         res[0]; //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
-    
       });
     });
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-
       });
     });
   }
@@ -69,16 +67,24 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   closeContoButton() {
-    this.request = {
-      type: 'account closure',
-      firstName: this.guest.firstName,
-      lastName: this.guest.lastName,
-      dateOfBirth: this.guest.birthDate,
-      email: this.guest.email,
-      idCont: this.httpReq.conto.id,
-    };
-    console.log(this.request);
-    this.httpReq.onAddRequest(this.request);
+    this.httpReq.onCheckRequest(this.httpReq.conto.id).subscribe((res) => {
+      console.log(res);
+      if (res.length === 0) {
+        console.log('Non esiste nessuna richiesta');
+        this.request = {
+          type: 'Chiusura conto',
+          firstName: this.guest.firstName,
+          lastName: this.guest.lastName,
+          dateOfBirth: this.guest.birthDate,
+          email: this.guest.email,
+          idCont: this.httpReq.conto.id,
+        };
+        this.httpReq.onAddRequest(this.request);
+      } else {
+        console.log('Esiste una richiesta');
+        alert('Richiesta già mandata');
+      }
+    });
   }
 
   toChangeEmailPass() {

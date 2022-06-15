@@ -32,6 +32,7 @@ export class HomePageGuestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.httpReq.utente);
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
       this.http
@@ -51,7 +52,6 @@ export class HomePageGuestComponent implements OnInit {
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.transactions = res;
     });
-    console.log(this.transactions);
   }
 
   toPayment() {
@@ -65,11 +65,7 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   newConto() {
-   
-      this.httpReq.addConto();
-  
-  
-
-
+    this.httpReq.addConto();
+    alert('Apertura conto richiesta');
   }
 }

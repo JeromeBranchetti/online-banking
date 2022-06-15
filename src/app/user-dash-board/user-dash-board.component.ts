@@ -4,10 +4,11 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
+import { UtenteService } from '../service/utente.service';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -15,14 +16,22 @@ import { Location } from '@angular/common';
 })
 export class UserDashBoardComponent implements OnInit {
   cliente: string = '******** ';
-  n_conto: string = '*****************';
-  iban: string = 'IT***************************';
+  n_conto: string = '************';
+  iban: string = 'IT*********************';
   trueIban: string;
-  saldo: string = '***************';
+  saldo: string = '*********';
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
   request: RequestModel;
+  menuClicked!: boolean;
+  public innerWidth: any;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.whatScreenSize();
+  }
 
   constructor(
     public SUService: SignUpService,
@@ -32,11 +41,14 @@ export class UserDashBoardComponent implements OnInit {
     private httpReq: HttpRequestService,
     private sign: SignUpService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    public US: UtenteService
   ) {}
 
   ngOnInit(): void {
-    console.log(this.httpReq.utente);
+    this.innerWidth = window.innerWidth;
+    this.whatScreenSize();
+
     this.auth.loggedIn.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
@@ -89,5 +101,17 @@ export class UserDashBoardComponent implements OnInit {
 
   toChangeEmailPass() {
     this.router.navigate(['/change-email-pass']);
+  }
+
+  menuButtonToggle() {
+    this.menuClicked = !this.menuClicked;
+  }
+
+  whatScreenSize() {
+    if (this.innerWidth > 730) {
+      this.menuClicked = true;
+    } else {
+      this.menuClicked = false;
+    }
   }
 }

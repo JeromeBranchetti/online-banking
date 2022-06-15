@@ -1,5 +1,23 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --clr-primary: rgb(0, 89, 255);
+  --clr-danger: rgba(255, 0, 68, 0.789);
+  --clr-success: rgb(10, 192, 0);
+
+
+  --card-border-radius-1: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 2rem 3rem rgba(132, 129, 200, 0.18);
+}
+
 body {
   min-height: 100vh;
   background-color: rgb(255, 255, 255);
@@ -42,4 +60,16 @@ button:focus {
 
 .redButton:hover {
   background-color: darkred;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::after,
+  *::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0ms !important;
+  }
 }

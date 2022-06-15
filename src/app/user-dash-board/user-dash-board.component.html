@@ -1,7 +1,7 @@
 <!-- userDashboard -->
 
 <div class="container-fluid dash-container">
-  <h1 class="text-center my-3">User DashBoard</h1>
+  <!-- <h1 class="text-center my-3">User DashBoard</h1>
   <div class="row">
     <div class="col">
       <button class="mb-3 mt-2" (click)="backButton()">
@@ -19,7 +19,7 @@
   </div>
   <div class="row dash-row">
     <div class="col text-center my-3">
-      <p>{{ modeSpione ? cliente : guest.firstName + " " + guest.lastName }}</p>
+      <p>{{ modeSpione ? cliente : guest?.firstName?? '' | titlecase }} {{modeSpione ? cliente : guest?.lastName?? '' | titlecase}}</p>
     </div>
     <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
       <div class="row conto-row justify-content-center m-0">
@@ -27,7 +27,7 @@
           <span class="num-conto">N. Conto: </span>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <span>{{ modeSpione ? n_conto : conto.numero_conto }}</span>
+          <span>{{ modeSpione ? n_conto : conto?.numero_conto?? '' }}</span>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
           <span class="val-iban">Iban: </span>
         </div>
         <div class="col-lg-4 col-sm-10">
-          <span>{{ modeSpione ? iban : conto.iban }}</span>
+          <span>{{ modeSpione ? iban : conto?.iban?? '' }}</span>
         </div>
         <div class="col-lg-2 col-sm-12">
           <button
@@ -53,9 +53,126 @@
     </div>
     <div class="col text-center mb-3"><span>Saldo</span></div>
     <div class="col text-center mb-3">
-      {{ modeSpione ? saldo : conto.saldo }}&euro;
+      {{ modeSpione ? saldo : conto?.saldo?? '' }}&euro;
     </div>
-  </div>
+  </div> -->
+
+  <aside *ngIf="menuClicked">
+    <div class="top m-2 justify-content-center">
+      <div class="logo">
+        <h2 class="mb-0"><span class="primary-text"> Dash</span>Board</h2>
+
+      </div>
+      <div class="icons">
+        <span><i class="fas fa-user-alt fs-1 primary-text"></i></span>
+        <span *ngIf="menuClicked" class="close ms-4" id="close-btn"><i class="fas fa-times fs-2" (click)="menuButtonToggle()" ></i></span>
+      </div>
+    </div>
+
+    <div class="sidebar ">
+      <a
+        routerLink="/home-page-guest"
+        [queryParams]="{ idUt: US.idUt, idCont: US.idCont }"
+      >
+        <span><i class="fas fa-arrow-left"></i></span>
+        <h3>Altri Account</h3>
+      </a>
+      <a routerLink="#">
+        <span><i class="fas fa-chart-line"></i></span>
+        <h3>Grafici</h3>
+      </a>
+      <a routerLink="#">
+        <span><i class="fas fa-money-bill-wave"></i></span>
+        <h3>Pagamenti</h3>
+      </a>
+      <a routerLink="#">
+        <span><i class="fas fa-shield-alt"></i></span>
+        <h3>Privacy</h3>
+      </a>
+      <a routerLink="#">
+        <span><i class="fas fa-cog"></i></span>
+        <h3>Impostazioni</h3>
+      </a>
+    </div>
+  </aside>
+<!-- Sezione centrale con info conto -->
+  <main>
+    <div>
+      <button id="menu-btn" (click)="menuButtonToggle()">
+        <span><i class="fas fa-bars fs-1 p-2"></i></span>
+      </button>
+    </div>
+    <h1 class="text-center my-3 h1-special">
+      {{ modeSpione ? cliente : (guest?.firstName ?? "" | titlecase) }}
+      {{ modeSpione ? cliente : (guest?.lastName ?? "" | titlecase) }}
+    </h1>
+    <div class="insights">
+      <div class="num-conto">
+        <span><i class="fas fa-list-ol"></i></span>
+        <div class="left mt-3">
+          <h3>Numero Conto</h3>
+          <h1>{{ modeSpione ? n_conto : conto?.numero_conto ?? "" }}</h1>
+        </div>
+        <div class="decoration-1 mt-2 mb-3"></div>
+        <small class="text-muted">Ultime 24 ore</small>
+      </div>
+      <div class="iban">
+        <span><i class="fas fa-list-ol"></i></span>
+        <button
+            type="button"
+            class="fs-6 p-2 mx-3"
+            *ngIf="!modeSpione"
+            (click)="copyMode()"
+          >
+            Copia <i class="fas fa-copy"></i>
+          </button>
+        <div class="left mt-3">
+          <h3>Iban</h3>
+          <h1>{{ modeSpione ? iban : conto?.iban ?? "" }}</h1>
+          
+        </div>
+        <div class="decoration-2 mt-2 mb-3"></div>
+        <small class="text-muted">Ultime 24 ore</small>
+      </div>
+      <div class="saldo">
+        <span><i class="fas fa-list-ol"></i></span>
+        <div class="left mt-3">
+          <h3>Saldo</h3>
+          <h1>{{ modeSpione ? saldo : conto?.saldo ?? "" }}&euro;</h1>
+        </div>
+        <div class="decoration-3 mt-2 mb-3"></div>
+        <small class="text-muted">Ultime 24 ore</small>
+      </div>
+    </div>
+
+    <!-- farcitura sotto info -->
+    <!-- <div class="something-under">
+      <h2 class="text-center">Qualcosa</h2>
+    </div> -->
+
+  </main>
+
+  
+    <!-- cose a destra -->
+    <div class="right mt-5">
+      <h2>Pannello di controllo</h2>
+      <div class="middle">
+        <div class="row d-flex flex-column">
+          <div class="col">
+            <small>Modifica credenziali</small>
+            <hr>
+            <button class="mb-3 mt-2 p-2" (click)="toChangeEmailPass()">
+              clicca <i class="fas fa-user-edit"></i>
+            </button>
+          </div>
+          <div class="col">
+            <small>Chiudi il conto</small>
+            <hr>
+            <button class="mb-3 mt-2 ms-1 p-2" (click)="closeContoButton()">
+              Termina <i class="far fa-window-close fs-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
-
-

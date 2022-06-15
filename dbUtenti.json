@@ -109,7 +109,7 @@
     {
       "numero_conto": 14,
       "saldo": 1110,
-      "attivo": false,
+      "attivo": true,
       "idUt": 1,
       "id": 1
     },
@@ -211,6 +211,13 @@
       "idUt": 14,
       "id": 15,
       "iban": "IT000000000000901514"
+    },
+    {
+      "numero_conto": 47,
+      "saldo": 0,
+      "attivo": false,
+      "idUt": 14,
+      "id": 16
     }
   ],
   "richieste": [
@@ -229,6 +236,32 @@
       "dateOfBirth": "1111-01-01",
       "email": "calcbtia@ewsdf.it",
       "id": 3
+    },
+    {
+      "type": "account closure",
+      "firstName": "guest",
+      "lastName": "guest",
+      "dateOfBirth": "1000-10-10",
+      "email": "root@root.it",
+      "idCont": 6,
+      "id": 4
+    },
+    {
+      "type": "account registration",
+      "firstName": "guest",
+      "lastName": "guest",
+      "dateOfBirth": "1000-10-10",
+      "email": "root@root.it",
+      "id": 5
+    },
+    {
+      "type": "account closure",
+      "firstName": "guest",
+      "lastName": "guest",
+      "dateOfBirth": "1000-10-10",
+      "email": "root@root.it",
+      "idCont": 6,
+      "id": 6
     }
   ],
   "transazioni": [

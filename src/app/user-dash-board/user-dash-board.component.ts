@@ -46,6 +46,8 @@ export class UserDashBoardComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.Init();
+    this.innerWidth = window.innerWidth;
+    this.whatScreenSize();
   }
 Init(): void {
     this.auth.loggedIn.next(true);

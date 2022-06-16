@@ -13,24 +13,44 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  Graphic!: Chart;
+  
+  Graphic!:Chart;
 
-  constructor(private http: HttpClient, private US: UtenteService) {}
+  
 
+  constructor(
+
+    private http:HttpClient,
+    private US:UtenteService,
+  ) {}
   ngOnInit(): void {
-    let idConto = this.US.idCont;
-    this.http
-      .get<BankTransaction[]>(
-        'http://localhost:3000/transazioni/?idConto=' + idConto
-      )
-      .subscribe((res) => {
-        let x = [];
-        let y = [];
-        for (let v of res) {
-          y.push(v.amount);
-          x.push(v.date);
-        }
-        this.Graphic = new Chart('myChart', this.myChartInit(x, y));
+    this.Init();
+  }
+
+ Init(): void {
+  
+   
+    let idConto=this.US.idCont;
+
+   this.http.get<BankTransaction[]>(
+      'http://localhost:3000/transazioni/?idConto=' + idConto
+    ).subscribe((res)=> {
+      
+      let x=[];
+      let y=[];
+      for(let v of res){
+        
+        y.push(v.amount);
+        x.push(v.date);
+        
+      }
+  
+      this.Graphic=new Chart("myChart",this.myChartInit(x,y));
+      
+      this.Graphic.update();
+      
+    
+      
 
         this.Graphic.update();
       });

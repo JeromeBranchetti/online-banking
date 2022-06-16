@@ -44,11 +44,12 @@ export class UserDashBoardComponent implements OnInit {
     private auth: AuthService,
     public US: UtenteService
   ) {}
-
   ngOnInit(): void {
+    this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-
+  }
+Init(): void {
     this.auth.loggedIn.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
@@ -57,7 +58,7 @@ export class UserDashBoardComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
-        res[0]; //chiedere perchè c è bisogno di [0]
+         //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
       });
     });

@@ -7,7 +7,7 @@ import { RequestModel } from './../admin-dash-board/request.model';
 import { HttpClient } from '@angular/common/http';
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { conto } from '../class/conto';
 
 @Component({
@@ -16,7 +16,7 @@ import { conto } from '../class/conto';
   styleUrls: ['./home-page-guest.component.css'],
 })
 export class HomePageGuestComponent implements OnInit {
-  conti: conto[] = [];
+  conti: conto[]=[] ;
   idUt: string = 'null';
   request: RequestModel;
   utente: utente;
@@ -30,9 +30,10 @@ export class HomePageGuestComponent implements OnInit {
     private sign: SignUpService,
     private transactionService: TransactionService
   ) {}
-
-  ngOnInit(): void {
-    console.log(this.httpReq.utente);
+ngOnInit(): void {
+     this.Init();
+}
+Init(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
       this.http

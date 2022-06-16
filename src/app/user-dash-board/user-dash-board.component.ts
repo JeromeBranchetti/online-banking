@@ -35,8 +35,10 @@ export class UserDashBoardComponent implements OnInit {
     private auth: AuthService
 
   ) {}
-
   ngOnInit(): void {
+    this.Init();
+  }
+Init(): void {
     this.auth.loggedIn.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;

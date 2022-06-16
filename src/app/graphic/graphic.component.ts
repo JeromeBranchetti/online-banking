@@ -14,8 +14,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GraphicComponent implements OnInit {
   
-  caricato=false;
   Graphic!:Chart;
+
   
 
   constructor(
@@ -23,11 +23,15 @@ export class GraphicComponent implements OnInit {
     private http:HttpClient,
     private US:UtenteService,
   ) {}
-
   ngOnInit(): void {
+    this.Init();
+  }
+
+ Init(): void {
+  
    
-    // let idConto=this.US.idCont;
-    let idConto=2;
+    let idConto=this.US.idCont;
+
    this.http.get<BankTransaction[]>(
       'http://localhost:3000/transazioni/?idConto=' + idConto
     ).subscribe((res)=> {
@@ -40,10 +44,12 @@ export class GraphicComponent implements OnInit {
         x.push(v.date);
         
       }
+  
       this.Graphic=new Chart("myChart",this.myChartInit(x,y));
       
       this.Graphic.update();
-      this.caricato=true;
+      
+    
       
 
      });

@@ -22,20 +22,16 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private location: Location,
-    private US:UtenteService,
-    private http:HttpRequestService,
+    private US: UtenteService,
+    private http: HttpRequestService
   ) {}
 
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    
     this.auth.authenticated = true;
-    if(this.auth.authenticated){
-      this.http.GetUser(email ,password);
-      
-
-      
+    if (this.auth.authenticated) {
+      this.http.GetUser(email, password);
     }
   }
 

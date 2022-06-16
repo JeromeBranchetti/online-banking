@@ -61,15 +61,16 @@
     <div class="top m-2 justify-content-center">
       <div class="logo">
         <h2 class="mb-0"><span class="primary-text"> Dash</span>Board</h2>
-
       </div>
       <div class="icons">
         <span><i class="fas fa-user-alt fs-1 primary-text"></i></span>
-        <span *ngIf="menuClicked" class="close ms-4" id="close-btn"><i class="fas fa-times fs-2" (click)="menuButtonToggle()" ></i></span>
+        <span *ngIf="menuClicked" class="close ms-4" id="close-btn"
+          ><i class="fas fa-times fs-2" (click)="menuButtonToggle()"></i
+        ></span>
       </div>
     </div>
 
-    <div class="sidebar ">
+    <div class="sidebar">
       <a
         routerLink="/home-page-guest"
         [queryParams]="{ idUt: US.idUt, idCont: US.idCont }"
@@ -85,7 +86,7 @@
         <span><i class="fas fa-money-bill-wave"></i></span>
         <h3>Pagamenti</h3>
       </a>
-      <a routerLink="#">
+      <a routerLink="/privacy">
         <span><i class="fas fa-shield-alt"></i></span>
         <h3>Privacy</h3>
       </a>
@@ -95,7 +96,7 @@
       </a>
     </div>
   </aside>
-<!-- Sezione centrale con info conto -->
+  <!-- Sezione centrale con info conto -->
   <main>
     <div>
       <button id="menu-btn" (click)="menuButtonToggle()">
@@ -119,17 +120,16 @@
       <div class="iban">
         <span><i class="fas fa-list-ol"></i></span>
         <button
-            type="button"
-            class="fs-6 p-2 mx-3"
-            *ngIf="!modeSpione"
-            (click)="copyMode()"
-          >
-            Copia <i class="fas fa-copy"></i>
-          </button>
+          type="button"
+          class="fs-6 p-2 mx-3"
+          *ngIf="!modeSpione"
+          (click)="copyMode()"
+        >
+          Copia <i class="fas fa-copy"></i>
+        </button>
         <div class="left mt-3">
           <h3>Iban</h3>
           <h1>{{ modeSpione ? iban : conto?.iban ?? "" }}</h1>
-          
         </div>
         <div class="decoration-2 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>
@@ -149,30 +149,28 @@
     <!-- <div class="something-under">
       <h2 class="text-center">Qualcosa</h2>
     </div> -->
-
   </main>
 
-  
-    <!-- cose a destra -->
-    <div class="right mt-5">
-      <h2>Pannello di controllo</h2>
-      <div class="middle">
-        <div class="row d-flex flex-column">
-          <div class="col">
-            <small>Modifica credenziali</small>
-            <hr>
-            <button class="mb-3 mt-2 p-2" (click)="toChangeEmailPass()">
-              clicca <i class="fas fa-user-edit"></i>
-            </button>
-          </div>
-          <div class="col">
-            <small>Chiudi il conto</small>
-            <hr>
-            <button class="mb-3 mt-2 ms-1 p-2" (click)="closeContoButton()">
-              Termina <i class="far fa-window-close fs-6"></i>
-            </button>
-          </div>
+  <!-- cose a destra -->
+  <div class="right mt-5">
+    <h2>Pannello di controllo</h2>
+    <div class="middle">
+      <div class="row d-flex flex-column">
+        <div class="col">
+          <small>Modifica credenziali</small>
+          <hr />
+          <button class="mb-3 mt-2 p-2" (click)="toChangeEmailPass()">
+            clicca <i class="fas fa-user-edit"></i>
+          </button>
+        </div>
+        <div class="col">
+          <small>Chiudi il conto</small>
+          <hr />
+          <button class="mb-3 mt-2 ms-1 p-2" (click)="closeContoButton()">
+            Termina <i class="far fa-window-close fs-6"></i>
+          </button>
         </div>
       </div>
     </div>
+  </div>
 </div>

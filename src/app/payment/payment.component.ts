@@ -1,7 +1,7 @@
 import { UtenteService } from './../service/utente.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PaymentComponent implements OnInit {
   // Variables
 
+  @ViewChild('btnRef') bankTransferButton;
+
   bankTransferChoice: boolean = true;
   phoneTopUpChoice: boolean = false;
   bankWithdrawalChoice: boolean = false;
@@ -19,6 +21,7 @@ export class PaymentComponent implements OnInit {
   type: string;
   iban: string;
   date = new Date();
+  balance: number;
 
   firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
@@ -72,7 +75,11 @@ export class PaymentComponent implements OnInit {
     private utenteService: UtenteService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.httpReq.onGetConto(this.utenteService.idCont).subscribe((res) => {
+      this.balance = res[0].saldo;
+    });
+  }
 
   onBankTransfer() {
     this.bankTransferChoice = true;
@@ -139,7 +146,9 @@ export class PaymentComponent implements OnInit {
     transaction = {
       type: this.type,
       date: this.date.toDateString(),
-      amount: +this.secondBankTransferForm.get('amount').value * -1,
+      amount: +(this.secondBankTransferForm.get('amount').value * -1).toFixed(
+        2
+      ),
       description: 'Transfer',
       idCont: this.utenteService.idCont,
     };
@@ -154,7 +163,7 @@ export class PaymentComponent implements OnInit {
     transaction = {
       type: this.type,
       date: this.date.toDateString(),
-      amount: +this.secondPhoneTopUpForm.get('amount').value * -1,
+      amount: +(this.secondPhoneTopUpForm.get('amount').value * -1).toFixed(2),
       description: 'Phone Top Up',
       idCont: this.utenteService.idCont,
     };
@@ -170,7 +179,7 @@ export class PaymentComponent implements OnInit {
       transaction = {
         type: this.type,
         date: this.date.toDateString(),
-        amount: +this.bankDepositForm.get('amount').value * +1,
+        amount: +(this.bankDepositForm.get('amount').value * +1).toFixed(2),
         description: 'Deposit',
         idCont: this.utenteService.idCont,
       };
@@ -187,7 +196,7 @@ export class PaymentComponent implements OnInit {
     transaction = {
       type: this.type,
       date: this.date.toDateString(),
-      amount: +this.bankWithdrawalForm.get('amount').value * -1,
+      amount: +(this.bankWithdrawalForm.get('amount').value * -1).toFixed(2),
       description: 'Withdrawal',
       idCont: this.utenteService.idCont,
     };

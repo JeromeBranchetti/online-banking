@@ -34,6 +34,10 @@ export class HttpRequestService {
 
   // Chiamate Get
 
+  onGetConto(id: string) {
+    return this.http.get<conto>('http://localhost:3000/conti/?idCont=' + id);
+  }
+
   GetConto(id: string) {
     this.http
       .get<conto>('http://localhost:3000/conti', {
@@ -156,19 +160,6 @@ export class HttpRequestService {
         Authorization: 'Bearer ' + this.token,
       }),
     });
-  }
-
-  onGetAccount() {
-    this.token = this.auth.accessToken;
-    this.http
-      .get<utente[]>('http://localhost:8080/account/utenti/1/conti', {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
-      .subscribe((res) => {
-        res;
-      });
   }
 
   onGetRequest() {
@@ -305,7 +296,6 @@ export class HttpRequestService {
   // Chiamate put
 
   onCompleteRequest(result: boolean, idConto: number) {
-    console.log(result);
     console.log(idConto);
     this.GetConto(idConto.toString());
     this.modifyAccount.attivo = result;

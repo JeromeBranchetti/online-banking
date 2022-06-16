@@ -11,6 +11,13 @@ h1 {
   justify-content: space-evenly;
 }
 
+/* Saldo */
+
+.balance {
+  display: flex;
+  justify-content: center;
+}
+
 /* Scelta */
 
 #choiceContainer {
@@ -161,4 +168,15 @@ input.ng-invalid.ng-touched {
     display: flex;
     justify-content: center;
   }
+}
+
+/* Consigli sulla sicurezza */
+
+.safety-container {
+  background: rgb(255, 255, 255);
+  margin-top: 50px;
+  min-height: fit-content;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  position: relative;
 }

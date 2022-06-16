@@ -56,13 +56,13 @@ export class AccountDetailComponent implements OnInit {
     this.bankTransactions;
     for (let bankTransaction of this.bankTransactions) {
       if (+bankTransaction.amount < 0) {
-        this.debitAmount = (
-          +this.debitAmount - +bankTransaction.amount
-        ).toString();
+        this.debitAmount = (+this.debitAmount - +bankTransaction.amount)
+          .toFixed(2)
+          .toString();
       } else if (+bankTransaction.amount > 0) {
-        this.creditAmount = (
-          +this.creditAmount + +bankTransaction.amount
-        ).toString();
+        this.creditAmount = (+this.creditAmount + +bankTransaction.amount)
+          .toFixed(2)
+          .toString();
       }
     }
   }

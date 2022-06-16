@@ -16,7 +16,7 @@ import { conto } from '../class/conto';
   styleUrls: ['./home-page-guest.component.css'],
 })
 export class HomePageGuestComponent implements OnInit {
-  conti: conto[] ;
+  conti: conto[]=[] ;
   idUt: string = 'null';
   request: RequestModel;
   utente: utente;

@@ -56,7 +56,7 @@ Init(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
-        res[0]; //chiedere perchè c è bisogno di [0]
+         //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
       });
     });

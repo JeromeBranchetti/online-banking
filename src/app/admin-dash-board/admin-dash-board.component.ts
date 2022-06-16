@@ -31,11 +31,11 @@ export class AdminDashBoardComponent implements OnInit {
 
   onColorRequestList() {
     for (let request of this.newRequests) {
-      if (request.type === 'account opening') {
+      if (request.type === 'Apertura nuovo conto') {
         this.requestsLight.push('yellow');
-      } else if (request.type === 'account registration') {
+      } else if (request.type === 'Prima registrazione') {
         this.requestsLight.push('green');
-      } else if (request.type === 'account closure') {
+      } else if (request.type === 'Chiusura conto') {
         this.requestsLight.push('red');
       }
     }
@@ -72,8 +72,12 @@ export class AdminDashBoardComponent implements OnInit {
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
-    this.selectedRequest.result = 'Accepted';
-    this.httpReq.onCompleteRequest(true);
+    this.selectedRequest.result = 'Accettato';
+    if (this.selectedRequest.type === 'Chiusura conto') {
+      this.httpReq.onCompleteRequest(false, this.selectedRequest.idCont);
+    } else {
+      this.httpReq.onCompleteRequest(true, this.selectedRequest.idCont);
+    }
   }
 
   onDeclineRequest() {
@@ -82,8 +86,12 @@ export class AdminDashBoardComponent implements OnInit {
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
-    this.selectedRequest.result = 'Declined';
-    this.httpReq.onCompleteRequest(false);
+    this.selectedRequest.result = 'Declinato';
+    if (this.selectedRequest.type === 'Chiusura conto') {
+      this.httpReq.onCompleteRequest(true, this.selectedRequest.idCont);
+    } else {
+      this.httpReq.onCompleteRequest(false, this.selectedRequest.idCont);
+    }
   }
 
   // Metodi per il download

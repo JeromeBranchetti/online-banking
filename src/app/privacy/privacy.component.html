@@ -1,0 +1,286 @@
+<div class="container">
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="privacyModal"
+    tabindex="-1"
+    aria-labelledby="privacyModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacyModalLabel">
+            <div class="col header">
+              <div class="row" style="color: black">
+                <span></span>
+              </div>
+            </div>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" style="color: black">
+          <div class="row d-flex flex-column">
+            <div class="col body-cookies-selection">
+              <h2>Centro preferenze sulla privacy</h2>
+              <p>
+                Questo sito utilizza cookie Tecnici, di Marketing e la
+                tecnologia del chatbot per gestire, migliorare e personalizzare
+                la tua esperienza di navigazione del sito.
+              </p>
+              <p>
+                Cliccando sui bottoni sotto riportati puoi accettare tutti i
+                cookie attivi sul sito, oppure gestire le tue preferenze, così
+                come i singoli cookies di terze parti. Potrai modificare in
+                qualsiasi momento le tue scelte nella pagina Privacy e Cookies
+              </p>
+              <p>
+                Chiudendo il banner, mediante selezione dell'apposito comando
+                contraddistinto dalla X, accetterai unicamente l'utilizzo dei
+                Cookie Tecnici, necessari al funzionamento del sito.
+              </p>
+              <p>
+                Per maggiori informazioni consulta l’Informativa Cookie
+                cliccandoqui . Per consultare l’Informativa relativa al chatbot
+                cliccaqui.
+              </p>
+              <button (click)="acceptAllCookies()">Consenti tutti</button>
+              <div class="gestisci-preferenze">
+                <h2>Gestisci preferenze consenso</h2>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne"
+                      >
+                        Cookie Tecnici
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseOne"
+                      class="accordion-collapse collapse show"
+                      aria-labelledby="panelsStayOpen-headingOne"
+                    >
+                      <div class="accordion-body">
+                        Servono a fornirti il servizio richiesto. Senza di essi
+                        alcune operazioni sarebbero inaccessibili o meno sicure.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                      <div class="row switch-row">
+                        <div class="col-10">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTwo"
+                            aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTwo"
+                          >
+                            Cookie Statici
+                          </button>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              role="switch"
+                              id="flexSwitchCheckDefault"
+                              #item
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexSwitchCheckDefault"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseTwo"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingTwo"
+                    >
+                      <div class="accordion-body">
+                        Servono sia a raccogliere informazioni in forma
+                        aggregata e anonima sul numero degli utenti che visitano
+                        il nostro sito, sia ad ottimizzarlo.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2
+                      class="accordion-header"
+                      id="panelsStayOpen-headingThree"
+                    >
+                      <div class="row switch-row">
+                        <div class="col-10">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseThree"
+                            aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseThree"
+                          >
+                            Cookie Marketing
+                          </button>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              role="switch"
+                              id="flexSwitchCheckChecked"
+                              #item
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexSwitchCheckChecked"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseThree"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingThree"
+                    >
+                      <div class="accordion-body">
+                        Servono per proporti messaggi pubblicitari in linea con
+                        le tue preferenze.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade cookies-pop-up"></div>
+
+  <!-- Start of the page -->
+  <h1 class="text-center">Privacy</h1>
+  <div class="row d-flex flex-column">
+    <div class="col">
+      <h3>Privacy e Cookies</h3>
+      <p>
+        Il Responsabile della protezione dei dati per Santander Consumer Bank
+        S.p.A. è {{ responsabilePrivacy }}
+      </p>
+      <p>
+        Vuoi modificare le tue preferenze o revocare i consensi sui cookies?
+        <span class="green"
+          ><a data-bs-toggle="modal" data-bs-target="#privacyModal">
+            Clicca qui
+          </a></span
+        >
+      </p>
+    </div>
+    <div class="col">
+      <h3>Diritti degli interessati</h3>
+      <p>Gentile Cliente,</p>
+      <p>
+        il nuovo Regolamento Europeo in materia di protezione dei dati
+        personali1 (2016/679/UE), detto anche GDPR, Le attribuisce una pluralità
+        di diritti riguardanti il trattamento2 dei Suoi dati personali da parte
+        di {{ bankName }} S.p.A.
+      </p>
+      <p>
+        In particolare, Lei ha il diritto di ottenere in qualunque momento la
+        conferma dell'esistenza o meno dei dati utilizzati dalla Banca e di
+        conoscerne il contenuto e l'origine, di verificarne l'esattezza,
+        chiederne l'integrazione, oppure la rettifica. Inoltre, Le è
+        riconosciuto il diritto di chiedere la cancellazione, la trasformazione
+        in forma anonima o il blocco dei dati trattati in violazione di legge,
+        il diritto di ottenere i dati trattati dalla Banca nonché il diritto di
+        opporsi in ogni caso, per motivi legittimi, al loro trattamento.
+      </p>
+      <p>
+        Nella presente sezione, Le forniamo il dettaglio e la descrizione dei
+        Suoi diritti, il modulo con cui esercitarli e i riferimenti del
+        Responsabile alla Protezione dei Dati (DPO) che ha il ruolo di assistere
+        la Banca nel garantire la tutela dei Suoi dati personali e nel
+        facilitare la gestione dei Suoi diritti.
+      </p>
+      <p class="fw-600">
+        Al fine di consentirci di gestire la Sua richiesta, La preghiamo di
+        utilizzare e compilare in ogni sua parte in modo leggibile il "Modulo
+        Diritti dell’interessato", allegando copia di un documento di
+        riconoscimento in corso di validità. In mancanza dei dati indispensabili
+        per poter trattare la Sua richiesta nonché di tale documentazione, la
+        richiesta è improcedibile.
+      </p>
+      <p>
+        <strong>Diritto di accesso:</strong> è il diritto di richiedere
+        informazioni generali sul trattamento dei propri dati personali,
+        comprese quelle relative alla finalità del trattamento, le categoria dei
+        dati in questione, i destinatari o le categorie di destinatari a cui i
+        dati personali sono stati o saranno comunicati, in particolare se
+        destinatari di paesi terzi o organizzazioni internazionali, la data
+        retention, la loro origine, il diritto di opporre reclamo a un’autorità
+        di controllo, l’esistenza di un processo decisionale automatizzato (es.
+        profilazione);
+      </p>
+      <p>
+        <strong>Diritto di rettifica:</strong> è il diritto di richiedere un
+        aggiornamento, una rettifica o un’integrazione dei propri dati trattati;
+      </p>
+      <p>
+        <strong>Diritto alla cancellazione:</strong> è il diritto di richiedere
+        la cancellazione dei propri dati;
+      </p>
+      <p>
+        <strong>Diritto di limitazione di trattamento:</strong> è il diritto di
+        richiedere la limitazione del trattamento in alternativa alla
+        cancellazione;
+      </p>
+      <p>
+        <strong>Diritto alla portabilità dei dati:</strong> è il diritto di
+        richiedere la trasmissione dei propri dati a un altro Titolare del
+        Trattamento;
+      </p>
+      <p>
+        <strong>Diritto di opposizione:</strong> è il diritto di negare il
+        consenso al trattamento dei propri dati, oppure di opporsi a particolari
+        trattamenti per i quali, ad esempio, aveva invece precedentemente
+        manifestato il proprio consenso; Reclamo: qualora la Sua richiesta non
+        sia classificabile in nessuna delle tipologie sopra riportate.
+      </p>
+    </div>
+    <div class="col">
+      <hr />
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+</div>

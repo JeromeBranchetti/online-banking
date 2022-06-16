@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PaymentComponent implements OnInit {
   // Variables
 
-  bankTransferChoice: boolean = false;
+  bankTransferChoice: boolean = true;
   phoneTopUpChoice: boolean = false;
   bankWithdrawalChoice: boolean = false;
   bankDepositChoice: boolean = false;
@@ -141,7 +141,7 @@ export class PaymentComponent implements OnInit {
       date: this.date.toDateString(),
       amount: +this.secondBankTransferForm.get('amount').value * -1,
       description: 'Transfer',
-      idConto: this.utenteService.idCont,
+      idCont: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
     this.bankTransferChoice = false;
@@ -156,7 +156,7 @@ export class PaymentComponent implements OnInit {
       date: this.date.toDateString(),
       amount: +this.secondPhoneTopUpForm.get('amount').value * -1,
       description: 'Phone Top Up',
-      idConto: this.utenteService.idCont,
+      idCont: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
     this.phoneTopUpChoice = false;
@@ -172,7 +172,7 @@ export class PaymentComponent implements OnInit {
         date: this.date.toDateString(),
         amount: +this.bankDepositForm.get('amount').value * +1,
         description: 'Deposit',
-        idConto: this.utenteService.idCont,
+        idCont: this.utenteService.idCont,
       };
       this.httpReq.onAddTransaction(transaction);
     } else {
@@ -189,7 +189,7 @@ export class PaymentComponent implements OnInit {
       date: this.date.toDateString(),
       amount: +this.bankWithdrawalForm.get('amount').value * -1,
       description: 'Withdrawal',
-      idConto: this.utenteService.idCont,
+      idCont: this.utenteService.idCont,
     };
     this.httpReq.onAddTransaction(transaction);
     this.bankWithdrawalChoice = false;

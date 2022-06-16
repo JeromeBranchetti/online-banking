@@ -3,5 +3,5 @@ export class BankTransaction {
   date: string; // Cambiare in Date
   amount: number;
   description: string;
-  idConto: string;
+  idCont: string;
 }

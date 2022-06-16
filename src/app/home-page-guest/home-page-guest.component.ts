@@ -53,7 +53,6 @@ Init(): void {
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.transactions = res;
     });
-    console.log(this.transactions);
   }
 
   toPayment() {
@@ -67,11 +66,7 @@ Init(): void {
   }
 
   newConto() {
-   
-      this.httpReq.addConto();
-  
-  
-
-
+    this.httpReq.addConto();
+    alert('Apertura conto richiesta');
   }
 }

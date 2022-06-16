@@ -12,6 +12,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserDashBoardComponent } from './user-dash-board/user-dash-board.component';
 import { HomePageGuestComponent } from './home-page-guest/home-page-guest.component';
 import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   {
     path: 'userDashboard',
     component: UserDashBoardComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'signUp',
@@ -50,11 +51,16 @@ const routes: Routes = [
   {
     path: 'home-page-guest',
     component: HomePageGuestComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'change-email-pass',
     component: ChangeEmailPassComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent,
     // canActivate: [AuthGuard],
   },
   {

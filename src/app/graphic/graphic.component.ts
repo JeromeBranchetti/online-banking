@@ -2,7 +2,7 @@ import { UtenteService } from './../service/utente.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
 
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration } from 'chart.js';
 
 import { HttpClient } from '@angular/common/http';
@@ -52,33 +52,29 @@ export class GraphicComponent implements OnInit {
     
       
 
-     });
+        this.Graphic.update();
+      });
+  }
 
-    
-    }
-myChartInit(x:any[],y:any[]):ChartConfiguration{
-  
+  myChartInit(x: any[], y: any[]): ChartConfiguration {
+    const data = {
+      labels: x,
+      datasets: [
+        {
+          label: 'My First Dataset',
+          data: y,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
 
-const data = {
-  labels: x,
-  datasets: [{
-    label: 'My First Dataset',
-    data: y,
-    fill: false,
-    borderColor: 'rgb(75, 192, 192)',
-    
+          tension: 0.1,
+        },
+      ],
+    };
+    const config: ChartConfiguration = {
+      type: 'line',
+      data: data,
+    };
 
-    tension: 0.1
-  }]
-};
-const config:ChartConfiguration = {
-  type: 'line',
-  data: data,
-};
-
-
-return config;
-
-}
-
+    return config;
+  }
 }

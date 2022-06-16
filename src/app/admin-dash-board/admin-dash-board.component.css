@@ -16,13 +16,6 @@
   padding: 3px;
 }
 
-.singleRequest {
-  display: flex;
-  justify-content: center;
-  height: fit-content;
-  align-self: center;
-}
-
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -72,4 +65,11 @@
 
 .confirmButton {
   height: fit-content;
+}
+
+.div-center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

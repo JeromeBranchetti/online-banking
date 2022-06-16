@@ -26,13 +26,14 @@ import { UserDashBoardComponent } from './user-dash-board/user-dash-board.compon
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { PaymentComponent } from './payment/payment.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './admin-dash-board/request/request.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphicComponent } from './graphic/graphic.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ErrorComponent } from './error/error.component';
 import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.
     GraphicComponent,
     ErrorComponent,
     ChangeEmailPassComponent,
+    PrivacyComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.
     HttpClientModule,
     BrowserAnimationsModule,
     NgChartsModule,
+    FormsModule
   ],
   providers: [HttpRequestService, AuthGuard],
   bootstrap: [AppComponent],

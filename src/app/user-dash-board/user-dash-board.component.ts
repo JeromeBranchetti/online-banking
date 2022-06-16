@@ -4,10 +4,11 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
+import { UtenteService } from '../service/utente.service';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -15,14 +16,22 @@ import { Location } from '@angular/common';
 })
 export class UserDashBoardComponent implements OnInit {
   cliente: string = '******** ';
-  n_conto: string = '*****************';
-  iban: string = 'IT***************************';
+  n_conto: string = '************';
+  iban: string = 'IT*********************';
   trueIban: string;
-  saldo: string = '***************';
+  saldo: string = '*********';
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
   request: RequestModel;
+  menuClicked!: boolean;
+  public innerWidth: any;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.whatScreenSize();
+  }
 
   constructor(
     public SUService: SignUpService,
@@ -32,8 +41,8 @@ export class UserDashBoardComponent implements OnInit {
     private httpReq: HttpRequestService,
     private sign: SignUpService,
     private router: Router,
-    private auth: AuthService
-
+    private auth: AuthService,
+    public US: UtenteService
   ) {}
   ngOnInit(): void {
     this.Init();
@@ -49,14 +58,12 @@ Init(): void {
       this.sign.bs.subscribe((res) => {
         res[0]; //chiedere perchè c è bisogno di [0]
         this.guest = res[0];
-    
       });
     });
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-
       });
     });
   }
@@ -71,19 +78,39 @@ Init(): void {
   }
 
   closeContoButton() {
-    this.request = {
-      type: 'account closure',
-      firstName: this.guest.firstName,
-      lastName: this.guest.lastName,
-      dateOfBirth: this.guest.birthDate,
-      email: this.guest.email,
-      idCont: this.httpReq.conto.id,
-    };
-    console.log(this.request);
-    this.httpReq.onAddRequest(this.request);
+    this.httpReq.onCheckRequest(this.httpReq.conto.id).subscribe((res) => {
+      console.log(res);
+      if (res.length === 0) {
+        console.log('Non esiste nessuna richiesta');
+        this.request = {
+          type: 'Chiusura conto',
+          firstName: this.guest.firstName,
+          lastName: this.guest.lastName,
+          dateOfBirth: this.guest.birthDate,
+          email: this.guest.email,
+          idCont: this.httpReq.conto.id,
+        };
+        this.httpReq.onAddRequest(this.request);
+      } else {
+        console.log('Esiste una richiesta');
+        alert('Richiesta già mandata');
+      }
+    });
   }
 
   toChangeEmailPass() {
     this.router.navigate(['/change-email-pass']);
+  }
+
+  menuButtonToggle() {
+    this.menuClicked = !this.menuClicked;
+  }
+
+  whatScreenSize() {
+    if (this.innerWidth > 730) {
+      this.menuClicked = true;
+    } else {
+      this.menuClicked = false;
+    }
   }
 }

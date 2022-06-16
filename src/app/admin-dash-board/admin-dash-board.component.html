@@ -3,7 +3,7 @@
     <!-- Prima lista (sinistra) -->
     <div class="col-lg-3 col-sm-12">
       <div id="newRequestHeader">
-        <h1>New Requests List</h1>
+        <h1>Lista Nuove Richieste</h1>
         <button class="confirmButton" (click)="onFetchRequest()">Fetch</button>
       </div>
       <div class="row flex-column requestsList" aria-orientation="vertical">
@@ -36,28 +36,31 @@
 
     <!-- Spazio per le richieste -->
     <div class="col-lg-6 col-sm-12 singleRequest">
-      <div *ngIf="requestVisibility">
-        <app-request
-          [firstName]="selectedRequest.firstName"
-          [lastName]="selectedRequest.lastName"
-          [dateOfBirth]="selectedRequest.dateOfBirth"
-          [email]="selectedRequest.email"
-          [light]="selectedLight"
-          [result]="selectedRequest.result"
-          [header]="selectedRequest.header"
-        ></app-request>
-        <div class="buttons" *ngIf="buttonVisibility">
-          <button class="button" (click)="onAcceptRequest()">Accept</button>
-          <button class="btn btn-danger" (click)="onDeclineRequest()">
-            Decline
-          </button>
+      <div class="div-center">
+        <div *ngIf="requestVisibility">
+          <app-request
+            [type]="selectedRequest.type"
+            [firstName]="selectedRequest.firstName"
+            [lastName]="selectedRequest.lastName"
+            [email]="selectedRequest.email"
+            [light]="selectedLight"
+            [result]="selectedRequest.result"
+            [header]="selectedRequest.header"
+            [idConto]="selectedRequest.idCont"
+          ></app-request>
+          <div class="buttons" *ngIf="buttonVisibility">
+            <button class="button" (click)="onAcceptRequest()">Accetta</button>
+            <button class="btn btn-danger" (click)="onDeclineRequest()">
+              Declina
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Seconda lista (destra) -->
     <div class="col-lg-3 col-sm-12 oldRequestList">
-      <h1>Older Request List</h1>
+      <h1>Lista Vecchie Richieste</h1>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
         <!-- ngFor vecchie richieste -->
         <div
@@ -79,7 +82,7 @@
   <br />
   <div class="row">
     <div class="col-lg-12 downloadButton">
-      <button (click)="onDownloadUserList()">Download User List</button>
+      <button (click)="onDownloadUserList()">Download Lista Utenti</button>
     </div>
   </div>
 </div>

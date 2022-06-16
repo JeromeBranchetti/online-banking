@@ -241,7 +241,7 @@ export class HttpRequestService {
         'http://localhost:3000/utenti/' + this.utente[0].id,
         this.utente[0]
       )
-      .subscribe((res) => 'caricato');
+      .subscribe(() => this.root.navigate(['/login']));
   }
 
   changemail(email: string) {
@@ -260,7 +260,7 @@ export class HttpRequestService {
         'http://localhost:3000/utenti/' + this.utente[0].id,
         this.utente[0]
       )
-      .subscribe((res) => 'caricato');
+      .subscribe(() => this.root.navigate(['/login']));
   }
   onAddTransaction(transaction: BankTransaction) {
     this.http

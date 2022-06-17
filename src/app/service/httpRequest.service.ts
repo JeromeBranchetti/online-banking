@@ -79,16 +79,20 @@ export class HttpRequestService {
 
   GetUser(ema: string, pass: string) {
     //utente appena loggato
-    if (!ema.includes('@dipendente.it')) {
+    
       this.http
-        .get<utente>('http://localhost:8080/utenti', {
-          params: { email: ema, password: pass },
-          headers: new HttpHeaders({
+        .post<utente>('http://localhost:8080/api/auth/userdetails', 
+          {
+            email: ema,
+            password: pass,
+          },
+          {headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.token,
           }),
         })
         .subscribe({
           next: (response) => {
+            console.log("resp")
             response;
             this.utente = response[0];
             this.sign.bs.next(this.utente);
@@ -101,27 +105,7 @@ export class HttpRequestService {
             });
           },
         });
-    } else {
-      this.http
-        .get<utente>('http://localhost:8080/dipendenti', {
-          params: { email: ema, password: pass },
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
-          }),
-        })
-        .subscribe((response) => {
-          response;
-
-          this.root.navigate(['/adminDashboard'], {
-            //   queryParams: {
-            //     idUt: this.US.idUt,
-            //     idCont: this.US.idCont,
-            //zanzan
-            //   },
-            // });
-          });
-        });
-    }
+    
   }
 
   onGetTransaction() {

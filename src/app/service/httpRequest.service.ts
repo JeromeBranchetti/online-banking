@@ -92,9 +92,9 @@ export class HttpRequestService {
           next: (response) => {
             console.log("resp:",response);
      
-            this.utente = response[0];
+            this.utente = response;
             this.sign.bs.next(this.utente);
-            this.US.idUt = response[0].id;
+            this.US.idUt = response.id;
             this.root.navigate(['/home-page-guest'], {
               queryParams: {
                 idUt: this.US.idUt,

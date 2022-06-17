@@ -14,9 +14,9 @@ export class AuthService {
 
   error = {
     message:
-      'An unknown error has occured, looks like you are not on the right page.' +
-      'Please consider navigate again on our website through the right routes!',
-    status: 'Unknown Route',
+      'Si è verificato un errore sconosciuto, sembra che non ti trovi nella pagina giusta' +
+      'Per favore naviga ancora nel nostro sito attraverso i bottoni che ti sono forniti',
+    status: 'Percorso errato',
   };
 
   token: AuthResponse = null;
@@ -35,14 +35,13 @@ export class AuthService {
 
   login(email: string, password: string) {
     this.http
-      .post<AuthResponse>('http://localhost:8080/authentication/authenticate', {
+      .post<AuthResponse>('http://localhost:8080/api/auth/auth', {
         email: email,
         password: password,
       })
       .subscribe({
         next: (response) => {
-          response;
-          // Chiamata Get, tramite id accedo al ruolo dell'utente
+          console.log(response);
           // Se non è amministratore
           this.accessToken = response.access_token;
           this.loggedIn.next(true);

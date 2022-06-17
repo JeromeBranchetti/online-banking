@@ -34,7 +34,9 @@ export class HttpRequestService {
 
   // Chiamate Get
 
-
+  onGetConto(id: string) {
+    return this.http.get<conto>('http://localhost:3000/conti/?idCont=' + id);
+  }
 
   GetConto(id: string) {
     this.http

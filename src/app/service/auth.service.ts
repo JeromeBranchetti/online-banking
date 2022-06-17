@@ -24,7 +24,6 @@ export class AuthService {
   token: AuthResponse = null;
   autoExit = new Subject<void>();
   tokenExpirationTimer: any;
-  accessToken: string = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -36,13 +35,11 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<AuthResponse>('http://localhost:8080/api/auth/auth', {
-        email: email,
-        password: password,
-      })
-    }
-     
+    return this.http.post<AuthResponse>('http://localhost:8080/api/auth/auth', {
+      email: email,
+      password: password,
+    });
+  }
 
   onCheckAdmin(email: string, password: string) {
     this.http

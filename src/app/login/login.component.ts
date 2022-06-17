@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe({
       next: (response) => {
-        console.log(response.token);
-        this.auth.accessToken = response.token;
+        this.auth.token = response;
         this.auth.loggedIn.next(true);
         this.auth.authenticated = true;
+        this.auth.isAuthenticated();
         if (this.auth.authenticated) {
           this.http.GetUser(email, password);
         }
@@ -44,8 +44,8 @@ export class LoginComponent implements OnInit {
         // this.router.navigate(['/adminDashboard])
       },
       error: (errorRes) => {
-        this.router.navigate(['/error']);
         this.auth.error = errorRes.error;
+        this.router.navigate(['/error']);
       },
     });
   }

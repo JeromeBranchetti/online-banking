@@ -17,7 +17,7 @@ import { conto } from '../class/conto';
   styleUrls: ['./home-page-guest.component.css'],
 })
 export class HomePageGuestComponent implements OnInit {
-  conti: conto[]=[] ;
+  conti: conto[] = [];
   idUt: string = 'null';
   request: RequestModel;
   utente: utente;
@@ -32,21 +32,27 @@ export class HomePageGuestComponent implements OnInit {
     private transactionService: TransactionService,
     private auth: AuthService
   ) {}
-ngOnInit(): void {
-     this.Init();
-}
-Init(): void {
+
+  ngOnInit(): void {
+    //  this.Init();
+  }
+
+  Init(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
       this.http
-        .get<conto[]>('http://localhost:8080/api/account/users/'+params.get('idUt')+'/accounts', 
-        {
-          headers: new HttpHeaders({
-             Authorization: 'Bearer ' + this.auth.token,
-           }),
-          })
+        .get<conto[]>(
+          'http://localhost:8080/api/account/users/' +
+            params.get('idUt') +
+            '/accounts',
+          {
+            headers: new HttpHeaders({
+              Authorization: 'Bearer ' + this.auth.token,
+            }),
+          }
+        )
         .subscribe((res) => {
-          console.log("get conto:"+ res)
+          console.log('get conto:' + res);
           this.conti = res;
         });
     });

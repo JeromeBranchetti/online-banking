@@ -85,11 +85,9 @@ export class HttpRequestService {
           {
             email: ema,
             password: pass,
-          },
-          {headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
-          }),
-        })
+          }
+         
+        )
         .subscribe({
           next: (response) => {
             console.log("resp");

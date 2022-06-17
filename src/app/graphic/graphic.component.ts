@@ -61,7 +61,7 @@ export class GraphicComponent implements OnInit {
       labels: x,
       datasets: [
         {
-          label: 'My First Dataset',
+          label: 'Andamento conto',
           data: y,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',

@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'userDashboard',
     component: UserDashBoardComponent,
-     canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'signUp',
@@ -56,12 +56,12 @@ const routes: Routes = [
   {
     path: 'change-email-pass',
     component: ChangeEmailPassComponent,
-     canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'privacy',
     component: PrivacyComponent,
-     canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

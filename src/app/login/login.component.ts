@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    this.auth.authenticated = true;
+    this.auth.login(email, password);
     if (this.auth.authenticated) {
       this.http.GetUser(email, password);
     }

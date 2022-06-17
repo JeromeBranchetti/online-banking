@@ -56,12 +56,20 @@ const routes: Routes = [
   {
     path: 'change-email-pass',
     component: ChangeEmailPassComponent,
+<<<<<<< HEAD
     canActivate: [AuthGuard],
+=======
+     canActivate: [AuthGuard],
+>>>>>>> 780a9307b648435eb53879ae5ffd2de95f71d73e
   },
   {
     path: 'privacy',
     component: PrivacyComponent,
+<<<<<<< HEAD
     canActivate: [AuthGuard],
+=======
+     canActivate: [AuthGuard],
+>>>>>>> 780a9307b648435eb53879ae5ffd2de95f71d73e
   },
   {
     path: '**',

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeEmailPassComponent implements OnInit {
   isEmail: boolean = true;
+  regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
   constructor(
     private http:HttpRequestService
@@ -20,10 +21,22 @@ export class ChangeEmailPassComponent implements OnInit {
   }
 
   onChangePass(pass:string) {
+     
+    if(pass.match(this.regex)!==null){
+    
     this.http.changepass(pass);
+  }
+  else{
+    alert("la nuova password non rispetta i criteri di sicurezza")
+  }
   }
 
   onChangeEmail(email:string) {
+    if(email.includes('@')){
     this.http.changemail(email);
+    }
+    else{
+      alert("email sbagliata");
+    }
   }
 }

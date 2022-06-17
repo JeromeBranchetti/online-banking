@@ -48,7 +48,7 @@ export class AuthService {
           this.accessToken = response.access_token;
           this.loggedIn.next(true);
           this.authenticated = true;
-          this.router.navigate(['/home-page-guest']);
+
           // Se è amministratore
           // this.administrator = true;
           // this.router.navigate(['/adminDashboard])

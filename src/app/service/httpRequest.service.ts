@@ -92,8 +92,8 @@ export class HttpRequestService {
         })
         .subscribe({
           next: (response) => {
-            console.log("resp")
-            response;
+            console.log("resp");
+     
             this.utente = response[0];
             this.sign.bs.next(this.utente);
             this.US.idUt = response[0].id;

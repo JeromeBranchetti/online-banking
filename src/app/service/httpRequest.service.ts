@@ -90,7 +90,7 @@ export class HttpRequestService {
         )
         .subscribe({
           next: (response) => {
-            console.log("resp");
+            console.log("resp:",response);
      
             this.utente = response[0];
             this.sign.bs.next(this.utente);

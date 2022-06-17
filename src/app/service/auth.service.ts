@@ -26,7 +26,7 @@ export class AuthService {
   tokenExpirationTimer: any;
   accessToken: string = null;
 
-  constructor(private http: HttpClient, private router: Router ,private httpreq:HttpRequestService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAuthenticated() {
     const promise = new Promise((resolve, rejects) => {
@@ -36,31 +36,13 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.http
+    return this.http
       .post<AuthResponse>('http://localhost:8080/api/auth/auth', {
         email: email,
         password: password,
       })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.onCheckAdmin(email, password);
-          // Se non è amministratore
-          this.accessToken = response.access_token;
-          this.loggedIn.next(true);
-          this.authenticated = true;
-          this.httpreq.GetUser(email, password);
-
-          // Se è amministratore
-          // this.administrator = true;
-          // this.router.navigate(['/adminDashboard])
-        },
-        error: (errorRes) => {
-          this.router.navigate(['/error']);
-          this.error = errorRes.error;
-        },
-      });
-  }
+    }
+     
 
   onCheckAdmin(email: string, password: string) {
     this.http

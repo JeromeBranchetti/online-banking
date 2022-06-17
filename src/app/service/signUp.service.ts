@@ -36,25 +36,10 @@ export class SignUpService {
   }
 
   onAddUser(ut: utente) {
-    // utente iscritto
-    // this.http
-    //   .post('http://localhost:8080/authentication/register', ut)
-    //   .subscribe((res) => {
-    //     this.auth.loggedIn.next(true);
-    //     this.auth.authenticated = true;
-    //     this.router.navigate([
-    //       '/home-page-guest',
-    //       {
-    //         queryParams: {
-    //           user: ut.firstName + ut.lastName,
-    //         },
-    //       },
-    //     ]);
-    //   });
 
-    this.http.post('http://localhost:3000/utenti', ut).subscribe(() => {
+    this.http.post('http://localhost:8080/utenti', ut).subscribe(() => {
       this.http
-        .get<utente[]>('http://localhost:3000/utenti')
+        .get<utente[]>('http://localhost:8080/utenti')
         .subscribe((utenti) => {
           let id = utenti[utenti.length - 1].id;
           let cont = new conto(0);
@@ -71,12 +56,12 @@ export class SignUpService {
           };
 
           this.http
-            .post('http://localhost:3000/richieste', this.request)
+            .post('http://localhost:8080/richieste', this.request)
             .subscribe((res) => {
               console.log(res);
             });
 
-          this.http.post('http://localhost:3000/conti', cont).subscribe(() => {
+          this.http.post('http://localhost:8080/conti', cont).subscribe(() => {
             this.auth.authenticated = true;
             this.router.navigate(['/home-page-guest'], {
               queryParams: {

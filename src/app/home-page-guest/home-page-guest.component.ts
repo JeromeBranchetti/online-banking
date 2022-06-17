@@ -37,12 +37,13 @@ Init(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
       this.http
-        .get<conto[]>('http://localhost:3000/conti', {
+        .get<conto[]>('http://localhost:8080//api/account/users/'+params.get('idUt')+'/accounts', {
           params: {
             idUt: params.get('idUt'),
           },
         })
         .subscribe((res) => {
+          console.log("get conto:"+ res)
           this.conti = res;
         });
     });

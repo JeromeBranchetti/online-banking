@@ -1,3 +1,4 @@
+import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component';
 import { AuthGuard } from './guard/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
@@ -61,6 +62,11 @@ const routes: Routes = [
   {
     path: 'privacy',
     component: PrivacyComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'assicurazioni',
+    component: AssicurazioniComponent,
     // canActivate: [AuthGuard],
   },
   {

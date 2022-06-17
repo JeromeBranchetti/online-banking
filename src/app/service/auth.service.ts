@@ -1,5 +1,6 @@
+import { utente } from './../class/utente';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthResponse } from '../model/authResponse.model';
@@ -42,6 +43,7 @@ export class AuthService {
       .subscribe({
         next: (response) => {
           console.log(response);
+          this.onCheckAdmin(email, password);
           // Se non è amministratore
           this.accessToken = response.access_token;
           this.loggedIn.next(true);
@@ -56,5 +58,19 @@ export class AuthService {
           this.error = errorRes.error;
         },
       });
+  }
+
+  onCheckAdmin(email: string, password: string) {
+    this.http
+      .post<utente>(
+        'http://localhost:8080/api/auth/userdetails',
+        { email: email, password: password },
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.token,
+          }),
+        }
+      )
+      .subscribe((res) => console.log(res));
   }
 }

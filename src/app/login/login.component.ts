@@ -30,10 +30,7 @@ export class LoginComponent implements OnInit {
 
   login(email: string, password: string) {
     this.auth.login(email, password);
-    if (this.auth.authenticated) {
-      console.log("auth:",this.auth.authenticated);
-      this.http.GetUser(email, password);
-    }
+   
   }
 
   delete() {

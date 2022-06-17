@@ -1,3 +1,4 @@
+import { HttpRequestService } from './httpRequest.service';
 import { utente } from './../class/utente';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,7 +26,7 @@ export class AuthService {
   tokenExpirationTimer: any;
   accessToken: string = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router ,private httpreq:HttpRequestService) {}
 
   isAuthenticated() {
     const promise = new Promise((resolve, rejects) => {
@@ -48,6 +49,7 @@ export class AuthService {
           this.accessToken = response.access_token;
           this.loggedIn.next(true);
           this.authenticated = true;
+          this.httpreq.GetUser(email, password);
 
           // Se è amministratore
           // this.administrator = true;

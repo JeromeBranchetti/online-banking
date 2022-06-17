@@ -18,7 +18,7 @@ import { Location } from '@angular/common';
 export class SignUpComponent implements OnInit {
   constructor(
     public SUService: SignUpService,
-    private router: Router,
+
     private auth: AuthService,
     private location: Location
   ) {}

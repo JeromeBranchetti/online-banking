@@ -22,22 +22,37 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private location: Location,
-    private US:UtenteService,
-    private http:HttpRequestService,
+    private US: UtenteService,
+    private http: HttpRequestService
   ) {}
 
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    
-    this.auth.authenticated = true;
-    if(this.auth.authenticated){
-      this.http.GetUser(email ,password);
-      
-
-      
-    }
+    this.auth.login(email, password)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          //this.onCheckAdmin(email, password);
+          // Se non è amministratore
+          this.auth.accessToken = response.access_token;
+          this.auth.loggedIn.next(true);
+          this.auth.authenticated = true;
+          if(this.auth.authenticated){
+          this.http.GetUser(email,password)
+          }
+       
+          // Se è amministratore
+          // this.administrator = true;
+          // this.router.navigate(['/adminDashboard])
+        },
+        error: (errorRes) => {
+          this.router.navigate(['/error']);
+          this.auth.error = errorRes.error;
+        },
+      });
   }
+    
 
   delete() {
     this.login_form.reset();

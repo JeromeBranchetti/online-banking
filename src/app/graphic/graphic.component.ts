@@ -33,7 +33,7 @@ export class GraphicComponent implements OnInit {
     let idConto=this.US.idCont;
 
    this.http.get<BankTransaction[]>(
-      'http://localhost:3000/transazioni/?idConto=' + idConto
+      'http://localhost:8080/transazioni/?idConto=' + idConto
     ).subscribe((res)=> {
       
       let x=[];
@@ -61,7 +61,7 @@ export class GraphicComponent implements OnInit {
       labels: x,
       datasets: [
         {
-          label: 'My First Dataset',
+          label: 'Andamento conto',
           data: y,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',

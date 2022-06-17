@@ -1,10 +1,16 @@
 <!-- Titolo -->
 <h1 class="text-center">Pagamenti</h1>
 
+<!-- Saldo totale -->
+<div class="balance">
+  <h2 class="text-center me-2">Saldo Attuale:</h2>
+  <h2>{{ balance }}€</h2>
+</div>
+
 <div class="generalContainer">
   <!-- Bottoni di scelta -->
   <div id="choiceContainer">
-    <button (click)="onBankTransfer()">
+    <button #btnRef (click)="onBankTransfer()">
       <span class="d-none d-sm-inline d-lg-inline"> Bonifico </span>
       <i class="fas fa-exchange-alt"></i>
     </button>
@@ -282,6 +288,35 @@
           </div>
         </mat-step>
       </mat-horizontal-stepper>
+    </div>
+  </div>
+</div>
+
+<div class="safety-container">
+  <h2 class="text-center my-3">
+    <i class="fa-solid fa-file-invoice-dollar"></i> Consigli per i pagamenti:
+  </h2>
+  <div class="row">
+    <div class="col-lg-7 col-12-sm">
+      <ul class="mb-3">
+        <li>
+          Ti ricordiamo che il saldo attuale potrebbe non corrispondere
+          esattamente a quello registrato presso la banca.
+        </li>
+        <li>
+          Per favore presta attenzione ai dati inseriti durante il processo di
+          compilazione. Una disattenzione potrebbe portare ad errori e non
+          soddisfare la richiesta di pagamento.
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-5 col-12-sm side-image">
+      <img
+        class="back-img-lock"
+        src="/src/assets/img/homepage_first_section.jpg"
+        alt="lock-image"
+      />
+      <div class="blue-gradient"></div>
     </div>
   </div>
 </div>

@@ -1,5 +1,7 @@
+import { HttpRequestService } from './httpRequest.service';
+import { utente } from './../class/utente';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthResponse } from '../model/authResponse.model';
@@ -14,9 +16,9 @@ export class AuthService {
 
   error = {
     message:
-      'An unknown error has occured, looks like you are not on the right page.' +
-      'Please consider navigate again on our website through the right routes!',
-    status: 'Unknown Route',
+      'Si è verificato un errore sconosciuto, sembra che non ti trovi nella pagina giusta' +
+      'Per favore naviga ancora nel nostro sito attraverso i bottoni che ti sono forniti',
+    status: 'Percorso errato',
   };
 
   token: AuthResponse = null;
@@ -34,28 +36,25 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.http
-      .post<AuthResponse>('http://localhost:8080/authentication/authenticate', {
+    return this.http
+      .post<AuthResponse>('http://localhost:8080/api/auth/auth', {
         email: email,
         password: password,
       })
-      .subscribe({
-        next: (response) => {
-          response;
-          // Chiamata Get, tramite id accedo al ruolo dell'utente
-          // Se non è amministratore
-          this.accessToken = response.access_token;
-          this.loggedIn.next(true);
-          this.authenticated = true;
-          this.router.navigate(['/home-page-guest']);
-          // Se è amministratore
-          // this.administrator = true;
-          // this.router.navigate(['/adminDashboard])
-        },
-        error: (errorRes) => {
-          this.router.navigate(['/error']);
-          this.error = errorRes.error;
-        },
-      });
+    }
+     
+
+  onCheckAdmin(email: string, password: string) {
+    this.http
+      .post<utente>(
+        'http://localhost:8080/api/auth/userdetails',
+        { email: email, password: password },
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.token,
+          }),
+        }
+      )
+      .subscribe((res) => console.log(res));
   }
 }

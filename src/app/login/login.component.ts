@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
           this.auth.accessToken = response.access_token;
           this.auth.loggedIn.next(true);
           this.auth.authenticated = true;
+          if(this.auth.authenticated){
+          this.http.GetUser(email,password)
+          }
        
           // Se è amministratore
           // this.administrator = true;

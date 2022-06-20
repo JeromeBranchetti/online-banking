@@ -1,18 +1,20 @@
 import { BankTransaction } from './bankTransaction.model';
 
 export class conto {
-  numero_conto!: number;
+  accountNumber!: number;
+  balance!:number;
   iban?: string;
-  saldo!: number;
-  idUt?: number;
-  attivo!: boolean;
   id?: number;
+  state!:string;
+  userId:number;
+ 
+
 
   constructor(saldo: number) {
-    this.numero_conto = this.assegnaNumero();
+    this.accountNumber = this.assegnaNumero();
 
-    this.saldo = saldo;
-    this.attivo = false;
+    this.balance = saldo;
+    this.state = "state";
   }
 
   assegnaNumero(): number {

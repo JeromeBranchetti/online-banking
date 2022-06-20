@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
     let birth = new Date(c.value);
     let today = new Date();
 
-    if (today.getFullYear() - birth.getFullYear() > 18) {
+    if (today.getFullYear() - birth.getFullYear() > 18 && today.getFullYear() - birth.getFullYear() <= 100) {
       return { maggiorenne: true };
     } else if (today.getFullYear() - birth.getFullYear() < 18) {
       return false;
@@ -71,7 +71,7 @@ export class SignUpComponent implements OnInit {
     if (this.controlDate(this.signUp_form.get('birthDate'))) {
       this.SUService.newUtente(this.signUp_form);
     } else {
-      alert('non sei maggiorenne');
+      alert('non hai un età accettabile');
     }
   }
 

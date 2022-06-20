@@ -8,6 +8,7 @@
 .green {
   font-size: medium;
   color: chartreuse;
+  cursor: pointer;
 }
 
 h1 {

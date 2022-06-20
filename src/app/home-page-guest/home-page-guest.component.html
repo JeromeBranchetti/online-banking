@@ -18,13 +18,13 @@
         <div class="col">
           <div class="row my-3">
             <div class="col"><span>N.conto</span></div>
-            <div class="col fs-6">{{ conti[0]?.numero_conto ?? "" }}</div>
+            <div class="col fs-6">{{ conti[0]?.accountNumber ?? "" }}</div>
           </div>
         </div>
         <div class="col">
           <div class="row">
             <div class="col"><span>Saldo</span></div>
-            <div class="col fs-4">{{ conti[0]?.saldo ?? "" }} &euro;</div>
+            <div class="col fs-4">{{ conti[0]?.balance ?? "" }} &euro;</div>
           </div>
         </div>
       </div>
@@ -47,13 +47,13 @@
                 <div class="col">
                   <p class="fs-6">JavaIsland Savings Account</p>
                   <p class="fs-6">
-                    N.conto: {{ conti[i + 1]?.numero_conto ?? "" }}
+                    N.conto: {{ conti[i + 1]?.accountNumber ?? "" }}
                   </p>
                 </div>
 
                 <div class="col text-center">
                   <p>Saldo Disponibile</p>
-                  <h1>{{ conti[i + 1]?.saldo ?? "" }}&euro;</h1>
+                  <h1>{{ conti[i + 1]?.balance ?? "" }}&euro;</h1>
                 </div>
               </div>
             </div>

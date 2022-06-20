@@ -1,7 +1,7 @@
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <button class="switch-email-pass" (click)="switchEmailPass()">{{ isEmail ? 'Modifica Pass' : 'Modifica Email '}}</button>
+<div class="container-fluid change-container">
+    <div class="row justify-content-center change-row">
+        <div class="col-lg-6 col-md-8 col-sm-12 change-column">
+            <button class="switch-email-pass" (click)="switchEmailPass()">vai a {{ !isEmail ? 'Modifica Pass' : 'Modifica Email '}}</button>
             <div class="change-password my-3" *ngIf="isEmail">
                 <form>
                     <div class="mb-3 row">
@@ -18,7 +18,7 @@
                       </div>
                       <div class="row text-end">
                           <div class="col 3">
-                            <button type="button" class="text-end" (click)="onChangePass(password.value)">send <i class="fas fa-paper-plane"></i></button>
+                            <button type="button" class="text-end" (click)="onChangePass(password.value)">send <i class="fas fa-check"></i></button>
                           </div>
                       </div>
                 </form>
@@ -39,7 +39,7 @@
                       </div>
                       <div class="row text-end">
                         <div class="col 3">
-                          <button type="button" class="text-end" (click)="onChangeEmail(email.value)">send <i class="fas fa-paper-plane"></i></button>
+                          <button type="button" class="text-end" (click)="onChangeEmail(email.value)">send <i class="fas fa-check"></i></button>
                         </div>
                     </div>
                 </form>

@@ -23,9 +23,9 @@
         <span><i class="fas fa-arrow-left"></i></span>
         <h3>Altri Account</h3>
       </a>
-      <a routerLink="#">
-        <span><i class="fas fa-chart-line"></i></span>
-        <h3>Grafici</h3>
+      <a routerLink="/assicurazioni">
+        <span><i class="fas fa-car-crash"></i></span>
+        <h3>Assicurazioni</h3>
       </a>
       <a routerLink="#">
         <span><i class="fas fa-money-bill-wave"></i></span>
@@ -57,7 +57,7 @@
         <span><i class="fas fa-list-ol"></i></span>
         <div class="left mt-3">
           <h3>Numero Conto</h3>
-          <h1>{{ modeSpione ? n_conto : conto?.numero_conto ?? "" }}</h1>
+          <h1>{{ modeSpione ? n_conto : conto?.accountNumber ?? "" }}</h1>
         </div>
         <div class="decoration-1 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>
@@ -83,7 +83,7 @@
         <span><i class="fas fa-list-ol"></i></span>
         <div class="left mt-3">
           <h3>Saldo</h3>
-          <h1>{{ modeSpione ? saldo : conto?.saldo ?? "" }}&euro;</h1>
+          <h1>{{ modeSpione ? saldo : conto?.balance ?? "" }}&euro;</h1>
         </div>
         <div class="decoration-3 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>

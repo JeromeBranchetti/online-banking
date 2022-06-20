@@ -9,7 +9,7 @@ export class UtenteService  {
 
   idUt!:any;
   idCont!:any;
-  Attivo!:boolean;
+  Attivo!:string;
 
 
 

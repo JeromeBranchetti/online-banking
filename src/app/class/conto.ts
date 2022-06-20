@@ -5,7 +5,7 @@ export class conto {
   balance!:number;
   iban?: string;
   id?: number;
-  state!:string;
+  state!:any;
   userId:number;
  
 

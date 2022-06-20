@@ -50,13 +50,13 @@ export class HttpRequestService {
     })
       .subscribe((res) => {
         this.US.idCont = res.id;
-        this.US.Attivo = res.attivo;
+        this.US.Attivo = res.state;
         this.conto = res;
         this.conto.iban =
           'IT000000000000' +
-          this.conto.numero_conto.toString() +
+          this.conto.accountNumber.toString() +
           this.conto.id.toString() +
-          this.conto.idUt.toString();
+          this.conto.userId.toString();
 
         this.sign.bsconto.next(this.conto);
         this.modifyAccount = this.conto;
@@ -198,7 +198,7 @@ export class HttpRequestService {
         let cont = new conto(0);
         let request;
 
-        cont.idUt = id;
+        cont.userId = id;
 
         this.http
           .post('http://localhost:8080/conti', cont, {
@@ -210,7 +210,7 @@ export class HttpRequestService {
 
         this.http
           .get<conto>(
-            'http://localhost:8080/conti/?numero_conto=' + cont.numero_conto,
+            'http://localhost:8080/conti/?numero_conto=' + cont.accountNumber,
             {
               headers: new HttpHeaders({
                 Authorization: 'Bearer ' + this.token,
@@ -319,16 +319,16 @@ export class HttpRequestService {
           .subscribe((res) => {
             if (
               transaction.type !== 'deposit' &&
-              transaction.amount * -1 < res.saldo
+              transaction.amount * -1 < res.balance
             ) {
-              res.saldo = res.saldo + transaction.amount;
+              res.balance = res.balance + transaction.amount;
               this.http
                 .put<conto>('http://localhost:8080/conti/' + res.id, res)
                 .subscribe(() => {
                   alert('payment was successful');
                 });
             } else if (transaction.type === 'deposit') {
-              res.saldo = res.saldo + transaction.amount;
+              res.balance = res.balance + transaction.amount;
               this.http
                 .put<conto>('http://localhost:8080/conti/' + res.id, res)
                 .subscribe(() => {
@@ -356,7 +356,7 @@ export class HttpRequestService {
   onCompleteRequest(result: boolean, idConto: number) {
     console.log(idConto);
     this.GetConto(idConto.toString());
-    this.modifyAccount.attivo = result;
+    this.modifyAccount.state = result;
     this.http
       .put('http://localhost:8080/conti/' + idConto, this.modifyAccount, {
         headers: new HttpHeaders({

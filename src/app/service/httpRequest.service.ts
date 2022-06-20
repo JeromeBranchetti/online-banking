@@ -40,14 +40,14 @@ export class HttpRequestService {
 
   GetConto(id: string) {
     this.http
-      .get<conto>('http://localhost:8080/conti', {
-        params: {
-          id: id,
-        },
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
+      .get<conto>('http://localhost:8080/api/account/users/' +
+       id +
+      '/accounts',
+    {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.auth.token.token,
+      }),
+    })
       .subscribe((res) => {
         this.US.idCont = res.id;
         this.US.Attivo = res.attivo;

@@ -29,30 +29,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(email: string, password: string) {
-    this.auth.login(email, password)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          //this.onCheckAdmin(email, password);
-          // Se non è amministratore
-          this.auth.accessToken = response.access_token;
-          this.auth.loggedIn.next(true);
-          this.auth.authenticated = true;
-          if(this.auth.authenticated){
-          this.http.GetUser(email,password)
-          }
-       
-          // Se è amministratore
-          // this.administrator = true;
-          // this.router.navigate(['/adminDashboard])
-        },
-        error: (errorRes) => {
-          this.router.navigate(['/error']);
-          this.auth.error = errorRes.error;
-        },
-      });
+    this.auth.login(email, password).subscribe({
+      next: (response) => {
+        this.auth.token = response;
+        this.auth.loggedIn.next(true);
+        this.auth.authenticated = true;
+        this.auth.isAuthenticated();
+        if (this.auth.authenticated) {
+          this.http.GetUser(email, password);
+        }
+
+        // Se è amministratore
+        // this.administrator = true;
+        // this.router.navigate(['/adminDashboard])
+      },
+      error: (errorRes) => {
+        this.auth.error = errorRes.error;
+        this.router.navigate(['/error']);
+      },
+    });
   }
-    
 
   delete() {
     this.login_form.reset();

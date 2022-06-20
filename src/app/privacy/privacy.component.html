@@ -178,9 +178,9 @@
             class="btn btn-secondary"
             data-bs-dismiss="modal"
           >
-            Close
+            Chiudi
           </button>
-          <button type="button" class="">Save changes</button>
+          <button type="button" class="">Salva Cambiamenti</button>
         </div>
       </div>
     </div>
@@ -192,22 +192,26 @@
   <h1 class="text-center">Privacy</h1>
   <div class="row d-flex flex-column">
     <div class="col">
-      <h3>Privacy e Cookies</h3>
+      <h2>Privacy e Cookies</h2>
       <p>
         Il Responsabile della protezione dei dati per Santander Consumer Bank
         S.p.A. è {{ responsabilePrivacy }}
       </p>
       <p>
-        Vuoi modificare le tue preferenze o revocare i consensi sui cookies?
+        Vuoi modificare le tue preferenze o revocare i consensi sui cookies? 
         <span class="green"
-          ><a data-bs-toggle="modal" data-bs-target="#privacyModal">
-            Clicca qui
-          </a></span
-        >
+          ><a
+            data-bs-toggle="modal"
+            data-bs-target="#privacyModal"
+            data-replace="Clicca qui"
+          >
+           <span> Clicca qui</span></a
+          >
+        </span>
       </p>
     </div>
     <div class="col">
-      <h3>Diritti degli interessati</h3>
+      <h2 class="mb-4 mt-4">Diritti degli interessati</h2>
       <p>Gentile Cliente,</p>
       <p>
         il nuovo Regolamento Europeo in materia di protezione dei dati
@@ -225,7 +229,7 @@
         il diritto di ottenere i dati trattati dalla Banca nonché il diritto di
         opporsi in ogni caso, per motivi legittimi, al loro trattamento.
       </p>
-      <p>
+      <p class="mt-5">
         Nella presente sezione, Le forniamo il dettaglio e la descrizione dei
         Suoi diritti, il modulo con cui esercitarli e i riferimenti del
         Responsabile alla Protezione dei Dati (DPO) che ha il ruolo di assistere
@@ -240,7 +244,7 @@
         per poter trattare la Sua richiesta nonché di tale documentazione, la
         richiesta è improcedibile.
       </p>
-      <p>
+      <p class="mt-5">
         <strong>Diritto di accesso:</strong> è il diritto di richiedere
         informazioni generali sul trattamento dei propri dati personali,
         comprese quelle relative alla finalità del trattamento, le categoria dei
@@ -277,10 +281,6 @@
         sia classificabile in nessuna delle tipologie sopra riportate.
       </p>
     </div>
-    <div class="col">
-      <hr />
-    </div>
-    <div class="col"></div>
-    <div class="col"></div>
+    <hr />
   </div>
 </div>

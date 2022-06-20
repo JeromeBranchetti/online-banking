@@ -1,3 +1,4 @@
+import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component';
 import { AuthGuard } from './guard/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
   {
     path: 'userDashboard',
     component: UserDashBoardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'signUp',
@@ -36,32 +37,37 @@ const routes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'adminDashboard',
     component: AdminDashBoardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'account-detail',
     component: AccountDetailComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'home-page-guest',
     component: HomePageGuestComponent,
-  //   canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'change-email-pass',
     component: ChangeEmailPassComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'privacy',
     component: PrivacyComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'assicurazioni',
+    component: AssicurazioniComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

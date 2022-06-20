@@ -34,6 +34,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ErrorComponent } from './error/error.component';
 import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
     ErrorComponent,
     ChangeEmailPassComponent,
     PrivacyComponent,
+    AssicurazioniComponent,
   ],
   imports: [
     BrowserModule,

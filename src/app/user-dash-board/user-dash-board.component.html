@@ -1,62 +1,7 @@
 <!-- userDashboard -->
 
 <div class="container-fluid dash-container">
-  <!-- <h1 class="text-center my-3">User DashBoard</h1>
-  <div class="row">
-    <div class="col">
-      <button class="mb-3 mt-2" (click)="backButton()">
-        <i class="fas fa-undo"></i> back
-      </button>
-    </div>
-    <div class="col text-end">
-      <button class="mb-3 mt-2" (click)="toChangeEmailPass()">
-        edit Credentials <i class="fas fa-user-edit"></i>
-      </button>
-      <button class="mb-3 mt-2 ms-1" (click)="closeContoButton()">
-        close Conto <i class="far fa-window-close fs-6"></i>
-      </button>
-    </div>
-  </div>
-  <div class="row dash-row">
-    <div class="col text-center my-3">
-      <p>{{ modeSpione ? cliente : guest?.firstName?? '' | titlecase }} {{modeSpione ? cliente : guest?.lastName?? '' | titlecase}}</p>
-    </div>
-    <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
-      <div class="row conto-row justify-content-center m-0">
-        <div class="col-lg-4 col-sm-12 mb-3">
-          <span class="num-conto">N. Conto: </span>
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <span>{{ modeSpione ? n_conto : conto?.numero_conto?? '' }}</span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-8 col-sm-12 mb-3">
-      <div class="row copy-row d-flex justify-content-center m-0">
-        <div class="col-lg-4 col-sm-10 mb-3">
-          <span class="val-iban">Iban: </span>
-        </div>
-        <div class="col-lg-4 col-sm-10">
-          <span>{{ modeSpione ? iban : conto?.iban?? '' }}</span>
-        </div>
-        <div class="col-lg-2 col-sm-12">
-          <button
-            type="button"
-            class="fs-6"
-            *ngIf="!modeSpione"
-            (click)="copyMode()"
-          >
-            Copia <i class="fas fa-copy"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col text-center mb-3"><span>Saldo</span></div>
-    <div class="col text-center mb-3">
-      {{ modeSpione ? saldo : conto?.saldo?? '' }}&euro;
-    </div>
-  </div> -->
-
+  
   <aside *ngIf="menuClicked">
     <div class="top m-2 justify-content-center">
       <div class="logo">
@@ -90,7 +35,7 @@
         <span><i class="fas fa-shield-alt"></i></span>
         <h3>Privacy</h3>
       </a>
-      <a routerLink="privacy">
+      <a routerLink="#">
         <span><i class="fas fa-cog"></i></span>
         <h3>Impostazioni</h3>
       </a>
@@ -145,10 +90,7 @@
       </div>
     </div>
 
-    <!-- farcitura sotto info -->
-    <!-- <div class="something-under">
-      <h2 class="text-center">Qualcosa</h2>
-    </div> -->
+
   </main>
 
   <!-- cose a destra -->

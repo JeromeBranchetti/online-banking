@@ -48,9 +48,9 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        this.US.idCont = res[0].id;
-        this.US.Attivo = res[0].attivo;
-        this.conto = res[0];
+        this.US.idCont = res.id;
+        this.US.Attivo = res.attivo;
+        this.conto = res;
         this.conto.iban =
           'IT000000000000' +
           this.conto.numero_conto.toString() +
@@ -213,7 +213,7 @@ export class HttpRequestService {
               lastName: this.utente.lastName,
               dateOfBirth: this.utente.birthDate,
               email: this.utente.email,
-              idCont: res[0].id,
+              idCont: res.id,
             };
 
             this.http
@@ -246,7 +246,7 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        this.utente = res[0];
+        this.utente = res;
       });
     this.utente[0].password = pass;
     this.http
@@ -271,13 +271,13 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        this.utente = res[0];
+        this.utente = res;
       });
-    this.utente[0].email = email;
+    this.utente.email = email;
     this.http
       .put<utente>(
-        'http://localhost:8080/utenti/' + this.utente[0].id,
-        this.utente[0],
+        'http://localhost:8080/utenti/' + this.utente.id,
+        this.utente,
         { headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,
         })},

@@ -291,21 +291,11 @@ export class HttpRequestService {
     this.utente.email = email;
     this.http
       .put<utente>(
-<<<<<<< HEAD
         'http://localhost:8080/utenti/' + this.utente.id,
         this.utente,
         { headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,
         })},
-=======
-        'http://localhost:8080/utenti/' + this.utente[0].id,
-        this.utente[0],
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
-          }),
-        }
->>>>>>> 92bc5f458ead9d7cbd0e5d2ff1a7912295b385af
       )
       .subscribe(() => this.root.navigate(['/login']));
   }

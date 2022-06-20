@@ -37,40 +37,9 @@ export class SignUpService {
 
   onAddUser(ut: utente) {
 
-    this.http.post('http://localhost:8080/utenti', ut).subscribe(() => {
-      this.http
-        .get<utente[]>('http://localhost:8080/utenti')
-        .subscribe((utenti) => {
-          let id = utenti[utenti.length - 1].id;
-          let cont = new conto(0);
+    this.http.post('http://localhost:8080/api/auth/register', ut).subscribe(() => {
+      console.log("caricato");
 
-          cont.idUt = id;
-
-          this.request = {
-            type: 'Prima registrazione',
-            firstName: ut.firstName,
-            lastName: ut.lastName,
-            dateOfBirth: ut.birthDate,
-            email: ut.email,
-            idCont: cont.id,
-          };
-
-          this.http
-            .post('http://localhost:8080/richieste', this.request)
-            .subscribe((res) => {
-              console.log(res);
-            });
-
-          this.http.post('http://localhost:8080/conti', cont).subscribe(() => {
-            this.auth.authenticated = true;
-            this.router.navigate(['/home-page-guest'], {
-              queryParams: {
-                user: ut.firstName + ut.lastName,
-                idUt: id,
-              },
-            });
-          });
-        });
     });
   }
 }

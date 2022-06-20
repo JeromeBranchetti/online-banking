@@ -41,7 +41,7 @@ export class HomePageGuestComponent implements OnInit {
 
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
-      this.httpReq.GetConto(   params.get('idUt'));
+   
       this.http
         .get<conto[]>(
           'http://localhost:8080/api/account/users/' +
@@ -59,9 +59,7 @@ export class HomePageGuestComponent implements OnInit {
           console.log(this.conti);
         });
     });
-    this.sign.bs.subscribe((res) => {
-      this.utente = res;
-    });
+  
     
   }
 

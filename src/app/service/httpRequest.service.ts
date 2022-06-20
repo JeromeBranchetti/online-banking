@@ -40,15 +40,16 @@ export class HttpRequestService {
 
   GetConto(id: string) {
     this.http
-      .get<conto>('http://localhost:8080/api/account/users/' +
-       id +
-      '/accounts',
+      .get<conto>('http://localhost:8080/api/account/' +
+       id,
+    
     {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + this.auth.token.token,
       }),
     })
       .subscribe((res) => {
+        console.log("res conto:", res);
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
@@ -64,11 +65,12 @@ export class HttpRequestService {
   }
 
   GetUserid(id: string) {
+
     this.US.idUt = id;
     this.http
-      .get<utente>('http://localhost:8080/api/auth/users' + id, {
+      .get<utente>('http://localhost:8080/api/auth/users/' + id, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
       .subscribe((res) => {
@@ -249,23 +251,13 @@ export class HttpRequestService {
       });
   }
   changepass(pass: string) {
-    this.http
-      .get<utente>('http://localhost:8080/utenti', {
-        params: {
-          id: this.US.idUt,
-        },
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
-      .subscribe((res) => {
-        this.utente = res;
-      });
-    this.utente[0].password = pass;
+   
+    
+    this.utente.password = pass;
     this.http
       .put<utente>(
-        'http://localhost:8080/utenti/' + this.utente[0].id,
-        this.utente[0],
+        'http://localhost:8080/api/auth/users/update/' + this.utente,
+       
         {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.token,
@@ -276,23 +268,12 @@ export class HttpRequestService {
   }
 
   changemail(email: string) {
-    this.http
-      .get<utente>('http://localhost:8080/utenti', {
-        params: {
-          id: this.US.idUt,
-        },
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
-      .subscribe((res) => {
-        this.utente = res;
-      });
-    this.utente.email = email;
+  console.log(this.utente);
+   this.utente.email=email;
     this.http
       .put<utente>(
-        'http://localhost:8080/utenti/' + this.utente.id,
-        this.utente,
+        'http://localhost:8080/api/auth/users/update/' + this.utente,
+       
         { headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,
         })},

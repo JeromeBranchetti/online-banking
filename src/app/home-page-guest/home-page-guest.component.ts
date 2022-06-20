@@ -34,10 +34,11 @@ export class HomePageGuestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //  this.Init();
+      this.Init();
   }
 
   Init(): void {
+
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
       this.http
@@ -47,22 +48,20 @@ export class HomePageGuestComponent implements OnInit {
             '/accounts',
           {
             headers: new HttpHeaders({
-              Authorization: 'Bearer ' + this.auth.token,
+              Authorization: 'Bearer ' + this.auth.token.token,
             }),
           }
         )
         .subscribe((res) => {
           console.log('get conto:' + res);
           this.conti = res;
+          console.log(this.conti);
         });
     });
     this.sign.bs.subscribe((res) => {
       this.utente = res;
     });
-    this.httpReq.onGetTransactionFiltered(3);
-    this.transactionService.bankTransactionFlag.subscribe((res) => {
-      this.transactions = res;
-    });
+    
   }
 
   toPayment() {

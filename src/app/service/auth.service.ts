@@ -1,10 +1,12 @@
-import { HttpRequestService } from './httpRequest.service';
+
 import { utente } from './../class/utente';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AuthResponse } from '../model/authResponse.model';
+
+import { response } from '../class/response.mode';
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +23,10 @@ export class AuthService {
     status: 'Percorso errato',
   };
 
-  token: AuthResponse = null;
+  token: response = null;
   autoExit = new Subject<void>();
   tokenExpirationTimer: any;
+  accessToken: string = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -35,11 +38,13 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<AuthResponse>('http://localhost:8080/api/auth/auth', {
-      email: email,
-      password: password,
-    });
-  }
+    return this.http
+      .post<response>('http://localhost:8080/api/auth/auth', {
+        email: email,
+        password: password,
+      })
+    }
+     
 
   onCheckAdmin(email: string, password: string) {
     this.http
@@ -48,7 +53,7 @@ export class AuthService {
         { email: email, password: password },
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
+            Authorization: 'Bearer ' + this.token
           }),
         }
       )

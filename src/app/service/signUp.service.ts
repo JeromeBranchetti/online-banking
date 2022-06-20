@@ -1,3 +1,5 @@
+import { UtenteService } from './utente.service';
+
 import { RequestModel } from './../admin-dash-board/request.model';
 
 import { Router } from '@angular/router';
@@ -9,22 +11,28 @@ import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { conto } from '../class/conto';
 import { utente } from '../class/utente';
+import { response } from '../class/response.mode';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class SignUpService {
+
   constructor(
     private http: HttpClient,
-    private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private auth:AuthService,
+    private us:UtenteService
+
+
   ) {}
 
   request: RequestModel;
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto> = new BehaviorSubject<conto>(null);
-  token!: string;
+  token: string;
 
   newUtente(x: FormGroup) {
     let ut = utente.factory();
@@ -37,9 +45,24 @@ export class SignUpService {
 
   onAddUser(ut: utente) {
 
-    this.http.post('http://localhost:8080/api/auth/register', ut).subscribe(() => {
-      console.log("caricato");
+ this.http.post<response>('http://localhost:8080/api/auth/register', ut).subscribe((res)=>{
+  this.token=res.token;
+  this.us.idUt=res.userId;
+  this.auth.isAuthenticated();
+  this.auth.authenticated = true;
+       
+  this.router.navigate(['/home-page-guest'], {
+    queryParams: {
+    idUt:this.us.idUt , idCont:this.us.idCont}
+    },
+ );
+})
 
-    });
-  }
+
+ 
+
+
+  
+}
+
 }

@@ -9,6 +9,7 @@ import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
 import { UtenteService } from '../service/utente.service';
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -26,11 +27,13 @@ export class UserDashBoardComponent implements OnInit {
   request: RequestModel;
   menuClicked!: boolean;
   public innerWidth: any;
+  bar = new BehaviorSubject<boolean>(null);
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
+  
   }
 
   constructor(
@@ -48,6 +51,7 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
+    this.bar.next(true);
   }
 Init(): void {
 

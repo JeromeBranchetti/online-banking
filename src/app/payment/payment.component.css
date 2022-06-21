@@ -182,3 +182,11 @@ input.ng-invalid.ng-touched {
   position: relative;
   left: 10%;
 }
+
+.back-img-lock {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  transform: translateY(-7%);
+  background-color: aliceblue;
+}

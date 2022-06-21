@@ -33,7 +33,10 @@
     <div id="bankTransferForm" *ngIf="bankTransferChoice">
       <mat-horizontal-stepper [linear]="true" class="formStepper">
         <!-- Primo step -->
-        <mat-step label="Recipient Data" [stepControl]="firstBankTransferForm">
+        <mat-step
+          label="Informazioni Anagrafiche"
+          [stepControl]="firstBankTransferForm"
+        >
           <form [formGroup]="firstBankTransferForm">
             <div class="row">
               <div class="col-lg-3 input">
@@ -67,7 +70,10 @@
           </form>
         </mat-step>
         <!-- Secondo step -->
-        <mat-step label="Transfer Data" [stepControl]="secondBankTransferForm">
+        <mat-step
+          label="Dati del Bonifico"
+          [stepControl]="secondBankTransferForm"
+        >
           <form [formGroup]="secondBankTransferForm">
             <div class="row transferForm">
               <div class="col-lg-3 input">
@@ -109,7 +115,7 @@
           </div>
         </mat-step>
         <!-- Terzo step -->
-        <mat-step label="Confirm">
+        <mat-step label="Conferma">
           <div class="confirmForm">
             <div class="dataSummary">
               <p>Nome: {{ firstBankTransferForm.get("firstName").value }}</p>
@@ -120,11 +126,7 @@
           </div>
           <div class="buttons">
             <button class="redButton" matStepperPrevious>Back</button>
-            <button
-              class="confirmButton"
-              type="submit"
-              (click)="onBankTransferSubmit()"
-            >
+            <button class="confirmButton" (click)="onBankTransferSubmit()">
               Conferma
             </button>
           </div>
@@ -136,7 +138,7 @@
     <div class="" *ngIf="bankDepositChoice">
       <form [formGroup]="bankDepositForm" (ngSubmit)="onBankDepositSubmit()">
         <mat-horizontal-stepper [linear]="true" class="formStepper">
-          <mat-step label="Deposit Data" [stepControl]="bankDepositForm">
+          <mat-step label="Dati del Deposito" [stepControl]="bankDepositForm">
             <div class="dataForm">
               <mat-form-field>
                 <input
@@ -154,7 +156,7 @@
             </div>
           </mat-step>
 
-          <mat-step label="Confirm" completed="false">
+          <mat-step label="Conferma" completed="false">
             <div class="confirmForm">
               <div class="dataSummary">
                 <p>Importo: {{ bankDepositForm.get("amount").value }}€</p>
@@ -176,7 +178,10 @@
         (ngSubmit)="onBankWithdrawalSubmit()"
       >
         <mat-horizontal-stepper [linear]="true" class="formStepper">
-          <mat-step label="Withdrawal Data" [stepControl]="bankWithdrawalForm">
+          <mat-step
+            label="Dati del Prelievo"
+            [stepControl]="bankWithdrawalForm"
+          >
             <div class="dataForm">
               <mat-form-field>
                 <input
@@ -194,7 +199,7 @@
             </div>
           </mat-step>
 
-          <mat-step label="Confirm" completed="false">
+          <mat-step label="Conferma" completed="false">
             <div class="confirmForm">
               <div class="dataSummary">
                 <p></p>
@@ -213,7 +218,7 @@
     <!-- Form per la ricarica -->
     <div class="topUpForm" *ngIf="phoneTopUpChoice">
       <mat-horizontal-stepper [linear]="true" class="formStepper">
-        <mat-step label="Phone Data" [stepControl]="firstPhoneTopUpForm">
+        <mat-step label="Dati del Telefono" [stepControl]="firstPhoneTopUpForm">
           <form [formGroup]="firstPhoneTopUpForm">
             <div class="row">
               <div class="col-lg-3 input">
@@ -245,12 +250,15 @@
               </div>
             </div>
             <div class="buttons">
-              <button matStepperNext>Avanti</button>
+              <button matStepperNext type="button">Avanti</button>
             </div>
           </form>
         </mat-step>
 
-        <mat-step label="Transfer Data" [stepControl]="secondPhoneTopUpForm">
+        <mat-step
+          label="Dati della Ricarica"
+          [stepControl]="secondPhoneTopUpForm"
+        >
           <form [formGroup]="secondPhoneTopUpForm">
             <div class="dataForm">
               <mat-form-field>
@@ -264,11 +272,13 @@
             </div>
             <div class="buttons">
               <button class="redButton" matStepperPrevious>Indietro</button>
-              <button class="confirmButton" matStepperNext>Avanti</button>
+              <button class="confirmButton" type="button" matStepperNext>
+                Avanti
+              </button>
             </div>
           </form>
         </mat-step>
-        <mat-step label="Confirm" completed="false">
+        <mat-step label="Conferma" completed="false">
           <div class="confirmForm">
             <div class="dataSummary">
               <p>
@@ -284,7 +294,9 @@
           </div>
           <div class="buttons">
             <button class="redButton" matStepperPrevious>Indietro</button>
-            <button class="confirmButton" type="submit">Conferma</button>
+            <button class="confirmButton" (click)="onPhoneTopUpSubmit()">
+              Conferma
+            </button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
@@ -313,7 +325,7 @@
     <div class="col-lg-5 col-12-sm side-image">
       <img
         class="back-img-lock"
-        src="/src/assets/img/homepage_first_section.jpg"
+        src="/assets/img/homepage_first_section.jpg"
         alt="lock-image"
       />
       <div class="blue-gradient"></div>

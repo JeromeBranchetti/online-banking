@@ -34,26 +34,19 @@ export class HttpRequestService {
 
   // Chiamate Get
 
-  onGetConto(id: string) {
-    return this.http.get<conto>('http://localhost:8080/conti/?idCont=' + id);
-  }
-
   GetConto(id: string) {
     this.http
-      .get<conto>('http://localhost:8080/api/account/' +
-       id,
-    
-    {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.auth.token.token,
-      }),
-    })
+      .get<conto>('http://localhost:8080/api/account/' + id, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.auth.token.token,
+        }),
+      })
       .subscribe((res) => {
-        console.log("res conto:", res);
+        console.log('res conto:', res);
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
-   
+        this.conto.iban = res.iban;
 
         this.sign.bsconto.next(this.conto);
         this.modifyAccount = this.conto;
@@ -61,7 +54,6 @@ export class HttpRequestService {
   }
 
   GetUserid(id: string) {
-
     this.US.idUt = id;
     this.http
       .get<utente>('http://localhost:8080/api/auth/users/' + id, {
@@ -186,11 +178,19 @@ export class HttpRequestService {
 
   addConto() {
     this.http
-      .get<utente[]>('http://localhost:8080/api/account/' + this.utente.id + "/addAccount/" +this.conto.id+ "/" +1, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
+      .get<utente[]>(
+        'http://localhost:8080/api/account/' +
+          this.utente.id +
+          '/addAccount/' +
+          this.conto.id +
+          '/' +
+          1,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.token,
+          }),
+        }
+      )
       .subscribe((utenti) => {
         let id = utenti[utenti.length - 1].id;
         let cont = new conto(0);
@@ -247,14 +247,13 @@ export class HttpRequestService {
       });
   }
   changepass(pass: string) {
-   
-    
     this.utente.password = pass;
-    console.log(this.utente)
+    console.log(this.utente);
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update' , this.utente,
-       
+        'http://localhost:8080/api/auth/users/update',
+        this.utente,
+
         {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.token,
@@ -265,58 +264,79 @@ export class HttpRequestService {
   }
 
   changemail(email: string) {
-  
-   this.utente.email=email;
-   console.log(this.utente);
+    this.utente.email = email;
+    console.log(this.utente);
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update/' , this.utente,
-       
-        { headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        })},
+        'http://localhost:8080/api/auth/users/update/',
+        this.utente,
+
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.token,
+          }),
+        }
       )
       .subscribe(() => this.root.navigate(['/login']));
   }
+
   onAddTransaction(transaction: BankTransaction) {
     this.http
-      .post<BankTransaction>('http://localhost:8080/transazioni', transaction, {
+      .post('http://localhost:8080/api/transaction/transaction', transaction, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
+        responseType: 'text',
       })
-      .subscribe(() => {
-        this.http
-          .get<conto>(
-            'http://localhost:8080/conti/?numero_conto=' + transaction.idCont,
-            {
-              headers: new HttpHeaders({
-                Authorization: 'Bearer ' + this.token,
-              }),
-            }
-          )
-          .subscribe((res) => {
-            if (
-              transaction.type !== 'deposit' &&
-              transaction.amount * -1 < res.balance
-            ) {
-              res.balance = res.balance + transaction.amount;
-              this.http
-                .put<conto>('http://localhost:8080/conti/' + res.id, res)
-                .subscribe(() => {
-                  alert('payment was successful');
-                });
-            } else if (transaction.type === 'deposit') {
-              res.balance = res.balance + transaction.amount;
-              this.http
-                .put<conto>('http://localhost:8080/conti/' + res.id, res)
-                .subscribe(() => {
-                  alert('deposit was successful');
-                });
-            } else {
-              alert('Error');
-            }
-          });
+      .subscribe({
+        next: () => {
+          alert('Pagamento completato!');
+        },
+        error: () => {
+          alert('Errore durante il processo di pagamento');
+        },
+      });
+  }
+
+  onAddTransactionPhone(transaction: BankTransaction) {
+    console.log(transaction);
+
+    this.http
+      .post(
+        'http://localhost:8080/api/transaction/ricarica_telefonica',
+        transaction,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+          responseType: 'text',
+        }
+      )
+      .subscribe({
+        next: () => {
+          alert('Pagamento completato!');
+        },
+        error: () => {
+          alert('Errore durante il processo di pagamento');
+        },
+      });
+  }
+
+  onAddTransactionTransfer(transaction: BankTransaction) {
+    this.http
+      .post('http://localhost:8080/api/transaction/transfer', transaction, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.auth.token.token,
+        }),
+        responseType: 'text',
+      })
+      .subscribe({
+        next: () => {
+          alert('Pagamento completato!');
+        },
+        error: () => {
+          alert('Errore durante il processo di pagamento');
+        },
       });
   }
 
@@ -333,7 +353,6 @@ export class HttpRequestService {
   // Chiamate put
 
   onCompleteRequest(result: boolean, idConto: number) {
-    console.log(idConto);
     this.GetConto(idConto.toString());
     this.modifyAccount.state = result;
     this.http

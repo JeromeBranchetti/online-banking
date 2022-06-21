@@ -178,11 +178,19 @@ export class HttpRequestService {
 
   addConto() {
     this.http
-      .get<utente[]>('http://localhost:8080/utenti', {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      })
+      .get<utente[]>(
+        'http://localhost:8080/api/account/' +
+          this.utente.id +
+          '/addAccount/' +
+          this.conto.id +
+          '/' +
+          1,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.token,
+          }),
+        }
+      )
       .subscribe((utenti) => {
         let id = utenti[utenti.length - 1].id;
         let cont = new conto(0);
@@ -240,9 +248,11 @@ export class HttpRequestService {
   }
   changepass(pass: string) {
     this.utente.password = pass;
+    console.log(this.utente);
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update/' + this.utente,
+        'http://localhost:8080/api/auth/users/update',
+        this.utente,
 
         {
           headers: new HttpHeaders({
@@ -254,11 +264,12 @@ export class HttpRequestService {
   }
 
   changemail(email: string) {
-    console.log(this.utente);
     this.utente.email = email;
+    console.log(this.utente);
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update/' + this.utente,
+        'http://localhost:8080/api/auth/users/update/',
+        this.utente,
 
         {
           headers: new HttpHeaders({

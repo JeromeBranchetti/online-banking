@@ -1,16 +1,16 @@
 <!-- new Form -->
 <div class="container form-container">
   <h1 class="text-center my-3">User SignUp</h1>
-  <button class="back" (click)="backButton()"><i class="fas fa-undo"></i> back</button>
+  <button class="back" (click)="backButton()"><i class="fas fa-undo"></i> indietro</button>
   <form [formGroup]="signUp_form">
     <div class="row spread-inputs">
       <div class="col-lg-4 col-md-6 col-sm-12 ">
         <div class="mb-3">
-          <label for="name" class="form-label">Name:</label>
+          <label for="name" class="form-label">Nome:</label>
           <input
             class="form-control"
             id="name"
-            placeholder="Name"
+            placeholder="Nome"
             type="text"
             #name
             formControlName="firstName"
@@ -19,7 +19,7 @@
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
-          <label for="date-picker" class="form-label">Date of Birth:</label>
+          <label for="date-picker" class="form-label">Data di nascita :</label>
           <input
             type="date"
             value="1900-1-1"
@@ -36,14 +36,14 @@
     <div class="row spread-inputs">
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
-          <label for="last-name" class="form-label">Last Name:</label>
+          <label for="last-name" class="form-label">Cognome:</label>
           <input
             id="last_name"
             class="form-control"
             type="text"
             #lastName
             formControlName="last_name"
-            placeholder="Last Name"
+            placeholder="Cognome"
             formControlName="lastName"
           />
         </div>
@@ -75,7 +75,7 @@
             aria-describedby="passwordHelp"
           />
           <div class="form-text" id="passwordHelp">
-            Password9£ upper + 8char + number + symbol
+            Password9£ maiuscola + 8char + numero + simbolo
           </div>
         </div>
       </div>
@@ -83,11 +83,11 @@
     <div class="row button-row text-center justify-content-around">
       <div class="col-lg-3 col-sm-4 mb-2">
         <button [disabled]="signUp_form.invalid" (click)="signUp()">
-          SignUp <i class="far fa-check-circle"></i>
+          Registrati <i class="far fa-check-circle"></i>
         </button>
       </div>
       <div class="col-lg-3 col-sm-4">
-        <button (click)="delete()">cancel <i class="fas fa-times"></i></button>
+        <button (click)="delete()">annulla <i class="fas fa-times"></i></button>
       </div>
     </div>
   </form>

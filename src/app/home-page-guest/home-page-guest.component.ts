@@ -73,8 +73,5 @@ export class HomePageGuestComponent implements OnInit {
     });
   }
 
-  newConto() {
-    this.httpReq.addConto();
-    alert('Apertura conto richiesta');
-  }
+  
 }

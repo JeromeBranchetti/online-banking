@@ -11,8 +11,6 @@
   font-size: 3.5rem;
 }
 
-
-
 @media (min-width: 20em) {
   .image {
     height: 20vh;
@@ -35,11 +33,11 @@
 }
 
 @media (min-width: 40em) {
-    .image {
-      height: 40vh;
-    }
-
-    .large-h1 {
-        font-size: 3rem;
-      }
+  .image {
+    height: 40vh;
   }
+
+  .large-h1 {
+    font-size: 3rem;
+  }
+}

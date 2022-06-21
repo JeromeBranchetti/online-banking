@@ -2,13 +2,13 @@
   <div class="top-section-home text-center">
     <div class="dark-layer">
       <div class="text-box">
-        <p class="big-text">New Online Banking</p>
-        <p class="big-text">Save time to save money</p>
-        <p class="big-text">The future is now, and in your hands.</p>
+        <p class="big-text">Online Banking</p>
+        <p class="big-text">Risparmia tempo </p>
+        <p class="big-text">per risparmiare denaro.</p>
       </div>
     </div>
   </div>
-  <div class="second-section">
+  <div class="second-section" *ngIf="conti.length > 1">
     <div class="container main-card" (click)="toConto(conti[0].id)">
       <div class="dark-background-layer"></div>
       <div class="row d-flex flex-column main-account-row">
@@ -17,22 +17,22 @@
         </div>
         <div class="col">
           <div class="row my-3">
-            <div class="col"><span>N.conto</span></div>
-            <div class="col fs-6">{{ conti[0]?.accountNumber ?? "" }}</div>
+            <div class="col fs-5"><span>N.conto</span></div>
+            <div class="col fs-4">{{ conti[0]?.accountNumber ?? "" }}</div>
           </div>
         </div>
         <div class="col">
           <div class="row">
-            <div class="col"><span>Saldo</span></div>
-            <div class="col fs-4">{{ conti[0]?.balance ?? "" }} &euro;</div>
+            <div class="col fs-5"><span>Saldo</span></div>
+            <div class="col fs-4">{{ conti[0]?.balance ?? "" | number: '1.2-2' }} &euro;</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="third-section container-fluid">
+  <div class="third-section container-fluid" *ngIf="conti.length > 1">
     <!-- Carousel con altri conti -->
-    <div *ngIf="conti.length > 1" class="container-fluid py-3 row mx-0">
+    <div  class="container-fluid py-3 row mx-0 justify-content-center">
       <div
         *ngFor="let conto of conti | slice: 1; index as i"
         class="col-lg-4 col-md-6 col-sm-12"
@@ -53,7 +53,7 @@
 
                 <div class="col text-center">
                   <p>Saldo Disponibile</p>
-                  <h1>{{ conti[i + 1]?.balance ?? "" }}&euro;</h1>
+                  <h1>{{ conti[i + 1]?.balance ?? "" | number: '1.2-2'}}&euro;</h1>
                 </div>
               </div>
             </div>
@@ -89,10 +89,11 @@
                   <br />
                   <span>Conto Standard</span>
                 </div>
-                <div class="col the-border">
+                <div class="col the-border" id="col-red-bent">
                   <i class="fas fa-briefcase fs-4"></i>
                   <br />
                   <span>Conto Bussiness</span>
+                  <span class="red-bent">in arrivo</span>
                 </div>
               </div>
             </div>
@@ -119,9 +120,7 @@
               </div>
             </div>
           </div>
-          <button class="text-center" (click)="newConto()">
-            Apri nuovo conto
-          </button>
+        
         </div>
       </div>
     </div>

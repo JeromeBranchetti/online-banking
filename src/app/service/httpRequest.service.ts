@@ -53,11 +53,7 @@ export class HttpRequestService {
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
-        this.conto.iban =
-          'IT000000000000' +
-          this.conto.accountNumber.toString() +
-          this.conto.id.toString() +
-          this.conto.userId.toString();
+   
 
         this.sign.bsconto.next(this.conto);
         this.modifyAccount = this.conto;
@@ -190,7 +186,7 @@ export class HttpRequestService {
 
   addConto() {
     this.http
-      .get<utente[]>('http://localhost:8080/utenti', {
+      .get<utente[]>('http://localhost:8080/api/account/' + this.utente.id + "/addAccount/" +this.conto.id+ "/" +1, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,
         }),
@@ -254,9 +250,10 @@ export class HttpRequestService {
    
     
     this.utente.password = pass;
+    console.log(this.utente)
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update/' + this.utente,
+        'http://localhost:8080/api/auth/users/update' , this.utente,
        
         {
           headers: new HttpHeaders({
@@ -268,11 +265,12 @@ export class HttpRequestService {
   }
 
   changemail(email: string) {
-  console.log(this.utente);
+  
    this.utente.email=email;
+   console.log(this.utente);
     this.http
       .put<utente>(
-        'http://localhost:8080/api/auth/users/update/' + this.utente,
+        'http://localhost:8080/api/auth/users/update/' , this.utente,
        
         { headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.token,

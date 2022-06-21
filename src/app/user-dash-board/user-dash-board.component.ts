@@ -50,7 +50,7 @@ export class UserDashBoardComponent implements OnInit {
     this.whatScreenSize();
   }
 Init(): void {
-    this.auth.loggedIn.next(true);
+
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
@@ -69,7 +69,10 @@ Init(): void {
       });
     });
   }
-
+  newConto() {
+    this.httpReq.addConto();
+    alert('Apertura conto richiesta');
+  }
   copyMode() {
     const copiedIban = this.conto.iban;
     navigator.clipboard.writeText(copiedIban);

@@ -92,28 +92,63 @@ export class HttpRequestService {
   }
 
   onGetTransaction() {
-    let idConto = this.US.idCont;
-    return this.http.get<BankTransaction[]>(
-      'http://localhost:8080/transazioni/?idConto=' + idConto,
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.token,
-        }),
-      }
-    );
-  }
-
-  onGetTransactionFiltered(filter: number) {
-    let idConto = this.US.idCont;
+    console.log(this.auth.token.token);
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:8080/transazioni/?idConto=' +
-          idConto +
-          '&_limit=' +
-          filter,
+        'http://localhost:8080/api/transaction/1/transactions',
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+
+  onGetTransactionFilteredTen() {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_ten_operation/' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
+
+  onGetTransactionFilteredTwenty() {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_twenty_operation/' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
+
+  onGetTransactionFilteredFifty() {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_fifty_operation/' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
           }),
         }
       )
@@ -127,13 +162,10 @@ export class HttpRequestService {
     let idConto = this.US.idCont;
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:8080/transazioni/?idCont=' +
-          idConto +
-          '&type=' +
-          transactionType,
+        'http://localhost:8080/transaction/' + transactionType,
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token,
+            Authorization: 'Bearer ' + this.auth.token.token,
           }),
         }
       )

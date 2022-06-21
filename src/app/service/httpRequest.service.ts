@@ -44,7 +44,7 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        console.log('res conto:', res);
+        
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
@@ -64,7 +64,7 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        console.log('res getuserid:', res);
+        
         this.utente = res;
         this.sign.bs.next(this.utente);
       });
@@ -77,9 +77,9 @@ export class HttpRequestService {
         password: pass,
       })
       .subscribe((response) => {
-        console.log(response);
+
         this.utente = response;
-        console.log(this.utente);
+       
         this.sign.bs.next(this.utente);
         this.US.idUt = response.id;
         this.root.navigate(['/home-page-guest'], {
@@ -207,11 +207,11 @@ export class HttpRequestService {
   }
   changepass(pass: string) {
     this.utente.password = pass;
-    console.log(this.utente);
+  
     let obj={
       password:this.utente.password,id:this.utente.id
     }
-    console.log(obj)
+    
     this.http
       .put(
         'http://localhost:8080/api/auth/users/update/password',obj,

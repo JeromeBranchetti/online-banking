@@ -354,7 +354,6 @@ export class HttpRequestService {
       .subscribe((res) => {});
   }
 
-<<<<<<< HEAD
   richiestaChiusuraConto(idConto:number){
     this.http.put('http://localhost:8080/api/account/accounts/closure_request/'+idConto,null,{
       headers: new HttpHeaders({
@@ -362,18 +361,5 @@ export class HttpRequestService {
       }),
 
     }).subscribe(()=>console.log("richiesta chiusura inviata"));
-=======
-  richiestaChiusuraConto(idConto: number) {
-    this.http
-      .put(
-        'http://localhost:8080/api/account/accounts/closure_request/' + idConto,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe(() => console.log('richiesta chiusura inviata'));
->>>>>>> a4ef922165be1524e8d1d69abb96536c38f9b02a
   }
 }

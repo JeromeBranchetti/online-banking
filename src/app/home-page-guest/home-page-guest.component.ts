@@ -1,3 +1,4 @@
+import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
 import { AuthService } from './../service/auth.service';
 import { TransactionService } from './../service/transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
@@ -30,7 +31,8 @@ export class HomePageGuestComponent implements OnInit {
     private httpReq: HttpRequestService,
     private sign: SignUpService,
     private transactionService: TransactionService,
-    private auth: AuthService
+    private auth: AuthService,
+    private ud:UserDashBoardComponent
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   Init(): void {
-
+    this.ud.bar.next(false);
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
    

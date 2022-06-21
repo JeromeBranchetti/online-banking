@@ -1,3 +1,4 @@
+import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { UtenteService } from './../service/utente.service';
 import { SignUpService } from './../service/signUp.service';
@@ -46,14 +47,15 @@ export class FootBarComponent implements OnInit {
     private router: Router,
     private Sus: SignUpService,
     private authService: AuthService,
-    private US: UtenteService
+    private US: UtenteService,
+    private ud:UserDashBoardComponent
   ) {}
 
   ngOnInit(): void {
     this.Sus.bs.subscribe((ut) => {
       this.guest = ut;
     });
-    this.authService.loggedIn.subscribe((response) => {
+    this.ud.bar.subscribe((response) => {
       this.homeButtonVisible = response;
       this.homeButtonVisible
         ? (this.state = 'loggedVisible')

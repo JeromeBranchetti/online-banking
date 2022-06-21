@@ -1,3 +1,4 @@
+import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
@@ -17,12 +18,13 @@ export class AppBarComponent implements OnInit {
     private spioneService: SpioneService,
     private router: Router,
     private authService: AuthService,
-    private US:UtenteService
+    private US:UtenteService,
+    private ud:UserDashBoardComponent
   ) {}
 
   ngOnInit(): void {
     this.spioneService.SpioneMode(this.eyeOpen);
-    this.authService.loggedIn.subscribe((response) => {
+    this.ud.bar.subscribe((response) => {
       this.homeButtonVisible = response;
     });
   }

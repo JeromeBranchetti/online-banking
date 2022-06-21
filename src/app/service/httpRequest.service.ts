@@ -11,6 +11,7 @@ import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ export class HttpRequestService {
   transaction: BankTransaction[];
   conto!: conto;
   modifyAccount = new conto(0);
+  bar = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,

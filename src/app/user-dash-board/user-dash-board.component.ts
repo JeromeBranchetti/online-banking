@@ -27,7 +27,7 @@ export class UserDashBoardComponent implements OnInit {
   request: RequestModel;
   menuClicked!: boolean;
   public innerWidth: any;
-  bar = new BehaviorSubject<boolean>(null);
+ 
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -51,10 +51,10 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-    this.bar.next(true);
+
   }
 Init(): void {
-
+this.httpReq.bar.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });

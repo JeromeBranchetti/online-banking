@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,15 +20,16 @@ export class AppBarComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private US:UtenteService,
-    private ud:UserDashBoardComponent
+    private httpreq:HttpRequestService
+
   ) {}
 
   ngOnInit(): void {
     this.spioneService.SpioneMode(this.eyeOpen);
-    this.ud.bar.subscribe((response) => {
+    this.httpreq.bar.subscribe((response) => {
       this.homeButtonVisible = response;
     });
-  }
+   }
 
   openCloseToggle() {
     this.eyeOpen = !this.eyeOpen;

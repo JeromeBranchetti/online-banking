@@ -1,3 +1,6 @@
+import { HttpRequestService } from './../service/httpRequest.service';
+import { AuthService } from './../service/auth.service';
+import { TransactionService } from './../service/transaction.service';
 import { UtenteService } from './../service/utente.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
@@ -5,7 +8,7 @@ import { BankTransaction } from './../class/bankTransaction.model';
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration } from 'chart.js';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-graphic',
@@ -13,44 +16,42 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  
-  Graphic!:Chart;
-
-  
+  Graphic!: Chart;
 
   constructor(
-
-    private http:HttpClient,
-    private US:UtenteService,
+    private http: HttpClient,
+    private US: UtenteService,
+    private transactionService: TransactionService,
+    private auth: AuthService,
+    private httpReq: HttpRequestService
   ) {}
+
   ngOnInit(): void {
     this.Init();
   }
 
- Init(): void {
-  
-   
-    let idConto=this.US.idCont;
+  Init(): void {
+    let idConto = this.US.idCont;
 
-   this.http.get<BankTransaction[]>(
-      'http://localhost:8080/transazioni/?idConto=' + idConto
-    ).subscribe((res)=> {
-      
-      let x=[];
-      let y=[];
-      for(let v of res){
-        
-        y.push(v.amount);
-        x.push(v.date);
-        
-      }
-  
-      this.Graphic=new Chart("myChart",this.myChartInit(x,y));
-      
-      this.Graphic.update();
-      
-    
-      
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_ten_operation/' +
+          this.httpReq.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        let x = [];
+        let y = [];
+        for (let v of res) {
+          y.push(v.amount);
+          x.push(v.data);
+        }
+
+        this.Graphic = new Chart('myChart', this.myChartInit(x, y));
 
         this.Graphic.update();
       });

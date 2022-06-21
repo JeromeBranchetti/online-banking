@@ -57,9 +57,9 @@ export class HomePageGuestComponent implements OnInit {
           }
         )
         .subscribe((res) => {
-          console.log('get conto:' + res);
+          
           this.conti = res;
-          console.log(this.conti);
+          
         });
     });
   

@@ -74,7 +74,7 @@ this.httpReq.bar.next(true);
     });
   }
   newConto() {
-    this.httpReq.addConto();
+    this.httpReq. richiestaAttivazioneConto(1);
     alert('Apertura conto richiesta');
   }
   copyMode() {
@@ -87,24 +87,7 @@ this.httpReq.bar.next(true);
   }
 
   closeContoButton() {
-    this.httpReq.onCheckRequest(this.httpReq.conto.id).subscribe((res) => {
-      console.log(res);
-      if (res.length === 0) {
-        console.log('Non esiste nessuna richiesta');
-        this.request = {
-          type: 'Chiusura conto',
-          firstName: this.guest.firstName,
-          lastName: this.guest.lastName,
-          dateOfBirth: this.guest.birthDate,
-          email: this.guest.email,
-          idCont: this.httpReq.conto.id,
-        };
-        this.httpReq.onAddRequest(this.request);
-      } else {
-        console.log('Esiste una richiesta');
-        alert('Richiesta già mandata');
-      }
-    });
+  this.httpReq.richiestaChiusuraConto(this.conto.id);
   }
 
   toChangeEmailPass() {

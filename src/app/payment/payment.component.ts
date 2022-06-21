@@ -18,10 +18,10 @@ export class PaymentComponent implements OnInit {
   phoneTopUpChoice: boolean = false;
   bankWithdrawalChoice: boolean = false;
   bankDepositChoice: boolean = false;
-  type: string;
   iban: string;
   date = new Date();
   balance: number;
+  amount: number;
 
   firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
@@ -31,9 +31,7 @@ export class PaymentComponent implements OnInit {
   secondBankTransferForm = new FormGroup({
     iban: new FormControl(null, [
       Validators.required,
-      Validators.pattern(
-        '^[A-Z]{2}[0-9]{2}[A-Z]{1}[0-9]{1,5}[0-9]{1,5}[0-9]{1,12}$'
-      ),
+      Validators.pattern('^[A-Z]{2}[0-9]{2}[A-Z]{1}[0-9]{5}[0-9]{5}[0-9]{12}$'),
     ]),
     amount: new FormControl(null, [
       Validators.required,
@@ -70,15 +68,11 @@ export class PaymentComponent implements OnInit {
     ]),
   });
 
-  constructor(
-    private httpReq: HttpRequestService,
-    private utenteService: UtenteService
-  ) {}
+  constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
-    this.httpReq.onGetConto(this.utenteService.idCont).subscribe((res) => {
-      this.balance = res[0].saldo;
-    });
+    this.balance = this.httpReq.conto.balance;
+    this.iban = this.httpReq.conto.iban;
   }
 
   onBankTransfer() {
@@ -90,7 +84,6 @@ export class PaymentComponent implements OnInit {
     this.secondPhoneTopUpForm.reset();
     this.bankWithdrawalForm.reset();
     this.bankDepositForm.reset();
-    this.type = 'transfer';
   }
 
   onBankWithdrawal() {
@@ -103,7 +96,6 @@ export class PaymentComponent implements OnInit {
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
     this.bankDepositForm.reset();
-    this.type = 'withdrawal';
   }
 
   onBankDeposit() {
@@ -116,7 +108,6 @@ export class PaymentComponent implements OnInit {
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
     this.bankWithdrawalForm.reset();
-    this.type = 'deposit';
   }
 
   onPhoneTopUp() {
@@ -128,47 +119,51 @@ export class PaymentComponent implements OnInit {
     this.secondBankTransferForm.reset();
     this.bankWithdrawalForm.reset();
     this.bankDepositForm.reset();
-    this.type = 'phoneTopUp';
   }
 
   onDecomposeIban() {
     this.iban = this.secondBankTransferForm.get('iban').value;
     this.iban = this.iban.slice(0, 2) + ' ' + this.iban.slice(2);
-    this.iban = this.iban.slice(0, 5) + ' ' + this.iban.slice(5);
-    this.iban = this.iban.slice(0, 7) + ' ' + this.iban.slice(7);
+    this.iban = this.iban.slice(0, 6) + ' ' + this.iban.slice(6);
+    this.iban = this.iban.slice(0, 8) + ' ' + this.iban.slice(8);
     this.iban = this.iban.slice(0, 12) + ' ' + this.iban.slice(12);
-    this.iban = this.iban.slice(0, 17) + ' ' + this.iban.slice(17);
-    this.iban = this.iban.slice(0, 22) + ' ' + this.iban.slice(22);
+  }
+
+  onFixedAmount(amount: number) {
+    this.amount = +amount.toFixed(2);
   }
 
   onBankTransferSubmit() {
     let transaction: BankTransaction;
     transaction = {
-      type: this.type,
-      date: this.date.toDateString(),
-      amount: +(this.secondBankTransferForm.get('amount').value * -1).toFixed(
+      amount: +(this.secondBankTransferForm.get('amount').value * +1).toFixed(
         2
       ),
-      description: 'Transfer',
-      idCont: this.utenteService.idCont,
+      causal:
+        "Bonifico all'iban: " + this.secondBankTransferForm.get('iban').value,
+      destinationIban: this.secondBankTransferForm.get('iban').value,
+      originIban: this.httpReq.conto.iban,
     };
-    this.httpReq.onAddTransaction(transaction);
-    this.bankTransferChoice = false;
+
+    this.httpReq.onAddTransactionTransfer(transaction);
+
+    // this.bankTransferChoice = false;
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
   }
 
   onPhoneTopUpSubmit() {
+    console.log(this.httpReq.conto.id);
     let transaction: BankTransaction;
     transaction = {
-      type: this.type,
-      date: this.date.toDateString(),
-      amount: +(this.secondPhoneTopUpForm.get('amount').value * -1).toFixed(2),
-      description: 'Phone Top Up',
-      idCont: this.utenteService.idCont,
+      amount: +(this.secondPhoneTopUpForm.get('amount').value * +1).toFixed(2),
+      causal:
+        'Ricarica telefonica a: ' +
+        this.firstPhoneTopUpForm.get('phoneNumber').value,
+      accountId: this.httpReq.conto.id,
     };
-    this.httpReq.onAddTransaction(transaction);
-    this.phoneTopUpChoice = false;
+    this.httpReq.onAddTransactionPhone(transaction);
+
     this.firstPhoneTopUpForm.reset();
     this.secondPhoneTopUpForm.reset();
   }
@@ -177,15 +172,16 @@ export class PaymentComponent implements OnInit {
     if (+this.bankDepositForm.get('amount').value > 0) {
       let transaction: BankTransaction;
       transaction = {
-        type: this.type,
-        date: this.date.toDateString(),
         amount: +(this.bankDepositForm.get('amount').value * +1).toFixed(2),
-        description: 'Deposit',
-        idCont: this.utenteService.idCont,
+        causal: 'Deposito online in data: ' + this.date.toDateString(),
+        accountId: this.httpReq.conto.id,
       };
+      console.log(transaction);
       this.httpReq.onAddTransaction(transaction);
     } else {
-      alert('The amount of the deposit is not valid');
+      alert(
+        "L'importo inserito non è valido. Per favore inserire un importo uno valido"
+      );
     }
     this.bankDepositChoice = false;
     this.bankDepositForm.reset();
@@ -194,11 +190,9 @@ export class PaymentComponent implements OnInit {
   onBankWithdrawalSubmit() {
     let transaction: BankTransaction;
     transaction = {
-      type: this.type,
-      date: this.date.toDateString(),
       amount: +(this.bankWithdrawalForm.get('amount').value * -1).toFixed(2),
-      description: 'Withdrawal',
-      idCont: this.utenteService.idCont,
+      causal: 'Prelievo online in data: ' + this.date.toDateString(),
+      accountId: this.httpReq.conto.id,
     };
     this.httpReq.onAddTransaction(transaction);
     this.bankWithdrawalChoice = false;

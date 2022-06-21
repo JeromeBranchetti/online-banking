@@ -1,7 +1,10 @@
 export class BankTransaction {
-  type: string;
-  date: string; // Cambiare in Date
+  type?: string;
+  date?: string;
   amount: number;
-  description: string;
-  idCont: string;
+  causal: string;
+  destinationIban?: string;
+  originIban?: string;
+  accountId?: number;
+  id?: number;
 }

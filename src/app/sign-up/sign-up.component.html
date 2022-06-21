@@ -1,6 +1,6 @@
 <!-- new Form -->
 <div class="container form-container">
-  <h1 class="text-center my-3">User SignUp</h1>
+  <h1 class="text-center my-3">Iscrizione</h1>
   <button class="back" (click)="backButton()"><i class="fas fa-undo"></i> indietro</button>
   <form [formGroup]="signUp_form">
     <div class="row spread-inputs">
@@ -65,7 +65,7 @@
     <div class="row centered-input">
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <label for="password" class="col-sm-2 col-form-label">Password:</label>
           <input
             type="password"
             class="form-control"
@@ -75,7 +75,7 @@
             aria-describedby="passwordHelp"
           />
           <div class="form-text" id="passwordHelp">
-            Password9£ maiuscola + 8char + numero + simbolo
+            Password deve essere formata da :  maiuscola + 8 lettere  + numero + simbolo
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
         </button>
       </div>
       <div class="col-lg-3 col-sm-4">
-        <button (click)="delete()">annulla <i class="fas fa-times"></i></button>
+        <button (click)="delete()">cancella <i class="fas fa-times"></i></button>
       </div>
     </div>
   </form>

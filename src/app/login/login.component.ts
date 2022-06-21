@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;
-        this.router.navigate(['/error']);
+        alert(errorRes.error.message);
       },
     });
   }

@@ -74,8 +74,9 @@ this.httpReq.bar.next(true);
     });
   }
   newConto() {
+    
     this.httpReq. richiestaAttivazioneConto(1);
-    alert('Apertura conto richiesta');
+   
   }
   copyMode() {
     const copiedIban = this.conto.iban;

@@ -32,7 +32,8 @@ export class HomePageGuestComponent implements OnInit {
     private sign: SignUpService,
     private transactionService: TransactionService,
     private auth: AuthService,
-    private ud:UserDashBoardComponent
+    private httpreq:HttpRequestService
+   
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   Init(): void {
-    this.ud.bar.next(false);
+    this.httpreq.bar.next(false);
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
    

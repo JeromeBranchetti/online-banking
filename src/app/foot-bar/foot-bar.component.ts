@@ -48,14 +48,14 @@ export class FootBarComponent implements OnInit {
     private Sus: SignUpService,
     private authService: AuthService,
     private US: UtenteService,
-    private ud:UserDashBoardComponent
+    private httpreq:HttpRequestService
   ) {}
 
   ngOnInit(): void {
     this.Sus.bs.subscribe((ut) => {
       this.guest = ut;
     });
-    this.ud.bar.subscribe((response) => {
+    this.httpreq.bar.subscribe((response) => {
       this.homeButtonVisible = response;
       this.homeButtonVisible
         ? (this.state = 'loggedVisible')

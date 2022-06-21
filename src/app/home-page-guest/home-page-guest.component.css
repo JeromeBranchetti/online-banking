@@ -21,7 +21,6 @@
 }
 
 .big-text {
-  font-family: "Alfa Slab One", cursive;
   font-size: 5vw;
 }
 
@@ -89,7 +88,9 @@
 .third-section {
   min-height: 70vh;
   width: 100%;
-  background-color: rgb(30, 133, 223);
+  /* background-color: rgb(30, 133, 223); */
+  background-color: rgb(17, 90, 227);
+
 }
 
 .fourth-section {
@@ -98,6 +99,21 @@
   background-color: rgb(255, 255, 255);
   color: black;
   padding-top: 20px;
+}
+
+#col-red-bent {
+  position: relative;
+}
+
+.red-bent {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  transform: rotate(10deg);
+  color: red;
+  font-weight: 550;
+  font-size: x-large;
 }
 
 .rand-account {

@@ -15,7 +15,7 @@
         <mat-option value="deposit">Deposito</mat-option>
         <mat-option value="withdrawal">Prelievo</mat-option>
         <mat-option value="transfer">Bonifico</mat-option>
-        <mat-option value="phone top up">Ricarica</mat-option>
+        <mat-option value="phone top up">Ricarica Telefonica</mat-option>
       </mat-select>
     </mat-form-field>
     <button (click)="onFilterWord()">Cerca</button>
@@ -53,9 +53,9 @@
   </div>
 
   <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
-    <button (click)="onFilterNumberTransaction(10)">10</button>
-    <button (click)="onFilterNumberTransaction(20)">20</button>
-    <button (click)="onFilterNumberTransaction(50)">50</button>
+    <button (click)="onFilterNumberTransactionTen()">10</button>
+    <button (click)="onFilterNumberTransactionTwenty()">20</button>
+    <button (click)="onFilterNumberTransactionFifty()">50</button>
     <button (click)="onPrintTransaction()">
       <span
         ><span class="d-none d-sm-none d-lg-inline">Download </span>
@@ -77,8 +77,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let bankTransaction of bankTransactions">
-        <td>{{ bankTransaction.type }}</td>
-        <td>{{ bankTransaction.date }}</td>
+        <td>{{ bankTransaction.operationType }}</td>
+        <td>{{ bankTransaction.data }}</td>
         <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
         <td class="description">{{ bankTransaction.causal }}</td>
       </tr>

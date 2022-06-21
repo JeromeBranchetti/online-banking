@@ -1,5 +1,4 @@
 import { TransactionService } from './../service/transaction.service';
-import { FormGroup, FormControl } from '@angular/forms';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -40,7 +39,7 @@ export class AccountDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.onFilterNumberTransaction(10);
+    this.onFilterNumberTransactionTen();
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.onCalculateAmount();
@@ -67,29 +66,48 @@ export class AccountDetailComponent implements OnInit {
     }
   }
 
-  onFilterNumberTransaction(filter: number) {
-    this.httpReq.onGetTransactionFiltered(filter);
+  onFilterNumberTransactionTen() {
+    this.httpReq.onGetTransactionFilteredTen();
+  }
+
+  onFilterNumberTransactionTwenty() {
+    this.httpReq.onGetTransactionFilteredTwenty();
+  }
+
+  onFilterNumberTransactionFifty() {
+    this.httpReq.onGetTransactionFilteredFifty();
+  }
+
+  onChangeWords() {
+    for (let transaction of this.transactionService.bankTransaction) {
+    }
   }
 
   onFilterWord() {
+    console.log(this.selected);
+    if (this.selected === 'Ricarica Telefonica') {
+      this.selected = 'RICARICA_TELEFONICA';
+    } else {
+      this.selected = this.selected.toUpperCase();
+    }
+    console.log(this.selected);
     this.httpReq.onGetTransactionFilteredWord(this.selected);
   }
 
   onPrintTransaction() {
-    this.httpReq.onGetTransaction().subscribe((res) => {
-      this.transactionService.bankTransactionFlag.next(res);
-      setTimeout(() => {
-        /* pass here the table id */
-        let element = document.getElementById('transactionList');
-        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-        /* generate workbook and add the worksheet */
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-        /* save to file */
-        XLSX.writeFile(wb, this.fileName);
-      }, 100);
-    });
+    this.httpReq.onGetTransaction();
+    // this.httpReq.onGetTransaction().subscribe((res) => {
+    //   this.transactionService.bankTransactionFlag.next(res);
+    //   setTimeout(() => {
+    //     /* pass here the table id */
+    //     let element = document.getElementById('transactionList');
+    //     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    //     /* generate workbook and add the worksheet */
+    //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    //     /* save to file */
+    //     XLSX.writeFile(wb, this.fileName);
+    //   }, 100);
+    // });
   }
 }

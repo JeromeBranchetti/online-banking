@@ -17,7 +17,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class HttpRequestService {
-
   utente: utente;
   conti!: conto[];
   transaction: BankTransaction[];
@@ -44,7 +43,6 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
@@ -64,7 +62,6 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        
         this.utente = res;
         this.sign.bs.next(this.utente);
       });
@@ -77,9 +74,8 @@ export class HttpRequestService {
         password: pass,
       })
       .subscribe((response) => {
-
         this.utente = response;
-       
+
         this.sign.bs.next(this.utente);
         this.US.idUt = response.id;
         this.root.navigate(['/home-page-guest'], {
@@ -92,28 +88,29 @@ export class HttpRequestService {
   }
 
   onGetTransaction() {
-    let idConto = this.US.idCont;
-    return this.http.get<BankTransaction[]>(
-      'http://localhost:8080/transazioni/?idConto=' + idConto,
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
-        }),
-      }
-    );
-  }
-
-  onGetTransactionFiltered(filter: number) {
-    let idConto = this.US.idCont;
+    console.log(this.auth.token.token);
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:8080/transazioni/?idConto=' +
-          idConto +
-          '&_limit=' +
-          filter,
+        'http://localhost:8080/api/transaction/1/transactions',
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' +  this.auth.token.token,
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
+
+  onGetTransactionFilteredTen() {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_ten_operation/' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
           }),
         }
       )
@@ -123,17 +120,14 @@ export class HttpRequestService {
       });
   }
 
-  onGetTransactionFilteredWord(transactionType: string) {
-    let idConto = this.US.idCont;
+  onGetTransactionFilteredTwenty() {
     this.http
       .get<BankTransaction[]>(
-        'http://localhost:8080/transazioni/?idCont=' +
-          idConto +
-          '&type=' +
-          transactionType,
+        'http://localhost:8080/api/transaction/last_twenty_operation/' +
+          this.conto.id,
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' +  this.auth.token.token,
+            Authorization: 'Bearer ' + this.auth.token.token,
           }),
         }
       )
@@ -143,22 +137,31 @@ export class HttpRequestService {
       });
   }
 
-  onGetUser() {
-  
-    
-    return this.http.get<utente[]>('http://localhost:8080/utenti', {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' +  this.auth.token.token,
-      }),
-    });
+  onGetTransactionFilteredFifty() {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/last_fifty_operation/' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
   }
+
+  onGetTransactionFilteredWord(transactionType: string) {}
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
       'http://localhost:8080/richieste/?_limit=' + 10,
       {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       }
     );
@@ -170,7 +173,7 @@ export class HttpRequestService {
       'http://localhost:8080/richieste/?idCont=' + idConto,
       {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       }
     );
@@ -207,7 +210,7 @@ export class HttpRequestService {
     this.http
       .post('http://localhost:8080/authentication/register', ut, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
       .subscribe((res) => {
@@ -216,15 +219,16 @@ export class HttpRequestService {
   }
   changepass(pass: string) {
     this.utente.password = pass;
-  
-    let obj={
-      password:this.utente.password,id:this.utente.id
-    }
-    
+
+    let obj = {
+      password: this.utente.password,
+      id: this.utente.id,
+    };
+
     this.http
       .put(
-        'http://localhost:8080/api/auth/users/update/password',obj,
-        
+        'http://localhost:8080/api/auth/users/update/password',
+        obj,
 
         {
           headers: new HttpHeaders({
@@ -241,11 +245,11 @@ export class HttpRequestService {
     this.http
       .put(
         'http://localhost:8080/api/auth/users/update/email',
-        {id:this.utente.id, email:this.utente.email},
+        { id: this.utente.id, email: this.utente.email },
 
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' +  this.auth.token.token,
+            Authorization: 'Bearer ' + this.auth.token.token,
           }),
         }
       )
@@ -316,7 +320,7 @@ export class HttpRequestService {
     this.http
       .post<RequestModel>('http://localhost:8080/richieste', request, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
       .subscribe((res) => {});
@@ -330,7 +334,7 @@ export class HttpRequestService {
     this.http
       .put('http://localhost:8080/conti/' + idConto, this.modifyAccount, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
+          Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
       .subscribe((res) => {
@@ -350,6 +354,7 @@ export class HttpRequestService {
       .subscribe((res) => {});
   }
 
+<<<<<<< HEAD
   richiestaChiusuraConto(idConto:number){
     this.http.put('http://localhost:8080/api/account/accounts/closure_request/'+idConto,null,{
       headers: new HttpHeaders({
@@ -357,5 +362,18 @@ export class HttpRequestService {
       }),
 
     }).subscribe(()=>console.log("richiesta chiusura inviata"));
+=======
+  richiestaChiusuraConto(idConto: number) {
+    this.http
+      .put(
+        'http://localhost:8080/api/account/accounts/closure_request/' + idConto,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe(() => console.log('richiesta chiusura inviata'));
+>>>>>>> a4ef922165be1524e8d1d69abb96536c38f9b02a
   }
 }

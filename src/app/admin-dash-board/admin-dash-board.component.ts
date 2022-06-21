@@ -108,10 +108,10 @@ export class AdminDashBoardComponent implements OnInit {
   }
 
   onDownloadUserList() {
-    this.httpReq.onGetUser().subscribe((res) => {
-      this.userList = JSON.parse(JSON.stringify(res));
-      this.userList;
-      this.exportAsExcelFile(this.userList, 'UserList.xlsx');
-    });
+    // this.httpReq.onGetUser().subscribe((res) => {
+    //   this.userList = JSON.parse(JSON.stringify(res));
+    //   this.userList;
+    //   this.exportAsExcelFile(this.userList, 'UserList.xlsx');
+    // });
   }
 }

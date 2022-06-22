@@ -23,6 +23,7 @@ export class AdminDashBoardComponent implements OnInit {
   oldRequests: RequestModel[] = [];
   requestsLight: string[] = [];
   userList: utente[] = [];
+  oldUserList: utente[] = [];
 
   requestVisibility: boolean = false;
   buttonVisibility: boolean = false;
@@ -36,7 +37,7 @@ export class AdminDashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.onFetchRequest();
     this.httpReq.userList.subscribe((res) => {
-      this.userList = res;
+      this.userList = res.filter();
     });
   }
 
@@ -73,6 +74,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
+    console.log(this.userList);
     this.selectedUser = this.userList.find(
       (user) => user.id === this.selectedRequest.userId
     );
@@ -85,6 +87,9 @@ export class AdminDashBoardComponent implements OnInit {
     this.requestIndex = index;
     this.selectedRequest = this.oldRequests[index];
     this.selectedLight = 'grey';
+    this.selectedUser = this.oldUserList.find(
+      (user) => user.id === this.selectedRequest.userId
+    );
   }
 
   onAcceptRequest() {
@@ -92,6 +97,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.selectedRequest.header = 'green';
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
+    this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accettato';
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
@@ -106,6 +112,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.selectedRequest.header = 'red';
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
+    this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Declinato';
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {

@@ -1,3 +1,4 @@
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestModel } from './../admin-dash-board/request.model';
 import { AuthService } from './../service/auth.service';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -21,12 +22,14 @@ export class UserDashBoardComponent implements OnInit {
   iban: string = 'IT*********************';
   trueIban: string;
   saldo: string = '*********';
+  currentSaldo! :number;
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
   request: RequestModel;
   menuClicked!: boolean;
   public innerWidth: any;
+  form: FormGroup;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -43,13 +46,20 @@ export class UserDashBoardComponent implements OnInit {
     private sign: SignUpService,
     private router: Router,
     private auth: AuthService,
-    public US: UtenteService
-  ) {}
+    public US: UtenteService,
+    formBuilder: FormBuilder
+  ) {
+    this.form = formBuilder.group({
+      'amount' : ['1', Validators.required]
+    });
+  }
+
   ngOnInit(): void {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
   }
+
   Init(): void {
     this.httpReq.bar.next(true);
     this.spioneService.bs.subscribe((bool) => {
@@ -66,12 +76,32 @@ export class UserDashBoardComponent implements OnInit {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
+        this.currentSaldo = this.conto.balance;
       });
     });
   }
+
   newConto() {
-    this.httpReq.richiestaAttivazioneConto(1);
+    if (!this.form.valid) {
+      alert('Compila il campo o inserisci numeri soltanto')
+    }
+    else{
+      const amountTranfered = this.form.controls['amount'].value; 
+      console.log(this.form.controls['amount'].value);
+      this.httpReq.richiestaAttivazioneConto(amountTranfered);
+    }
   }
+
+  checkAmountValue(){
+    let amountToCheck = this.form.controls['amount'].value;
+    if (Number(amountToCheck) < 0 || isNaN(amountToCheck) || Number(amountToCheck) >= this.currentSaldo) {
+      this.form.controls['amount'].setErrors(null);
+    }
+    else {
+      this.form.controls['amount'].setErrors({ incorect: true});
+    }
+  }
+
   copyMode() {
     const copiedIban = this.conto.iban;
     navigator.clipboard.writeText(copiedIban);

@@ -82,7 +82,8 @@ export class UserDashBoardComponent implements OnInit {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-        // this.currentSaldo = this.conto.balance;
+        
+        this.currentSaldo = res.balance;
       });
     });
   }

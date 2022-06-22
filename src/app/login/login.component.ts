@@ -31,6 +31,15 @@ export class LoginComponent implements OnInit {
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe({
       next: (response) => {
+        if(response.role==='ROLE_EMPLOYEE'
+        ){
+          this.auth.administrator=true;
+          this.auth.token = response;
+          this.auth.loggedIn.next(true);
+          this.auth.authenticated = true;
+          this.auth.isAuthenticated();
+          this.router.navigate(['/adminDashboard']);
+        }
         this.auth.token = response;
         this.auth.loggedIn.next(true);
         this.auth.authenticated = true;
@@ -41,7 +50,7 @@ export class LoginComponent implements OnInit {
 
         // Se è amministratore
         // this.administrator = true;
-        // this.router.navigate(['/adminDashboard])
+      
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;

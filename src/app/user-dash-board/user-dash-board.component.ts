@@ -88,15 +88,12 @@ export class UserDashBoardComponent implements OnInit {
     });
   }
 
-  newConto() {
-    if (!this.form.valid) {
-      alert('Compila il campo o inserisci numeri soltanto');
-    } else {
-      const amountTranfered = this.form.controls['amount'].value;
-      console.log(this.form.controls['amount'].value);
-      this.httpReq.richiestaAttivazioneConto(amountTranfered);
+  newConto(amount:string) {
+      let i=Number(amount);
+    
+      this.httpReq.richiestaAttivazioneConto(i);
     }
-  }
+  
 
   checkAmountValue() {
     let amountToCheck = this.form.controls['amount'].value;

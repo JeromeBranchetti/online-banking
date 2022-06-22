@@ -1,7 +1,5 @@
 import { UtenteService } from './utente.service';
 
-import { RequestModel } from './../admin-dash-board/request.model';
-
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,22 +11,16 @@ import { conto } from '../class/conto';
 import { utente } from '../class/utente';
 import { response } from '../class/response.mode';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class SignUpService {
-
   constructor(
     private http: HttpClient,
     private router: Router,
-    private auth:AuthService,
-    private us:UtenteService
-
-
+    private auth: AuthService,
+    private us: UtenteService
   ) {}
-
-  request: RequestModel;
 
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto> = new BehaviorSubject<conto>(null);
@@ -44,6 +36,13 @@ export class SignUpService {
   }
 
   onAddUser(ut: utente) {
+    this.http
+      .post<response>('http://localhost:8080/api/auth/register', ut)
+      .subscribe((res) => {
+        this.token = res.token;
+        this.us.idUt = res.userId;
+        this.auth.isAuthenticated();
+        this.auth.authenticated = true;
 
  this.http.post<response>('http://localhost:8080/api/auth/register', ut).subscribe((res)=>{
   this.auth.token=res;
@@ -62,7 +61,3 @@ export class SignUpService {
  
 
 
-  
-}
-
-}

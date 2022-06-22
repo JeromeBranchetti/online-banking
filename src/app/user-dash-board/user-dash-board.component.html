@@ -1,7 +1,56 @@
 <!-- userDashboard -->
 
 <div class="container-fluid dash-container">
-  
+  <!-- Modal -->
+  <div
+    class="modal fade p-3"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <form [formGroup]="form" (ngSubmit)="newConto()">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text fs-3">&euro;</span>
+              
+              <input
+                type="text"
+                class="form-control fs-3 text-end"
+                aria-label="Ammontare in euro"
+                formControlName="amount"
+                (input)="checkAmountValue()"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary mb-3 mt-2 p-2"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary mb-3 mt-2 p-2">Invia Richiesta</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <aside *ngIf="menuClicked">
     <div class="top m-2 justify-content-center">
       <div class="logo">
@@ -27,12 +76,9 @@
         <span><i class="fas fa-car-crash"></i></span>
         <h3>Assicurazioni</h3>
       </a>
-      <p (click)="newConto()">
-        apri nuovo conto
-      </p>
-      <a routerLink="#">
-        <span><i class="fas fa-money-bill-wave"></i></span>
-        <h3>Pagamenti</h3>
+      <a data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <span><i class="fas fa-plus-circle"></i></span>
+        <h3>Apri nuovo conto</h3>
       </a>
       <a routerLink="/privacy">
         <span><i class="fas fa-shield-alt"></i></span>
@@ -86,14 +132,16 @@
         <span><i class="fas fa-list-ol"></i></span>
         <div class="left mt-3">
           <h3>Saldo</h3>
-          <h1>{{ modeSpione ? saldo : conto?.balance ?? "" | number: '1.2-2'}}&euro;</h1>
+          <h1>
+            {{
+              modeSpione ? saldo : (conto?.balance ?? "" | number: "1.2-2")
+            }}&euro;
+          </h1>
         </div>
         <div class="decoration-3 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>
       </div>
     </div>
-
-
   </main>
 
   <!-- cose a destra -->

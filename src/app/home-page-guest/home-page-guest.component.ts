@@ -1,11 +1,10 @@
-import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
+
 import { AuthService } from './../service/auth.service';
-import { TransactionService } from './../service/transaction.service';
+
 import { BankTransaction } from './../class/bankTransaction.model';
 import { utente } from './../class/utente';
-import { SignUpService } from './../service/signUp.service';
+
 import { HttpRequestService } from './../service/httpRequest.service';
-import { RequestModel } from './../admin-dash-board/request.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +19,6 @@ import { conto } from '../class/conto';
 export class HomePageGuestComponent implements OnInit {
   conti: conto[] = [];
   idUt: string = 'null';
-  request: RequestModel;
   utente: utente;
   transactions: BankTransaction[] = [];
 
@@ -30,8 +28,7 @@ export class HomePageGuestComponent implements OnInit {
     private http: HttpClient,
 
     private auth: AuthService,
-    private httpreq:HttpRequestService
-   
+    private httpreq: HttpRequestService
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +41,7 @@ export class HomePageGuestComponent implements OnInit {
     this.httpreq.bar.next(false);
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
-   
+
       this.http
         .get<conto[]>(
           'http://localhost:8080/api/account/users/' +
@@ -57,13 +54,9 @@ export class HomePageGuestComponent implements OnInit {
           }
         )
         .subscribe((res) => {
-          
           this.conti = res;
-          
         });
     });
-  
-    
   }
 
   toPayment() {
@@ -75,6 +68,4 @@ export class HomePageGuestComponent implements OnInit {
       queryParams: { idUt: this.idUt, idCont: id },
     });
   }
-
-  
 }

@@ -3,7 +3,7 @@
     <div class="dark-layer">
       <div class="text-box">
         <p class="big-text">Online Banking</p>
-        <p class="big-text">Risparmia tempo </p>
+        <p class="big-text">Risparmia tempo</p>
         <p class="big-text">per risparmiare denaro.</p>
       </div>
     </div>
@@ -23,8 +23,10 @@
         </div>
         <div class="col">
           <div class="row">
-            <div class="col fs-5"><span>Saldo</span></div>
-            <div class="col fs-4">{{ conti[0]?.balance ?? "" | number: '1.2-2' }} &euro;</div>
+            <div class="col-sm-12 col-lg-6 fs-5"><span>Saldo</span></div>
+            <div class="col-sm-12 col-lg-6 fs-4">
+              {{ conti[0]?.balance ?? "" | number: "1.2-2" }} &euro;
+            </div>
           </div>
         </div>
       </div>
@@ -32,7 +34,7 @@
   </div>
   <div class="third-section container-fluid" *ngIf="conti.length > 1">
     <!-- Carousel con altri conti -->
-    <div  class="container-fluid py-3 row mx-0 justify-content-center">
+    <div class="container-fluid py-3 row mx-0 justify-content-center">
       <div
         *ngFor="let conto of conti | slice: 1; index as i"
         class="col-lg-4 col-md-6 col-sm-12"
@@ -53,7 +55,9 @@
 
                 <div class="col text-center">
                   <p>Saldo disponibile</p>
-                  <h1>{{ conti[i + 1]?.balance ?? "" | number: '1.2-2'}}&euro;</h1>
+                  <h1>
+                    {{ conti[i + 1]?.balance ?? "" | number: "1.2-2" }}&euro;
+                  </h1>
                 </div>
               </div>
             </div>
@@ -84,7 +88,13 @@
                 <div class="col-4 conto-font-bold">
                   Che tipo di conto cerchi?
                 </div>
-                <div class="col the-border">
+                <div
+                  class="col the-border custom-tooltip"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-custom-class="custom-tooltip"
+                  title="Apri uno dei conti sopra e clicca nuovo conto nel menù"
+                >
                   <i class="fas fa-user-check fs-4"></i>
                   <br />
                   <span>Conto Standard</span>
@@ -120,7 +130,6 @@
               </div>
             </div>
           </div>
-        
         </div>
       </div>
     </div>

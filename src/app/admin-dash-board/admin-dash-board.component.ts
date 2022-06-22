@@ -1,9 +1,18 @@
+import { conto } from './../class/conto';
 import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
-import { RequestModel } from './request.model';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 
+export class RequestModel {
+  id?: number;
+  state?: any;
+  userId?: number;
+  accountNumber?: number;
+  balance?: number;
+  header?: string;
+  result?: string;
+}
 @Component({
   selector: 'app-admin-dash-board',
   templateUrl: './admin-dash-board.component.html',
@@ -18,6 +27,7 @@ export class AdminDashBoardComponent implements OnInit {
   requestVisibility: boolean = false;
   buttonVisibility: boolean = false;
   requestIndex: number;
+  selectedUser: utente;
   selectedRequest: RequestModel;
   selectedLight: string;
 
@@ -25,17 +35,18 @@ export class AdminDashBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.onFetchRequest();
+    this.httpReq.userList.subscribe((res) => {
+      this.userList = res;
+    });
   }
 
   // Metodo per il colore
 
   onColorRequestList() {
     for (let request of this.newRequests) {
-      if (request.type === 'Apertura nuovo conto') {
-        this.requestsLight.push('yellow');
-      } else if (request.type === 'Prima registrazione') {
+      if (request.state === 'ACTIVATION_REQUEST') {
         this.requestsLight.push('green');
-      } else if (request.type === 'Chiusura conto') {
+      } else if (request.state === 'CLOSURE_REQUEST') {
         this.requestsLight.push('red');
       }
     }
@@ -44,9 +55,15 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodi per le richieste
 
   onFetchRequest() {
-    this.httpReq.onGetRequest().subscribe((res) => {
-      this.newRequests = res;
-      this.onColorRequestList();
+    this.httpReq.onGetRequest().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.newRequests = res;
+        this.onColorRequestList();
+      },
+      error: (errorRes) => {
+        console.log(errorRes);
+      },
     });
   }
 
@@ -56,6 +73,10 @@ export class AdminDashBoardComponent implements OnInit {
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
+    this.selectedUser = this.userList.find(
+      (user) => user.id === this.selectedRequest.userId
+    );
+    console.log(this.selectedUser);
   }
 
   onSelectOldRequest(index: number) {
@@ -73,10 +94,10 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accettato';
-    if (this.selectedRequest.type === 'Chiusura conto') {
-      this.httpReq.onCompleteRequest(false, this.selectedRequest.idCont);
+    if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
+      this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
-      this.httpReq.onCompleteRequest(true, this.selectedRequest.idCont);
+      this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
   }
 
@@ -87,10 +108,8 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Declinato';
-    if (this.selectedRequest.type === 'Chiusura conto') {
-      this.httpReq.onCompleteRequest(true, this.selectedRequest.idCont);
-    } else {
-      this.httpReq.onCompleteRequest(false, this.selectedRequest.idCont);
+    if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
+      this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     }
   }
 

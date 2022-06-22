@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;
-        alert("Email o Password errati");
+        alert('Email o Password errati');
       },
     });
   }

@@ -13,6 +13,16 @@ html {
   font-size: 14px;
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+}
+
+.modal {
+ top: 50%;
+ color: black;
+  
+}
+
 .dash-container {
   width: 96vw;
   min-height: 80vh;

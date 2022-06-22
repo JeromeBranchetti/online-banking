@@ -37,7 +37,7 @@ export class AdminDashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.onFetchRequest();
     this.httpReq.userList.subscribe((res) => {
-      this.userList = res.filter();
+      this.userList = res;
     });
   }
 

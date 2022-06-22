@@ -1,3 +1,6 @@
+import { UtenteService } from './../service/utente.service';
+import { AuthService } from './../service/auth.service';
+import { Router } from '@angular/router';
 import { conto } from './../class/conto';
 import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -31,7 +34,12 @@ export class AdminDashBoardComponent implements OnInit {
   selectedRequest: RequestModel;
   selectedLight: string;
 
-  constructor(private httpReq: HttpRequestService) {}
+  constructor(
+    private httpReq: HttpRequestService,
+    private router: Router  ,
+    private authService: AuthService,
+    private US: UtenteService
+  ) {}
 
   ngOnInit(): void {
     this.onFetchRequest();
@@ -132,5 +140,13 @@ export class AdminDashBoardComponent implements OnInit {
     //   this.userList;
     //   this.exportAsExcelFile(this.userList, 'UserList.xlsx');
     // });
+  }
+
+  onLogOut() {
+    this.router.navigate(['/']);
+    this.authService.loggedIn.next(false);
+    this.authService.authenticated = false;
+    this.US.idCont = null;
+    this.US.idUt = null;
   }
 }

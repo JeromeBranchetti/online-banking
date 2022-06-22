@@ -1,4 +1,3 @@
-import { RequestModel } from './../admin-dash-board/request.model';
 import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
@@ -15,7 +14,8 @@ import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
 
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { RequestModel } from '../admin-dash-board/admin-dash-board.component';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +29,7 @@ export class HttpRequestService {
   bar = new BehaviorSubject<boolean>(false);
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
+  userList = new Subject<utente[]>();
 
   constructor(
     private http: HttpClient,
@@ -59,6 +60,14 @@ export class HttpRequestService {
         this.temporanyBalanceFlag.next(this.temporanyBalance);
         this.modifyAccount = this.conto;
       });
+  }
+
+  onGetUserId() {
+    return this.http.get<utente[]>('http://localhost:8080/api/auth/users', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.auth.token.token,
+      }),
+    });
   }
 
   GetUserid(id: string) {
@@ -187,7 +196,7 @@ export class HttpRequestService {
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
-      'http://localhost:8080/richieste/?_limit=' + 10,
+      'http://localhost:8080/api/account/accounts/requests',
       {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.auth.token.token,
@@ -196,16 +205,7 @@ export class HttpRequestService {
     );
   }
 
-  onCheckRequest(idConto: number) {
-    return this.http.get<RequestModel[]>(
-      'http://localhost:8080/richieste/?idCont=' + idConto,
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.auth.token.token,
-        }),
-      }
-    );
-  }
+  onCheckRequest(idConto: number) {}
 
   // Chiamate post
 
@@ -358,33 +358,11 @@ export class HttpRequestService {
       });
   }
 
-  onAddRequest(request: RequestModel) {
-    this.http
-      .post<RequestModel>('http://localhost:8080/richieste', request, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.auth.token.token,
-        }),
-      })
-      .subscribe((res) => {});
+  onActivateAccount(idConto: number) {
+    this.http.get('http://localhost:8080/richieste/');
   }
 
-  // Chiamate put
-
-  onCompleteRequest(result: boolean, idConto: number) {
-    this.GetConto(idConto.toString());
-    this.modifyAccount.state = result;
-    this.http
-      .put('http://localhost:8080/conti/' + idConto, this.modifyAccount, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.auth.token.token,
-        }),
-      })
-      .subscribe((res) => {
-        alert('Richiesta completata');
-      });
-  }
-
-  // Chiamate Delete
+  onDisactivateAccount(idConto: number) {}
 
   onDeleteRequest(idRequest: number) {
     this.http
@@ -420,5 +398,11 @@ export class HttpRequestService {
         transaction.operationType = transaction.operationType.toLowerCase();
       }
     }
+  }
+
+  onPrepareRequestList() {
+    this.onGetUserId().subscribe((res) => {
+      this.userList.next(res);
+    });
   }
 }

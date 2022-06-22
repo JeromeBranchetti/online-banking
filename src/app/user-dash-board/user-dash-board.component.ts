@@ -1,4 +1,3 @@
-import { RequestModel } from './../admin-dash-board/request.model';
 import { AuthService } from './../service/auth.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +23,6 @@ export class UserDashBoardComponent implements OnInit {
   guest = utente.factory();
   modeSpione!: boolean;
   conto = new conto(0);
-  request: RequestModel;
   menuClicked!: boolean;
   public innerWidth: any;
 

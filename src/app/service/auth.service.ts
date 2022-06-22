@@ -1,4 +1,3 @@
-
 import { utente } from './../class/utente';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { response } from '../class/response.mode';
-
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +16,7 @@ export class AuthService {
 
   error = {
     message:
-      'Si è verificato un errore sconosciuto, sembra che non ti trovi nella pagina giusta' +
+      'Si è verificato un errore sconosciuto, sembra che non ti trovi nella pagina giusta. \n' +
       'Per favore naviga ancora nel nostro sito attraverso i bottoni che ti sono forniti',
     status: 'Percorso errato',
   };
@@ -38,13 +36,11 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<response>('http://localhost:8080/api/auth/auth', {
-        email: email,
-        password: password,
-      })
-    }
-     
+    return this.http.post<response>('http://localhost:8080/api/auth/auth', {
+      email: email,
+      password: password,
+    });
+  }
 
   onCheckAdmin(email: string, password: string) {
     this.http
@@ -53,7 +49,7 @@ export class AuthService {
         { email: email, password: password },
         {
           headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.token
+            Authorization: 'Bearer ' + this.token,
           }),
         }
       )

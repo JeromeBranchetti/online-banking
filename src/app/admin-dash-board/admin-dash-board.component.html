@@ -18,8 +18,8 @@
         >
           <div class="row">
             <div class="col-10">
-              {{ newRequests[i].firstName }}
-              {{ newRequests[i].lastName }}
+              {{ userList[i].firstName }}
+              {{ userList[i].lastName }}
             </div>
             <div
               class="col-2"
@@ -39,14 +39,14 @@
       <div class="div-center">
         <div *ngIf="requestVisibility">
           <app-request
-            [type]="selectedRequest.type"
-            [firstName]="selectedRequest.firstName"
-            [lastName]="selectedRequest.lastName"
-            [email]="selectedRequest.email"
+            [firstName]="selectedUser.firstName"
+            [lastName]="selectedUser.lastName"
+            [email]="selectedUser.email"
+            [type]="selectedRequest.state"
             [light]="selectedLight"
+            [idConto]="selectedRequest.id"
             [result]="selectedRequest.result"
             [header]="selectedRequest.header"
-            [idConto]="selectedRequest.idCont"
           ></app-request>
           <div class="buttons" *ngIf="buttonVisibility">
             <button class="button" (click)="onAcceptRequest()">Accetta</button>
@@ -60,7 +60,7 @@
 
     <!-- Seconda lista (destra) -->
     <div class="col-lg-3 col-sm-12 oldRequestList">
-      <h1>Lista Vecchie Richieste</h1>
+      <h1>Lista Richieste Completate</h1>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
         <!-- ngFor vecchie richieste -->
         <div
@@ -71,8 +71,8 @@
           aria-selected="true"
           (click)="onSelectOldRequest(i)"
         >
-          {{ oldRequests[i].firstName }}
-          {{ oldRequests[i].lastName }}
+          <!-- {{ oldRequests[i].firstName }}
+          {{ oldRequests[i].lastName }} -->
           <div [ngClass]="{}"></div>
         </div>
       </div>

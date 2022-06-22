@@ -35,28 +35,25 @@ export class LoginComponent implements OnInit {
         this.auth.loggedIn.next(true);
         this.auth.authenticated = true;
         this.auth.isAuthenticated();
-        
-        if(response.role==='ROLE_EMPLOYEE'
-        ){
-          this.auth.administrator=true;
+
+        if (response.role === 'ROLE_EMPLOYEE') {
+          this.http.onPrepareRequestList();
+          this.auth.administrator = true;
           this.auth.token = response;
           this.auth.loggedIn.next(true);
           this.auth.authenticated = true;
           this.auth.isAuthenticated();
           this.router.navigate(['/adminDashboard']);
-        }
-       
-        else if (this.auth.authenticated && response.role==='ROLE_CLIENT' ) {
+        } else if (this.auth.authenticated && response.role === 'ROLE_CLIENT') {
           this.http.GetUser(email, password);
         }
 
         // Se è amministratore
         // this.administrator = true;
-      
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;
-        alert("Email o Password errati");
+        alert('Email o Password errati');
       },
     });
   }

@@ -78,9 +78,14 @@ export class AccountDetailComponent implements OnInit {
     this.httpReq.onGetTransactionFilteredFifty();
   }
 
+  onChangeWords() {
+    for (let transaction of this.transactionService.bankTransaction) {
+    }
+  }
+
   onFilterWord() {
     console.log(this.selected);
-    if (this.selected === 'Ricarica telefonica') {
+    if (this.selected === 'Ricarica Telefonica') {
       this.selected = 'RICARICA_TELEFONICA';
     } else {
       this.selected = this.selected.toUpperCase();

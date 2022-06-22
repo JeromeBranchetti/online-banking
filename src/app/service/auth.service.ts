@@ -1,5 +1,5 @@
 import { utente } from './../class/utente';
-import { Router } from '@angular/router';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -26,10 +26,10 @@ export class AuthService {
   tokenExpirationTimer: any;
   accessToken: string = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   isAuthenticated() {
-    const promise = new Promise((resolve, rejects) => {
+    const promise = new Promise((resolve) => {
       resolve(this.authenticated);
     });
     return promise;

@@ -71,10 +71,8 @@ export class PaymentComponent implements OnInit {
   constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
+    this.balance = this.httpReq.conto.balance;
     this.iban = this.httpReq.conto.iban;
-    this.httpReq.temporanyBalanceFlag.subscribe((res) => {
-      this.balance = res;
-    });
   }
 
   onBankTransfer() {

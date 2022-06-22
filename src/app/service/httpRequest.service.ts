@@ -4,11 +4,7 @@ import { SignUpService } from './signUp.service';
 
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
@@ -56,8 +52,6 @@ export class HttpRequestService {
         this.conto.iban = res.iban;
 
         this.sign.bsconto.next(this.conto);
-        this.temporanyBalance = this.conto.balance;
-        this.temporanyBalanceFlag.next(this.temporanyBalance);
         this.modifyAccount = this.conto;
       });
   }
@@ -134,7 +128,6 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
-        this.onChangeWords();
       });
   }
 
@@ -152,7 +145,6 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
-        this.onChangeWords();
       });
   }
 
@@ -170,29 +162,10 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
-        this.onChangeWords();
       });
   }
 
-  onGetTransactionFilteredWord(transactionType: string) {
-    this.http
-      .get<BankTransaction[]>(
-        'http://localhost:8080/api/transaction/' +
-          transactionType +
-          '/transactions' +
-          this.conto.id,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe((res) => {
-        this.transactionService.bankTransaction = res;
-        this.transactionService.bankTransactionFlag.next(res);
-        this.onChangeWords();
-      });
-  }
+  onGetTransactionFilteredWord(transactionType: string) {}
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
@@ -209,40 +182,30 @@ export class HttpRequestService {
 
   // Chiamate post
 
-  richiestaAttivazioneConto(amount: number) {
-    this.http
-      .post<conto>(
-        'http://localhost:8080/api/account/' +
-          this.utente.id +
-          '/addAccount/' +
-          this.conto.accountNumber +
-          '/' +
-          amount,
-        null,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.http.put(
-            'http://localhost:8080/api/account/accounts/activation_request/' +
-              res.id,
-            null,
-            {
-              headers: new HttpHeaders({
-                Authorization: 'Bearer ' + this.auth.token.token,
-              }),
-            }
-          );
-        },
-        error: (errorRes: HttpErrorResponse) => {
-          alert(errorRes.error.message);
-        },
-      });
+  richiestaAttivazioneConto(amount:number) {
+   
+    this.http.post<conto>('http://localhost:8080/api/account/'+this.utente.id+'/addAccount/'+this.conto.accountNumber+'/'+amount, null,  {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' +  this.auth.token.token,
+      }),
+    })
+    .subscribe({next:(res) => {
+      console.log(res);
+      this.http.put('http://localhost:8080/api/account/accounts/activation_request/'+res.id,null,{
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' +  this.auth.token.token,
+        }),
+      } )
+    },
+    error:(errorRes:HttpErrorResponse) => {
+    alert(errorRes.error.message);
+      
+    }
+  })
+    
+   
+    ;
+
   }
   onAddUser(ut: utente) {
     this.http
@@ -279,6 +242,7 @@ export class HttpRequestService {
 
   changemail(email: string) {
     this.utente.email = email;
+    console.log(this.utente);
     this.http
       .put(
         'http://localhost:8080/api/auth/users/update/email',
@@ -303,9 +267,6 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
-          console.log(this.conto.balance);
-          this.temporanyBalance = this.temporanyBalance + transaction.amount;
-          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (res) => {
           console.log(res)
@@ -315,6 +276,8 @@ export class HttpRequestService {
   }
 
   onAddTransactionPhone(transaction: BankTransaction) {
+    console.log(transaction);
+
     this.http
       .post(
         'http://localhost:8080/api/transaction/ricarica_telefonica',
@@ -329,8 +292,6 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
-          this.temporanyBalance = this.temporanyBalance - transaction.amount;
-          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: () => {
           alert('Errore durante il processo di pagamento');
@@ -350,8 +311,6 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
-          this.temporanyBalance = this.temporanyBalance - transaction.amount;
-          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: () => {
           alert('Errore durante il processo di pagamento');
@@ -377,30 +336,13 @@ export class HttpRequestService {
       .subscribe((res) => {});
   }
 
-  richiestaChiusuraConto(idConto: number) {
-    this.http
-      .put(
-        'http://localhost:8080/api/account/accounts/closure_request/' + idConto,
-        null,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe(() => console.log('richiesta chiusura inviata'));
-  }
+  richiestaChiusuraConto(idConto:number){
+    this.http.put('http://localhost:8080/api/account/accounts/closure_request/'+idConto,null,{
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' +  this.auth.token.token,
+      }),
 
-  // Altri metodi
-
-  onChangeWords() {
-    for (let transaction of this.transactionService.bankTransaction) {
-      if (transaction.operationType === 'RICARICA_TELEFONICA') {
-        transaction.operationType = 'Ricarica Telefonica';
-      } else {
-        transaction.operationType = transaction.operationType.toLowerCase();
-      }
-    }
+    }).subscribe(()=>console.log("richiesta chiusura inviata"));
   }
 
   onPrepareRequestList() {

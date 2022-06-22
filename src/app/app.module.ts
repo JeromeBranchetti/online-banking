@@ -72,7 +72,7 @@ import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component'
     HttpClientModule,
     BrowserAnimationsModule,
     NgChartsModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [HttpRequestService, AuthGuard],
   bootstrap: [AppComponent],

@@ -38,6 +38,7 @@ export class UserDashBoardComponent implements OnInit {
   onResize(event) {
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
+  
   }
 
   constructor(
@@ -61,6 +62,7 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
+
   }
 
   Init(): void {
@@ -72,6 +74,7 @@ export class UserDashBoardComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
+        
         this.guest = res;
       });
     });
@@ -117,7 +120,7 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   closeContoButton() {
-    this.httpReq.richiestaChiusuraConto(this.conto.id);
+  this.httpReq.richiestaChiusuraConto(this.conto.id);
   }
 
   toChangeEmailPass() {

@@ -22,7 +22,6 @@
 
 .big-text {
   font-size: 5vw;
-  cursor: default;
 }
 
 .dark-layer p {
@@ -89,6 +88,7 @@
 .third-section {
   min-height: 70vh;
   width: 100%;
+  /* background-color: rgb(30, 133, 223); */
   background-color: rgb(17, 90, 227);
 
 }
@@ -113,7 +113,7 @@
   transform: rotate(10deg);
   color: red;
   font-weight: 550;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .rand-account {

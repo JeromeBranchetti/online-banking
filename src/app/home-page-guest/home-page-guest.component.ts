@@ -1,9 +1,9 @@
-import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
+
 import { AuthService } from './../service/auth.service';
-import { TransactionService } from './../service/transaction.service';
+
 import { BankTransaction } from './../class/bankTransaction.model';
 import { utente } from './../class/utente';
-import { SignUpService } from './../service/signUp.service';
+
 import { HttpRequestService } from './../service/httpRequest.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -26,15 +26,15 @@ export class HomePageGuestComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private httpReq: HttpRequestService,
-    private sign: SignUpService,
-    private transactionService: TransactionService,
+
     private auth: AuthService,
     private httpreq: HttpRequestService
   ) {}
 
   ngOnInit(): void {
-    this.Init();
+
+      this.Init();
+      
   }
 
   Init(): void {

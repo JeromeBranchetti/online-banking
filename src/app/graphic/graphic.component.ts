@@ -27,23 +27,13 @@ export class GraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.Init();
+    this.transactionService.bankTransactionFlag.subscribe((res)=>this.Init(res))
+    
   }
 
-  Init(): void {
-    let idConto = this.US.idCont;
+  Init(res:BankTransaction[]): void {
+   
 
-    this.http
-      .get<BankTransaction[]>(
-        'http://localhost:8080/api/transaction/last_ten_operation/' +
-          this.httpReq.conto.id,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe((res) => {
         let x = [];
         let y = [];
         for (let v of res) {
@@ -54,7 +44,7 @@ export class GraphicComponent implements OnInit {
         this.Graphic = new Chart('myChart', this.myChartInit(x, y));
 
         this.Graphic.update();
-      });
+      ;
   }
 
   myChartInit(x: any[], y: any[]): ChartConfiguration {

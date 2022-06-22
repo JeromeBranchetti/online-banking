@@ -37,16 +37,13 @@ export class AdminDashBoardComponent implements OnInit {
 
   constructor(
     private httpReq: HttpRequestService,
-    private router: Router  ,
+    private router: Router,
     private authService: AuthService,
     private US: UtenteService
   ) {}
 
   ngOnInit(): void {
     this.onFetchRequest();
-    this.httpReq.userList.subscribe((res) => {
-      this.userList = res;
-    });
   }
 
   // Metodo per il colore
@@ -69,6 +66,13 @@ export class AdminDashBoardComponent implements OnInit {
         console.log(res);
         this.newRequests = res;
         this.onColorRequestList();
+        this.httpReq.userList.subscribe((res) => {
+          for (let request of this.newRequests) {
+            console.log('for partito');
+            console.log(request.userId);
+            this.userList.push(res.find((user) => user.id === request.userId));
+          }
+        });
       },
       error: (errorRes) => {
         console.log(errorRes);

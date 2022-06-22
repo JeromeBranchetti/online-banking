@@ -12,8 +12,9 @@
   height: 2rem;
   width: 100%;
   margin-top: 0.4rem;
-  background-color: rgba(240, 248, 255, 0.656);
-  opacity: 1;
+  background-color: rgba(240, 248, 255, 0.3);
+  font-weight: 500;
+  font-size: 1.1rem;
   padding: 3px;
 }
 

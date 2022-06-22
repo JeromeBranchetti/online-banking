@@ -18,9 +18,8 @@ html {
 }
 
 .modal {
- top: 50%;
- color: black;
-  
+  top: 50%;
+  color: black;
 }
 
 .dash-container {
@@ -176,17 +175,14 @@ main .insights > div span {
 
 main .insights > div.num-conto span {
   background-color: var(--clr-primary);
-
 }
 
 main .insights > div.iban span {
   background-color: var(--clr-danger);
-
 }
 
 main .insights > div.saldo span {
-  background-color: var(--clr-success)
-
+  background-color: var(--clr-success);
 }
 
 main #menu-btn {
@@ -220,12 +216,12 @@ main #menu-btn {
   background-size: cover;
 }
 
-@media screen and (max-width: 1345px){
+@media screen and (max-width: 1345px) {
   .dash-container {
     grid-template-columns: 7rem auto 23rem;
     row-gap: 1rem;
   }
-  
+
   aside .logo h2 {
     display: none;
   }
@@ -263,7 +259,7 @@ main #menu-btn {
     width: 99vw;
     grid-template-columns: 1fr;
   }
-  
+
   aside {
     position: fixed;
     left: 0;
@@ -306,4 +302,9 @@ main #menu-btn {
   main #menu-btn {
     display: block;
   }
+}
+
+.modal {
+  display: flex !important;
+  justify-content: center;
 }

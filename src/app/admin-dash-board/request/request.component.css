@@ -15,7 +15,11 @@
 }
 
 .card-body {
-  background-color: rgb(201, 201, 201);
+  background-color: rgba(240, 248, 255, 0.3);
+}
+
+.card {
+  background-color: transparent;
 }
 
 .card-header {
@@ -24,7 +28,7 @@
 }
 
 .header-green {
-  color: green;
+  color: rgb(13, 238, 13);
 }
 
 .header-red {

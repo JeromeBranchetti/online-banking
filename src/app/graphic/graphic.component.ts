@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  Graphic!: Chart;
+ Graphic = new Chart('myChart', this.myChartInit([], []));
 
   constructor(
     private http: HttpClient,
@@ -27,37 +27,49 @@ export class GraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.Init();
+
+    this.transactionService.bankTransactionFlag.subscribe((res)=>{
+      if(res.length!=0){
+      console.log(res);
+     
+      this.Init(res)}})
+    
   }
 
-  Init(): void {
-    let idConto = this.US.idCont;
+  Init(res:BankTransaction[]): void {
+   
+    console.log("Init");
+   
 
-    this.http
-      .get<BankTransaction[]>(
-        'http://localhost:8080/api/transaction/last_ten_operation/' +
-          this.httpReq.conto.id,
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe((res) => {
         let x = [];
         let y = [];
         for (let v of res) {
           y.push(v.amount);
           x.push(v.data);
         }
-
-        this.Graphic = new Chart('myChart', this.myChartInit(x, y));
-
-        this.Graphic.update();
-      });
+        console.log(x);
+        console.log(y);
+    
+      this.addData(this.Graphic,x,y);
+   
+      
+        
+      
+        console.log(this.Graphic);
+        console.log(this.Graphic.data.datasets[0].data);
+        
+      ;
   }
+  addData(chart:Chart,label:any[],data:any[]){
+    chart.data.labels=label;
+    chart.data.datasets[0].data=data;
+  
 
+   
+}
+  
   myChartInit(x: any[], y: any[]): ChartConfiguration {
+   
     const data = {
       labels: x,
       datasets: [
@@ -74,8 +86,9 @@ export class GraphicComponent implements OnInit {
     const config: ChartConfiguration = {
       type: 'line',
       data: data,
+      options:{responsive:true},
     };
-
+ 
     return config;
   }
 }

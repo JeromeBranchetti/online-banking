@@ -79,7 +79,9 @@
       <tr *ngFor="let bankTransaction of bankTransactions">
         <td>{{ bankTransaction.operationType }}</td>
         <td>{{ bankTransaction.data }}</td>
-        <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
+        <td>
+          {{ spyModeBoolean ? "****" : bankTransaction.amount.toFixed(2) }}€
+        </td>
         <td class="description">{{ bankTransaction.causal }}</td>
       </tr>
     </tbody>

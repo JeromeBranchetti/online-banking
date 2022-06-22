@@ -27,13 +27,11 @@ export class UserDashBoardComponent implements OnInit {
   request: RequestModel;
   menuClicked!: boolean;
   public innerWidth: any;
- 
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-  
   }
 
   constructor(
@@ -51,10 +49,9 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-
   }
-Init(): void {
-this.httpReq.bar.next(true);
+  Init(): void {
+    this.httpReq.bar.next(true);
     this.spioneService.bs.subscribe((bool) => {
       this.modeSpione = bool;
     });
@@ -62,7 +59,6 @@ this.httpReq.bar.next(true);
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
-        
         this.guest = res;
       });
     });
@@ -74,7 +70,7 @@ this.httpReq.bar.next(true);
     });
   }
   newConto() {
-    this.httpReq. richiestaAttivazioneConto(1);
+    this.httpReq.richiestaAttivazioneConto(1);
     alert('Apertura conto richiesta');
   }
   copyMode() {
@@ -87,7 +83,7 @@ this.httpReq.bar.next(true);
   }
 
   closeContoButton() {
-  this.httpReq.richiestaChiusuraConto(this.conto.id);
+    this.httpReq.richiestaChiusuraConto(this.conto.id);
   }
 
   toChangeEmailPass() {

@@ -23,6 +23,8 @@ export class HttpRequestService {
   conto!: conto;
   modifyAccount = new conto(0);
   bar = new BehaviorSubject<boolean>(false);
+  temporanyBalanceFlag = new BehaviorSubject<number>(0);
+  temporanyBalance: number;
 
   constructor(
     private http: HttpClient,
@@ -49,6 +51,8 @@ export class HttpRequestService {
         this.conto.iban = res.iban;
 
         this.sign.bsconto.next(this.conto);
+        this.temporanyBalance = this.conto.balance;
+        this.temporanyBalanceFlag.next(this.temporanyBalance);
         this.modifyAccount = this.conto;
       });
   }
@@ -117,6 +121,7 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
+        this.onChangeWords();
       });
   }
 
@@ -134,6 +139,7 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
+        this.onChangeWords();
       });
   }
 
@@ -151,10 +157,29 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.transactionService.bankTransaction = res;
         this.transactionService.bankTransactionFlag.next(res);
+        this.onChangeWords();
       });
   }
 
-  onGetTransactionFilteredWord(transactionType: string) {}
+  onGetTransactionFilteredWord(transactionType: string) {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/' +
+          transactionType +
+          '/transactions' +
+          this.conto.id,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+        this.onChangeWords();
+      });
+  }
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
@@ -168,7 +193,6 @@ export class HttpRequestService {
   }
 
   onCheckRequest(idConto: number) {
-    console.log(idConto);
     return this.http.get<RequestModel[]>(
       'http://localhost:8080/richieste/?idCont=' + idConto,
       {
@@ -182,7 +206,6 @@ export class HttpRequestService {
   // Chiamate post
 
   richiestaAttivazioneConto(amount: number) {
-    console.log(this.auth.token.token);
     this.http
       .post<conto>(
         'http://localhost:8080/api/account/' +
@@ -244,7 +267,6 @@ export class HttpRequestService {
 
   changemail(email: string) {
     this.utente.email = email;
-    console.log(this.utente);
     this.http
       .put(
         'http://localhost:8080/api/auth/users/update/email',
@@ -270,6 +292,9 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
+          console.log(this.conto.balance);
+          this.temporanyBalance = this.temporanyBalance + transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: () => {
           alert('Errore durante il processo di pagamento');
@@ -278,8 +303,6 @@ export class HttpRequestService {
   }
 
   onAddTransactionPhone(transaction: BankTransaction) {
-    console.log(transaction);
-
     this.http
       .post(
         'http://localhost:8080/api/transaction/ricarica_telefonica',
@@ -294,6 +317,8 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
+          this.temporanyBalance = this.temporanyBalance - transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: () => {
           alert('Errore durante il processo di pagamento');
@@ -312,6 +337,8 @@ export class HttpRequestService {
       .subscribe({
         next: () => {
           alert('Pagamento completato!');
+          this.temporanyBalance = this.temporanyBalance - transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: () => {
           alert('Errore durante il processo di pagamento');
@@ -368,5 +395,17 @@ export class HttpRequestService {
         }
       )
       .subscribe(() => console.log('richiesta chiusura inviata'));
+  }
+
+  // Altri metodi
+
+  onChangeWords() {
+    for (let transaction of this.transactionService.bankTransaction) {
+      if (transaction.operationType === 'RICARICA_TELEFONICA') {
+        transaction.operationType = 'Ricarica Telefonica';
+      } else {
+        transaction.operationType = transaction.operationType.toLowerCase();
+      }
+    }
   }
 }

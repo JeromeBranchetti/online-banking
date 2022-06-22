@@ -5,7 +5,7 @@
   <!-- Saldo totale -->
   <div class="balance">
     <h2 class="text-center me-2">Saldo Attuale:</h2>
-    <h2>{{ balance }}€</h2>
+    <h2>{{ balance | number: "1.2-2" }}€</h2>
   </div>
 
   <div class="generalContainer">
@@ -127,7 +127,11 @@
                 </p>
                 <p>Iban: {{ iban }}</p>
                 <p>
-                  Importo: {{ secondBankTransferForm.get("amount").value }}€
+                  Importo:
+                  {{
+                    secondBankTransferForm.get("amount").value
+                      | number: "1.2-2"
+                  }}€
                 </p>
               </div>
             </div>
@@ -166,7 +170,10 @@
             <mat-step label="Conferma" completed="false">
               <div class="confirmForm">
                 <div class="dataSummary">
-                  <p>Importo: {{ bankDepositForm.get("amount").value }}€</p>
+                  <p>
+                    Importo:
+                    {{ bankDepositForm.get("amount").value | number: "1.2-2" }}€
+                  </p>
                 </div>
               </div>
               <div class="buttons">
@@ -210,7 +217,12 @@
               <div class="confirmForm">
                 <div class="dataSummary">
                   <p></p>
-                  <p>Importo: {{ bankWithdrawalForm.get("amount").value }}€</p>
+                  <p>
+                    Importo:
+                    {{
+                      bankWithdrawalForm.get("amount").value | number: "1.2-2"
+                    }}€
+                  </p>
                 </div>
               </div>
               <div class="buttons">
@@ -299,7 +311,12 @@
                   Gestore Telefonico:
                   {{ firstPhoneTopUpForm.get("provider").value }}
                 </p>
-                <p>Importo: {{ secondPhoneTopUpForm.get("amount").value }}€</p>
+                <p>
+                  Importo:
+                  {{
+                    secondPhoneTopUpForm.get("amount").value | number: "1.2-2"
+                  }}€
+                </p>
               </div>
             </div>
             <div class="buttons">

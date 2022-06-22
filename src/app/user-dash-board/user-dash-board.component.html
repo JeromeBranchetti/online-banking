@@ -44,7 +44,7 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary mb-3 mt-2 p-2">Invia Richiesta</button>
+            <button type="button" class="btn btn-primary mb-3 mt-2 p-2" (click)="newConto()">Invia Richiesta</button>
           </div>
         </div>
       </form>
@@ -134,7 +134,7 @@
           <h3>Saldo</h3>
           <h1>
             {{
-              modeSpione ? saldo : (conto?.balance ?? "" | number: "1.2-2")
+              modeSpione ? saldo : (conto?.balance ?? " " )
             }}&euro;
           </h1>
         </div>

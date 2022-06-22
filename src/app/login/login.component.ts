@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,8 +43,6 @@ export class LoginComponent implements OnInit {
         else if (this.auth.authenticated) {
           this.http.GetUser(email, password);
         }
-
-      
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;

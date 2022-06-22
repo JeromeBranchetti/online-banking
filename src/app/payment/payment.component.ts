@@ -147,7 +147,7 @@ export class PaymentComponent implements OnInit {
 
     this.httpReq.onAddTransactionTransfer(transaction);
 
-    // this.bankTransferChoice = false;
+    this.bankTransferChoice = false;
     this.firstBankTransferForm.reset();
     this.secondBankTransferForm.reset();
   }
@@ -164,6 +164,7 @@ export class PaymentComponent implements OnInit {
     };
     this.httpReq.onAddTransactionPhone(transaction);
 
+    this.phoneTopUpChoice = false;
     this.firstPhoneTopUpForm.reset();
     this.secondPhoneTopUpForm.reset();
   }
@@ -190,10 +191,11 @@ export class PaymentComponent implements OnInit {
   onBankWithdrawalSubmit() {
     let transaction: BankTransaction;
     transaction = {
-      amount: +(this.bankWithdrawalForm.get('amount').value * -1).toFixed(2),
+      amount: this.bankWithdrawalForm.get('amount').value * -1,
       causal: 'Prelievo online in data: ' + this.date.toDateString(),
       accountId: this.httpReq.conto.id,
     };
+    console.log(transaction);
     this.httpReq.onAddTransaction(transaction);
     this.bankWithdrawalChoice = false;
     this.bankWithdrawalForm.reset();

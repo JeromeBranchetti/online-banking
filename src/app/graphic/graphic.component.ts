@@ -28,9 +28,10 @@ export class GraphicComponent implements OnInit {
 
   ngOnInit(): void {
     this.transactionService.bankTransactionFlag.subscribe((res)=>{
+      if(res.length!=0){
       console.log(res);
      
-      this.Init(res)})
+      this.Init(res)}})
     
   }
 
@@ -46,11 +47,11 @@ export class GraphicComponent implements OnInit {
         }
         console.log(x);
         console.log(y);
-        if(x.length!=0 ){
+       
         this.Graphic = new Chart('myChart', this.myChartInit(x, y));
-        
+
         console.log(this.Graphic);
-        }
+        
       ;
   }
 

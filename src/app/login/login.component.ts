@@ -34,13 +34,12 @@ export class LoginComponent implements OnInit {
         this.auth.loggedIn.next(true);
         this.auth.authenticated = true;
         this.auth.isAuthenticated();
-       
-        if(response.role==='ROLE_EMPLOYEE'){
-          this.auth.administrator=true;
+
+        if (response.role === 'ROLE_EMPLOYEE') {
+          this.auth.administrator = true;
+          this.http.onPrepareRequestList();
           this.router.navigate(['/adminDashboard']);
-        }
-        
-        else if (this.auth.authenticated) {
+        } else if (this.auth.authenticated) {
           this.http.GetUser(email, password);
         }
       },

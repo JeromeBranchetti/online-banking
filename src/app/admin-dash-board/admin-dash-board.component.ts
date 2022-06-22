@@ -1,3 +1,6 @@
+import { UtenteService } from './../service/utente.service';
+import { AuthService } from './../service/auth.service';
+import { Router } from '@angular/router';
 import { conto } from './../class/conto';
 import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -23,6 +26,7 @@ export class AdminDashBoardComponent implements OnInit {
   oldRequests: RequestModel[] = [];
   requestsLight: string[] = [];
   userList: utente[] = [];
+  oldUserList: utente[] = [];
 
   requestVisibility: boolean = false;
   buttonVisibility: boolean = false;
@@ -31,7 +35,12 @@ export class AdminDashBoardComponent implements OnInit {
   selectedRequest: RequestModel;
   selectedLight: string;
 
-  constructor(private httpReq: HttpRequestService) {}
+  constructor(
+    private httpReq: HttpRequestService,
+    private router: Router  ,
+    private authService: AuthService,
+    private US: UtenteService
+  ) {}
 
   ngOnInit(): void {
     this.onFetchRequest();
@@ -73,6 +82,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
+    console.log(this.userList);
     this.selectedUser = this.userList.find(
       (user) => user.id === this.selectedRequest.userId
     );
@@ -85,6 +95,9 @@ export class AdminDashBoardComponent implements OnInit {
     this.requestIndex = index;
     this.selectedRequest = this.oldRequests[index];
     this.selectedLight = 'grey';
+    this.selectedUser = this.oldUserList.find(
+      (user) => user.id === this.selectedRequest.userId
+    );
   }
 
   onAcceptRequest() {
@@ -92,6 +105,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.selectedRequest.header = 'green';
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
+    this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accettato';
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
@@ -106,6 +120,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.selectedRequest.header = 'red';
     this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
+    this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Declinato';
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
@@ -132,5 +147,13 @@ export class AdminDashBoardComponent implements OnInit {
     //   this.userList;
     //   this.exportAsExcelFile(this.userList, 'UserList.xlsx');
     // });
+  }
+
+  onLogOut() {
+    this.router.navigate(['/']);
+    this.authService.loggedIn.next(false);
+    this.authService.authenticated = false;
+    this.US.idCont = null;
+    this.US.idUt = null;
   }
 }

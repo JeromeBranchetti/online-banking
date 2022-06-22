@@ -4,7 +4,11 @@ import { SignUpService } from './signUp.service';
 
 import { AuthService } from './auth.service';
 import { utente } from './../class/utente';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { conto } from '../class/conto';
 import { UtenteService } from './utente.service';
@@ -25,7 +29,7 @@ export class HttpRequestService {
   bar = new BehaviorSubject<boolean>(false);
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
-  userList = new Subject<utente[]>();
+  userList = new BehaviorSubject<utente[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -182,30 +186,40 @@ export class HttpRequestService {
 
   // Chiamate post
 
-  richiestaAttivazioneConto(amount:number) {
-   
-    this.http.post<conto>('http://localhost:8080/api/account/'+this.utente.id+'/addAccount/'+this.conto.accountNumber+'/'+amount, null,  {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' +  this.auth.token.token,
-      }),
-    })
-    .subscribe({next:(res) => {
-      console.log(res);
-      this.http.put('http://localhost:8080/api/account/accounts/activation_request/'+res.id,null,{
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' +  this.auth.token.token,
-        }),
-      } )
-    },
-    error:(errorRes:HttpErrorResponse) => {
-    alert(errorRes.error.message);
-      
-    }
-  })
-    
-   
-    ;
-
+  richiestaAttivazioneConto(amount: number) {
+    this.http
+      .post<conto>(
+        'http://localhost:8080/api/account/' +
+          this.utente.id +
+          '/addAccount/' +
+          this.conto.accountNumber +
+          '/' +
+          amount,
+        null,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.http.put(
+            'http://localhost:8080/api/account/accounts/activation_request/' +
+              res.id,
+            null,
+            {
+              headers: new HttpHeaders({
+                Authorization: 'Bearer ' + this.auth.token.token,
+              }),
+            }
+          );
+        },
+        error: (errorRes: HttpErrorResponse) => {
+          alert(errorRes.error.message);
+        },
+      });
   }
   onAddUser(ut: utente) {
     this.http
@@ -269,7 +283,7 @@ export class HttpRequestService {
           alert('Pagamento completato!');
         },
         error: (res) => {
-          console.log(res)
+          console.log(res);
           alert('Errore durante il processo di pagamento');
         },
       });
@@ -319,9 +333,9 @@ export class HttpRequestService {
   }
 
   onActivateAccount(idConto: number) {
-    this.http.get(
-      'http://localhost:8080/api/account/accounts/activation/' + idConto
-    );
+    this.http
+      .get('http://localhost:8080/api/account/accounts/activation/' + idConto)
+      .subscribe(() => {});
   }
 
   onDisactivateAccount(idConto: number) {}
@@ -336,13 +350,18 @@ export class HttpRequestService {
       .subscribe((res) => {});
   }
 
-  richiestaChiusuraConto(idConto:number){
-    this.http.put('http://localhost:8080/api/account/accounts/closure_request/'+idConto,null,{
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' +  this.auth.token.token,
-      }),
-
-    }).subscribe(()=>console.log("richiesta chiusura inviata"));
+  richiestaChiusuraConto(idConto: number) {
+    this.http
+      .put(
+        'http://localhost:8080/api/account/accounts/closure_request/' + idConto,
+        null,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe(() => console.log('richiesta chiusura inviata'));
   }
 
   onPrepareRequestList() {

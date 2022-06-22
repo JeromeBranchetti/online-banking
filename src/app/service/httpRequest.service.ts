@@ -299,7 +299,6 @@ export class HttpRequestService {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.auth.token.token,
         }),
-        responseType: 'text',
       })
       .subscribe({
         next: () => {
@@ -308,7 +307,8 @@ export class HttpRequestService {
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
-        error: () => {
+        error: (res) => {
+          console.log(res)
           alert('Errore durante il processo di pagamento');
         },
       });
@@ -339,6 +339,7 @@ export class HttpRequestService {
   }
 
   onAddTransactionTransfer(transaction: BankTransaction) {
+    console.log(this.auth.token.token);
     this.http
       .post('http://localhost:8080/api/transaction/transfer', transaction, {
         headers: new HttpHeaders({
@@ -359,7 +360,9 @@ export class HttpRequestService {
   }
 
   onActivateAccount(idConto: number) {
-    this.http.get('http://localhost:8080/richieste/');
+    this.http.get(
+      'http://localhost:8080/api/account/accounts/activation/' + idConto
+    );
   }
 
   onDisactivateAccount(idConto: number) {}

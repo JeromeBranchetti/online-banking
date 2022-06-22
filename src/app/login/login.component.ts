@@ -39,10 +39,6 @@ export class LoginComponent implements OnInit {
         if (response.role === 'ROLE_EMPLOYEE') {
           this.http.onPrepareRequestList();
           this.auth.administrator = true;
-          this.auth.token = response;
-          this.auth.loggedIn.next(true);
-          this.auth.authenticated = true;
-          this.auth.isAuthenticated();
           this.router.navigate(['/adminDashboard']);
         } else if (this.auth.authenticated && response.role === 'ROLE_CLIENT') {
           this.http.GetUser(email, password);

@@ -43,6 +43,7 @@ export class SignUpService {
         this.us.idUt = res.userId;
         this.auth.isAuthenticated();
         this.auth.authenticated = true;
+  
 
  this.http.post<response>('http://localhost:8080/api/auth/register', ut).subscribe((res)=>{
   this.auth.token=res;
@@ -55,9 +56,11 @@ export class SignUpService {
     idUt:this.us.idUt , idCont:this.us.idCont}
     },
  );
-})
+})})}}
+  
+
+    
 
 
  
-
 

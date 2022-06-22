@@ -1,30 +1,29 @@
-import { HttpRequestService } from './../service/httpRequest.service';
-import { AuthService } from './../service/auth.service';
+
 import { TransactionService } from './../service/transaction.service';
-import { UtenteService } from './../service/utente.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration } from 'chart.js';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-graphic',
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.css'],
 })
-export class GraphicComponent implements OnInit {
+export class GraphicComponent implements OnInit, OnDestroy {
  Graphic = new Chart('myChart', this.myChartInit([], []));
 
   constructor(
-    private http: HttpClient,
-    private US: UtenteService,
+
     private transactionService: TransactionService,
-    private auth: AuthService,
-    private httpReq: HttpRequestService
+
   ) {}
+  ngOnDestroy(): void {
+    this.Graphic.destroy();
+  }
 
   ngOnInit(): void {
 

@@ -28,16 +28,16 @@ export class HomePageGuestComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private httpReq: HttpRequestService,
-    private sign: SignUpService,
-    private transactionService: TransactionService,
+
     private auth: AuthService,
     private httpreq:HttpRequestService
    
   ) {}
 
   ngOnInit(): void {
+
       this.Init();
+      
   }
 
   Init(): void {

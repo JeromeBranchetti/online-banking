@@ -85,7 +85,7 @@ button {
 
 .description {
   display: flex;
-  justify-content: right;
+  justify-content: center;
 }
 
 .graph-container {

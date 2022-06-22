@@ -1,11 +1,11 @@
-import { UserDashBoardComponent } from './../user-dash-board/user-dash-board.component';
+
 import { HttpRequestService } from './../service/httpRequest.service';
 import { UtenteService } from './../service/utente.service';
 import { SignUpService } from './../service/signUp.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { utente } from '../class/utente';
-import { AuthService } from '../service/auth.service';
+
 import {
   animate,
   state,
@@ -46,7 +46,7 @@ export class FootBarComponent implements OnInit {
   constructor(
     private router: Router,
     private Sus: SignUpService,
-    private authService: AuthService,
+
     private US: UtenteService,
     private httpreq:HttpRequestService
   ) {}
@@ -72,7 +72,7 @@ export class FootBarComponent implements OnInit {
   }
 
   onPayment() {
-    if(this.US.Attivo){
+    if(this.httpreq.conto.state!='INACTIVE'){
     this.router.navigate(
       ['/payment']
       , {
@@ -87,7 +87,7 @@ export class FootBarComponent implements OnInit {
       }
   }
   onMovementDetail() {
-    if(this.US.Attivo){
+    if(this.httpreq.conto.state!='INACTIVE'){
     this.router.navigate(['/account-detail'], {
      
         queryParams: {

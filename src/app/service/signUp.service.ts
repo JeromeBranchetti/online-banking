@@ -46,7 +46,7 @@ export class SignUpService {
   onAddUser(ut: utente) {
 
  this.http.post<response>('http://localhost:8080/api/auth/register', ut).subscribe((res)=>{
-  this.token=res.token;
+  this.auth.token=res;
   this.us.idUt=res.userId;
   this.auth.isAuthenticated();
   this.auth.authenticated = true;

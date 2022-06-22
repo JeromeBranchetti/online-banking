@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  Graphic!: Chart;
+ Graphic = new Chart('myChart', this.myChartInit([], []));
 
   constructor(
     private http: HttpClient,
@@ -27,6 +27,7 @@ export class GraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.transactionService.bankTransactionFlag.subscribe((res)=>{
       if(res.length!=0){
       console.log(res);
@@ -36,6 +37,7 @@ export class GraphicComponent implements OnInit {
   }
 
   Init(res:BankTransaction[]): void {
+   
     console.log("Init");
    
 
@@ -47,16 +49,27 @@ export class GraphicComponent implements OnInit {
         }
         console.log(x);
         console.log(y);
-       
-        this.Graphic = new Chart('myChart', this.myChartInit(x, y));
-
+    
+      this.addData(this.Graphic,x,y);
+   
+      
+        
+      
         console.log(this.Graphic);
+        console.log(this.Graphic.data.datasets[0].data);
         
       ;
   }
+  addData(chart:Chart,label:any[],data:any[]){
+    chart.data.labels=label;
+    chart.data.datasets[0].data=data;
+  
 
+   
+}
+  
   myChartInit(x: any[], y: any[]): ChartConfiguration {
-    console.log("myChartInit")
+   
     const data = {
       labels: x,
       datasets: [
@@ -73,8 +86,9 @@ export class GraphicComponent implements OnInit {
     const config: ChartConfiguration = {
       type: 'line',
       data: data,
+      options:{responsive:true},
     };
-    console.log("myChartFinish");
+ 
     return config;
   }
 }

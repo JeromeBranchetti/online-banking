@@ -27,11 +27,15 @@ export class GraphicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.transactionService.bankTransactionFlag.subscribe((res)=>this.Init(res))
+    this.transactionService.bankTransactionFlag.subscribe((res)=>{
+      console.log(res);
+     
+      this.Init(res)})
     
   }
 
   Init(res:BankTransaction[]): void {
+    console.log("Init");
    
 
         let x = [];
@@ -40,14 +44,18 @@ export class GraphicComponent implements OnInit {
           y.push(v.amount);
           x.push(v.data);
         }
-
+        console.log(x);
+        console.log(y);
+        if(x.length!=0 ){
         this.Graphic = new Chart('myChart', this.myChartInit(x, y));
-
-        this.Graphic.update();
+        
+        console.log(this.Graphic);
+        }
       ;
   }
 
   myChartInit(x: any[], y: any[]): ChartConfiguration {
+    console.log("myChartInit")
     const data = {
       labels: x,
       datasets: [
@@ -65,7 +73,7 @@ export class GraphicComponent implements OnInit {
       type: 'line',
       data: data,
     };
-
+    console.log("myChartFinish");
     return config;
   }
 }

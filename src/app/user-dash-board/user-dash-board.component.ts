@@ -71,7 +71,6 @@ export class UserDashBoardComponent implements OnInit {
   }
   newConto() {
     this.httpReq.richiestaAttivazioneConto(1);
-    alert('Apertura conto richiesta');
   }
   copyMode() {
     const copiedIban = this.conto.iban;

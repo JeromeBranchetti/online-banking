@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,24 +30,12 @@ export class LoginComponent implements OnInit {
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe({
       next: (response) => {
-<<<<<<< HEAD
-        this.auth.token = response;
-        this.auth.loggedIn.next(true);
-        this.auth.authenticated = true;
-        this.auth.isAuthenticated();
-
         if (response.role === 'ROLE_EMPLOYEE') {
-          this.http.onPrepareRequestList();
           this.auth.administrator = true;
-=======
-        if(response.role==='ROLE_EMPLOYEE'
-        ){
-          this.auth.administrator=true;
           this.auth.token = response;
           this.auth.loggedIn.next(true);
           this.auth.authenticated = true;
           this.auth.isAuthenticated();
->>>>>>> 47e16e8e8e7ce1d3e74acf1398793065d13288e7
           this.router.navigate(['/adminDashboard']);
         }
         this.auth.token = response;
@@ -58,8 +45,6 @@ export class LoginComponent implements OnInit {
         if (this.auth.authenticated) {
           this.http.GetUser(email, password);
         }
-
-      
       },
       error: (errorRes) => {
         this.auth.error = errorRes.error;

@@ -72,8 +72,8 @@ export class FootBarComponent implements OnInit {
   }
 
   onPayment() {
-    console.log('Funziona');
-    if (this.httpreq.conto.state != 'INACTIVE') {
+ 
+    if (this.httpreq.conto.state === 'ACTIVE') {
       this.router.navigate(['/payment'], {
         queryParams: {
           idUt: this.US.idUt,
@@ -85,7 +85,7 @@ export class FootBarComponent implements OnInit {
     }
   }
   onMovementDetail() {
-    if (this.httpreq.conto.state != 'INACTIVE') {
+    if (this.httpreq.conto.state === 'ACTIVE') {
       this.router.navigate(['/account-detail'], {
         queryParams: {
           idUt: this.US.idUt,

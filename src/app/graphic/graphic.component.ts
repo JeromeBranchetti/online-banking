@@ -23,6 +23,7 @@ export class GraphicComponent implements OnInit, OnDestroy {
   ) {}
   ngOnDestroy(): void {
     this.Graphic.destroy();
+    this.transactionService.bankTransactionFlag.next([]);
   }
 
   ngOnInit(): void {

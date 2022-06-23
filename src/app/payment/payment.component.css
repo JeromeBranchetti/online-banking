@@ -59,7 +59,7 @@ input.ng-invalid.ng-touched {
 
 .formStepper {
   background-color: white;
-  color: black;
+  color: black !important;
 }
 
 .mat-stepper-horizontal {

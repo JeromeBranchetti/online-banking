@@ -104,18 +104,16 @@ export class HttpRequestService {
 
   onGetTransaction() {
     console.log(this.auth.token.token);
-    this.http
-      .get<BankTransaction[]>(
-        'http://localhost:8080/api/transaction/1/transactions',
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+    this.http.get<BankTransaction[]>(
+      'http://localhost:8080/api/transaction/' +
+        this.conto.id +
+        '/transactions',
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.auth.token.token,
+        }),
+      }
+    );
   }
 
   onGetTransactionFilteredTen() {
@@ -269,11 +267,15 @@ export class HttpRequestService {
 
   onAddTransaction(transaction: BankTransaction) {
     this.http
-      .post('http://localhost:8080/api/transaction/transaction', transaction, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.auth.token.token,
-        }),
-      })
+      .post(
+        'http://localhost:8080/api/transaction/make/transaction',
+        transaction,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
       .subscribe({
         next: () => {
           alert('Pagamento completato!');

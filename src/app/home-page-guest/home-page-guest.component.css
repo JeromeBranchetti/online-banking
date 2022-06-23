@@ -285,3 +285,15 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+@media screen and (max-width: 414px) {
+  .main-card {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .dark-background-layer {
+    width: 100vw;
+  }
+}

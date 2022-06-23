@@ -71,7 +71,9 @@ export class PaymentComponent implements OnInit {
   constructor(private httpReq: HttpRequestService) {}
 
   ngOnInit(): void {
-    this.balance = this.httpReq.conto.balance;
+    this.httpReq.temporanyBalanceFlag.subscribe((res) => {
+      this.balance = res;
+    });
     this.iban = this.httpReq.conto.iban;
   }
 
@@ -177,7 +179,6 @@ export class PaymentComponent implements OnInit {
         causal: 'Deposito online in data: ' + this.date.toDateString(),
         accountId: this.httpReq.conto.id,
       };
-      console.log(transaction);
       this.httpReq.onAddTransaction(transaction);
     } else {
       alert(

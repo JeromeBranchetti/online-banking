@@ -38,7 +38,6 @@ export class UserDashBoardComponent implements OnInit {
   onResize(event) {
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-  
   }
 
   constructor(
@@ -62,7 +61,6 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
-
   }
 
   Init(): void {
@@ -74,7 +72,6 @@ export class UserDashBoardComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
       this.sign.bs.subscribe((res) => {
-        
         this.guest = res;
       });
     });
@@ -82,18 +79,18 @@ export class UserDashBoardComponent implements OnInit {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-        
+        this.httpReq.temporanyBalanceFlag.next(this.conto.balance);
+        this.httpReq.temporanyBalance = this.conto.balance;
         this.currentSaldo = res.balance;
       });
     });
   }
 
-  newConto(amount:string) {
-      let i=Number(amount);
-    
-      this.httpReq.richiestaAttivazioneConto(i);
-    }
-  
+  newConto(amount: string) {
+    let i = Number(amount);
+
+    this.httpReq.richiestaAttivazioneConto(i);
+  }
 
   checkAmountValue() {
     let amountToCheck = this.form.controls['amount'].value;
@@ -118,7 +115,7 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   closeContoButton() {
-  this.httpReq.richiestaChiusuraConto(this.conto.id);
+    this.httpReq.richiestaChiusuraConto(this.conto.id);
   }
 
   toChangeEmailPass() {

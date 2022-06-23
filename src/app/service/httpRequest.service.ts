@@ -282,6 +282,7 @@ export class HttpRequestService {
       )
       .subscribe({
         next: () => {
+          this.temporanyBalanceFlag.next(this.conto.balance);
           alert('Pagamento completato!');
         },
         error: (res) => {
@@ -307,6 +308,8 @@ export class HttpRequestService {
       )
       .subscribe({
         next: () => {
+          this.temporanyBalance = this.temporanyBalance - transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
           alert('Pagamento completato!');
         },
         error: () => {
@@ -326,6 +329,8 @@ export class HttpRequestService {
       })
       .subscribe({
         next: () => {
+          this.temporanyBalance = this.temporanyBalance - transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
           alert('Pagamento completato!');
         },
         error: () => {

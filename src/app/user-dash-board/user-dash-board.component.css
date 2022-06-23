@@ -307,4 +307,8 @@ main #menu-btn {
 .modal {
   display: flex !important;
   justify-content: center;
+  width: max-content;
+  height: max-content;
+  left: 50%;
+  transform: translateX(-50%);
 }

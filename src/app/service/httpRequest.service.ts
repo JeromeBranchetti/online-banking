@@ -103,17 +103,21 @@ export class HttpRequestService {
   }
 
   onGetTransaction() {
-    console.log(this.auth.token.token);
-    this.http.get<BankTransaction[]>(
-      'http://localhost:8080/api/transaction/' +
-        this.conto.id +
-        '/transactions',
-      {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.auth.token.token,
-        }),
-      }
-    );
+    return this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/' +
+          this.conto.id +
+          '/transactions',
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
   }
 
   onGetTransactionFilteredTen() {
@@ -354,7 +358,7 @@ export class HttpRequestService {
   }
 
   richiestaChiusuraConto(idConto: number) {
-    this.conto.state="CLOSURE_REQUEST"
+    this.conto.state = 'CLOSURE_REQUEST';
     this.http
       .get(
         'http://localhost:8080/api/account/closure_request/accounts/' + idConto,
@@ -364,7 +368,7 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() =>alert('richiesta chiusura inviata'));
+      .subscribe(() => alert('richiesta chiusura inviata'));
   }
 
   onPrepareRequestList() {

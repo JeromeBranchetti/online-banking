@@ -78,11 +78,6 @@ export class AccountDetailComponent implements OnInit {
     this.httpReq.onGetTransactionFilteredFifty();
   }
 
-  onChangeWords() {
-    for (let transaction of this.transactionService.bankTransaction) {
-    }
-  }
-
   onFilterWord() {
     console.log(this.selected);
     if (this.selected === 'Ricarica Telefonica') {
@@ -96,18 +91,15 @@ export class AccountDetailComponent implements OnInit {
 
   onPrintTransaction() {
     this.httpReq.onGetTransaction();
-    // this.httpReq.onGetTransaction().subscribe((res) => {
-    //   this.transactionService.bankTransactionFlag.next(res);
-    //   setTimeout(() => {
-    //     /* pass here the table id */
-    //     let element = document.getElementById('transactionList');
-    //     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    //     /* generate workbook and add the worksheet */
-    //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    //     /* save to file */
-    //     XLSX.writeFile(wb, this.fileName);
-    //   }, 100);
-    // });
+    setTimeout(() => {
+      /* pass here the table id */
+      let element = document.getElementById('excel-table');
+      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      /* save to file */
+      XLSX.writeFile(wb, this.fileName);
+    }, 100);
   }
 }

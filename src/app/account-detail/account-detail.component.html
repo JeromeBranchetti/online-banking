@@ -1,87 +1,89 @@
-<h1 class="text-center my-3">Dettagli Conto</h1>
+<div class="account-container">
+  <h1 class="text-center my-3">Dettagli Conto</h1>
 
-<!-- Grafico  -->
-<div class="container graph-container my-5">
-  <app-graphic class="d-none d-sm-none d-lg-inline"></app-graphic>
-</div>
-
-<!-- Contenitore Header transazioni e lista transazioni -->
-<div class="container-fluid">
-  <!-- Contenitore Header transazioni -->
-  <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
-    <mat-form-field>
-      <mat-label>Tipo Transazione</mat-label>
-      <mat-select aria-label="Default select example" id="transaction">
-        <mat-option value="deposit">Deposito</mat-option>
-        <mat-option value="withdrawal">Prelievo</mat-option>
-        <mat-option value="transfer">Bonifico</mat-option>
-        <mat-option value="phone top up">Ricarica Telefonica</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button (click)="onFilterWord()">Cerca</button>
+  <!-- Grafico  -->
+  <div class="container graph-container my-5">
+    <app-graphic class="d-none d-sm-none d-lg-inline"></app-graphic>
   </div>
-</div>
-<div id="transactionHeader" class="row">
-  <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
-    <div class="filter">
+
+  <!-- Contenitore Header transazioni e lista transazioni -->
+  <div class="container-fluid">
+    <!-- Contenitore Header transazioni -->
+    <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
       <mat-form-field>
         <mat-label>Tipo Transazione</mat-label>
-        <mat-select
-          aria-label="Default select example"
-          id="transaction"
-          [(value)]="selected"
-        >
-          <mat-option
-            *ngFor="let transactionType of transactionsType"
-            [value]="transactionType"
-            >{{ transactionType }}</mat-option
-          >
+        <mat-select aria-label="Default select example" id="transaction">
+          <mat-option value="deposit">Deposito</mat-option>
+          <mat-option value="withdrawal">Prelievo</mat-option>
+          <mat-option value="transfer">Bonifico</mat-option>
+          <mat-option value="phone top up">Ricarica Telefonica</mat-option>
         </mat-select>
       </mat-form-field>
       <button (click)="onFilterWord()">Cerca</button>
     </div>
   </div>
-  <div class="col-lg-5 col-6 col-sm-10 amount">
-    <span id="debitAmount">
-      <i class="fa-solid fa-arrow-down"></i>
-      -{{ spyModeBoolean ? "****" : debitAmount }}€
-    </span>
-    <span id="creditAmount">
-      <i class="fa-solid fa-arrow-up"></i>
-      +{{ spyModeBoolean ? "****" : creditAmount }}€
-    </span>
-  </div>
-
-  <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
-    <button (click)="onFilterNumberTransactionTen()">10</button>
-    <button (click)="onFilterNumberTransactionTwenty()">20</button>
-    <button (click)="onFilterNumberTransactionFifty()">50</button>
-    <button (click)="onPrintTransaction()">
-      <span
-        ><span class="d-none d-sm-none d-lg-inline">Download </span>
-        <i class="fas fa-download"></i>
+  <div id="transactionHeader" class="row">
+    <div class="col-lg-3 filter d-none d-sm-none d-lg-inline">
+      <div class="filter">
+        <mat-form-field>
+          <mat-label>Tipo Transazione</mat-label>
+          <mat-select
+            aria-label="Default select example"
+            id="transaction"
+            [(value)]="selected"
+          >
+            <mat-option
+              *ngFor="let transactionType of transactionsType"
+              [value]="transactionType"
+              >{{ transactionType }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <button (click)="onFilterWord()">Cerca</button>
+      </div>
+    </div>
+    <div class="col-lg-5 col-6 col-sm-10 amount">
+      <span id="debitAmount">
+        <i class="fa-solid fa-arrow-down"></i>
+        -{{ spyModeBoolean ? "****" : debitAmount }}€
       </span>
-    </button>
+      <span id="creditAmount">
+        <i class="fa-solid fa-arrow-up"></i>
+        +{{ spyModeBoolean ? "****" : creditAmount }}€
+      </span>
+    </div>
+
+    <div class="col-lg-4 col-6 col-sm-2 buttonHeader">
+      <button (click)="onFilterNumberTransactionTen()">10</button>
+      <button (click)="onFilterNumberTransactionTwenty()">20</button>
+      <button (click)="onFilterNumberTransactionFifty()">50</button>
+      <button (click)="onPrintTransaction()">
+        <span
+          ><span class="d-none d-sm-none d-lg-inline">Download </span>
+          <i class="fas fa-download"></i>
+        </span>
+      </button>
+    </div>
   </div>
-</div>
-<!-- Tabella -->
-<div class="my-table-container">
-  <table class="table my-table">
-    <thead>
-      <tr>
-        <th scope="col">Tipo Transazione</th>
-        <th scope="col">Data</th>
-        <th scope="col">Importo</th>
-        <th scope="col" class="description">Descrizione</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bankTransaction of bankTransactions">
-        <td>{{ bankTransaction.operationType }}</td>
-        <td>{{ bankTransaction.data }}</td>
-        <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
-        <td class="description">{{ bankTransaction.causal }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Tabella -->
+  <div class="my-table-container">
+    <table id="excel-table" class="table my-table">
+      <thead>
+        <tr>
+          <th scope="col">Tipo Transazione</th>
+          <th scope="col">Data</th>
+          <th scope="col">Importo</th>
+          <th scope="col" class="description">Descrizione</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bankTransaction of bankTransactions">
+          <td>{{ bankTransaction.operationType }}</td>
+          <td>{{ bankTransaction.data }}</td>
+          <td>{{ spyModeBoolean ? "****" : bankTransaction.amount }}€</td>
+          <td class="description">{{ bankTransaction.causal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

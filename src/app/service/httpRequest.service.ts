@@ -354,6 +354,7 @@ export class HttpRequestService {
   }
 
   richiestaChiusuraConto(idConto: number) {
+    this.conto.state="CLOSURE_REQUEST"
     this.http
       .get(
         'http://localhost:8080/api/account/closure_request/accounts/' + idConto,

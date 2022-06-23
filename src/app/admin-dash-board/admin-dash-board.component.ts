@@ -6,6 +6,7 @@ import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export class RequestModel {
   id?: number;
@@ -27,6 +28,8 @@ export class AdminDashBoardComponent implements OnInit {
   requestsLight: string[] = [];
   userList: utente[] = [];
   oldUserList: utente[] = [];
+
+  userListDownload: utente[] = [];
 
   requestVisibility: boolean = false;
   buttonVisibility: boolean = false;
@@ -63,19 +66,16 @@ export class AdminDashBoardComponent implements OnInit {
   onFetchRequest() {
     this.httpReq.onGetRequest().subscribe({
       next: (res) => {
-        console.log(res);
         this.newRequests = res;
         this.onColorRequestList();
         this.httpReq.userList.subscribe((res) => {
           for (let request of this.newRequests) {
-            console.log('for partito');
-            console.log(request.userId);
             this.userList.push(res.find((user) => user.id === request.userId));
           }
         });
       },
-      error: (errorRes) => {
-        console.log(errorRes);
+      error: (errorRes: HttpErrorResponse) => {
+        alert(errorRes.error.message);
       },
     });
   }
@@ -86,11 +86,9 @@ export class AdminDashBoardComponent implements OnInit {
     this.buttonVisibility = true;
     this.selectedRequest = this.newRequests[index];
     this.selectedLight = this.requestsLight[index];
-    console.log(this.userList);
     this.selectedUser = this.userList.find(
       (user) => user.id === this.selectedRequest.userId
     );
-    console.log(this.selectedUser);
   }
 
   onSelectOldRequest(index: number) {
@@ -107,14 +105,15 @@ export class AdminDashBoardComponent implements OnInit {
   onAcceptRequest() {
     this.requestVisibility = false;
     this.selectedRequest.header = 'green';
-    this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.selectedRequest.result = 'Accettato';
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
+      console.log('è in chiusura');
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
+      console.log('Non è in chiusura');
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
   }
@@ -122,13 +121,14 @@ export class AdminDashBoardComponent implements OnInit {
   onDeclineRequest() {
     this.requestVisibility = false;
     this.selectedRequest.header = 'red';
-    this.httpReq.onDeleteRequest(this.newRequests[this.requestIndex].id);
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
-    this.selectedRequest.result = 'Declinato';
+    this.selectedRequest.result = 'Rifiutato';
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
+    } else {
+      this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
   }
 
@@ -146,11 +146,11 @@ export class AdminDashBoardComponent implements OnInit {
   }
 
   onDownloadUserList() {
-    // this.httpReq.onGetUser().subscribe((res) => {
-    //   this.userList = JSON.parse(JSON.stringify(res));
-    //   this.userList;
-    //   this.exportAsExcelFile(this.userList, 'UserList.xlsx');
-    // });
+    this.httpReq.onGetUser().subscribe((res) => {
+      this.userListDownload = res;
+      this.userListDownload = JSON.parse(JSON.stringify(res));
+      this.exportAsExcelFile(this.userListDownload, 'UserList.xlsx');
+    });
   }
 
   onLogOut() {

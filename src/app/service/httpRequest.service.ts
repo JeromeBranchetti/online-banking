@@ -60,7 +60,7 @@ export class HttpRequestService {
       });
   }
 
-  onGetUserId() {
+  onGetUser() {
     return this.http.get<utente[]>('http://localhost:8080/api/auth/users', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + this.auth.token.token,
@@ -182,20 +182,16 @@ export class HttpRequestService {
     );
   }
 
-  onCheckRequest(idConto: number) {}
-
-  // Chiamate post
-
   richiestaAttivazioneConto(amount: number) {
     this.http
-      .post<conto>(
+      .get<conto>(
         'http://localhost:8080/api/account/' +
           this.utente.id +
           '/addAccount/' +
           this.conto.accountNumber +
           '/' +
           amount,
-        null,
+
         {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.auth.token.token,
@@ -205,10 +201,9 @@ export class HttpRequestService {
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.http.put(
+          this.http.get(
             'http://localhost:8080/api/account/accounts/activation_request/' +
               res.id,
-            null,
             {
               headers: new HttpHeaders({
                 Authorization: 'Bearer ' + this.auth.token.token,
@@ -221,6 +216,7 @@ export class HttpRequestService {
         },
       });
   }
+
   onAddUser(ut: utente) {
     this.http
       .post('http://localhost:8080/authentication/register', ut, {
@@ -334,27 +330,31 @@ export class HttpRequestService {
 
   onActivateAccount(idConto: number) {
     this.http
-      .get('http://localhost:8080/api/account/accounts/activation/' + idConto)
-      .subscribe(() => {});
-  }
-
-  onDisactivateAccount(idConto: number) {}
-
-  onDeleteRequest(idRequest: number) {
-    this.http
-      .delete('http://localhost:8080/richieste/' + idRequest, {
+      .get('http://localhost:8080/api/account/activation/accounts/' + idConto, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
-      .subscribe((res) => {});
+      .subscribe(() => {});
+  }
+
+  onDisactivateAccount(idConto: number) {
+    this.http
+      .get(
+        'http://localhost:8080/api/account/inactivation/accounts/' + idConto,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe(() => {});
   }
 
   richiestaChiusuraConto(idConto: number) {
     this.http
-      .put(
-        'http://localhost:8080/api/account/accounts/closure_request/' + idConto,
-        null,
+      .get(
+        'http://localhost:8080/api/account/closure_request/accounts/' + idConto,
         {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.auth.token.token,
@@ -365,7 +365,7 @@ export class HttpRequestService {
   }
 
   onPrepareRequestList() {
-    this.onGetUserId().subscribe((res) => {
+    this.onGetUser().subscribe((res) => {
       this.userList.next(res);
     });
   }

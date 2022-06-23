@@ -1,4 +1,3 @@
-
 import { HttpRequestService } from './../service/httpRequest.service';
 import { UtenteService } from './../service/utente.service';
 import { SignUpService } from './../service/signUp.service';
@@ -48,7 +47,7 @@ export class FootBarComponent implements OnInit {
     private Sus: SignUpService,
 
     private US: UtenteService,
-    private httpreq:HttpRequestService
+    private httpreq: HttpRequestService
   ) {}
 
   ngOnInit(): void {
@@ -65,40 +64,36 @@ export class FootBarComponent implements OnInit {
 
   onDashBoard() {
     this.router.navigate(['/userDashboard'], {
-       queryParams: {
-       idUt:this.US.idUt , idCont:this.US.idCont}
-       },
-    );
+      queryParams: {
+        idUt: this.US.idUt,
+        idCont: this.US.idCont,
+      },
+    });
   }
 
   onPayment() {
-    if(this.httpreq.conto.state!='INACTIVE'){
-    this.router.navigate(
-      ['/payment']
-      , {
+    console.log('Funziona');
+    if (this.httpreq.conto.state != 'INACTIVE') {
+      this.router.navigate(['/payment'], {
         queryParams: {
-        idUt:this.US.idUt , idCont:this.US.idCont}
+          idUt: this.US.idUt,
+          idCont: this.US.idCont,
         },
-     
-    );
-      }
-      else{
-        alert("conto non attivo")
-      }
+      });
+    } else {
+      alert('conto non attivo');
+    }
   }
   onMovementDetail() {
-    if(this.httpreq.conto.state!='INACTIVE'){
-    this.router.navigate(['/account-detail'], {
-     
+    if (this.httpreq.conto.state != 'INACTIVE') {
+      this.router.navigate(['/account-detail'], {
         queryParams: {
-        idUt:this.US.idUt , idCont:this.US.idCont}
+          idUt: this.US.idUt,
+          idCont: this.US.idCont,
         },
-    );
+      });
+    } else {
+      alert('conto non attivo!');
+    }
   }
-
-else{
-
-  alert("conto non attivo!")
-}
-}
 }

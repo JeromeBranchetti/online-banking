@@ -90,7 +90,6 @@
   width: 100%;
   /* background-color: rgb(30, 133, 223); */
   background-color: rgb(17, 90, 227);
-
 }
 
 .fourth-section {
@@ -253,6 +252,7 @@
   border-radius: 0.3rem;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .text-h1-main {
@@ -273,7 +273,7 @@
   width: 80vw;
   height: 40vh;
   /* Cri sono io lo sfondo nerooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo */
-  background-color: rgba(0, 0, 0, 0.782); 
+  background-color: rgba(0, 0, 0, 0.782);
   transform: translateX(-12px);
   z-index: 1;
 }

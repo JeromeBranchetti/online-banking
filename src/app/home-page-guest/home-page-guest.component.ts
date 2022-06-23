@@ -1,4 +1,3 @@
-
 import { AuthService } from './../service/auth.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
@@ -32,9 +31,7 @@ export class HomePageGuestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-      this.Init();
-      
+    this.Init();
   }
 
   Init(): void {

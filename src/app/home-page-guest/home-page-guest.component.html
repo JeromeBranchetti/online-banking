@@ -23,9 +23,9 @@
         </div>
         <div class="col">
           <div class="row">
-            <div class="col-sm-12 col-lg-6 fs-5"><span>Saldo</span></div>
-            <div class="col-sm-12 col-lg-6 fs-4">
-              {{ conti[0]?.balance ?? "" | number: "1.2-2" }} &euro;
+            <div class="col-sm-12 col-lg-6 fs-5"><span>Iban</span></div>
+            <div class="col-sm-12 col-lg-6 fs-5 iban-text">
+              {{ conti[0]?.iban ?? "" }}
             </div>
           </div>
         </div>
@@ -54,10 +54,10 @@
                 </div>
 
                 <div class="col text-center">
-                  <p>Saldo disponibile</p>
-                  <h1>
-                    {{ conti[i + 1]?.balance ?? "" | number: "1.2-2" }}&euro;
-                  </h1>
+                  <p>Iban</p>
+                  <h5>
+                    {{ conti[i + 1]?.iban ?? ""}}
+                  </h5>
                 </div>
               </div>
             </div>

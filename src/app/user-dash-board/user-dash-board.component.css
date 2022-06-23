@@ -143,6 +143,7 @@ aside .sidebar a:last-child {
 
 aside .sidebar a:hover {
   color: rgb(0, 89, 255);
+  cursor: pointer;
 }
 
 aside .sidebar a:hover span {

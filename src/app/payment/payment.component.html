@@ -5,7 +5,7 @@
   <!-- Saldo totale -->
   <div class="balance">
     <h2 class="text-center me-2">Saldo Attuale:</h2>
-    <h2>{{ balance }}€</h2>
+    <h2>{{ balance | number: "1.2-2" }}€</h2>
   </div>
 
   <div class="generalContainer">
@@ -202,7 +202,15 @@
                 </mat-form-field>
               </div>
               <div class="buttons">
-                <button type="button" matStepperNext>Avanti</button>
+                <button
+                  type="button"
+                  (click)="
+                    onCheckAmount(bankWithdrawalForm.get('amount').value)
+                  "
+                  matStepperNext
+                >
+                  Avanti
+                </button>
               </div>
             </mat-step>
 

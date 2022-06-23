@@ -1,5 +1,5 @@
 .payment-container {
-  min-height: 80vh;
+  min-height: 95vh;
   margin-bottom: 10vh;
 }
 
@@ -194,4 +194,18 @@ input.ng-invalid.ng-touched {
   object-fit: cover;
   transform: translateY(-7%);
   background-color: aliceblue;
+}
+
+li {
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+.side-image {
+  position: relative;
+  transform: translate();
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 30px;
 }

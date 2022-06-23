@@ -110,10 +110,8 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
-      console.log('è in chiusura');
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
-      console.log('Non è in chiusura');
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
   }

@@ -138,7 +138,11 @@
         <span><i class="fas fa-list-ol"></i></span>
         <div class="left mt-3">
           <h3>Saldo</h3>
-          <h1>{{ modeSpione ? saldo : conto?.balance ?? " " }}&euro;</h1>
+          <h1>
+            {{
+              modeSpione ? saldo : (conto?.balance | number: "1.2-2" ?? "")
+            }}&euro;
+          </h1>
         </div>
         <div class="decoration-3 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>

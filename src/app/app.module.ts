@@ -10,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -72,7 +72,7 @@ import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component'
     HttpClientModule,
     BrowserAnimationsModule,
     NgChartsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [HttpRequestService, AuthGuard],
   bootstrap: [AppComponent],

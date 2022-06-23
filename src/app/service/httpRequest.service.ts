@@ -363,7 +363,7 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() => console.log('richiesta chiusura inviata'));
+      .subscribe(() =>alert('richiesta chiusura inviata'));
   }
 
   onPrepareRequestList() {

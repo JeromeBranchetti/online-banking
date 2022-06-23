@@ -12,7 +12,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog">
-      <form [formGroup]="form" >
+      <form [formGroup]="form">
         <div class="modal-content p-3">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -26,7 +26,7 @@
           <div class="modal-body">
             <div class="input-group mb-3">
               <span class="input-group-text fs-3">&euro;</span>
-              
+
               <input
                 type="text"
                 class="form-control fs-3 text-end"
@@ -44,7 +44,13 @@
             >
               Chiudi
             </button>
-            <button type="button" class="btn btn-primary mb-3 mt-2 p-2" (click)="newConto(amount.value)">Invia Richiesta</button>
+            <button
+              type="button"
+              class="btn btn-primary mb-3 mt-2 p-2"
+              (click)="newConto(amount.value)"
+            >
+              Invia Richiesta
+            </button>
           </div>
         </div>
       </form>
@@ -123,7 +129,7 @@
         </button>
         <div class="left mt-3">
           <h3>Iban</h3>
-          <h1>{{ modeSpione ? iban : conto?.iban ?? "" }}</h1>
+          <h2>{{ modeSpione ? iban : conto?.iban ?? "" }}</h2>
         </div>
         <div class="decoration-2 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>
@@ -132,11 +138,7 @@
         <span><i class="fas fa-list-ol"></i></span>
         <div class="left mt-3">
           <h3>Saldo</h3>
-          <h1>
-            {{
-              modeSpione ? saldo : (conto?.balance ?? " " )
-            }}&euro;
-          </h1>
+          <h1>{{ modeSpione ? saldo : conto?.balance ?? " " }}&euro;</h1>
         </div>
         <div class="decoration-3 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>
@@ -146,7 +148,7 @@
 
   <!-- cose a destra -->
   <div class="right mt-5">
-    <h2>Pannello di controllo</h2>
+    <h2>Pannello</h2>
     <div class="middle">
       <div class="row d-flex flex-column">
         <div class="col">

@@ -128,3 +128,7 @@ span {
 ::ng-deep .mat-select-panel {
   background: white !important;
 }
+
+.account-container {
+  margin-bottom: 10vh;
+}

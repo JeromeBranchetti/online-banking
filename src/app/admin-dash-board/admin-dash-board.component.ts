@@ -105,10 +105,10 @@ export class AdminDashBoardComponent implements OnInit {
   onAcceptRequest() {
     this.requestVisibility = false;
     this.selectedRequest.header = 'green';
+    this.selectedRequest.result = 'Accettato';
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
-    this.selectedRequest.result = 'Accettato';
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
       console.log('è in chiusura');
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
@@ -121,10 +121,10 @@ export class AdminDashBoardComponent implements OnInit {
   onDeclineRequest() {
     this.requestVisibility = false;
     this.selectedRequest.header = 'red';
+    this.selectedRequest.result = 'Rifiutato';
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
-    this.selectedRequest.result = 'Rifiutato';
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {

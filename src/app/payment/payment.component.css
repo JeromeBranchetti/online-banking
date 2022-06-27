@@ -124,7 +124,23 @@ input.ng-invalid.ng-touched {
   color: black !important;
 }
 
+::ng-deep .mat-select-placeholder .mat-select-min-line {
+  color: black !important;
+}
+
 :host /deep/ .mat-select-value-text {
+  color: black !important;
+}
+
+:host /deep/ .mat-select-placeholder .mat-select-min-line {
+  color: black !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  color: black !important;
+}
+
+:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-infix {
   color: black !important;
 }
 

@@ -76,7 +76,6 @@ button {
 
 .my-table-container {
   min-height: 35vh;
-  overflow-y: scroll;
 }
 
 .my-table {
@@ -114,6 +113,10 @@ span {
 }
 
 ::ng-deep .mat-select-value-text {
+  color: white !important;
+}
+
+:host /deep/ .mat-select-value-text {
   color: white !important;
 }
 

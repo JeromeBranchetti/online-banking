@@ -1,6 +1,6 @@
+import { Subject } from 'rxjs';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -14,7 +14,6 @@ import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
 import { UtenteService } from '../service/utente.service';
-import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-user-dash-board',
   templateUrl: './user-dash-board.component.html',
@@ -31,9 +30,11 @@ export class UserDashBoardComponent implements OnInit {
   modeSpione!: boolean;
   conto = new conto(0);
   menuClicked!: boolean;
+  themeDark: boolean = true;
   public innerWidth: any;
-  isModalVisible: boolean = true;
+  isModalVisible: boolean = false;
   form: FormGroup;
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -82,14 +83,14 @@ export class UserDashBoardComponent implements OnInit {
         this.conto = res;
         this.httpReq.temporanyBalanceFlag.next(this.conto.balance);
         this.httpReq.temporanyBalance = this.conto.balance;
-        this.currentSaldo = res.balance;
+        // this.currentSaldo = res.balance;
       });
     });
   }
 
   newConto(amount: string) {
     let i = Number(amount);
-    this.isModalVisible = true;
+    this.isModalVisible = false;
     this.httpReq.richiestaAttivazioneConto(i);
   }
 
@@ -133,5 +134,11 @@ export class UserDashBoardComponent implements OnInit {
     } else {
       this.menuClicked = false;
     }
+  }
+
+  themeDarkToggle(){
+    this.themeDark = !this.themeDark;
+    this.spioneService.activatedEmitter.next(this.themeDark);
+    console.log('Dark theme sent ' + this.themeDark);
   }
 }

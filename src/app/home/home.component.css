@@ -108,6 +108,7 @@
   height: 188px;
   width: fit-content;
   transform-style: preserve-3d;
+  color: white;
 }
 
 .credit-card-content-two {
@@ -120,6 +121,7 @@
   height: 188px;
   width: fit-content;
   transform-style: preserve-3d;
+  color: white;
 }
 
 .credit-card-front {

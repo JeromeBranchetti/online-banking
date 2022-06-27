@@ -154,6 +154,7 @@ main .insights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.6rem;
+  color: white;
 }
 
 main .insights > div {
@@ -313,3 +314,10 @@ main #menu-btn {
   left: 50%;
   transform: translateX(-50%);
 }
+
+@media screen and (max-width: 400px) {
+  .iban-text-resize {
+    font-size: 18px;
+  }
+}
+

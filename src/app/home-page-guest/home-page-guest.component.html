@@ -32,8 +32,9 @@
       </div>
     </div>
   </div>
-  <div class="third-section container-fluid" *ngIf="conti.length > 1">
+  <div class="third-section container-fluid pt-2" *ngIf="conti.length > 1">
     <!-- Carousel con altri conti -->
+    <h1 class="text-center text-h1-main mt-2 ">Altri Account</h1>
     <div class="container-fluid py-3 row mx-0 justify-content-center">
       <div
         *ngFor="let conto of conti | slice: 1; index as i"

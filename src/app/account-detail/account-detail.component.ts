@@ -43,6 +43,11 @@ export class AccountDetailComponent implements OnInit {
     this.transactionService.bankTransactionFlag.subscribe((res) => {
       this.bankTransactions = res;
       this.onCalculateAmount();
+      for (let transaction of this.bankTransactions) {
+        if (transaction.operationType === 'RICARICA_TELEFONICA') {
+          transaction.operationType = 'RICARICA TELEFONICA';
+        }
+      }
     });
     this.spyMode.bs.subscribe((res) => {
       this.spyModeBoolean = res;

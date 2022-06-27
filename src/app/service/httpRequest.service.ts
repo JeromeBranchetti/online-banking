@@ -1,3 +1,4 @@
+import { response } from './../class/response.mode';
 import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
@@ -358,6 +359,7 @@ export class HttpRequestService {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.auth.token.token,
           }),
+          responseType: 'text',
         }
       )
       .subscribe({
@@ -367,9 +369,8 @@ export class HttpRequestService {
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (res) => {
-          alert('Pagamento completato!');
-          this.temporanyBalance = this.temporanyBalance + transaction.amount;
-          this.temporanyBalanceFlag.next(this.temporanyBalance);
+          alert('Errore durante il processo di pagamento');
+          console.log(res);
         },
       });
   }

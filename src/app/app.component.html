@@ -1,6 +1,9 @@
 <div class="container-fluid p-0 m-0 main-box">
   <app-bar></app-bar>
-  <div class="container-fluid home-box">
+  <div
+    class="container-fluid home-box"
+    [ngStyle]="isDarkTriggered ? {backgroundColor: 'rgb(34, 34, 68)', color: 'white'} : {backgroundColor: 'rgb(255, 255, 255)', color: 'black'}"
+  >
     <router-outlet></router-outlet>
   </div>
   <app-foot-bar></app-foot-bar>

@@ -22,6 +22,7 @@
 
 .big-text {
   font-size: 5vw;
+  color: white;
 }
 
 .dark-layer p {
@@ -190,6 +191,7 @@
     hsl(20 0% 0% / 0.8) 20%,
     hsl(0 0% 0% / 1)
   );
+  color: white;
 }
 
 @media (hover: hover) {
@@ -260,6 +262,7 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   font-size: xx-large;
+  color: white;
 }
 
 .text-main {
@@ -286,7 +289,7 @@
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 570px) {
   .main-card {
     margin-left: 0;
     margin-right: 0;
@@ -296,4 +299,9 @@
   .dark-background-layer {
     width: 100vw;
   }
+
+  .top-section-home {
+    height: 40vh;
+  }
 }
+

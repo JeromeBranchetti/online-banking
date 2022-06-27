@@ -32,6 +32,7 @@ export class UserDashBoardComponent implements OnInit {
   conto = new conto(0);
   menuClicked!: boolean;
   public innerWidth: any;
+  isModalVisible: boolean = true;
   form: FormGroup;
 
   @HostListener('window:resize', ['$event'])
@@ -88,7 +89,7 @@ export class UserDashBoardComponent implements OnInit {
 
   newConto(amount: string) {
     let i = Number(amount);
-
+    this.isModalVisible = true;
     this.httpReq.richiestaAttivazioneConto(i);
   }
 

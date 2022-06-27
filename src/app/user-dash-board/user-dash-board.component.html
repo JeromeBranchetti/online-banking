@@ -47,6 +47,9 @@
             <button
               type="button"
               class="btn btn-primary mb-3 mt-2 p-2"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              [disabled]="isModalVisible"
               (click)="newConto(amount.value)"
             >
               Invia Richiesta
@@ -82,7 +85,7 @@
         <span><i class="fas fa-car-crash"></i></span>
         <h3>Assicurazioni</h3>
       </a>
-      <a data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="isModalVisible = false">
         <span><i class="fas fa-plus-circle"></i></span>
         <h3>Apri nuovo conto</h3>
       </a>

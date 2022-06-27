@@ -120,6 +120,14 @@ input.ng-invalid.ng-touched {
   background-color: rgba(36, 49, 177, 255);
 }
 
+::ng-deep .mat-select-value-text {
+  color: black !important;
+}
+
+:host /deep/ .mat-select-value-text {
+  color: black !important;
+}
+
 .confirmButton {
   height: fit-content;
 }

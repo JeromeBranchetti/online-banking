@@ -38,7 +38,7 @@ export class SignUpService {
   onAddUser(ut: utente) {
     this.http
       .post<response>('http://localhost:8080/api/auth/register', ut)
-      .subscribe((res) => {
+      .subscribe({next:(res) => {
         this.auth.token=res;
         this.us.idUt = res.userId;
         this.auth.isAuthenticated();
@@ -48,6 +48,8 @@ export class SignUpService {
     idUt:this.us.idUt , idCont:this.us.idCont}
     },
  );
+},
+error:()=>(alert("Email già in uso"))
 })}
 }
   

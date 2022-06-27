@@ -292,6 +292,7 @@ export class HttpRequestService {
               }),
             }
           );
+          alert("richiesta inviata");
         },
         error: (errorRes: HttpErrorResponse) => {
           alert(errorRes.error.message);

@@ -3,6 +3,7 @@ import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-payment',
@@ -176,7 +177,7 @@ export class PaymentComponent implements OnInit {
       let transaction: BankTransaction;
       transaction = {
         amount: +(this.bankDepositForm.get('amount').value * +1).toFixed(2),
-        causal: 'Deposito online in data: ' + this.date.toDateString(),
+        causal: 'Deposito online',
         accountId: this.httpReq.conto.id,
       };
       this.httpReq.onAddTransaction(transaction);
@@ -193,12 +194,20 @@ export class PaymentComponent implements OnInit {
     let transaction: BankTransaction;
     transaction = {
       amount: this.bankWithdrawalForm.get('amount').value * -1,
-      causal: 'Prelievo online in data: ' + this.date.toDateString(),
+      causal: 'Prelievo online',
       accountId: this.httpReq.conto.id,
     };
     console.log(transaction);
     this.httpReq.onAddTransaction(transaction);
     this.bankWithdrawalChoice = false;
     this.bankWithdrawalForm.reset();
+  }
+
+  onCheckAmount(amount: number) {
+    if (amount > this.balance) {
+      alert('Errore: Inserisci un importo idoneo');
+      this.bankWithdrawalChoice = false;
+      this.bankWithdrawalForm.reset();
+    }
   }
 }

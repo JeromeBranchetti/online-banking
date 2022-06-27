@@ -1,3 +1,4 @@
+import { response } from './../class/response.mode';
 import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';
@@ -54,7 +55,8 @@ export class HttpRequestService {
         this.US.Attivo = res.state;
         this.conto = res;
         this.conto.iban = res.iban;
-
+        this.temporanyBalanceFlag.next(res.balance);
+        this.temporanyBalance = res.balance;
         this.sign.bsconto.next(this.conto);
         this.modifyAccount = this.conto;
       });
@@ -171,7 +173,87 @@ export class HttpRequestService {
       });
   }
 
-  onGetTransactionFilteredWord(transactionType: string) {}
+  onGetTransactionFilterWithdrawal(
+    idAccount: number,
+    transactionNumber: string
+  ) {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/filter/prelievo/' +
+          idAccount +
+          '/last_' +
+          transactionNumber,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
+
+  onGetTransactionFilterDeposit(idAccount: number, transactionNumber: string) {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/filter/deposito/' +
+          idAccount +
+          '/last_' +
+          transactionNumber,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
+
+  onGetTransactionFilterPhoneTopUp(
+    idAccount: number,
+    transactionNumber: string
+  ) {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/filter/ricarica_telefonica/' +
+          idAccount +
+          '/last_' +
+          transactionNumber,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
+
+  onGetTransactionFilterTransfer(idAccount: number, transactionNumber: string) {
+    this.http
+      .get<BankTransaction[]>(
+        'http://localhost:8080/api/transaction/filter/bonifico/' +
+          idAccount +
+          '/last_' +
+          transactionNumber,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+        }
+      )
+      .subscribe((res) => {
+        this.transactionService.bankTransaction = res;
+        this.transactionService.bankTransactionFlag.next(res);
+      });
+  }
 
   onGetRequest() {
     return this.http.get<RequestModel[]>(
@@ -202,7 +284,6 @@ export class HttpRequestService {
       )
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.http.get(
             'http://localhost:8080/api/account/accounts/activation_request/' +
               res.id,
@@ -254,7 +335,6 @@ export class HttpRequestService {
 
   changemail(email: string) {
     this.utente.email = email;
-    console.log(this.utente);
     this.http
       .put(
         'http://localhost:8080/api/auth/users/update/email',
@@ -278,23 +358,23 @@ export class HttpRequestService {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.auth.token.token,
           }),
+          responseType: 'text',
         }
       )
       .subscribe({
         next: () => {
-          this.temporanyBalanceFlag.next(this.conto.balance);
           alert('Pagamento completato!');
+          this.temporanyBalance = this.temporanyBalance + transaction.amount;
+          this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (res) => {
-          console.log(res);
           alert('Errore durante il processo di pagamento');
+          console.log(res);
         },
       });
   }
 
   onAddTransactionPhone(transaction: BankTransaction) {
-    console.log(transaction);
-
     this.http
       .post(
         'http://localhost:8080/api/transaction/ricarica_telefonica',
@@ -319,7 +399,6 @@ export class HttpRequestService {
   }
 
   onAddTransactionTransfer(transaction: BankTransaction) {
-    console.log(this.auth.token.token);
     this.http
       .post('http://localhost:8080/api/transaction/transfer', transaction, {
         headers: new HttpHeaders({

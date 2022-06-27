@@ -53,6 +53,6 @@ export class AuthService {
           }),
         }
       )
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {});
   }
 }

@@ -67,26 +67,93 @@ export class AccountDetailComponent implements OnInit {
   }
 
   onFilterNumberTransactionTen() {
-    this.httpReq.onGetTransactionFilteredTen();
+    if (this.selected === 'Prelievo') {
+      this.httpReq.onGetTransactionFilterWithdrawal(
+        this.httpReq.conto.id,
+        'ten'
+      );
+    } else if (this.selected === 'Deposito') {
+      this.httpReq.onGetTransactionFilterDeposit(this.httpReq.conto.id, 'ten');
+    } else if (this.selected === 'Bonifico') {
+      this.httpReq.onGetTransactionFilterTransfer(this.httpReq.conto.id, 'ten');
+    } else if (this.selected === 'Ricarica telefonica') {
+      this.httpReq.onGetTransactionFilterPhoneTopUp(
+        this.httpReq.conto.id,
+        'ten'
+      );
+    } else {
+      this.httpReq.onGetTransactionFilteredTen();
+    }
   }
 
   onFilterNumberTransactionTwenty() {
-    this.httpReq.onGetTransactionFilteredTwenty();
+    if (this.selected === 'Prelievo') {
+      this.httpReq.onGetTransactionFilterWithdrawal(
+        this.httpReq.conto.id,
+        'twenty'
+      );
+    } else if (this.selected === 'Deposito') {
+      this.httpReq.onGetTransactionFilterDeposit(
+        this.httpReq.conto.id,
+        'twenty'
+      );
+    } else if (this.selected === 'Bonifico') {
+      this.httpReq.onGetTransactionFilterTransfer(
+        this.httpReq.conto.id,
+        'twenty'
+      );
+    } else if (this.selected === 'Ricarica telefonica') {
+      this.httpReq.onGetTransactionFilterPhoneTopUp(
+        this.httpReq.conto.id,
+        'twenty'
+      );
+    } else {
+      this.httpReq.onGetTransactionFilteredTwenty();
+    }
   }
 
   onFilterNumberTransactionFifty() {
-    this.httpReq.onGetTransactionFilteredFifty();
+    if (this.selected === 'Prelievo') {
+      this.httpReq.onGetTransactionFilterWithdrawal(
+        this.httpReq.conto.id,
+        'fifty'
+      );
+    } else if (this.selected === 'Deposito') {
+      this.httpReq.onGetTransactionFilterDeposit(
+        this.httpReq.conto.id,
+        'fifty'
+      );
+    } else if (this.selected === 'Bonifico') {
+      this.httpReq.onGetTransactionFilterTransfer(
+        this.httpReq.conto.id,
+        'fifty'
+      );
+    } else if (this.selected === 'Ricarica telefonica') {
+      this.httpReq.onGetTransactionFilterPhoneTopUp(
+        this.httpReq.conto.id,
+        'fifty'
+      );
+    } else {
+      this.httpReq.onGetTransactionFilteredFifty();
+    }
   }
 
   onFilterWord() {
-    console.log(this.selected);
-    if (this.selected === 'Ricarica Telefonica') {
-      this.selected = 'RICARICA_TELEFONICA';
-    } else {
-      this.selected = this.selected.toUpperCase();
+    if (this.selected === 'Prelievo') {
+      this.httpReq.onGetTransactionFilterWithdrawal(
+        this.httpReq.conto.id,
+        'ten'
+      );
+    } else if (this.selected === 'Deposito') {
+      this.httpReq.onGetTransactionFilterDeposit(this.httpReq.conto.id, 'ten');
+    } else if (this.selected === 'Bonifico') {
+      this.httpReq.onGetTransactionFilterTransfer(this.httpReq.conto.id, 'ten');
+    } else if (this.selected === 'Ricarica telefonica') {
+      this.httpReq.onGetTransactionFilterPhoneTopUp(
+        this.httpReq.conto.id,
+        'ten'
+      );
     }
-    console.log(this.selected);
-    this.httpReq.onGetTransactionFilteredWord(this.selected);
   }
 
   onPrintTransaction() {

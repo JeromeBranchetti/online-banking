@@ -8,7 +8,10 @@
       'card-header-yellow': light === 'yellow'
     }"
   >
-    <h3>Tipo di Richiesta: {{ type }}</h3>
+    <h3>
+      Tipo di Richiesta:
+      {{ type === "CLOSURE_REQUEST" ? "Chiusura" : "Attivazione" }}
+    </h3>
   </div>
   <div class="card-body">
     <div class="personal-data">

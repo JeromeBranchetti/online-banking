@@ -21,7 +21,7 @@
 }
 
 .big-text {
-  font-size: 5vw;
+  font-size: 4vw;
   color: white;
 }
 
@@ -307,5 +307,29 @@
 
   .top-section-home {
     height: 40vh;
+  }
+}
+
+@media screen and (min-width: 496px) and (max-width: 569px) {
+  .iban-text-resize {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 569px) and (max-width: 767px) {
+  .iban-text-resize {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 948px) and (max-width: 1237px) {
+  .iban-text-resize {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1237px) and (max-width: 2500px) {
+  .iban-text-resize {
+    font-size: 30px;
   }
 }

@@ -58,6 +58,9 @@ export class UserDashBoardComponent implements OnInit {
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();
+    this.spioneService.activatedEmitter.subscribe((res) => {
+      this.themeDark = res;
+    });
   }
 
   Init(): void {

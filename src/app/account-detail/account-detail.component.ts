@@ -29,6 +29,7 @@ export class AccountDetailComponent implements OnInit {
 
   spyModeBoolean: boolean = false;
   finishSubscribe: boolean = false;
+  themeLight: boolean;
 
   // Methods
 
@@ -51,6 +52,9 @@ export class AccountDetailComponent implements OnInit {
     });
     this.spyMode.bs.subscribe((res) => {
       this.spyModeBoolean = res;
+    });
+    this.spyMode.activatedEmitter.subscribe((res) => {
+      this.themeLight = res;
     });
   }
 

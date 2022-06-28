@@ -1,3 +1,4 @@
+import { SpioneService } from './../service/spione.service';
 import { UtenteService } from './../service/utente.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
@@ -23,6 +24,7 @@ export class PaymentComponent implements OnInit {
   date = new Date();
   balance: number;
   amount: number;
+  themeLight: boolean;
 
   firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
@@ -69,13 +71,19 @@ export class PaymentComponent implements OnInit {
     ]),
   });
 
-  constructor(private httpReq: HttpRequestService) {}
+  constructor(
+    private httpReq: HttpRequestService,
+    private spyService: SpioneService
+  ) {}
 
   ngOnInit(): void {
     this.httpReq.temporanyBalanceFlag.subscribe((res) => {
       this.balance = res;
     });
     this.iban = this.httpReq.conto.iban;
+    this.spyService.activatedEmitter.subscribe((res) => {
+      this.themeLight = res;
+    });
   }
 
   onBankTransfer() {

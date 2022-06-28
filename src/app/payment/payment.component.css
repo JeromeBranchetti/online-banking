@@ -49,26 +49,26 @@ h1 {
 
 /* Form */
 
-.paymentContainer {
-  width: 50%;
-}
-
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
 .mat-stepper-horizontal {
-  background-color: white;
+  background-color: transparent;
   border-radius: 7px;
 }
 
-.formStepper {
-  background-color: white;
+.formStepp {
+  background-color: transparent;
   color: black !important;
 }
 
-.mat-stepper-horizontal {
-  margin-top: 8px;
+.light-form-container {
+  background-color: white;
+}
+
+.dark-form-container {
+  background-color: #b298d2;
 }
 
 .mat-form-field {
@@ -206,15 +206,31 @@ input.ng-invalid.ng-touched {
 
 /* Consigli sulla sicurezza */
 
-.safety-container {
-  width: 80%;
-  background: rgb(255, 255, 255);
+.dark-safety-container {
+  width: 81%;
   margin-top: 50px;
   min-height: fit-content;
-  color: rgb(0, 0, 0);
   border-radius: 8px;
   position: relative;
   left: 10%;
+  background-color: #b298d2;
+  padding-top: 10px;
+}
+
+.light-safety-container {
+  width: 81%;
+  margin-top: 50px;
+  min-height: fit-content;
+  border-radius: 8px;
+  position: relative;
+  left: 10%;
+  background-color: white;
+  padding-top: 10px;
+}
+
+.safety-container {
+  background: transparent;
+  color: rgb(0, 0, 0);
 }
 
 .back-img-lock {

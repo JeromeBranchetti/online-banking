@@ -373,7 +373,7 @@ export class HttpRequestService {
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (res) => {
-          alert('Errore durante il processo di pagamento');
+          alert(res.error);
           console.log(res);
         },
       });
@@ -418,6 +418,7 @@ export class HttpRequestService {
           alert('Pagamento completato!');
         },
         error: (error) => {
+          console.log(error);
           alert(error.error);
         },
       });

@@ -12,7 +12,11 @@
     <div class="col-lg-12 col-12 d-lg-none d-flex d-sm-flex filterContainer">
       <mat-form-field>
         <mat-label>Tipo Transazione</mat-label>
-        <mat-select aria-label="Default select example" id="transaction">
+        <mat-select
+          aria-label="Default select example"
+          id="transaction"
+          [ngStyle]="{ color: 'black' ? themeLight : 'white' }"
+        >
           <mat-option value="deposit">Deposito</mat-option>
           <mat-option value="withdrawal">Prelievo</mat-option>
           <mat-option value="transfer">Bonifico</mat-option>

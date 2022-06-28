@@ -6,7 +6,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class SpioneService {
   bs: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  activatedEmitter = new Subject<boolean>();
+  activatedEmitter = new BehaviorSubject<boolean>(true);
 
   SpioneMode(bool: boolean) {
     this.bs.next(bool);

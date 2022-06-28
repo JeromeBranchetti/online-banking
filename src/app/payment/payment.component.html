@@ -31,322 +31,349 @@
       </button>
     </div>
 
-    <!-- Form per il bonifico  -->
-    <div class="paymentContainer">
-      <div id="bankTransferForm" *ngIf="bankTransferChoice">
-        <mat-horizontal-stepper [linear]="true" class="formStepper">
-          <!-- Primo step -->
-          <mat-step
-            label="Informazioni Anagrafiche"
-            [stepControl]="firstBankTransferForm"
-          >
-            <form [formGroup]="firstBankTransferForm">
-              <div class="row">
-                <div class="col-lg-3 input">
-                  <mat-form-field>
-                    <input
-                      id="name"
-                      type="text"
-                      placeholder="Nome"
-                      matInput
-                      class="form-control"
-                      formControlName="firstName"
-                    />
-                  </mat-form-field>
-                </div>
-                <div class="col-lg-3 input">
-                  <mat-form-field>
-                    <input
-                      id="lastName"
-                      type="text"
-                      placeholder="Cognome"
-                      matInput
-                      formControlName="lastName"
-                    />
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <div class="buttons">
-                <button matStepperNext>Avanti</button>
-              </div>
-            </form>
-          </mat-step>
-          <!-- Secondo step -->
-          <mat-step
-            label="Dati del Bonifico"
-            [stepControl]="secondBankTransferForm"
-          >
-            <form [formGroup]="secondBankTransferForm">
-              <div class="row transferForm">
-                <div class="col-lg-3 input">
-                  <mat-form-field>
-                    <mat-label for="iban">Iban</mat-label>
-                    <input
-                      id="iban"
-                      type="text"
-                      placeholder="es. IT12A12345678912"
-                      matInput
-                      formControlName="iban"
-                      autocapitalize="off"
-                    />
-                  </mat-form-field>
-                </div>
-                <div class="col-lg-3 input">
-                  <mat-form-field>
-                    <input
-                      id="amount"
-                      type="text"
-                      placeholder="Importo"
-                      matInput
-                      formControlName="amount"
-                      autocapitalize="off"
-                    />
-                  </mat-form-field>
-                </div>
-              </div>
-            </form>
-            <div class="buttons">
-              <button class="redButton" matStepperPrevious>Indietro</button>
-              <button
-                class="confirmButton"
-                matStepperNext
-                (click)="onDecomposeIban()"
-              >
-                Avanti
-              </button>
-            </div>
-          </mat-step>
-          <!-- Terzo step -->
-          <mat-step label="Conferma">
-            <div class="confirmForm">
-              <div class="dataSummary">
-                <p>Nome: {{ firstBankTransferForm.get("firstName").value }}</p>
-                <p>
-                  Cognome: {{ firstBankTransferForm.get("lastName").value }}
-                </p>
-                <p>Iban: {{ iban }}</p>
-                <p>
-                  Importo: {{ secondBankTransferForm.get("amount").value }}€
-                </p>
-              </div>
-            </div>
-            <div class="buttons">
-              <button class="redButton" matStepperPrevious>Back</button>
-              <button class="confirmButton" (click)="onBankTransferSubmit()">
-                Conferma
-              </button>
-            </div>
-          </mat-step>
-        </mat-horizontal-stepper>
-      </div>
-
-      <!-- Form per il deposito -->
-      <div class="" *ngIf="bankDepositChoice">
-        <form [formGroup]="bankDepositForm" (ngSubmit)="onBankDepositSubmit()">
+    <div
+      [ngClass]="{
+        'dark-form-container': !themeLight,
+        'light-form-container': themeLight
+      }"
+    >
+      <!-- Form per il bonifico  -->
+      <div class="paymentContainer">
+        <div id="bankTransferForm" *ngIf="bankTransferChoice">
           <mat-horizontal-stepper [linear]="true" class="formStepper">
-            <mat-step label="Dati del Deposito" [stepControl]="bankDepositForm">
-              <div class="dataForm">
-                <mat-form-field>
-                  <input
-                    id="Amount"
-                    type="text"
-                    placeholder="Importo"
-                    matInput
-                    class="form-control"
-                    formControlName="amount"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="buttons">
-                <button type="button" matStepperNext>Avanti</button>
-              </div>
-            </mat-step>
-
-            <mat-step label="Conferma" completed="false">
-              <div class="confirmForm">
-                <div class="dataSummary">
-                  <p>Importo: {{ bankDepositForm.get("amount").value }}€</p>
+            <!-- Primo step -->
+            <mat-step
+              label="Informazioni Anagrafiche"
+              [stepControl]="firstBankTransferForm"
+            >
+              <form [formGroup]="firstBankTransferForm">
+                <div class="row">
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <input
+                        id="name"
+                        type="text"
+                        placeholder="Nome"
+                        matInput
+                        class="form-control"
+                        formControlName="firstName"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <input
+                        id="lastName"
+                        type="text"
+                        placeholder="Cognome"
+                        matInput
+                        formControlName="lastName"
+                      />
+                    </mat-form-field>
+                  </div>
                 </div>
-              </div>
+
+                <div class="buttons">
+                  <button matStepperNext>Avanti</button>
+                </div>
+              </form>
+            </mat-step>
+            <!-- Secondo step -->
+            <mat-step
+              label="Dati del Bonifico"
+              [stepControl]="secondBankTransferForm"
+            >
+              <form [formGroup]="secondBankTransferForm">
+                <div class="row transferForm">
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <mat-label for="iban">Iban</mat-label>
+                      <input
+                        id="iban"
+                        type="text"
+                        placeholder="es. IT12A12345678912"
+                        matInput
+                        formControlName="iban"
+                        autocapitalize="off"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <input
+                        id="amount"
+                        type="text"
+                        placeholder="Importo"
+                        matInput
+                        formControlName="amount"
+                        autocapitalize="off"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
               <div class="buttons">
                 <button class="redButton" matStepperPrevious>Indietro</button>
-                <button class="confirmButton" type="submit">Conferma</button>
-              </div>
-            </mat-step>
-          </mat-horizontal-stepper>
-        </form>
-      </div>
-
-      <!-- Form per il versamento -->
-      <div class="" *ngIf="bankWithdrawalChoice">
-        <form
-          [formGroup]="bankWithdrawalForm"
-          (ngSubmit)="onBankWithdrawalSubmit()"
-        >
-          <mat-horizontal-stepper [linear]="true" class="formStepper">
-            <mat-step
-              label="Dati del Prelievo"
-              [stepControl]="bankWithdrawalForm"
-            >
-              <div class="dataForm">
-                <mat-form-field>
-                  <input
-                    id="Amount"
-                    type="text"
-                    placeholder="Importo"
-                    matInput
-                    class="form-control"
-                    formControlName="amount"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="buttons">
                 <button
-                  type="button"
-                  (click)="
-                    onCheckAmount(bankWithdrawalForm.get('amount').value)
-                  "
+                  class="confirmButton"
                   matStepperNext
+                  (click)="onDecomposeIban()"
                 >
                   Avanti
                 </button>
               </div>
             </mat-step>
-
-            <mat-step label="Conferma" completed="false">
+            <!-- Terzo step -->
+            <mat-step label="Conferma">
               <div class="confirmForm">
                 <div class="dataSummary">
-                  <p></p>
-                  <p>Importo: {{ bankWithdrawalForm.get("amount").value }}€</p>
+                  <p>
+                    Nome: {{ firstBankTransferForm.get("firstName").value }}
+                  </p>
+                  <p>
+                    Cognome: {{ firstBankTransferForm.get("lastName").value }}
+                  </p>
+                  <p>Iban: {{ iban }}</p>
+                  <p>
+                    Importo: {{ secondBankTransferForm.get("amount").value }}€
+                  </p>
                 </div>
               </div>
               <div class="buttons">
-                <button class="redButton" matStepperPrevious>Indietro</button>
-                <button class="confirmButton" type="submit">Conferma</button>
+                <button class="redButton" matStepperPrevious>Back</button>
+                <button class="confirmButton" (click)="onBankTransferSubmit()">
+                  Conferma
+                </button>
               </div>
             </mat-step>
           </mat-horizontal-stepper>
-        </form>
-      </div>
+        </div>
 
-      <!-- Form per la ricarica -->
-      <div class="topUpForm" *ngIf="phoneTopUpChoice">
-        <mat-horizontal-stepper [linear]="true" class="formStepper">
-          <mat-step
-            label="Dati del Telefono"
-            [stepControl]="firstPhoneTopUpForm"
+        <!-- Form per il deposito -->
+        <div class="" *ngIf="bankDepositChoice">
+          <form
+            [formGroup]="bankDepositForm"
+            (ngSubmit)="onBankDepositSubmit()"
           >
-            <form [formGroup]="firstPhoneTopUpForm">
-              <div class="row">
-                <div class="col-lg-3 input">
+            <mat-horizontal-stepper [linear]="true" class="formStepper">
+              <mat-step
+                label="Dati del Deposito"
+                [stepControl]="bankDepositForm"
+              >
+                <div class="dataForm">
                   <mat-form-field>
                     <input
-                      id="PhoneNumber"
+                      id="Amount"
                       type="text"
-                      placeholder="Numero di Telefono"
+                      placeholder="Importo"
                       matInput
                       class="form-control"
-                      formControlName="phoneNumber"
+                      formControlName="amount"
                     />
                   </mat-form-field>
                 </div>
-                <div class="col-lg-3 input">
+                <div class="buttons">
+                  <button type="button" matStepperNext>Avanti</button>
+                </div>
+              </mat-step>
+
+              <mat-step label="Conferma" completed="false">
+                <div class="confirmForm">
+                  <div class="dataSummary">
+                    <p>Importo: {{ bankDepositForm.get("amount").value }}€</p>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <button class="redButton" matStepperPrevious>Indietro</button>
+                  <button class="confirmButton" type="submit">Conferma</button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+          </form>
+        </div>
+
+        <!-- Form per il versamento -->
+        <div class="" *ngIf="bankWithdrawalChoice">
+          <form
+            [formGroup]="bankWithdrawalForm"
+            (ngSubmit)="onBankWithdrawalSubmit()"
+          >
+            <mat-horizontal-stepper [linear]="true" class="formStepper">
+              <mat-step
+                label="Dati del Prelievo"
+                [stepControl]="bankWithdrawalForm"
+              >
+                <div class="dataForm">
                   <mat-form-field>
-                    <mat-label for="provider">Gestore Telefonico</mat-label>
-                    <mat-select
-                      aria-label="Default select example"
-                      id="provider"
-                      required
-                      formControlName="provider"
-                    >
-                      <mat-option value="Tim">Tim</mat-option>
-                      <mat-option value="Vodafone">Vodafone</mat-option>
-                      <mat-option value="Wind">Wind</mat-option>
-                    </mat-select>
+                    <input
+                      id="Amount"
+                      type="text"
+                      placeholder="Importo"
+                      matInput
+                      class="form-control"
+                      formControlName="amount"
+                    />
                   </mat-form-field>
+                </div>
+                <div class="buttons">
+                  <button
+                    type="button"
+                    (click)="
+                      onCheckAmount(bankWithdrawalForm.get('amount').value)
+                    "
+                    matStepperNext
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </mat-step>
+
+              <mat-step label="Conferma" completed="false">
+                <div class="confirmForm">
+                  <div class="dataSummary">
+                    <p></p>
+                    <p>
+                      Importo: {{ bankWithdrawalForm.get("amount").value }}€
+                    </p>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <button class="redButton" matStepperPrevious>Indietro</button>
+                  <button class="confirmButton" type="submit">Conferma</button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+          </form>
+        </div>
+
+        <!-- Form per la ricarica -->
+        <div class="topUpForm" *ngIf="phoneTopUpChoice">
+          <mat-horizontal-stepper [linear]="true" class="formStepper">
+            <mat-step
+              label="Dati del Telefono"
+              [stepControl]="firstPhoneTopUpForm"
+            >
+              <form [formGroup]="firstPhoneTopUpForm">
+                <div class="row">
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <input
+                        id="PhoneNumber"
+                        type="text"
+                        placeholder="Numero di Telefono"
+                        matInput
+                        class="form-control"
+                        formControlName="phoneNumber"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 input">
+                    <mat-form-field>
+                      <mat-label for="provider">Gestore Telefonico</mat-label>
+                      <mat-select
+                        aria-label="Default select example"
+                        id="provider"
+                        required
+                        formControlName="provider"
+                      >
+                        <mat-option value="Tim">Tim</mat-option>
+                        <mat-option value="Vodafone">Vodafone</mat-option>
+                        <mat-option value="Wind">Wind</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <button matStepperNext type="button">Avanti</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step
+              label="Dati della Ricarica"
+              [stepControl]="secondPhoneTopUpForm"
+            >
+              <form [formGroup]="secondPhoneTopUpForm">
+                <div class="dataForm">
+                  <mat-form-field>
+                    <input
+                      type="text"
+                      placeholder="Importo"
+                      matInput
+                      formControlName="amount"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="buttons">
+                  <button class="redButton" matStepperPrevious>Indietro</button>
+                  <button class="confirmButton" type="button" matStepperNext>
+                    Avanti
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step label="Conferma" completed="false">
+              <div class="confirmForm">
+                <div class="dataSummary">
+                  <p>
+                    Numero di Telefono:
+                    {{ firstPhoneTopUpForm.get("phoneNumber").value }}
+                  </p>
+                  <p>
+                    Gestore Telefonico:
+                    {{ firstPhoneTopUpForm.get("provider").value }}
+                  </p>
+                  <p>
+                    Importo: {{ secondPhoneTopUpForm.get("amount").value }}€
+                  </p>
                 </div>
               </div>
               <div class="buttons">
-                <button matStepperNext type="button">Avanti</button>
-              </div>
-            </form>
-          </mat-step>
-
-          <mat-step
-            label="Dati della Ricarica"
-            [stepControl]="secondPhoneTopUpForm"
-          >
-            <form [formGroup]="secondPhoneTopUpForm">
-              <div class="dataForm">
-                <mat-form-field>
-                  <input
-                    type="text"
-                    placeholder="Importo"
-                    matInput
-                    formControlName="amount"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="buttons">
                 <button class="redButton" matStepperPrevious>Indietro</button>
-                <button class="confirmButton" type="button" matStepperNext>
-                  Avanti
+                <button class="confirmButton" (click)="onPhoneTopUpSubmit()">
+                  Conferma
                 </button>
               </div>
-            </form>
-          </mat-step>
-          <mat-step label="Conferma" completed="false">
-            <div class="confirmForm">
-              <div class="dataSummary">
-                <p>
-                  Numero di Telefono:
-                  {{ firstPhoneTopUpForm.get("phoneNumber").value }}
-                </p>
-                <p>
-                  Gestore Telefonico:
-                  {{ firstPhoneTopUpForm.get("provider").value }}
-                </p>
-                <p>Importo: {{ secondPhoneTopUpForm.get("amount").value }}€</p>
-              </div>
-            </div>
-            <div class="buttons">
-              <button class="redButton" matStepperPrevious>Indietro</button>
-              <button class="confirmButton" (click)="onPhoneTopUpSubmit()">
-                Conferma
-              </button>
-            </div>
-          </mat-step>
-        </mat-horizontal-stepper>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="safety-container">
-    <h2 class="text-center my-3">
-      <i class="fa-solid fa-file-invoice-dollar"></i> Consigli per i pagamenti:
-    </h2>
-    <div class="row">
-      <div class="col-lg-7 col-12-sm">
-        <ul class="mb-3">
-          <li>
-            Ti ricordiamo che il saldo attuale potrebbe non corrispondere
-            esattamente a quello registrato presso la banca.
-          </li>
-          <li>
-            Per favore presta attenzione ai dati inseriti durante il processo di
-            compilazione. Una disattenzione potrebbe portare ad errori e non
-            soddisfare la richiesta di pagamento.
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-5 col-12-sm side-image">
-        <img
-          class="back-img-lock"
-          src="/assets/img/homepage_first_section.jpg"
-          alt="lock-image"
-        />
-        <div class="blue-gradient"></div>
+  <div
+    [ngClass]="{
+      'dark-safety-container': !themeLight,
+      'light-safety-container': themeLight
+    }"
+  >
+    <div class="safety-container">
+      <h2 class="text-center my-3">
+        <i class="fa-solid fa-file-invoice-dollar"></i> Consigli per i
+        pagamenti:
+      </h2>
+      <div class="row">
+        <div class="col-lg-7 col-12-sm">
+          <ul class="mb-3">
+            <li>
+              Ti ricordiamo che il saldo attuale potrebbe non corrispondere
+              esattamente a quello registrato presso la banca.
+            </li>
+            <li>
+              Per favore presta attenzione ai dati inseriti durante il processo
+              di compilazione. Una disattenzione potrebbe portare ad errori e
+              non soddisfare la richiesta di pagamento.
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-5 col-12-sm side-image">
+          <img
+            class="back-img-lock"
+            src="/assets/img/homepage_first_section.jpg"
+            alt="lock-image"
+          />
+          <div class="blue-gradient"></div>
+        </div>
       </div>
     </div>
   </div>

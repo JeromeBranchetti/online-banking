@@ -1,9 +1,5 @@
 import { Subject } from 'rxjs';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../service/auth.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,7 +30,6 @@ export class UserDashBoardComponent implements OnInit {
   public innerWidth: any;
   isModalVisible: boolean = false;
   form: FormGroup;
-  
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -81,9 +76,6 @@ export class UserDashBoardComponent implements OnInit {
       this.httpReq.GetConto(params.get('idCont'));
       this.sign.bsconto.subscribe((res) => {
         this.conto = res;
-        this.httpReq.temporanyBalanceFlag.next(this.conto.balance);
-        this.httpReq.temporanyBalance = this.conto.balance;
-        // this.currentSaldo = res.balance;
       });
     });
   }
@@ -136,7 +128,7 @@ export class UserDashBoardComponent implements OnInit {
     }
   }
 
-  themeDarkToggle(){
+  themeDarkToggle() {
     this.themeDark = !this.themeDark;
     this.spioneService.activatedEmitter.next(this.themeDark);
     console.log('Dark theme sent ' + this.themeDark);

@@ -135,3 +135,11 @@ span {
 .account-container {
   margin-bottom: 10vh;
 }
+
+.amount-container {
+  text-align: right;
+}
+
+.amount-header {
+  text-align: right;
+}

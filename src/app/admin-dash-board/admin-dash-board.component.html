@@ -38,7 +38,7 @@
     <!-- Spazio per le richieste -->
     <div class="col-lg-6 col-sm-12">
       <div class="div-center">
-        <div *ngIf="requestVisibility">
+        <div *ngIf="requestVisibility" class="request-container">
           <app-request
             [firstName]="selectedUser.firstName"
             [lastName]="selectedUser.lastName"
@@ -48,12 +48,16 @@
             [idConto]="selectedRequest.id"
             [result]="selectedRequest.result"
             [header]="selectedRequest.header"
+            (acceptRequest)="onAcceptRequest()"
+            (declineRequest)="onDeclineRequest()"
           ></app-request>
-          <div class="buttons" *ngIf="buttonVisibility">
-            <button class="button" (click)="onAcceptRequest()">Accetta</button>
-            <button class="redButton" (click)="onDeclineRequest()">
-              Rifiuta
-            </button>
+          <!-- Bottone di download -->
+          <div class="row">
+            <div class="col-lg-12 downloadButton">
+              <button (click)="onDownloadUserList()">
+                Download Lista Utenti
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -77,13 +81,6 @@
           <div [ngClass]="{}"></div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- Bottone di download -->
-  <br />
-  <div class="row">
-    <div class="col-lg-12 downloadButton">
-      <button (click)="onDownloadUserList()">Download Lista Utenti</button>
     </div>
   </div>
 </div>

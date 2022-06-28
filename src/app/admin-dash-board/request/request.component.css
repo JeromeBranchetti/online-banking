@@ -20,6 +20,7 @@
 
 .card {
   background-color: transparent;
+  width: 100%;
 }
 
 .card-header {
@@ -35,17 +36,32 @@
   color: red;
 }
 
+.data-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .personal-data {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
 .account-data {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
 .result-container {
   display: flex;
   justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  margin-left: 2px;
+  margin-right: 2px;
 }

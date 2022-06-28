@@ -72,7 +72,7 @@
         <tr>
           <th scope="col">Tipo Transazione</th>
           <th scope="col">Data</th>
-          <th scope="col">Importo</th>
+          <th scope="col"><div class="amount-header">Importo</div></th>
           <th scope="col" class="description">Descrizione</th>
         </tr>
       </thead>
@@ -81,11 +81,13 @@
           <td>{{ bankTransaction.operationType | lowercase }}</td>
           <td>{{ bankTransaction.data | date: "dd/MM/yyyy" }}</td>
           <td>
-            {{
-              spyModeBoolean
-                ? "****"
-                : (bankTransaction.amount | number: "1.2-2")
-            }}€
+            <div class="amount-container">
+              {{
+                spyModeBoolean
+                  ? "****"
+                  : (bankTransaction.amount | number: "1.2-2")
+              }}€
+            </div>
           </td>
           <td class="description">
             {{ bankTransaction.causal }}

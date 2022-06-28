@@ -25,7 +25,6 @@ export class SignUpService {
   bs: BehaviorSubject<utente> = new BehaviorSubject<utente>(null);
   bsconto: BehaviorSubject<conto> = new BehaviorSubject<conto>(null);
 
-
   newUtente(x: FormGroup) {
     let ut = utente.factory();
     ut = Object.assign(ut, x.value);
@@ -38,24 +37,20 @@ export class SignUpService {
   onAddUser(ut: utente) {
     this.http
       .post<response>('http://localhost:8080/api/auth/register', ut)
-      .subscribe({next:(res) => {
-        this.auth.token=res;
-        this.us.idUt = res.userId;
-        this.auth.isAuthenticated();
-        this.auth.authenticated = true;   
-  this.router.navigate(['/home-page-guest'], {
-    queryParams: {
-    idUt:this.us.idUt , idCont:this.us.idCont}
-    },
- );
-},
-error:()=>(alert("Email già in uso"))
-})}
+      .subscribe({
+        next: (res) => {
+          this.auth.token = res;
+          this.us.idUt = res.userId;
+          this.auth.isAuthenticated();
+          this.auth.authenticated = true;
+          this.router.navigate(['/home-page-guest'], {
+            queryParams: {
+              idUt: this.us.idUt,
+              idCont: this.us.idCont,
+            },
+          });
+        },
+        error: () => alert('Email già in uso'),
+      });
+  }
 }
-  
-
-    
-
-
- 
-

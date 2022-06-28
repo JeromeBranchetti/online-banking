@@ -14,13 +14,15 @@
     </h3>
   </div>
   <div class="card-body">
-    <div class="personal-data">
-      <h3>Nome: {{ firstName }}</h3>
-      <h3>Cognome: {{ lastName }}</h3>
-    </div>
-    <div class="account-data">
-      <h3>Id Conto: {{ idConto }}</h3>
-      <h3>Email: {{ email }}</h3>
+    <div class="data-container">
+      <div class="personal-data">
+        <h3>Nome: {{ firstName }}</h3>
+        <h3>Id Conto: {{ idConto }}</h3>
+      </div>
+      <div class="account-data">
+        <h3>Cognome: {{ lastName }}</h3>
+        <h3>Email: {{ email }}</h3>
+      </div>
     </div>
     <div class="result-container">
       <h3
@@ -34,6 +36,10 @@
         </span>
         {{ result }}
       </h3>
+    </div>
+    <div class="buttons" *ngIf="result === undefined">
+      <button class="button" (click)="onAcceptRequest()">Accetta</button>
+      <button class="redButton" (click)="onDeclineRequest()">Rifiuta</button>
     </div>
   </div>
 </div>

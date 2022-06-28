@@ -59,6 +59,8 @@ export class HttpRequestService {
         this.temporanyBalance = res.balance;
         this.sign.bsconto.next(this.conto);
         this.modifyAccount = this.conto;
+        this.temporanyBalanceFlag.next(this.conto.balance);
+        this.temporanyBalance = this.conto.balance;
       });
   }
 
@@ -412,8 +414,8 @@ export class HttpRequestService {
           this.temporanyBalanceFlag.next(this.temporanyBalance);
           alert('Pagamento completato!');
         },
-        error: () => {
-          alert('Errore durante il processo di pagamento');
+        error: (error) => {
+          alert(error.error);
         },
       });
   }

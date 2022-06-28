@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-request',
@@ -15,7 +15,18 @@ export class RequestComponent implements OnInit {
   @Input() header: string = '';
   @Input() idConto: number = 0;
 
+  @Output() acceptRequest = new EventEmitter<void>();
+  @Output() declineRequest = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onAcceptRequest() {
+    this.acceptRequest.emit();
+  }
+
+  onDeclineRequest() {
+    this.declineRequest.emit();
+  }
 }

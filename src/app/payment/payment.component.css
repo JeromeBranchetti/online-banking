@@ -68,7 +68,7 @@ input.ng-invalid.ng-touched {
 }
 
 .dark-form-container {
-  background-color: #b298d2;
+  background-color: #b298d289;
 }
 
 .mat-form-field {
@@ -213,7 +213,7 @@ input.ng-invalid.ng-touched {
   border-radius: 8px;
   position: relative;
   left: 10%;
-  background-color: #b298d2;
+  background-color: #b298d289;
   padding-top: 10px;
 }
 

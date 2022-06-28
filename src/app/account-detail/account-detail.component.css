@@ -79,7 +79,7 @@ button {
 }
 
 .my-table {
-  background-color: white;
+  background-color: transparent;
 }
 
 .description {
@@ -101,23 +101,49 @@ span {
 }
 
 ::ng-deep .mat-select-arrow {
-  color: white;
+  color: #b292d9;
 }
 
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #b292d9;
+}
+
+.light {
+  background-color: #b292d9;
+}
+
+.dark {
+  background-color: white;
+}
+
+/* :host /deep/ .light-select > .mat-select-arrow,
+:host /deep/ .light-select > .mat-select-value-text {
+  color: black !important;
+}
+
+:host /deep/ .dark-select > .mat-select-arrow,
+:host /deep/ .dark-select > .mat-select-value-text {
+  color: white !important;
+}
+
+.light-label {
+  color: white !important;
+}
+
+.dark-label {
+  color: black !important;
+} */
+
 ::ng-deep mat-label {
-  color: white;
+  color: #b292d9;
 }
 
 ::ng-deep mat-form-field {
   background-color: transparent !important;
 }
 
-::ng-deep .mat-select-value-text {
-  color: white !important;
-}
-
 :host /deep/ .mat-select-value-text {
-  color: white !important;
+  color: #b292d9 !important;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {

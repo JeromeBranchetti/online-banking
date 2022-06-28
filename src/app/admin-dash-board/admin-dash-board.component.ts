@@ -72,6 +72,7 @@ export class AdminDashBoardComponent implements OnInit {
           for (let request of this.newRequests) {
             this.userList.push(res.find((user) => user.id === request.userId));
           }
+          console.log(res);
         });
       },
       error: (errorRes: HttpErrorResponse) => {

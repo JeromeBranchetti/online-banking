@@ -32,7 +32,7 @@ export class GraphicComponent implements OnInit, OnDestroy {
     let y = [];
     for (let v of res) {
       y.push(v.amount);
-      x.push(v.data);
+      x.push(v.date);
     }
     this.addData(this.Graphic, x, y);
   }

@@ -1,6 +1,6 @@
 export class BankTransaction {
   operationType?: string;
-  data?: string;
+  date?: string;
   amount: number;
   causal: string;
   destinationIban?: string;

@@ -12,7 +12,10 @@
     aria-hidden="true"
     *ngIf="isModalVisible"
   >
-    <div class="modal-dialog" [style.display]="isModalVisible ? 'block' : 'none'">
+    <div
+      class="modal-dialog"
+      [style.display]="isModalVisible ? 'block' : 'none'"
+    >
       <form [formGroup]="form">
         <div class="modal-content p-3" *ngIf="isModalVisible">
           <div class="modal-header">
@@ -81,13 +84,17 @@
         [queryParams]="{ idUt: US.idUt, idCont: US.idCont }"
       >
         <span><i class="fas fa-arrow-left"></i></span>
-        <h3>Altri Account</h3>
+        <h3>Altri Conti</h3>
       </a>
       <a routerLink="/assicurazioni">
         <span><i class="fas fa-car-crash"></i></span>
         <h3>Assicurazioni</h3>
       </a>
-      <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="isModalVisible = true">
+      <a
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+        (click)="isModalVisible = true"
+      >
         <span><i class="fas fa-plus-circle"></i></span>
         <h3>Apri nuovo conto</h3>
       </a>
@@ -96,8 +103,11 @@
         <h3>Privacy</h3>
       </a>
       <a (click)="themeDarkToggle()">
-        <span><i class="fas fa-sun" *ngIf="themeDark"></i><i class="fas fa-moon" *ngIf="!themeDark"></i></span>
-        <h3>Tema {{ themeDark ? 'Giorno' : 'Notte' }}</h3>
+        <span
+          ><i class="fas fa-sun" *ngIf="themeDark"></i
+          ><i class="fas fa-moon" *ngIf="!themeDark"></i
+        ></span>
+        <h3>Tema {{ themeDark ? "Giorno" : "Notte" }}</h3>
       </a>
     </div>
   </aside>
@@ -134,7 +144,9 @@
         </button>
         <div class="left mt-3">
           <h3>Iban</h3>
-          <h2 class="iban-text-resize">{{ modeSpione ? iban : conto?.iban ?? "" }}</h2>
+          <h2 class="iban-text-resize">
+            {{ modeSpione ? iban : conto?.iban ?? "" }}
+          </h2>
         </div>
         <div class="decoration-2 mt-2 mb-3"></div>
         <small class="text-muted">Ultime 24 ore</small>

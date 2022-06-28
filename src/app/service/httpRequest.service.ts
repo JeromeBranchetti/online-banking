@@ -31,6 +31,7 @@ export class HttpRequestService {
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
   userList = new BehaviorSubject<utente[]>([]);
+  errorMessage: string = '';
 
   constructor(
     private http: HttpClient,
@@ -295,9 +296,10 @@ export class HttpRequestService {
               }),
             }
           );
-          alert("richiesta inviata");
+          alert('richiesta inviata');
         },
         error: (errorRes: HttpErrorResponse) => {
+          this.errorMessage = errorRes.error.message;
           alert(errorRes.error.message);
         },
       });

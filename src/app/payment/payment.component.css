@@ -11,6 +11,11 @@ h1 {
   margin-bottom: 50px;
 }
 
+.h1-special {
+  font-family: poppins, sans-serif;
+  font-size: xx-large;
+}
+
 .generalContainer {
   display: flex;
   justify-content: space-evenly;

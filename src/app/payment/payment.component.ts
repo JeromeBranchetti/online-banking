@@ -137,13 +137,21 @@ export class PaymentComponent implements OnInit {
   }
 
   onBankTransferSubmit() {
+    console.log(this.firstBankTransferForm.get('firstName').value);
     let transaction: BankTransaction;
     transaction = {
       amount: +(this.secondBankTransferForm.get('amount').value * +1).toFixed(
         2
       ),
       causal:
-        "Bonifico all'iban: " + this.secondBankTransferForm.get('iban').value,
+        'Bonifico da: ' +
+        this.httpReq.utente.firstName +
+        ' ' +
+        this.httpReq.utente.lastName +
+        ' a: ' +
+        this.firstBankTransferForm.get('firstName').value +
+        ' ' +
+        this.firstBankTransferForm.get('lastName').value,
       destinationIban: this.secondBankTransferForm.get('iban').value,
       originIban: this.httpReq.conto.iban,
     };

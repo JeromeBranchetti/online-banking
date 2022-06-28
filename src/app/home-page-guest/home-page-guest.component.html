@@ -9,55 +9,29 @@
     </div>
   </div>
   <div class="second-section">
-    <div class="container main-card" (click)="toConto(conti[0].id)">
-      <div class="dark-background-layer"></div>
-      <div class="row d-flex flex-column main-account-row">
-        <div class="col">
-          <h1 class="text-center text-h1-main">Account Principale</h1>
-        </div>
-        <div class="col">
-          <div class="row my-3">
-            <div class="col fs-5"><span>N.conto</span></div>
-            <div class="col fs-4">{{ conti[0]?.accountNumber ?? "" }}</div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row">
-            <div class="col-sm-12 col-lg-6 fs-5"><span>Iban</span></div>
-            <div class="col-sm-12 col-lg-6 fs-5 iban-text">
-              {{ conti[0]?.iban ?? "" }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="third-section container-fluid pt-2" *ngIf="conti.length > 1">
-    <!-- Carousel con altri conti -->
-    <h1 class="text-center text-h1-main mt-2 ">Altri Account</h1>
     <div class="container-fluid py-3 row mx-0 justify-content-center">
       <div
-        *ngFor="let conto of conti | slice: 1; index as i"
-        class="col-lg-4 col-md-6 col-sm-12"
+        *ngFor="let conto of conti; index as i"
+        class="col-lg-6 col-md-6 col-sm-12"
       >
-        <div class="card">
+        <div class="card top-cards">
           <div class="card-content">
             <h1 class="card-title">
-              <span class="slide-text">Conto n.{{ i + 2 }}</span>
+              <span class="slide-text">Conto n.{{ i + 1 }}</span>
             </h1>
             <div class="card-body">
               <div class="row d-flex flex-column">
                 <div class="col">
-                  <p class="fs-6">JavaIsland Savings Account</p>
+                  <p class="fs-6">B-n-B Account Risparmi</p>
                   <p class="fs-6">
-                    N.conto: {{ conti[i + 1]?.accountNumber ?? "" }}
+                    N.conto: {{ conti[i]?.accountNumber ?? "" }}
                   </p>
                 </div>
 
                 <div class="col text-center">
                   <p>Iban</p>
                   <h5>
-                    {{ conti[i + 1]?.iban ?? ""}}
+                    {{ conti[i]?.iban ?? ""}}
                   </h5>
                 </div>
               </div>
@@ -65,7 +39,50 @@
             <div class="row d-flex justify-content-center">
               <div
                 class="col-6 to-details p-2 fs-6"
-                (click)="toConto(conti[i + 1].id)"
+                (click)="toConto(conti[i].id)"
+              >
+                Dettagli
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="third-section container-fluid pt-2" *ngIf="conti.length > 2">
+    <h1>Altri Conti</h1>
+    <div class="container-fluid py-3 row mx-0 justify-content-center">
+      <div
+        *ngFor="let conto of conti | slice: 2; index as i"
+        class="col-lg-4 col-md-6 col-sm-12"
+      >
+        <div class="card">
+          <div class="card-content">
+            <h1 class="card-title">
+              <span class="slide-text">Conto n.{{ i + 3 }}</span>
+            </h1>
+            <div class="card-body">
+              <div class="row d-flex flex-column">
+                <div class="col">
+                  <p class="fs-6">B-n-B Account Risparmi</p>
+                  <p class="fs-6">
+                    N.conto: {{ conti[i + 2]?.accountNumber ?? "" }}
+                  </p>
+                </div>
+
+                <div class="col text-center">
+                  <p>Iban</p>
+                  <h5>
+                    {{ conti[i + 2]?.iban ?? ""}}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div
+                class="col-6 to-details p-2 fs-6"
+                (click)="toConto(conti[i + 2].id)"
               >
                 Dettagli
               </div>

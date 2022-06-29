@@ -7,16 +7,24 @@
             ><i class="fas fa-university"></i
           ></i></div
       ></span>
-      <span class="brand-name fs-4 mx-2"> <i class="fas fa-bold"></i> -n- <i class="fas fa-bold"></i> </span>
+      <span class="brand-name fs-4 mx-2">
+        <i class="fas fa-bold"></i> -n- <i class="fas fa-bold"></i>
+      </span>
     </div>
-    <div *ngIf="homeButtonVisible" class="col-lg-2 col-md-2 col-2 my-2 home-guest text-end p-0">
+    <div
+      *ngIf="homeButtonVisible"
+      class="col-lg-2 col-md-2 col-2 my-2 home-guest text-end p-0"
+    >
       <button class="home-guest-button" (click)="toHomeGuestPage()">
         <i class="fas fa-house-damage fa-2xl"></i>
         <br />
         <span class=".d-sm-none">Conti</span>
       </button>
     </div>
-    <div *ngIf="homeButtonVisible" class="col-lg-1 col-md-2 col-2 my-2 man-run-box text-end p-0">
+    <div
+      *ngIf="homeButtonVisible"
+      class="col-lg-1 col-md-2 col-2 my-2 man-run-box text-end p-0"
+    >
       <button class="man-button" (click)="logOut()">
         <i class="fas fa-sign-out-alt fa-2xl"></i>
         <br />
@@ -24,7 +32,10 @@
       </button>
     </div>
 
-    <div *ngIf="homeButtonVisible" class="col-lg-1 col-md-2 col-2 my-2 text-center p-0">
+    <div
+      *ngIf="homeButtonVisible"
+      class="col-lg-1 col-md-2 col-2 my-2 text-center p-0"
+    >
       <button (click)="openCloseToggle()" class="eye-button">
         <i *ngIf="eyeOpen" class="fas fa-eye fs-2"></i>
         <i *ngIf="!eyeOpen" class="fas fa-eye-slash fs-2"></i>

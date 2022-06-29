@@ -1,7 +1,12 @@
 /* Titolo */
 
 h1 {
+  margin-top: 15px;
   font-size: 300%;
+}
+
+.h1-special {
+  font-weight: 800;
 }
 
 /* Grafico  */

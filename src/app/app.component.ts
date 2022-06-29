@@ -6,17 +6,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'online-banking';
-  isDarkTriggered:boolean = true;
+  isDarkTriggered: boolean = true;
 
   constructor(private spioneService: SpioneService) {}
-  
+
   ngOnInit() {
     this.spioneService.activatedEmitter.subscribe((value) => {
       this.isDarkTriggered = value;
-      console.log('In onInit di home Dark trigger ' + this.isDarkTriggered);
-    })
+    });
   }
-
 }

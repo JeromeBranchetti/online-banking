@@ -7,16 +7,18 @@
 
 h1 {
   font-size: 300%;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 50px;
 }
 
 .h1-special {
-  font-family: poppins, sans-serif;
+  /* font-family: poppins, sans-serif; */
   font-size: xx-large;
+  font-weight: 800;
 }
 
 .generalContainer {
+  min-height: 207px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -56,6 +58,7 @@ input.ng-invalid.ng-touched {
 .mat-stepper-horizontal {
   background-color: transparent;
   border-radius: 7px;
+  min-height: 207px;
 }
 
 .formStepp {
@@ -105,32 +108,34 @@ input.ng-invalid.ng-touched {
   border-radius: 7px;
 }
 
-::ng-deep .mat-horizontal-stepper-header-container {
+.little-form-buttons {
+  position: relative;
+  top: 35px;
+}
+
+:host /deep/ .mat-horizontal-content-container {
+  min-height: 135px;
+  min-width: 561px;
+}
+
+:host /deep/ .mat-horizontal-stepper-header-container {
   background-color: rgba(20, 22, 47, 255);
 }
 
-::ng-deep .mat-stepper-horizontal-line {
+:host /deep/ .mat-stepper-horizontal-line {
   background-color: white;
 }
 
-::ng-deep .mat-step-text-label {
+:host /deep/ .mat-step-text-label {
   color: white;
 }
 
-::ng-deep .mat-step-header .mat-step-icon {
+:host /deep/ .mat-step-header .mat-step-icon {
   background-color: #666fc8;
 }
 
-::ng-deep .mat-step-header .mat-step-icon-selected {
+:host /deep/ .mat-step-header .mat-step-icon-selected {
   background-color: rgba(36, 49, 177, 255);
-}
-
-::ng-deep .mat-select-value-text {
-  color: black !important;
-}
-
-::ng-deep .mat-select-placeholder .mat-select-min-line {
-  color: black !important;
 }
 
 :host /deep/ .mat-select-value-text {
@@ -141,12 +146,12 @@ input.ng-invalid.ng-touched {
   color: black !important;
 }
 
-::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-infix {
   color: black !important;
 }
 
-:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-infix {
-  color: black !important;
+p {
+  color: black;
 }
 
 .confirmButton {
@@ -179,11 +184,16 @@ input.ng-invalid.ng-touched {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    min-height: 207px;
+  }
+
+  #bankTransferForm {
+    width: 100%;
   }
 
   ::ng-deep .mat-stepper-horizontal-line {
     display: none;
+    width: 100%;
   }
   ::ng-deep .mat-step-text-label {
     display: none;

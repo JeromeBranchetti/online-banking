@@ -20,13 +20,13 @@ export class CustomAlertComponent implements OnInit {
         this.successOperation = flag;
         console.log(this.successOperation);
         console.log(this.myMessage);
-        this.alert.nativeElement.classList.remove('none');
+        this.alert.nativeElement.classList.remove('d-none');
       });
     });
   }
 
   closeAlert() {
-    this.myMessage = '';
-    this.alert.nativeElement.classList.add('none');
+    // this.myMessage = '';
+    this.alert.nativeElement.classList.add('d-none');
   }
 }

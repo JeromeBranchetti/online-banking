@@ -18,7 +18,8 @@ export class CustomAlertComponent implements OnInit {
       this.httpRequestService.message.subscribe((message: string) => {
         this.myMessage = message;
         this.successOperation = flag;
-        console.log(flag);
+        console.log(this.successOperation);
+        console.log(this.myMessage);
         this.alert.nativeElement.classList.remove('none');
       });
     });

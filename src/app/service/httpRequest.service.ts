@@ -377,8 +377,8 @@ export class HttpRequestService {
         },
         error: (error) => {
           console.log(error.error);
-          this.message.next(error.error);
           this.errorFlag.next(true);
+          this.message.next(error.error);
         },
       });
   }
@@ -403,8 +403,8 @@ export class HttpRequestService {
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
-          this.message.next(error.error);
           this.errorFlag.next(true);
+          this.message.next(error.error);
         },
       });
   }
@@ -425,8 +425,8 @@ export class HttpRequestService {
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
-          this.message.next(error.error);
           this.errorFlag.next(true);
+          this.message.next(error.error);
         },
       });
   }

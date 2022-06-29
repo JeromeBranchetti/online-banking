@@ -369,14 +369,15 @@ export class HttpRequestService {
         }
       )
       .subscribe({
-        next: () => {
-          alert('Pagamento completato!');
+        next: (res) => {
+          this.errorFlag.next(false);
+          this.message = res;
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
-        error: (res) => {
-          alert(res.error);
-          console.log(res);
+        error: (error) => {
+          this.message = error.error;
+          this.errorFlag.next(true);
         },
       });
   }
@@ -394,13 +395,15 @@ export class HttpRequestService {
         }
       )
       .subscribe({
-        next: () => {
+        next: (res) => {
+          this.errorFlag.next(false);
+          this.message = res;
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
-          alert('Pagamento completato!');
         },
-        error: () => {
-          alert('Errore durante il processo di pagamento');
+        error: (error) => {
+          this.message = error.error;
+          this.errorFlag.next(true);
         },
       });
   }
@@ -414,16 +417,13 @@ export class HttpRequestService {
         responseType: 'text',
       })
       .subscribe({
-        next: () => {
+        next: (res) => {
           this.errorFlag.next(false);
+          this.message = res;
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
-          alert('Pagamento completato!');
-          this.message = 'Pagamento completato!';
         },
         error: (error) => {
-          // console.log(error);
-          // alert(error.error);
           this.message = error.error;
           this.errorFlag.next(true);
         },

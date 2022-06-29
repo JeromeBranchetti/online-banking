@@ -8,14 +8,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class CustomAlertComponent implements OnInit {
   myMessage!: string;
-  successOperation!:boolean;
+  successOperation!: boolean;
   @ViewChild('alert') alert: ElementRef;
 
   constructor(private httpRequestService: HttpRequestService) {
     this.httpRequestService.errorFlag.subscribe((flag: boolean) => {
       this.myMessage = this.httpRequestService.message;
-      this.alert.nativeElement.classList.remove('none');
       this.successOperation = !flag;
+      this.alert.nativeElement.classList.remove('none');
     });
   }
 

@@ -145,7 +145,6 @@ export class PaymentComponent implements OnInit {
   }
 
   onBankTransferSubmit() {
-    console.log(this.firstBankTransferForm.get('firstName').value);
     let transaction: BankTransaction;
     transaction = {
       amount: +(this.secondBankTransferForm.get('amount').value * +1).toFixed(
@@ -189,19 +188,13 @@ export class PaymentComponent implements OnInit {
   }
 
   onBankDepositSubmit() {
-    if (+this.bankDepositForm.get('amount').value > 0) {
-      let transaction: BankTransaction;
-      transaction = {
-        amount: +(this.bankDepositForm.get('amount').value * +1).toFixed(2),
-        causal: 'Deposito online',
-        accountId: this.httpReq.conto.id,
-      };
-      this.httpReq.onAddTransaction(transaction);
-    } else {
-      alert(
-        "L'importo inserito non è valido. Per favore inserire un importo uno valido"
-      );
-    }
+    let transaction: BankTransaction;
+    transaction = {
+      amount: +(this.bankDepositForm.get('amount').value * +1).toFixed(2),
+      causal: 'Deposito online',
+      accountId: this.httpReq.conto.id,
+    };
+    this.httpReq.onAddTransaction(transaction);
     this.bankDepositChoice = false;
     this.bankDepositForm.reset();
   }

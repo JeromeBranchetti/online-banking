@@ -301,7 +301,6 @@ export class HttpRequestService {
           alert('richiesta inviata');
         },
         error: (errorRes: HttpErrorResponse) => {
-          // this.errorMessage = errorRes.error.message;
           alert(errorRes.error.message);
         },
       });
@@ -371,11 +370,13 @@ export class HttpRequestService {
       .subscribe({
         next: (res) => {
           this.errorFlag.next(false);
+          console.log(res);
           this.message = res;
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
+          console.log(error.error);
           this.message = error.error;
           this.errorFlag.next(true);
         },

@@ -1,10 +1,8 @@
 import { SpioneService } from './../service/spione.service';
-import { UtenteService } from './../service/utente.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-payment',
@@ -25,6 +23,7 @@ export class PaymentComponent implements OnInit {
   balance: number;
   amount: number;
   themeLight: boolean;
+  completeOperation: boolean = false;
 
   firstBankTransferForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
@@ -83,6 +82,9 @@ export class PaymentComponent implements OnInit {
     this.iban = this.httpReq.conto.iban;
     this.spyService.activatedEmitter.subscribe((res) => {
       this.themeLight = res;
+    });
+    this.httpReq.errorFlag.subscribe(() => {
+      this.completeOperation = true;
     });
   }
 
@@ -171,7 +173,6 @@ export class PaymentComponent implements OnInit {
   }
 
   onPhoneTopUpSubmit() {
-    console.log(this.httpReq.conto.id);
     let transaction: BankTransaction;
     transaction = {
       amount: +(this.secondPhoneTopUpForm.get('amount').value * +1).toFixed(2),
@@ -206,7 +207,6 @@ export class PaymentComponent implements OnInit {
       causal: 'Prelievo online',
       accountId: this.httpReq.conto.id,
     };
-    console.log(transaction);
     this.httpReq.onAddTransaction(transaction);
     this.bankWithdrawalChoice = false;
     this.bankWithdrawalForm.reset();

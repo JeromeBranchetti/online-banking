@@ -1,5 +1,8 @@
 <div class="payment-container">
-  <app-custom-alert></app-custom-alert>
+  <app-custom-alert
+    *ngIf="completeOperation"
+    (closePressed)="this.completeOperation = false"
+  ></app-custom-alert>
   <!-- Titolo -->
   <h1 class="text-center h1-special">Pagamenti</h1>
 

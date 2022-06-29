@@ -31,8 +31,8 @@ export class HttpRequestService {
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
   userList = new BehaviorSubject<utente[]>([]);
-  message = new Subject<string>();
-  errorFlag = new Subject<boolean>();
+  message = new BehaviorSubject<string>('');
+  errorFlag = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -53,7 +53,6 @@ export class HttpRequestService {
         }),
       })
       .subscribe((res) => {
-        console.log(res);
         this.US.idCont = res.id;
         this.US.Attivo = res.state;
         this.conto = res;
@@ -370,13 +369,11 @@ export class HttpRequestService {
       .subscribe({
         next: (res) => {
           this.errorFlag.next(false);
-          console.log(res);
           this.message.next(res);
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
-          console.log(error.error);
           this.errorFlag.next(true);
           this.message.next(error.error);
         },

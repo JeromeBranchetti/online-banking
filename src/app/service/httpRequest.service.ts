@@ -31,7 +31,7 @@ export class HttpRequestService {
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
   userList = new BehaviorSubject<utente[]>([]);
-  message: string = '';
+  message = new Subject<string>();
   errorFlag = new Subject<boolean>();
 
   constructor(
@@ -371,13 +371,13 @@ export class HttpRequestService {
         next: (res) => {
           this.errorFlag.next(false);
           console.log(res);
-          this.message = res;
+          this.message.next(res);
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
           console.log(error.error);
-          this.message = error.error;
+          this.message.next(error.error);
           this.errorFlag.next(true);
         },
       });
@@ -398,12 +398,12 @@ export class HttpRequestService {
       .subscribe({
         next: (res) => {
           this.errorFlag.next(false);
-          this.message = res;
+          this.message.next(res);
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
-          this.message = error.error;
+          this.message.next(error.error);
           this.errorFlag.next(true);
         },
       });
@@ -420,12 +420,12 @@ export class HttpRequestService {
       .subscribe({
         next: (res) => {
           this.errorFlag.next(false);
-          this.message = res;
+          this.message.next(res);
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
-          this.message = error.error;
+          this.message.next(error.error);
           this.errorFlag.next(true);
         },
       });

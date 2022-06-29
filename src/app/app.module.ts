@@ -35,6 +35,7 @@ import { ErrorComponent } from './error/error.component';
 import { ChangeEmailPassComponent } from './change-email-pass/change-email-pass.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component';
+import { CustomAlertComponent } from './custom-alert/custom-alert.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AssicurazioniComponent } from './assicurazioni/assicurazioni.component'
     ChangeEmailPassComponent,
     PrivacyComponent,
     AssicurazioniComponent,
+    CustomAlertComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,8 @@ export class HttpRequestService {
   temporanyBalanceFlag = new BehaviorSubject<number>(0);
   temporanyBalance: number;
   userList = new BehaviorSubject<utente[]>([]);
-  errorMessage: string = '';
+  message: string = '';
+  errorFlag = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
@@ -300,7 +301,7 @@ export class HttpRequestService {
           alert('richiesta inviata');
         },
         error: (errorRes: HttpErrorResponse) => {
-          this.errorMessage = errorRes.error.message;
+          // this.errorMessage = errorRes.error.message;
           alert(errorRes.error.message);
         },
       });
@@ -414,13 +415,17 @@ export class HttpRequestService {
       })
       .subscribe({
         next: () => {
+          this.errorFlag.next(false);
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
           alert('Pagamento completato!');
+          this.message = 'Pagamento completato!';
         },
         error: (error) => {
-          console.log(error);
-          alert(error.error);
+          // console.log(error);
+          // alert(error.error);
+          this.message = error.error;
+          this.errorFlag.next(true);
         },
       });
   }

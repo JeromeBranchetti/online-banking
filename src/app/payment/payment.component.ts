@@ -83,8 +83,10 @@ export class PaymentComponent implements OnInit {
     this.spyService.activatedEmitter.subscribe((res) => {
       this.themeLight = res;
     });
-    this.httpReq.errorFlag.subscribe(() => {
-      this.completeOperation = true;
+    this.httpReq.errorFlag.subscribe((res) => {
+      if (res !== null) {
+        this.completeOperation = true;
+      }
     });
   }
 

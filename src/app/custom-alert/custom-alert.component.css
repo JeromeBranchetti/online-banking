@@ -1,47 +1,47 @@
 .red {
-    background-color: palevioletred;
-    color: brown;
-
+  background-color: palevioletred;
+  color: brown;
 }
 
 .green {
-    background-color: green;
-    color: white;
+  background-color: green;
+  color: white;
 }
 
 .alert-box {
-    /* display: none; */
-    position: fixed;
-    z-index: 1;
-    width: 500px;
-    height: 4rem;
-    left: 50%;
-    top: 10vh;
-    transform: translateX(-50%);
-    padding: 1rem;
+  position: fixed;
+  z-index: 1;
+  width: 500px;
+  height: 4rem;
+  left: 50%;
+  top: 10vh;
+  transform: translateX(-50%);
+  padding: 1rem;
+  transition: all 1000ms ease-in-out;
 }
 
 .close {
-    color: white;
-    float: right;
-    position: relative;
+  color: white;
+  float: right;
+  position: relative;
 
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 button {
-    padding: 0;
-    border: 0;
-    background: none;
-    font-size: inherit;
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
 }

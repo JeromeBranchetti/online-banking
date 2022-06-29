@@ -32,7 +32,7 @@ export class HttpRequestService {
   temporanyBalance: number;
   userList = new BehaviorSubject<utente[]>([]);
   message = new BehaviorSubject<string>('');
-  errorFlag = new BehaviorSubject<boolean>(false);
+  errorFlag = new BehaviorSubject<boolean>(null);
 
   constructor(
     private http: HttpClient,

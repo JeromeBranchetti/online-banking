@@ -33,17 +33,16 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
           (message: string) => {
             this.myMessage = message;
             this.successOperation = flag;
-            console.log(this.successOperation);
-            // this.alert.nativeElement.classList.remove('d-none');
           }
         );
       }
     );
+    setTimeout(() => {
+      this.closeAlert();
+    }, 2000);
   }
 
   closeAlert() {
-    // this.myMessage = '';
-    // this.alert.nativeElement.classList.add('d-none');
     this.closePressed.emit();
   }
 

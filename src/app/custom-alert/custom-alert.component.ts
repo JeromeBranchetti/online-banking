@@ -15,9 +15,11 @@ export class CustomAlertComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpRequestService.errorFlag.subscribe((flag: boolean) => {
-      this.myMessage = this.httpRequestService.message;
-      this.successOperation = flag;
-      this.alert.nativeElement.classList.remove('none');
+      this.httpRequestService.message.subscribe((message: string) => {
+        this.myMessage = message;
+        this.successOperation = !flag;
+        this.alert.nativeElement.classList.remove('none');
+      });
     });
   }
 

@@ -11,15 +11,15 @@ export class CustomAlertComponent implements OnInit {
   successOperation!: boolean;
   @ViewChild('alert') alert: ElementRef;
 
-  constructor(private httpRequestService: HttpRequestService) {
+  constructor(private httpRequestService: HttpRequestService) {}
+
+  ngOnInit(): void {
     this.httpRequestService.errorFlag.subscribe((flag: boolean) => {
       this.myMessage = this.httpRequestService.message;
-      this.successOperation = !flag;
+      this.successOperation = flag;
       this.alert.nativeElement.classList.remove('none');
     });
   }
-
-  ngOnInit(): void {}
 
   closeAlert() {
     this.myMessage = '';

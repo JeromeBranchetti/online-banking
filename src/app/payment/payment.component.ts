@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
     ]),
     amount: new FormControl(null, [
       Validators.required,
-      Validators.pattern(new RegExp('[0-9]+[.,][0-9]*|[0-9]+')),
+      Validators.pattern('^([0-9]+[.][0-9]*|[0-9]+)$'),
     ]),
   });
 
@@ -52,21 +52,21 @@ export class PaymentComponent implements OnInit {
   secondPhoneTopUpForm = new FormGroup({
     amount: new FormControl(null, [
       Validators.required,
-      Validators.pattern(new RegExp('[0-9]+[.,][0-9]*|[0-9]+')),
+      Validators.pattern('^([0-9]+[.][0-9]*|[0-9]+)$'),
     ]),
   });
 
   bankWithdrawalForm = new FormGroup({
     amount: new FormControl(null, [
       Validators.required,
-      Validators.pattern(new RegExp('[0-9]+[.,][0-9]*|[0-9]+')),
+      Validators.pattern('^([0-9]+[.][0-9]*|[0-9]+)$'),
     ]),
   });
 
   bankDepositForm = new FormGroup({
     amount: new FormControl(null, [
       Validators.required,
-      Validators.pattern(new RegExp('[0-9]+[.][0-9]*|[0-9]+')),
+      Validators.pattern('^([0-9]+[.][0-9]*|[0-9]+)$'),
     ]),
   });
 

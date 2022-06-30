@@ -354,9 +354,14 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() => {
-        this.bar.next(false);
-        this.root.navigate(['/login']);
+      .subscribe({
+        next: () => {
+          this.bar.next(false);
+          this.root.navigate(['/login']);
+        },
+        error: (error) => {
+          console.log(error.error.message);
+        },
       });
   }
 

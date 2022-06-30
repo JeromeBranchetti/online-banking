@@ -335,7 +335,10 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() => this.root.navigate(['/login']));
+      .subscribe(() => {
+        this.bar.next(false);
+        this.root.navigate(['/login']);
+      });
   }
 
   changemail(email: string) {
@@ -351,7 +354,10 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() => this.root.navigate(['/login']));
+      .subscribe(() => {
+        this.bar.next(false);
+        this.root.navigate(['/login']);
+      });
   }
 
   onAddTransaction(transaction: BankTransaction) {

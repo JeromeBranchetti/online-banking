@@ -1,10 +1,10 @@
 .red {
-  background-color: palevioletred;
-  color: brown;
+  background-color: rgb(216, 112, 147);
+  color: rgb(79, 19, 19);
 }
 
 .green {
-  background-color: green;
+  background-color: rgb(0, 128, 0);
   color: white;
 }
 
@@ -17,8 +17,22 @@
   top: 10vh;
   transform: translateX(-50%);
   padding: 1rem;
-  transition: all 1000ms ease-in-out;
+  border-radius: 0.3rem;
 }
+
+@media screen and (max-width: 570px) {
+  .alert-box {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 571) and (max-width: 1000px) {
+  .alert-box {
+    width: 50vw;
+  }
+}
+    
+
 
 .close {
   color: white;

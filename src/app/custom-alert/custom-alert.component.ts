@@ -39,7 +39,7 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
     );
     setTimeout(() => {
       this.closeAlert();
-    }, 2000);
+    }, 3500);
   }
 
   closeAlert() {

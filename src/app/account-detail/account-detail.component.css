@@ -1,7 +1,7 @@
 /* Titolo */
 
 h1 {
-  margin-top: 15px;
+  padding-top: 15px;
   font-size: 300%;
 }
 
@@ -81,6 +81,7 @@ button {
 
 .my-table-container {
   min-height: 35vh;
+  padding-bottom: 15vh;
 }
 
 .my-table {
@@ -114,30 +115,12 @@ span {
 }
 
 .light {
-  background-color: #b292d9;
+  background-color: rgba(240, 248, 255, 255);
 }
 
 .dark {
   background-color: white;
 }
-
-/* :host /deep/ .light-select > .mat-select-arrow,
-:host /deep/ .light-select > .mat-select-value-text {
-  color: black !important;
-}
-
-:host /deep/ .dark-select > .mat-select-arrow,
-:host /deep/ .dark-select > .mat-select-value-text {
-  color: white !important;
-}
-
-.light-label {
-  color: white !important;
-}
-
-.dark-label {
-  color: black !important;
-} */
 
 ::ng-deep mat-label {
   color: #b292d9;

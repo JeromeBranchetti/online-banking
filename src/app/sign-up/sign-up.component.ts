@@ -1,3 +1,4 @@
+import { HttpRequestService } from './../service/httpRequest.service';
 import { AuthService } from './../service/auth.service';
 import { SignUpService } from '../service/signUp.service';
 import { Router } from '@angular/router';
@@ -16,15 +17,24 @@ import { Location } from '@angular/common';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+  completeOperation: boolean = false;
+
   constructor(
     public SUService: SignUpService,
 
-    private auth: AuthService,
+    private httpReq: HttpRequestService,
     private location: Location
   ) {}
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.httpReq.errorFlag.subscribe((res) => {
+      if (res !== null) {
+        this.completeOperation = true;
+      }
+    });
+  }
+
   signUp_form = new FormGroup({
     firstName: new FormControl(null, Validators.required),
     birthDate: new FormControl(null, [Validators.required]),
@@ -40,7 +50,10 @@ export class SignUpComponent implements OnInit {
     let birth = new Date(c.value);
     let today = new Date();
 
-    if (today.getFullYear() - birth.getFullYear() > 18 && today.getFullYear() - birth.getFullYear() <= 100) {
+    if (
+      today.getFullYear() - birth.getFullYear() > 18 &&
+      today.getFullYear() - birth.getFullYear() <= 100
+    ) {
       return { maggiorenne: true };
     } else if (today.getFullYear() - birth.getFullYear() < 18) {
       return false;
@@ -71,7 +84,8 @@ export class SignUpComponent implements OnInit {
     if (this.controlDate(this.signUp_form.get('birthDate'))) {
       this.SUService.newUtente(this.signUp_form);
     } else {
-      alert('non hai un età accettabile');
+      this.httpReq.errorFlag.next(true);
+      this.httpReq.message.next('Età non idonea');
     }
   }
 

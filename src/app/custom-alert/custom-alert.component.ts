@@ -47,7 +47,6 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('distrutto');
     this.firstSubscribtion.unsubscribe();
     this.secondSubscribtion.unsubscribe();
   }

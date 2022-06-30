@@ -1,4 +1,8 @@
 <div class="container user-container">
+  <app-custom-alert
+    *ngIf="completeOperation"
+    (closePressed)="this.completeOperation = false"
+  ></app-custom-alert>
   <h1 class="text-center my-3">Accesso Utente</h1>
   <button class="" (click)="backButton()">
     <i class="fas fa-undo"></i> indietro

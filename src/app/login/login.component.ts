@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  completeOperation: boolean = false;
   login_form = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
@@ -25,7 +26,13 @@ export class LoginComponent implements OnInit {
     private http: HttpRequestService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.errorFlag.subscribe((res) => {
+      if (res !== null) {
+        this.completeOperation = true;
+      }
+    });
+  }
 
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe({
@@ -44,8 +51,10 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (errorRes) => {
+        console.log(errorRes);
         this.auth.error = errorRes.error;
-        alert('Email o Password errati');
+        this.http.errorFlag.next(true);
+        this.http.message.next('Credenziali errate');
       },
     });
   }

@@ -1,5 +1,8 @@
 <!-- userDashboard -->
-
+<app-custom-alert
+  *ngIf="completeOperation"
+  (closePressed)="this.completeOperation = false"
+></app-custom-alert>
 <div class="container-fluid dash-container">
   <!-- Modal -->
   <div

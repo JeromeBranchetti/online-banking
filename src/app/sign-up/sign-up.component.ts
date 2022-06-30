@@ -1,7 +1,5 @@
 import { HttpRequestService } from './../service/httpRequest.service';
-import { AuthService } from './../service/auth.service';
 import { SignUpService } from '../service/signUp.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -28,9 +26,9 @@ export class SignUpComponent implements OnInit {
   regex = new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^W]).{8,32}$');
 
   ngOnInit(): void {
-    this.httpReq.errorFlag.subscribe((res) => {
+    this.httpReq.completeOperation.subscribe((res) => {
       if (res !== null) {
-        this.completeOperation = true;
+        this.completeOperation = res;
       }
     });
   }
@@ -84,6 +82,7 @@ export class SignUpComponent implements OnInit {
     if (this.controlDate(this.signUp_form.get('birthDate'))) {
       this.SUService.newUtente(this.signUp_form);
     } else {
+      this.httpReq.completeOperation.next(true);
       this.httpReq.errorFlag.next(true);
       this.httpReq.message.next('Età non idonea');
     }

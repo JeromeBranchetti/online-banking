@@ -30,6 +30,7 @@ export class UserDashBoardComponent implements OnInit {
   public innerWidth: any;
   isModalVisible: boolean = false;
   form: FormGroup;
+  completeOperation: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -45,7 +46,6 @@ export class UserDashBoardComponent implements OnInit {
     private httpReq: HttpRequestService,
     private sign: SignUpService,
     private router: Router,
-    private auth: AuthService,
     public US: UtenteService,
     formBuilder: FormBuilder
   ) {
@@ -55,6 +55,11 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.httpReq.completeOperation.subscribe((res) => {
+      if (res !== null) {
+        this.completeOperation = res;
+      }
+    });
     this.Init();
     this.innerWidth = window.innerWidth;
     this.whatScreenSize();

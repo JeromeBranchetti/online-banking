@@ -33,6 +33,7 @@ export class HttpRequestService {
   userList = new BehaviorSubject<utente[]>([]);
   message = new BehaviorSubject<string>('');
   errorFlag = new BehaviorSubject<boolean>(null);
+  completeOperation = new BehaviorSubject<boolean>(null);
 
   constructor(
     private http: HttpClient,
@@ -297,10 +298,14 @@ export class HttpRequestService {
               }),
             }
           );
-          alert('richiesta inviata');
+          this.errorFlag.next(false);
+          this.completeOperation.next(true);
+          this.message.next('Richiesta inviata');
         },
         error: (errorRes: HttpErrorResponse) => {
-          alert(errorRes.error.message);
+          this.completeOperation.next(true);
+          this.errorFlag.next(true);
+          this.message.next(errorRes.error.message);
         },
       });
   }
@@ -360,7 +365,9 @@ export class HttpRequestService {
           this.root.navigate(['/login']);
         },
         error: (error) => {
-          console.log(error.error.message);
+          this.completeOperation.next(true);
+          this.errorFlag.next(true);
+          this.message.next(error.error.message);
         },
       });
   }
@@ -379,12 +386,14 @@ export class HttpRequestService {
       )
       .subscribe({
         next: (res) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(false);
           this.message.next(res);
           this.temporanyBalance = this.temporanyBalance + transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(true);
           this.message.next(error.error);
         },
@@ -405,12 +414,14 @@ export class HttpRequestService {
       )
       .subscribe({
         next: (res) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(false);
           this.message.next(res);
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(true);
           this.message.next(error.error);
         },
@@ -427,12 +438,14 @@ export class HttpRequestService {
       })
       .subscribe({
         next: (res) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(false);
           this.message.next(res);
           this.temporanyBalance = this.temporanyBalance - transaction.amount;
           this.temporanyBalanceFlag.next(this.temporanyBalance);
         },
         error: (error) => {
+          this.completeOperation.next(true);
           this.errorFlag.next(true);
           this.message.next(error.error);
         },
@@ -473,7 +486,18 @@ export class HttpRequestService {
           }),
         }
       )
-      .subscribe(() => alert('richiesta chiusura inviata'));
+      .subscribe({
+        next: () => {
+          this.completeOperation.next(true);
+          this.errorFlag.next(false);
+          this.message.next('Richiesta chiusura inviata');
+        },
+        error: (res) => {
+          this.completeOperation.next(true);
+          this.errorFlag.next(true);
+          this.message.next('Errore durante la chiusura');
+        },
+      });
   }
 
   onPrepareRequestList() {

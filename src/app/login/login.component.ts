@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.errorFlag.subscribe((res) => {
+    this.http.completeOperation.subscribe((res) => {
+      console.log(res);
       if (res !== null) {
-        this.completeOperation = true;
+        this.completeOperation = res;
       }
     });
   }
@@ -51,10 +52,10 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (errorRes) => {
-        console.log(errorRes);
         this.auth.error = errorRes.error;
+        this.http.completeOperation.next(true);
         this.http.errorFlag.next(true);
-        this.http.message.next('Credenziali errate');
+        this.http.message.next(errorRes.error.message);
       },
     });
   }

@@ -72,7 +72,6 @@ export class FootBarComponent implements OnInit {
   }
 
   onPayment() {
- 
     if (this.httpreq.conto.state === 'ACTIVE') {
       this.router.navigate(['/payment'], {
         queryParams: {
@@ -81,7 +80,9 @@ export class FootBarComponent implements OnInit {
         },
       });
     } else {
-      alert('conto non attivo');
+      this.httpreq.completeOperation.next(true);
+      this.httpreq.errorFlag.next(true);
+      this.httpreq.message.next('Conto non attivo');
     }
   }
   onMovementDetail() {
@@ -93,7 +94,9 @@ export class FootBarComponent implements OnInit {
         },
       });
     } else {
-      alert('conto non attivo!');
+      this.httpreq.completeOperation.next(true);
+      this.httpreq.errorFlag.next(true);
+      this.httpreq.message.next('Conto non attivo');
     }
   }
 }

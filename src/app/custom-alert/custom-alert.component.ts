@@ -39,7 +39,7 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
     );
     setTimeout(() => {
       this.closeAlert();
-    }, 3500);
+    }, 2000);
   }
 
   closeAlert() {
@@ -49,5 +49,6 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.firstSubscribtion.unsubscribe();
     this.secondSubscribtion.unsubscribe();
+    this.httpRequestService.completeOperation.next(false);
   }
 }

@@ -1,13 +1,13 @@
-<div class="container-fluid pt-3">
-  <div class="row">
+<div class="container-fluid container-admin pt-3">
+  
     <!-- Prima lista (sinistra) -->
-    <div class="col-lg-3 col-sm-12">
+    <div class="list-on-left">
       <div id="newRequestHeader">
         <h1>Lista Nuove Richieste</h1>
         <button class="confirmButton" (click)="onFetchRequest()">Carica</button>
         <button class="confirmButton" (click)="onLogOut()">LogOut</button>
       </div>
-      <div class="row flex-column requestsList" aria-orientation="vertical">
+      <div class="row flex-column requestsList g-0" aria-orientation="vertical">
         <!-- ngFor nuove richieste -->
         <div
           *ngFor="let request of newRequests; let i = index"
@@ -15,10 +15,11 @@
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
+          @fade-left
           (click)="onSelectNewRequest(i)"
         >
           <div class="row">
-            <div class="col-10">
+            <div class="col-10" @fade-text>
               {{ userList[i].firstName }}
               {{ userList[i].lastName }}
             </div>
@@ -36,7 +37,7 @@
     </div>
 
     <!-- Spazio per le richieste -->
-    <div class="col-lg-6 col-sm-12">
+    <div class="accept-refuse">
       <div class="div-center">
         <div *ngIf="requestVisibility" class="request-container">
           <app-request
@@ -51,15 +52,20 @@
             (acceptRequest)="onAcceptRequest()"
             (declineRequest)="onDeclineRequest()"
           ></app-request>
-          <!-- Bottone di download -->
-          <div class="row"></div>
+          
+        </div>
+        <div class="row downloadButton g-0 mt-2">
+          <div class="col">
+            <button (click)="onDownloadUserList()">Download Lista Utenti</button>
+          </div>
         </div>
       </div>
+      
     </div>
 
     <!-- Seconda lista (destra) -->
-    <div class="col-lg-3 col-sm-12 oldRequestList">
-      <h1>Lista Richieste Completate</h1>
+    <div class="oldRequestList list-on-right">
+      <h1 class="text-center">Lista Richieste Completate</h1>
       <div class="nav flex-column requestsList" aria-orientation="vertical">
         <!-- ngFor vecchie richieste -->
         <div
@@ -68,6 +74,7 @@
           data-toggle="pill"
           aria-controls="v-pills-home"
           aria-selected="true"
+          @fade-right
           (click)="onSelectOldRequest(i)"
         >
           {{ oldUserList[i].firstName }}
@@ -76,14 +83,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="col-lg-12 downloadButton">
-  <button (click)="onDownloadUserList()">Download Lista Utenti</button>
-</div>
+
+

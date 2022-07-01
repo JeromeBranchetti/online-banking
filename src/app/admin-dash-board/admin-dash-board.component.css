@@ -1,28 +1,116 @@
-.oldRequestList {
-  margin-bottom: 10vh;
+.container-admin {
+  min-height: 85vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-areas: "list-left accept-decline list-right";
+}
+
+.list-on-right {
+  grid-area: list-right;
+  overflow: auto;
+}
+
+.list-on-left {
+  grid-area: list-left;
+  overflow: auto;
+}
+
+.accept-refuse {
+  grid-area: accept-decline;
+  position: relative;
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .container-admin {
+    height: calc(85 * 1.5vh);
+    grid-template-areas:
+      "list-left "
+      "accept-decline"
+      "list-right";
+  }
+
+  .list-on-left {
+    height: 35vh;
+  }
+
+  .accept-refuse {
+    height: 50vh;
+    width: 100%;
+  }
+
+  .list-on-right {
+    height: 35vh;
+  }
+
+  .div-center {
+    width: 96%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1204px) {
+  .container-admin {
+    grid-template-areas:
+      "list-left list-right"
+      "accept-decline accept-decline";
+  }
+
+  .requestsList {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .list-on-right {
+    height: 35vh;
+  }
+
+  .accept-refuse {
+    height: 50vh;
+  }
+
+  .div-center {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1205px) {
+  .div-center {
+    width: 90%;
+  }
+
+  .requestsList {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .list-on-right {
+    width: 30vw;
+  }
+
+  .accept-refuse {
+    width: 40vw;
+  }
+
+  .list-on-right {
+    width: 30vw;
+  }
+
+  .div-center {
+    width: 70%;
+  }
 }
 
 .request {
   cursor: pointer;
-  background-color: #f04a27;
+  background-color: rgba(240, 248, 255, 0.3);
   color: white;
-  border-bottom: 1px solid black;
   border-radius: 4px;
   justify-content: center;
   height: 2rem;
   width: 100%;
-  margin-top: 0.4rem;
-  background-color: rgba(240, 248, 255, 0.3);
   font-weight: 500;
   font-size: 1.1rem;
-  padding: 3px;
-}
-
-.request-container {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
 }
 
 .buttons {
@@ -36,7 +124,6 @@
   background-color: #abff00;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px;
-  /* #89ff00 0 2px 12px; */
 }
 
 .led-yellow {
@@ -54,7 +141,6 @@
   background-color: #f00;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px;
-  /* rgba(255, 0, 0, 0.5) 0 2px 12px; */
 }
 
 .admin-dash-box {
@@ -64,7 +150,7 @@
 
 .downloadButton {
   display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 #newRequestHeader {
@@ -77,8 +163,12 @@
 }
 
 .div-center {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.first-row {
+  height: max-content;
 }

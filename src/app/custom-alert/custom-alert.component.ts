@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { HttpRequestService } from './../service/httpRequest.service';
 import {
@@ -14,6 +15,14 @@ import {
   selector: 'app-custom-alert',
   templateUrl: './custom-alert.component.html',
   styleUrls: ['./custom-alert.component.css'],
+  animations: [
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [
+        animate(500),
+      ]),
+    ]),
+  ]
 })
 export class CustomAlertComponent implements OnInit, OnDestroy {
   @ViewChild('alert') alert: ElementRef;
@@ -23,6 +32,7 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
   successOperation!: boolean;
   firstSubscribtion = new Subscription();
   secondSubscribtion = new Subscription();
+  state: string = 'void';
 
   constructor(private httpRequestService: HttpRequestService) {}
 
@@ -33,17 +43,19 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
           (message: string) => {
             this.myMessage = message;
             this.successOperation = flag;
+            this.state = '*';
           }
         );
       }
     );
     setTimeout(() => {
       this.closeAlert();
-    }, 2000);
+    }, 3000);
   }
 
   closeAlert() {
     this.closePressed.emit();
+    this.state = 'void';
   }
 
   ngOnDestroy() {

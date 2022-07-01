@@ -1,4 +1,4 @@
-<div class="alert-box" [ngClass]="!successOperation ? 'green' : 'red'" #alert>
-  <span>{{ myMessage }}</span>
+<div class="alert-box text-center" [ngClass]="!successOperation ? 'green' : 'red'" #alert @fade>
+  <span class="alert-message">{{ myMessage }}</span>
   <button class="close" (click)="closeAlert()">&times;</button>
 </div>

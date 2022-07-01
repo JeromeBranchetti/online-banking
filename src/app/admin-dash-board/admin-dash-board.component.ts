@@ -1,12 +1,12 @@
 import { UtenteService } from './../service/utente.service';
 import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
-import { conto } from './../class/conto';
 import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { HttpErrorResponse } from '@angular/common/http';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 export class RequestModel {
   id?: number;
@@ -21,6 +21,27 @@ export class RequestModel {
   selector: 'app-admin-dash-board',
   templateUrl: './admin-dash-board.component.html',
   styleUrls: ['./admin-dash-board.component.css'],
+  animations: [
+    trigger('fade-left', [
+      state('void', style({ opacity: 0, transform: 'translateX(-100%)' })),
+      transition(':enter, :leave', [
+        animate(200),
+      ]),
+    ]),
+    trigger('fade-text', [
+      state('void', style({ opacity: 0})),
+      transition(':enter, :leave', [
+        animate(200),
+        
+      ]),
+    ]),
+    trigger('fade-right', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [
+        animate(300),
+      ]),
+    ])
+  ]
 })
 export class AdminDashBoardComponent implements OnInit {
   newRequests: RequestModel[] = [];

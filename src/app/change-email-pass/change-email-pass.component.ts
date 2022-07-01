@@ -16,7 +16,7 @@ export class ChangeEmailPassComponent implements OnInit {
   ngOnInit(): void {
     this.http.completeOperation.subscribe((res) => {
       if (res !== null) {
-        this.completeOperation = true;
+        this.completeOperation = res;
       }
     });
   }

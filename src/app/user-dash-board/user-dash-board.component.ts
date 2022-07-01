@@ -139,6 +139,9 @@ export class UserDashBoardComponent implements OnInit {
   themeDarkToggle() {
     this.themeDark = !this.themeDark;
     this.spioneService.activatedEmitter.next(this.themeDark);
-    console.log('Dark theme sent ' + this.themeDark);
+  }
+
+  onIsModalVisible() {
+    this.isModalVisible = true;
   }
 }

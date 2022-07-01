@@ -56,8 +56,6 @@ export class AccountDetailComponent implements OnInit {
 
     const text = document.querySelector('mat-select-value-text');
 
-    console.log(text);
-
     this.spyMode.activatedEmitter.subscribe((res) => {
       this.themeLight = res;
       // text.style.color = this.themeLight

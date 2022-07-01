@@ -20,6 +20,7 @@ export class HomePageGuestComponent implements OnInit {
   idUt: string = 'null';
   utente: utente;
   transactions: BankTransaction[] = [];
+  completeOperation: boolean = false;
 
   constructor(
     private router: Router,
@@ -35,6 +36,11 @@ export class HomePageGuestComponent implements OnInit {
   }
 
   Init(): void {
+    this.httpreq.completeOperation.subscribe((res) => {
+      if (res !== null) {
+        this.completeOperation = res;
+      }
+    });
     this.httpreq.bar.next(false);
     this.route.queryParamMap.subscribe((params) => {
       this.idUt = params.get('idUt');
@@ -50,8 +56,15 @@ export class HomePageGuestComponent implements OnInit {
             }),
           }
         )
-        .subscribe((res) => {
-          this.conti = res;
+        .subscribe({
+          next: (res) => {
+            this.conti = res;
+          },
+          error: (error) => {
+            this.httpreq.completeOperation.next(true);
+            this.httpreq.errorFlag.next(true);
+            this.httpreq.message.next(error.error.message);
+          },
         });
     });
   }

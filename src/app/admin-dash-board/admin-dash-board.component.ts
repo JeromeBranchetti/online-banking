@@ -73,6 +73,7 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodo per il colore
 
   onColorRequestList() {
+    this.requestsLight = [];
     for (let request of this.newRequests) {
       if (request.state === 'ACTIVATION_REQUEST') {
         this.requestsLight.push('green');
@@ -90,10 +91,10 @@ export class AdminDashBoardComponent implements OnInit {
         this.newRequests = res;
         this.onColorRequestList();
         this.httpReq.userList.subscribe((res) => {
+          this.userList = [];
           for (let request of this.newRequests) {
             this.userList.push(res.find((user) => user.id === request.userId));
           }
-          console.log(res);
         });
       },
       error: (errorRes: HttpErrorResponse) => {
@@ -131,11 +132,15 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
+    this.userList.splice(this.requestIndex, 1);
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
+    setTimeout(() => {
+      this.onFetchRequest();
+    }, 100);
   }
 
   onDeclineRequest() {
@@ -145,11 +150,15 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
+    this.userList.splice(this.requestIndex, 1);
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
+    setTimeout(() => {
+      this.onFetchRequest();
+    }, 100);
   }
 
   // Metodi per il download

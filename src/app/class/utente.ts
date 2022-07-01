@@ -5,7 +5,6 @@ export class utente {
   birthDate!: string;
   email!: string;
   password!: string;
-  // dipendente!: boolean;
 
   constructor(
     name: string,
@@ -13,7 +12,6 @@ export class utente {
     date: string,
     email: string,
     password: string
-    // dipendente:boolean
   ) {
     this.firstName = name;
 

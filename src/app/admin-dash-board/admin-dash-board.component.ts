@@ -1,7 +1,6 @@
 import { UtenteService } from './../service/utente.service';
 import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
-import { conto } from './../class/conto';
 import { utente } from './../class/utente';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
@@ -69,10 +68,10 @@ export class AdminDashBoardComponent implements OnInit {
         this.newRequests = res;
         this.onColorRequestList();
         this.httpReq.userList.subscribe((res) => {
+          this.userList = [];
           for (let request of this.newRequests) {
             this.userList.push(res.find((user) => user.id === request.userId));
           }
-          console.log(res);
         });
       },
       error: (errorRes: HttpErrorResponse) => {
@@ -110,11 +109,15 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
+    this.userList.splice(this.requestIndex, 1);
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
+    setTimeout(() => {
+      this.onFetchRequest();
+    }, 100);
   }
 
   onDeclineRequest() {
@@ -124,11 +127,15 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldRequests.push(this.newRequests[this.requestIndex]);
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
+    this.userList.splice(this.requestIndex, 1);
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
+    setTimeout(() => {
+      this.onFetchRequest();
+    }, 100);
   }
 
   // Metodi per il download

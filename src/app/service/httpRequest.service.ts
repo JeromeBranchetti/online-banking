@@ -34,6 +34,7 @@ export class HttpRequestService {
   message = new BehaviorSubject<string>('');
   errorFlag = new BehaviorSubject<boolean>(null);
   completeOperation = new BehaviorSubject<boolean>(null);
+  completeRequest = new BehaviorSubject<void>(null);
 
   constructor(
     private http: HttpClient,
@@ -53,17 +54,20 @@ export class HttpRequestService {
           Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
-      .subscribe((res) => {
-        this.US.idCont = res.id;
-        this.US.Attivo = res.state;
-        this.conto = res;
-        this.conto.iban = res.iban;
-        this.temporanyBalanceFlag.next(res.balance);
-        this.temporanyBalance = res.balance;
-        this.sign.bsconto.next(this.conto);
-        this.modifyAccount = this.conto;
-        this.temporanyBalanceFlag.next(this.conto.balance);
-        this.temporanyBalance = this.conto.balance;
+      .subscribe({
+        next: (res) => {
+          this.US.idCont = res.id;
+          this.US.Attivo = res.state;
+          this.conto = res;
+          this.conto.iban = res.iban;
+          this.temporanyBalanceFlag.next(res.balance);
+          this.temporanyBalance = res.balance;
+          this.sign.bsconto.next(this.conto);
+          this.modifyAccount = this.conto;
+          this.temporanyBalanceFlag.next(this.conto.balance);
+          this.temporanyBalance = this.conto.balance;
+        },
+        error: (error) => {},
       });
   }
 
@@ -95,17 +99,19 @@ export class HttpRequestService {
         email: ema,
         password: pass,
       })
-      .subscribe((response) => {
-        this.utente = response;
-
-        this.sign.bs.next(this.utente);
-        this.US.idUt = response.id;
-        this.root.navigate(['/home-page-guest'], {
-          queryParams: {
-            idUt: this.US.idUt,
-            idCont: this.US.idCont,
-          },
-        });
+      .subscribe({
+        next: (response) => {
+          this.utente = response;
+          this.sign.bs.next(this.utente);
+          this.US.idUt = response.id;
+          this.root.navigate(['/home-page-guest'], {
+            queryParams: {
+              idUt: this.US.idUt,
+              idCont: this.US.idCont,
+            },
+          });
+        },
+        error: (error) => {},
       });
   }
 
@@ -495,7 +501,7 @@ export class HttpRequestService {
         error: (res) => {
           this.completeOperation.next(true);
           this.errorFlag.next(true);
-          this.message.next('Errore durante la chiusura');
+          this.message.next(res.error.message);
         },
       });
   }

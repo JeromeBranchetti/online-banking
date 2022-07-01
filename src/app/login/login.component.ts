@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.completeOperation.subscribe((res) => {
-      console.log(res);
       if (res !== null) {
         this.completeOperation = res;
       }

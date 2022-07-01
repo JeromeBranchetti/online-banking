@@ -13,7 +13,6 @@
     tabindex="-1"
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
-    *ngIf="isModalVisible"
   >
     <div
       class="modal-dialog"
@@ -22,7 +21,7 @@
       <form [formGroup]="form">
         <div class="modal-content p-3" *ngIf="isModalVisible">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 class="modal-title" id="staticBackdropLabel"></h5>
             <button
               type="button"
               class="btn-close"
@@ -47,9 +46,9 @@
           <div class="modal-footer">
             <button
               type="button"
+              (click)="isModalVisible = false"
               class="btn btn-secondary mb-3 mt-2 p-2"
               data-bs-dismiss="modal"
-              (click)="isModalVisible = false"
             >
               Chiudi
             </button>
@@ -94,9 +93,9 @@
         <h3>Assicurazioni</h3>
       </a>
       <a
+        (click)="onIsModalVisible()"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
-        (click)="isModalVisible = true"
       >
         <span><i class="fas fa-plus-circle"></i></span>
         <h3>Apri nuovo conto</h3>

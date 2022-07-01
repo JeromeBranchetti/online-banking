@@ -1,4 +1,3 @@
-import { response } from './../class/response.mode';
 import { TransactionService } from './transaction.service';
 import { BankTransaction } from './../class/bankTransaction.model';
 import { SignUpService } from './signUp.service';

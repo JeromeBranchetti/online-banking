@@ -51,6 +51,7 @@ export class AdminDashBoardComponent implements OnInit {
   // Metodo per il colore
 
   onColorRequestList() {
+    this.requestsLight = [];
     for (let request of this.newRequests) {
       if (request.state === 'ACTIVATION_REQUEST') {
         this.requestsLight.push('green');

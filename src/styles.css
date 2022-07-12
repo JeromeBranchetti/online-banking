@@ -36,8 +36,9 @@ body {
 button {
   background-color: rgb(36, 49, 177);
   color: white;
-  padding: 7px;
+  padding: 12px;
   border-radius: 7px;
+  font-weight: 550;
 }
 
 .redButton {

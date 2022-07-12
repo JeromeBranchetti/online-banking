@@ -30,7 +30,6 @@ export class HomePageGuestComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-
     private auth: AuthService,
     private httpreq: HttpRequestService
   ) {}

@@ -1,3 +1,4 @@
+import { SpioneService } from './../service/spione.service';
 import { HttpRequestService } from './../service/httpRequest.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -17,11 +18,19 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 
 export class HomeComponent implements OnInit {
-  constructor(private router: Router,private httpReq:HttpRequestService) {}
+  theme: boolean = true;
 
-  ngOnInit(
-  ): void {
+  constructor(
+    private router: Router,
+    private httpReq: HttpRequestService,
+    private spyMode: SpioneService
+  ) {}
+
+  ngOnInit(): void {
     this.httpReq.bar.next(false);
+    this.spyMode.activatedEmitter.subscribe((res) => {
+      this.theme = res;
+    });
   }
 
   onSignUpNow() {
@@ -31,5 +40,4 @@ export class HomeComponent implements OnInit {
   onUserLogin() {
     this.router.navigate(['/login']);
   }
-  
 }

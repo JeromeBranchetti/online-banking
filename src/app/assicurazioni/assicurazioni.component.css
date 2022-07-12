@@ -14,6 +14,7 @@
 
 .extra-large-h1 {
   font-size: 3.5rem;
+  font-family: var(--nice-font-bold);
 }
 
 @media (min-width: 20em) {

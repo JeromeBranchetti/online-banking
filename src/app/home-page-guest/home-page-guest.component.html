@@ -3,7 +3,7 @@
     *ngIf="completeOperation"
     (closePressed)="this.completeOperation = false"
   ></app-custom-alert>
-  <div class="top-section-home text-center">
+  <!-- <div class="top-section-home text-center">
     <div class="dark-layer">
       <div class="text-box">
         <p class="big-text">Online Banking</p>
@@ -11,8 +11,9 @@
         <p class="big-text">per risparmiare denaro.</p>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="second-section">
+    <h1 class="text-center title">I miei conti</h1>
     <div class="container-fluid py-3 row mx-0 justify-content-center">
       <p class="text-center" *ngIf="noAccountError">
         Verrai reindirizzato alla Home tra {{ seconds }}

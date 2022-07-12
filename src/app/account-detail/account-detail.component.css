@@ -3,6 +3,7 @@
 h1 {
   padding-top: 15px;
   font-size: 300%;
+  font-family: var(--nice-font-bold);
 }
 
 .h1-special {

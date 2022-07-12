@@ -40,6 +40,10 @@ img {
   height: 8vh;
 }
 
+.logo-bnb {
+  height: 12vh;
+}
+
 .brand-name {
   cursor: default;
 }

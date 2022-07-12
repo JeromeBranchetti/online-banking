@@ -6,9 +6,10 @@
 /* Titolo */
 
 h1 {
-  font-size: 300%;
+  font-size: 3rem;
   padding-top: 15px;
   margin-bottom: 50px;
+  font-family: var(--nice-font-bold);
 }
 
 .h1-special {

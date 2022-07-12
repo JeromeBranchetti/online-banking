@@ -4,7 +4,8 @@ input {
 }
 
 h1 {
-  font-size: 300%;
+  font-size: 3rem;
+  font-family: var(--nice-font-bold);
 }
 
 .sign-up-box {

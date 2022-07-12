@@ -6,7 +6,13 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { HttpErrorResponse } from '@angular/common/http';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 export class RequestModel {
   id?: number;
@@ -24,24 +30,17 @@ export class RequestModel {
   animations: [
     trigger('fade-left', [
       state('void', style({ opacity: 0, transform: 'translateX(-100%)' })),
-      transition(':enter, :leave', [
-        animate(200),
-      ]),
+      transition(':enter, :leave', [animate(500)]),
     ]),
     trigger('fade-text', [
-      state('void', style({ opacity: 0})),
-      transition(':enter, :leave', [
-        animate(200),
-        
-      ]),
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [animate(500)]),
     ]),
     trigger('fade-right', [
-      state('void', style({ opacity: 0 })),
-      transition(':enter, :leave', [
-        animate(300),
-      ]),
-    ])
-  ]
+      state('void', style({ opacity: 0, transform: 'translateX(100%)' })),
+      transition(':enter, :leave', [animate(500)]),
+    ]),
+  ],
 })
 export class AdminDashBoardComponent implements OnInit {
   newRequests: RequestModel[] = [];
@@ -138,9 +137,6 @@ export class AdminDashBoardComponent implements OnInit {
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
-    setTimeout(() => {
-      this.onFetchRequest();
-    }, 100);
   }
 
   onDeclineRequest() {
@@ -156,9 +152,6 @@ export class AdminDashBoardComponent implements OnInit {
     } else {
       this.httpReq.onActivateAccount(this.selectedRequest.id);
     }
-    setTimeout(() => {
-      this.onFetchRequest();
-    }, 100);
   }
 
   // Metodi per il download

@@ -322,10 +322,9 @@ export class HttpRequestService {
           Authorization: 'Bearer ' + this.auth.token.token,
         }),
       })
-      .subscribe((res) => {
-        res;
-      });
+      .subscribe(() => {});
   }
+
   changepass(pass: string) {
     this.utente.password = pass;
 
@@ -333,18 +332,12 @@ export class HttpRequestService {
       password: this.utente.password,
       id: this.utente.id,
     };
-
     this.http
-      .put(
-        'http://localhost:8080/api/auth/users/update/password',
-        obj,
-
-        {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + this.auth.token.token,
-          }),
-        }
-      )
+      .put('http://localhost:8080/api/auth/users/update/password', obj, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.auth.token.token,
+        }),
+      })
       .subscribe(() => {
         this.bar.next(false);
         this.root.navigate(['/login']);
@@ -357,7 +350,6 @@ export class HttpRequestService {
       .put(
         'http://localhost:8080/api/auth/users/update/email',
         { id: this.utente.id, email: this.utente.email },
-
         {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + this.auth.token.token,

@@ -88,11 +88,6 @@ button {
   background-color: transparent;
 }
 
-.description {
-  display: flex;
-  justify-content: center;
-}
-
 .graph-container {
   background-color: aliceblue;
 }

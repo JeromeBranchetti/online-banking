@@ -1,3 +1,4 @@
+import { SpioneService } from './../service/spione.service';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from './../service/auth.service';
 
@@ -30,7 +31,6 @@ export class HomePageGuestComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-
     private auth: AuthService,
     private httpreq: HttpRequestService
   ) {}

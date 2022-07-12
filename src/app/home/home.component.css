@@ -110,12 +110,10 @@
 }
 
 button {
-  
   font-size: larger;
- 
 }
 
-.left-botton {
+.left-button {
   background-color: #ffffff;
   color: rgb(34, 34, 68);
   border: none;

@@ -13,8 +13,19 @@
               Apri il tuo account gratis e ricevi un bonus
             </p>
             <div class="button-row">
-              <button class="me-3 left-botton" (click)="onUserLogin()">Accedi</button>
-              <button class="right-button" (click)="onSignUpNow()">Registrati</button>
+              <button
+                class="me-3"
+                [ngClass]="{ 'left-button': theme }"
+                (click)="onUserLogin()"
+              >
+                Accedi
+              </button>
+              <button
+                [ngClass]="{ 'right-button': theme }"
+                (click)="onSignUpNow()"
+              >
+                Registrati
+              </button>
             </div>
           </div>
         </div>

@@ -14,6 +14,9 @@
   </div>
   <div class="second-section">
     <div class="container-fluid py-3 row mx-0 justify-content-center">
+      <p class="text-center" *ngIf="noAccountError">
+        Verrai reindirizzato alla Home tra {{ seconds }}
+      </p>
       <div
         *ngFor="let conto of conti; index as i"
         class="col-lg-6 col-md-6 col-sm-12"
@@ -27,6 +30,7 @@
               <div class="row d-flex flex-column">
                 <div class="col">
                   <p class="fs-6">B-n-B Account Risparmi</p>
+
                   <p class="fs-6">
                     N.conto: {{ conti[i]?.accountNumber ?? "" }}
                   </p>

@@ -22,7 +22,7 @@ import {
       state(
         'notLogged',
         style({
-          dispay: 'none',
+          display: 'none',
           transform: 'translateY(10vh)',
         })
       ),
@@ -30,7 +30,7 @@ import {
         'loggedVisible',
         style({
           display: 'visible',
-          trasform: 'translateY(0)',
+          transform: 'translateY(0)',
         })
       ),
       transition('notLogged => loggedVisible', animate(400)),

@@ -1,3 +1,4 @@
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from './../service/auth.service';
 
 import { BankTransaction } from './../class/bankTransaction.model';
@@ -21,6 +22,9 @@ export class HomePageGuestComponent implements OnInit {
   utente: utente;
   transactions: BankTransaction[] = [];
   completeOperation: boolean = false;
+  seconds: number = 6;
+  noAccountError: boolean = false;
+  private countDownSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -64,6 +68,26 @@ export class HomePageGuestComponent implements OnInit {
             this.httpreq.completeOperation.next(true);
             this.httpreq.errorFlag.next(true);
             this.httpreq.message.next(error.error.message);
+            this.noAccountError = true;
+            const customInterval = new Observable((observer) => {
+              let count = 6;
+              setInterval(() => {
+                observer.next(count);
+                if (count === 1) {
+                  observer.complete();
+                }
+                count--;
+                this.seconds = count;
+              }, 1000);
+            });
+
+            this.countDownSubscription = customInterval.subscribe(
+              (data) => {},
+              (error) => {},
+              () => {
+                this.router.navigate(['']);
+              }
+            );
           },
         });
     });

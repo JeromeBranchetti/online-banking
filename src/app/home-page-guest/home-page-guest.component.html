@@ -22,7 +22,7 @@
         *ngFor="let conto of conti; index as i"
         class="col-lg-6 col-md-6 col-sm-12"
       >
-        <div class="card top-cards">
+        <div class="card top-cards the-card-container">
           <div class="card-content">
             <h1 class="card-title">
               <span class="slide-text">Conto n.{{ i + 1 }}</span>
@@ -32,8 +32,8 @@
                 <div class="col">
                   <p class="fs-6">B-n-B Account Risparmi</p>
 
-                  <p class="fs-6">
-                    N.conto: {{ conti[i]?.accountNumber ?? "" }}
+                  <p class="fs-6 ">
+                    N.conto: <span class="numero-conto">{{ conti[i]?.accountNumber ?? "" }}</span>
                   </p>
                 </div>
 

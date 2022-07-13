@@ -87,6 +87,8 @@ button {
 
 .my-table {
   background-color: transparent;
+  display: table;
+  table-layout: fixed;
 }
 
 .graph-container {

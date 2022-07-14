@@ -73,7 +73,12 @@
         <h2 class="mb-0"><span class="primary-text"> Dash</span>Board</h2>
       </div>
       <div class="icons">
-        <span><i class="fas fa-user-alt fs-1 primary-text"></i></span>
+        <span>
+          <i class="fas fa-user-alt fs-1 primary-text"></i>
+          <!-- <div  class="profile-pic">
+            <img src="" alt="">
+          </div> -->
+        </span>
         <span *ngIf="menuClicked" class="close ms-4" id="close-btn"
           ><i class="fas fa-times fs-2" (click)="menuButtonToggle()"></i
         ></span>
@@ -123,6 +128,9 @@
     <h1 class="text-center my-3 h1-special">
       {{ modeSpione ? cliente : (guest?.firstName ?? "" | titlecase) }}
       {{ modeSpione ? cliente : (guest?.lastName ?? "" | titlecase) }}
+      <div class="my-image">
+        <img id="foto-profilo" #fotoProfilo alt="foto-profilo" [src]="dbImage">
+      </div>
     </h1>
     <div class="insights">
       <div class="num-conto">
@@ -187,6 +195,58 @@
           <button class="mb-3 mt-2 p-2" (click)="closeContoButton()">
             Termina <i class="far fa-window-close fs-6"></i>
           </button>
+        </div>
+        <div class="col">
+          <small>Carica foto profilo</small>
+          <hr />
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="mb-3 mt-2 p-2"
+            data-bs-toggle="modal"
+            data-bs-target="#fotoModal"
+          >
+            Foto <i class="fas fa-camera"></i>
+          </button>
+
+          <!-- Modal per le foto -->
+          <div
+            class="modal fade p-5 "
+            id="fotoModal"
+            tabindex="-1"
+            aria-labelledby="fotoModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content foto-modal">
+                <div class="modal-header">
+                  <h2 class="modal-title text-center" id="fotoModalLabel">Foto profilo</h2>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <form>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="titolo" class="form-label mt-2 mb-3 px-2 ">Titolo foto</label>
+                    <input type="text" class="form-control" id="titolo" placeholder="scrivi titolo..." (change)="onImageUpload($event)">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Seleziona una foto</label>
+                    <input class="form-control" type="file" name="image" id="formFile" accept="image/png, image/jpeg"/>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="me-2 chiudi" data-bs-dismiss="modal">Chiudi</button>
+                  <button type="button" class="" (click)="imageUploadAction()">Salva foto</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

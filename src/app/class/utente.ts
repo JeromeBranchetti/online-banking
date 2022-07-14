@@ -5,6 +5,7 @@ export class utente {
   birthDate!: string;
   email!: string;
   password!: string;
+  image?: FormData;
 
   constructor(
     name: string,

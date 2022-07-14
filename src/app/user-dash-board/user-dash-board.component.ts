@@ -163,11 +163,11 @@ export class UserDashBoardComponent implements OnInit {
 
 
   imageUploadAction() {
-    // const imageFormData = new FormData();
-    const myPic = this.guest.image.append('image', this.uploadedImage, this.uploadedImage.name);
+    const imageFormData = new FormData();
+    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
 
-    this.httpClient.post('http://localhost:8080/api/auth/upload/image/', myPic , { observe: 'response' })
+    this.httpClient.post('http://localhost:8080/api/auth/upload/image/', imageFormData , { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;

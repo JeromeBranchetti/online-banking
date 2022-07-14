@@ -132,6 +132,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.userList.splice(this.requestIndex, 1);
+    this.onColorRequestList();
     if (this.selectedRequest.state === 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {
@@ -147,6 +148,7 @@ export class AdminDashBoardComponent implements OnInit {
     this.oldUserList.push(this.selectedUser);
     this.newRequests.splice(this.requestIndex, 1);
     this.userList.splice(this.requestIndex, 1);
+    this.onColorRequestList();
     if (this.selectedRequest.state !== 'CLOSURE_REQUEST') {
       this.httpReq.onDisactivateAccount(this.selectedRequest.id);
     } else {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../service/auth.service';
@@ -59,7 +59,8 @@ export class UserDashBoardComponent implements OnInit {
     private router: Router,
     public US: UtenteService,
     formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private auth : AuthService
   ) {
     this.form = formBuilder.group({
       amount: ['1', Validators.required],
@@ -78,6 +79,7 @@ export class UserDashBoardComponent implements OnInit {
     this.spioneService.activatedEmitter.subscribe((res) => {
       this.themeDark = res;
     });
+    this.viewImage();
   }
 
   Init(): void {
@@ -158,6 +160,7 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   public onImageUpload(event) {
+    console.log(event.target.files);
     this.uploadedImage = event.target.files[0];
   }
 
@@ -166,8 +169,14 @@ export class UserDashBoardComponent implements OnInit {
     const imageFormData = new FormData();
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
+    this.guest.image =imageFormData;
+    console.log(this.guest);
+    console.log(this.uploadedImage);
 
-    this.httpClient.post('http://localhost:8080/api/auth/upload/image/', imageFormData , { observe: 'response' })
+    this.httpClient.post('http://localhost:8080/api/auth/upload/image/' + this.guest.id, imageFormData ,  {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.auth.token.token,
+      }),observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
@@ -180,7 +189,10 @@ export class UserDashBoardComponent implements OnInit {
     }
 
   viewImage() {
-    this.httpClient.get('http://localhost:8080/get/image/info/' + this.guest.id)
+    this.httpClient.get('http://localhost:8080/api/auth/get/image/info/' + this.guest.id,{
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.auth.token.token,
+      })})
       .subscribe(
         res => {
           this.postResponse = res;
@@ -188,5 +200,5 @@ export class UserDashBoardComponent implements OnInit {
         }
       );
   }
-  
+
 }

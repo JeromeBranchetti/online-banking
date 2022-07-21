@@ -17,6 +17,10 @@
   overflow: auto;
 }
 
+h1 {
+  font-family: var(--nice-font-bold);
+}
+
 .accept-refuse {
   grid-area: accept-decline;
   position: relative;

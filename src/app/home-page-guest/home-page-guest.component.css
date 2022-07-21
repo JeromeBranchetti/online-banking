@@ -293,6 +293,10 @@
   z-index: 1;
 }
 
+.warning {
+  color: white;
+}
+
 .main-account-row {
   z-index: 50;
   position: absolute;

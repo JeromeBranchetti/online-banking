@@ -150,6 +150,37 @@ aside .sidebar a:hover span {
   margin-left: 0.8rem;
 }
 
+/* aside .icons .profile-pic {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: black;
+  margin-left: 1rem;
+} */
+.foto-modal {
+  padding: 0.8rem;
+}
+
+.foto-modal .chiudi {
+background-color: gray;
+}
+
+.my-image {
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 50%;
+  background-color: black;
+  display: inline-block;
+  margin-left: 1rem;
+  font-size: initial;
+}
+
+.my-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 main .insights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

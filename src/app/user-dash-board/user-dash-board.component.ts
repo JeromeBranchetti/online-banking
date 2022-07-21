@@ -79,7 +79,6 @@ export class UserDashBoardComponent implements OnInit {
     this.spioneService.activatedEmitter.subscribe((res) => {
       this.themeDark = res;
     });
-    this.viewImage();
   }
 
   Init(): void {
@@ -90,6 +89,7 @@ export class UserDashBoardComponent implements OnInit {
 
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
+      this.httpReq.dbImage.subscribe((res)=>{this.dbImage=res})
       this.sign.bs.subscribe((res) => {
         this.guest = res;
       });
@@ -181,6 +181,7 @@ export class UserDashBoardComponent implements OnInit {
         if (response.status === 200) {
           this.postResponse = response;
           this.successResponse = this.postResponse.body.message;
+          this.httpReq.viewImage();
         } else {
           this.successResponse = 'Image not uploaded due to some error!';
         }
@@ -188,17 +189,6 @@ export class UserDashBoardComponent implements OnInit {
       );
     }
 
-  viewImage() {
-    this.httpClient.get('http://localhost:8080/api/auth/get/image/info/' + this.guest.id,{
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.auth.token.token,
-      })})
-      .subscribe(
-        res => {
-          this.postResponse = res;
-          this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
-        }
-      );
-  }
+
 
 }

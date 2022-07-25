@@ -14,6 +14,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('void', style({ opacity: 0, transform: 'translateY(50px)' })),
       transition('void => *', [animate(400)]),
     ]),
+    trigger('lift', [
+      state('void', style({ transform: 'rotate(0deg)', top: '35%' , left: '40%' })),
+      transition('void => *', [animate(800)]),
+    ])
   ],
 })
 

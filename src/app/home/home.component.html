@@ -59,7 +59,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-two">
+            <div class="card-two" @lift>
               <div class="row card-row-one">
                 <div class="col-2">
                   <img
@@ -109,7 +109,7 @@
       </svg>
     </div>
   </section>
-  <section class="second-section container-fluid">
+  <section class="second-section container-fluid" [style.background-color]="!theme ? 'aliceblue' : 'white'">
     <div class="row second-sec-row">
       <h1>Le nostre Statistiche</h1>
       <div class="col-lg-7 col-sm-12 stat-left">

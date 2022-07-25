@@ -128,7 +128,7 @@
     <h1 class="text-center my-3 h1-special">
       {{ modeSpione ? cliente : (guest?.firstName ?? "" | titlecase) }}
       {{ modeSpione ? cliente : (guest?.lastName ?? "" | titlecase) }}
-      <div class="my-image">
+      <div class="my-image" @pop-out>
         <img id="foto-profilo" #fotoProfilo alt="foto-profilo" [src]="dbImage">
       </div>
     </h1>

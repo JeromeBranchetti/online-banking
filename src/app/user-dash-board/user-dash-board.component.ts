@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../service/auth.service';
@@ -6,7 +6,13 @@ import { HttpRequestService } from './../service/httpRequest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpioneService } from '../service/spione.service';
 import { SignUpService } from '../service/signUp.service';
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { utente } from '../class/utente';
 import { conto } from '../class/conto';
 import { Location } from '@angular/common';
@@ -60,7 +66,7 @@ export class UserDashBoardComponent implements OnInit {
     public US: UtenteService,
     formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private auth : AuthService
+    private auth: AuthService
   ) {
     this.form = formBuilder.group({
       amount: ['1', Validators.required],
@@ -89,7 +95,12 @@ export class UserDashBoardComponent implements OnInit {
 
     this.route.queryParamMap.subscribe((params) => {
       this.httpReq.GetUserid(params.get('idUt'));
-      this.httpReq.dbImage.subscribe((res)=>{this.dbImage=res})
+      this.httpReq.dbImage.subscribe((res) => {
+        this.dbImage = res;
+      });
+      this.httpReq.temporanyBalanceUserDashboard.subscribe((res) => {
+        this.conto.balance = res;
+      });
       this.sign.bs.subscribe((res) => {
         this.guest = res;
       });
@@ -164,19 +175,25 @@ export class UserDashBoardComponent implements OnInit {
     this.uploadedImage = event.target.files[0];
   }
 
-
   imageUploadAction() {
     const imageFormData = new FormData();
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
-    this.guest.image =imageFormData;
+    this.guest.image = imageFormData;
     console.log(this.guest);
     console.log(this.uploadedImage);
 
-    this.httpClient.post('http://localhost:8080/api/auth/upload/image/' + this.guest.id, imageFormData ,  {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.auth.token.token,
-      }),observe: 'response' })
+    this.httpClient
+      .post(
+        'http://localhost:8080/api/auth/upload/image/' + this.guest.id,
+        imageFormData,
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + this.auth.token.token,
+          }),
+          observe: 'response',
+        }
+      )
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
@@ -185,10 +202,6 @@ export class UserDashBoardComponent implements OnInit {
         } else {
           this.successResponse = 'Image not uploaded due to some error!';
         }
-      }
-      );
-    }
-
-
-
+      });
+  }
 }

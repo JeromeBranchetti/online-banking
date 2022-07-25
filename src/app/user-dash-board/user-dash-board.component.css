@@ -150,19 +150,12 @@ aside .sidebar a:hover span {
   margin-left: 0.8rem;
 }
 
-/* aside .icons .profile-pic {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background-color: black;
-  margin-left: 1rem;
-} */
 .foto-modal {
   padding: 0.8rem;
 }
 
 .foto-modal .chiudi {
-background-color: gray;
+  background-color: gray;
 }
 
 .my-image {
@@ -351,6 +344,3 @@ main #menu-btn {
     font-size: 18px;
   }
 }
-
-  
-

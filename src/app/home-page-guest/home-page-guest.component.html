@@ -15,7 +15,7 @@
   <div class="second-section">
     <h1 class="text-center title pt-2">I miei conti</h1>
     <div class="container-fluid py-3 row mx-0 justify-content-center">
-      <p class="text-center" *ngIf="noAccountError">
+      <p class="text-center warning" *ngIf="noAccountError">
         Verrai reindirizzato alla Home tra {{ seconds }}
       </p>
       <div
@@ -32,8 +32,11 @@
                 <div class="col">
                   <p class="fs-6">B-n-B Account Risparmi</p>
 
-                  <p class="fs-6 ">
-                    N.conto: <span class="numero-conto">{{ conti[i]?.accountNumber ?? "" }}</span>
+                  <p class="fs-6">
+                    N.conto:
+                    <span class="numero-conto">{{
+                      conti[i]?.accountNumber ?? ""
+                    }}</span>
                   </p>
                 </div>
 

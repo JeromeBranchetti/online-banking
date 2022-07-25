@@ -21,6 +21,8 @@ import { RequestModel } from '../admin-dash-board/admin-dash-board.component';
   providedIn: 'root',
 })
 export class HttpRequestService {
+  dbImage = new BehaviorSubject<any>('');
+  postResponse: any;
   utente: utente;
   conti!: conto[];
   transaction: BankTransaction[];
@@ -34,6 +36,7 @@ export class HttpRequestService {
   errorFlag = new BehaviorSubject<boolean>(null);
   completeOperation = new BehaviorSubject<boolean>(null);
   completeRequest = new BehaviorSubject<void>(null);
+  temporanyBalanceUserDashboard = new BehaviorSubject<number>(null);
 
   constructor(
     private http: HttpClient,
@@ -89,6 +92,7 @@ export class HttpRequestService {
       .subscribe((res) => {
         this.utente = res;
         this.sign.bs.next(this.utente);
+        this.viewImage();
       });
   }
 
@@ -294,6 +298,7 @@ export class HttpRequestService {
       )
       .subscribe({
         next: (res) => {
+          this.temporanyBalanceUserDashboard.next(this.conto.balance - amount);
           this.http.get(
             'http://localhost:8080/api/account/accounts/activation_request/' +
               res.id,
@@ -473,9 +478,8 @@ export class HttpRequestService {
   }
 
   richiestaChiusuraConto(idConto: number) {
-    this.conto.state = 'CLOSURE_REQUEST';
     this.http
-      .get(
+      .get<conto>(
         'http://localhost:8080/api/account/closure_request/accounts/' + idConto,
         {
           headers: new HttpHeaders({
@@ -484,10 +488,12 @@ export class HttpRequestService {
         }
       )
       .subscribe({
-        next: () => {
+        next: (res) => {
           this.completeOperation.next(true);
           this.errorFlag.next(false);
           this.message.next('Richiesta chiusura inviata');
+          this.conto.state = res.state;
+          console.log(this.conto.state);
         },
         error: (res) => {
           this.completeOperation.next(true);
@@ -501,5 +507,18 @@ export class HttpRequestService {
     this.onGetUser().subscribe((res) => {
       this.userList.next(res);
     });
+  }
+
+  viewImage() {
+    this.http
+      .get('http://localhost:8080/api/auth/get/image/info/' + this.utente.id, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + this.auth.token.token,
+        }),
+      })
+      .subscribe((res) => {
+        this.postResponse = res;
+        this.dbImage.next('data:image/jpeg;base64,' + this.postResponse.image);
+      });
   }
 }

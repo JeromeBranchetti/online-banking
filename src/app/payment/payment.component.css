@@ -71,7 +71,7 @@ input.ng-invalid.ng-touched {
 }
 
 .dark-form-container {
-  background-color: #b298d289;
+  background-color: aliceblue;
   border-radius: 5px;
 }
 
@@ -132,7 +132,7 @@ input.ng-invalid.ng-touched {
 }
 
 :host /deep/ .mat-step-header .mat-step-icon {
-  background-color: #666fc8;
+  background-color: aliceblue;
 }
 
 :host /deep/ .mat-step-header .mat-step-icon-selected {
@@ -224,7 +224,7 @@ p {
   border-radius: 8px;
   position: relative;
   left: 10%;
-  background-color: #b298d289;
+  background-color: aliceblue;
   padding-top: 10px;
 }
 

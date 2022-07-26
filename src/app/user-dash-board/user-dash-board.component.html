@@ -202,6 +202,7 @@
             class="mb-3 mt-2 p-2"
             data-bs-toggle="modal"
             data-bs-target="#fotoModal"
+            (click)="onIsModalFotoVisible()"
           >
             Foto <i class="fas fa-camera"></i>
           </button>
@@ -214,8 +215,8 @@
             aria-labelledby="fotoModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
-              <div class="modal-content foto-modal">
+            <div class="modal-dialog" [style.display]="isModalFotoVisible ? 'block' : 'none'">
+              <div class="modal-content foto-modal" *ngIf="isModalFotoVisible">
                 <div class="modal-header">
                   <h2 class="modal-title text-center" id="fotoModalLabel">
                     Foto profilo
@@ -229,10 +230,6 @@
                 </div>
                 <form>
                   <div class="modal-body">
-                    <!--                  <div class="mb-3">-->
-                    <!--                    <label for="titolo" class="form-label mt-2 mb-3 px-2 ">Titolo foto</label>-->
-                    <!--                    <input type="text" class="form-control" id="titolo" placeholder="scrivi titolo..." (change)="onImageUpload($event)">-->
-                    <!--                  </div>-->
                     <div class="mb-3">
                       <label for="formFile" class="form-label"
                         >Seleziona una foto</label

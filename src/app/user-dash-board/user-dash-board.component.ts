@@ -42,6 +42,7 @@ export class UserDashBoardComponent implements OnInit {
   themeDark: boolean = true;
   public innerWidth: any;
   isModalVisible: boolean = false;
+  isModalFotoVisible: boolean = false;
   form: FormGroup;
   completeOperation: boolean = false;
   idUtente!: number;
@@ -176,6 +177,10 @@ export class UserDashBoardComponent implements OnInit {
     this.isModalVisible = true;
   }
 
+  onIsModalFotoVisible() {
+    this.isModalFotoVisible = true;
+  }
+
   public onImageUpload(event) {
     console.log(event.target.files);
     this.uploadedImage = event.target.files[0];
@@ -209,6 +214,8 @@ export class UserDashBoardComponent implements OnInit {
           this.successResponse = 'Image not uploaded due to some error!';
         }
       });
+
+      this.isModalFotoVisible = false;
   }
 
   viewImage() {
